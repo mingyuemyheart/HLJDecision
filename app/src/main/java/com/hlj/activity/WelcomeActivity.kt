@@ -33,6 +33,7 @@ class WelcomeActivity : BaseActivity(), AMapLocationListener {
 
 	private var lat = 0.0
 	private var lng = 0.0
+	private var areaId = ""
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -49,7 +50,7 @@ class WelcomeActivity : BaseActivity(), AMapLocationListener {
 	private fun okHttpTheme() {
 		var delayMillis : Long = 0
 		val url = "https://decision-admin.tianqi.cn/Home/work2019/decision_theme_data?appid=${CONST.APPID}"
-		Thread(Runnable {
+		Thread {
 			OkHttpUtil.enqueue(Request.Builder().url(url).build(), object : Callback {
 				override fun onFailure(call: Call, e: IOException) {}
 
@@ -82,7 +83,7 @@ class WelcomeActivity : BaseActivity(), AMapLocationListener {
 					}
 				}
 			})
-		}).start()
+		}.start()
 
 		Handler().postDelayed({
 			imageView.visibility = View.VISIBLE
@@ -128,6 +129,7 @@ class WelcomeActivity : BaseActivity(), AMapLocationListener {
 		if (amapLocation != null && amapLocation.errorCode == AMapLocation.LOCATION_SUCCESS) {
 			lat = amapLocation.latitude
 			lng = amapLocation.longitude
+			areaId = amapLocation.adCode
 		}
 	}
 
@@ -388,6 +390,7 @@ class WelcomeActivity : BaseActivity(), AMapLocationListener {
 		builder.add("pushtoken", MyApplication.DEVICETOKEN)
 		builder.add("platform", "android")
 		builder.add("um_key", MyApplication.appKey)
+		builder.add("areaid", areaId)
 		val body = builder.build()
 		Thread(Runnable {
 			OkHttpUtil.enqueue(Request.Builder().url(url).post(body).build(), object : Callback {

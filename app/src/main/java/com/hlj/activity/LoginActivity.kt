@@ -1,4 +1,4 @@
-package com.hlj.activity;
+package com.hlj.activity
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -37,6 +37,7 @@ class LoginActivity : BaseActivity(), OnClickListener, AMapLocationListener {
 
 	private var lat = 0.0
 	private var lng = 0.0
+	private var areaId = ""
 	private var isMobileLogin = true
 	private var seconds:Int = 60
 	private var timer: Timer? = null
@@ -68,6 +69,7 @@ class LoginActivity : BaseActivity(), OnClickListener, AMapLocationListener {
 			if (amapLocation.longitude != 0.0 && amapLocation.latitude != AMapLocation.LOCATION_SUCCESS.toDouble()) {
 				lat = amapLocation.latitude
 				lng = amapLocation.longitude
+				areaId = amapLocation.adCode
 			}
 		}
 	}
@@ -414,6 +416,7 @@ class LoginActivity : BaseActivity(), OnClickListener, AMapLocationListener {
 		builder.add("pushtoken", MyApplication.DEVICETOKEN)
 		builder.add("platform", "android")
 		builder.add("um_key", MyApplication.appKey)
+		builder.add("areaid", areaId)
 		val body = builder.build()
 		Thread(Runnable {
 			OkHttpUtil.enqueue(Request.Builder().url(url).post(body).build(), object : Callback {

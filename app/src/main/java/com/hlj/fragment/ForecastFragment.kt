@@ -58,6 +58,7 @@ import com.iflytek.cloud.SpeechConstant
 import com.iflytek.cloud.SpeechError
 import com.iflytek.cloud.SpeechSynthesizer
 import com.iflytek.cloud.SynthesizerListener
+import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.fragment_forecast.*
 import okhttp3.Call
 import okhttp3.Callback
@@ -78,6 +79,7 @@ import kotlin.collections.ArrayList
  */
 class ForecastFragment : Fragment(), OnClickListener, AMapLocationListener, CaiyunManager.RadarListener{
 
+    private var timer: Timer? = null
     private var mReceiver: MyBroadCastReceiver? = null
     private var mAdapter: WeeklyForecastAdapter? = null
     private val weeklyList: MutableList<WeatherDto> = ArrayList()
@@ -130,9 +132,23 @@ class ForecastFragment : Fragment(), OnClickListener, AMapLocationListener, Caiy
     }
 
     private fun refresh() {
-        initRefreshLayout()
-        initWidget()
-        initListView()
+        refreshLayout.isRefreshing = true
+        hour = sdf1.format(Date()).toInt()
+        if (CommonUtil.isLocationOpen(activity)) {
+            startLocation()
+        } else {
+            Toast.makeText(activity, "未开启定位，请选择城市", Toast.LENGTH_LONG).show()
+            val intent = Intent(activity, CityActivity::class.java)
+            intent.putExtra("selectCity", "selectCity")
+            startActivityForResult(intent, 1001)
+//            locationComplete()
+        }
+
+        initSpeech()
+
+        val columnId = arguments!!.getString(CONST.COLUMN_ID)
+        val title = arguments!!.getString(CONST.ACTIVITY_NAME)
+        CommonUtil.submitClickCount(columnId, title)
     }
 
     /**
@@ -172,7 +188,6 @@ class ForecastFragment : Fragment(), OnClickListener, AMapLocationListener, Caiy
         clVideo.setOnClickListener(this)
         clAudio.setOnClickListener(this)
         ivPlay2!!.setOnClickListener(this)
-        hour = sdf1.format(Date()).toInt()
         if (TextUtils.equals(MyApplication.getAppTheme(), "1")) {
             refreshLayout!!.setBackgroundColor(Color.BLACK)
             clDay1.setBackgroundColor(Color.BLACK)
@@ -183,21 +198,32 @@ class ForecastFragment : Fragment(), OnClickListener, AMapLocationListener, Caiy
             ivHourly.setImageBitmap(CommonUtil.grayScaleImage(BitmapFactory.decodeResource(resources, R.drawable.icon_hour_rain)))
             ivFifteen.setImageBitmap(CommonUtil.grayScaleImage(BitmapFactory.decodeResource(resources, R.drawable.icon_fifteen)))
         }
-        if (CommonUtil.isLocationOpen(activity)) {
-            startLocation()
-        } else {
-            Toast.makeText(activity, "未开启定位，请选择城市", Toast.LENGTH_LONG).show()
-            val intent = Intent(activity, CityActivity::class.java)
-            intent.putExtra("selectCity", "selectCity")
-            startActivityForResult(intent, 1001)
-//            locationComplete()
+
+        if (timer == null) {
+            timer = Timer()
+            timer!!.schedule(object : TimerTask() {
+                override fun run() {
+                    activity!!.runOnUiThread {
+                        refresh()
+                    }
+                }
+            }, 0, 1000*60*3)
         }
+    }
 
-        initSpeech()
+    /**
+     * 重置计时器
+     */
+    private fun resetTimer() {
+        if (timer != null) {
+            timer!!.cancel()
+            timer = null
+        }
+    }
 
-        val columnId = arguments!!.getString(CONST.COLUMN_ID)
-        val title = arguments!!.getString(CONST.ACTIVITY_NAME)
-        CommonUtil.submitClickCount(columnId, title)
+    override fun onDestroyView() {
+        super.onDestroyView()
+        resetTimer()
     }
 
     /**

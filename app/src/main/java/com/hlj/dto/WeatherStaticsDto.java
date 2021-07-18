@@ -8,4 +8,6 @@ public class WeatherStaticsDto {
 	public String level;
 	public String latitude;
 	public String longitude;
+	public String tm;
+	public String gasa;
 }

@@ -122,6 +122,11 @@ class WeatherFactFragment : Fragment() {
                     intent.putExtra(CONST.COLUMN_ID, dto.columnId)
                     intent.putExtra(CONST.ACTIVITY_NAME, dto.name)
                     startActivity(intent)
+                } else if (TextUtils.equals(dto.id, "121")) { //负氧离子检测新
+                    intent = Intent(activity, FylzActivity::class.java)
+                    intent.putExtra(CONST.COLUMN_ID, dto.columnId)
+                    intent.putExtra(CONST.ACTIVITY_NAME, dto.name)
+                    startActivity(intent)
                 } else if (TextUtils.equals(dto.id, "117")) { //台风路径
                     intent = Intent(activity, TyphoonRouteActivity::class.java)
                     intent.putExtra(CONST.COLUMN_ID, dto.columnId)
@@ -160,7 +165,7 @@ class WeatherFactFragment : Fragment() {
                     intent.putExtra(CONST.ACTIVITY_NAME, dto.name)
                     startActivity(intent)
                 } else if (TextUtils.equals(dto.id, "701")) { //全省预报
-                    intent = Intent(activity, HProvinceForecastActivity::class.java)
+                    intent = Intent(activity, ProvinceForecastActivity::class.java)
                     intent.putExtra(CONST.COLUMN_ID, dto.columnId)
                     intent.putExtra(CONST.ACTIVITY_NAME, dto.name)
                     intent.putExtra(CONST.WEB_URL, dto.dataUrl)

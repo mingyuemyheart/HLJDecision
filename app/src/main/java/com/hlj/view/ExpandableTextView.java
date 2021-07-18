@@ -173,7 +173,7 @@ public class ExpandableTextView extends LinearLayout implements View.OnClickList
 		// i.e. Everything fits. No button needed
 		mButton.setVisibility(View.GONE);
 		mTv.setMaxLines(Integer.MAX_VALUE);
-		mTv.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 13);
+		mTv.setTextSize(TypedValue.COMPLEX_UNIT_SP, textSize);
 
 		// Measure
 		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
@@ -257,6 +257,13 @@ public class ExpandableTextView extends LinearLayout implements View.OnClickList
 		mRelayout = true;
 		mTv.setText(text);
 		setVisibility(TextUtils.isEmpty(text) ? View.GONE : View.VISIBLE);
+	}
+
+	private int textSize = 14;
+	public void setTextSize(int size) {
+		mRelayout = true;
+		textSize = size;
+		mTv.setTextSize(TypedValue.COMPLEX_UNIT_SP, size);
 	}
 
 	public void setText(CharSequence text, SparseBooleanArray collapsedStatus, int position) {

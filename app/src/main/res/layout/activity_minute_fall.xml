@@ -17,122 +17,131 @@
         app:layout_constraintTop_toBottomOf="@+id/reTitle" />
 
     <android.support.constraint.ConstraintLayout
+        android:id="@+id/clShare"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:background="@drawable/bg_corner_black"
-        android:padding="10dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/reTitle">
 
-        <ImageView
-            android:id="@+id/ivLocation"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:src="@drawable/icon_location_white"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:id="@+id/tvAddr"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:textSize="@dimen/level_5"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/ivLocation"
-            app:layout_constraintTop_toTopOf="parent"/>
-
-        <TextView
-            android:id="@+id/tvRain"
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:textColor="@color/white"
-            android:textSize="@dimen/level_5"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvAddr" />
+            android:layout_margin="10dp"
+            android:background="@drawable/bg_corner_black"
+            android:padding="10dp"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
-            android:id="@+id/llContainer3"
-            android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@+id/tvRain" />
+            <ImageView
+                android:id="@+id/ivLocation"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/icon_location_white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    </android.support.constraint.ConstraintLayout>
+            <TextView
+                android:id="@+id/tvAddr"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="@dimen/level_5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ivLocation"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/ivRank"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginBottom="10dp"
-        android:src="@drawable/icon_map_legend"
-        app:layout_constraintBottom_toTopOf="@+id/llSeekBar"
-        app:layout_constraintStart_toStartOf="parent" />
+            <TextView
+                android:id="@+id/tvRain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:textColor="@color/white"
+                android:textSize="@dimen/level_5"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvAddr" />
 
-    <ImageView
-        android:id="@+id/ivLegend"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:adjustViewBounds="true"
-        android:src="@drawable/iv_minute_legend"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/ivRank"
-        app:layout_constraintStart_toEndOf="@+id/ivRank"
-        app:layout_constraintTop_toTopOf="@+id/ivRank" />
+            <LinearLayout
+                android:id="@+id/llContainer3"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/tvRain" />
 
-    <LinearLayout
-        android:id="@+id/llSeekBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:background="@drawable/bg_seekbar"
-        android:clickable="true"
-        android:gravity="center_vertical"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent">
+        </android.support.constraint.ConstraintLayout>
 
         <ImageView
-            android:id="@+id/ivPlay"
+            android:id="@+id/ivRank"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:layout_marginStart="15dp"
-            android:src="@drawable/icon_play" />
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/icon_map_legend"
+            app:layout_constraintBottom_toTopOf="@+id/llSeekBar"
+            app:layout_constraintStart_toStartOf="parent" />
 
-        <SeekBar
-            android:id="@+id/seekBar"
+        <ImageView
+            android:id="@+id/ivLegend"
             android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/iv_minute_legend"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/ivRank"
+            app:layout_constraintStart_toEndOf="@+id/ivRank"
+            app:layout_constraintTop_toTopOf="@+id/ivRank" />
+
+        <LinearLayout
+            android:id="@+id/llSeekBar"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:maxHeight="2dp"
-            android:minHeight="2dp"
-            android:progress="100"
-            android:progressDrawable="@drawable/shawn_seekbar_drawable"
-            android:thumb="@drawable/shawn_seekbar_thumb"
-            android:thumbOffset="0dp" />
+            android:layout_margin="10dp"
+            android:background="@drawable/bg_seekbar"
+            android:clickable="true"
+            android:gravity="center_vertical"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <ImageView
+                android:id="@+id/ivPlay"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="15dp"
+                android:src="@drawable/icon_play" />
+
+            <SeekBar
+                android:id="@+id/seekBar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:maxHeight="2dp"
+                android:minHeight="2dp"
+                android:progress="100"
+                android:progressDrawable="@drawable/shawn_seekbar_drawable"
+                android:thumb="@drawable/shawn_seekbar_thumb"
+                android:thumbOffset="0dp" />
+
+            <TextView
+                android:id="@+id/tvTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:textColor="@color/text_color4"
+                android:textSize="@dimen/level_5" />
+        </LinearLayout>
 
         <TextView
-            android:id="@+id/tvTime"
+            android:id="@+id/tvMapNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
-            android:textColor="@color/text_color4"
-            android:textSize="@dimen/level_5" />
-    </LinearLayout>
+            android:layout_marginStart="70dp"
+            android:textColor="#6990A9"
+            android:textSize="@dimen/level_5"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/tvMapNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="70dp"
-        android:textColor="#6990A9"
-        android:textSize="@dimen/level_5"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+    </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>

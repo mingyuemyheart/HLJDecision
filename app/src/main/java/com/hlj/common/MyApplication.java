@@ -25,6 +25,7 @@ import com.umeng.message.common.inter.ITagManager.Result;
 import com.umeng.message.entity.UMessage;
 import com.umeng.message.tag.TagManager;
 import com.umeng.message.tag.TagManager.TCallBack;
+import com.umeng.socialize.PlatformConfig;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -70,6 +71,7 @@ public class MyApplication extends Application{
 	private void initUmeng() {
 		//umeng分享
 		UMConfigure.init(this, appKey, "umeng", UMConfigure.DEVICE_TYPE_PHONE, msgSecret);
+		PlatformConfig.setWeixin("wx029d05ce279a188f", "7f2a515f4c85c0b180fc9894d6c7c80a");
 		UMConfigure.setLogEnabled(true);
 
 		registerUmengPush();

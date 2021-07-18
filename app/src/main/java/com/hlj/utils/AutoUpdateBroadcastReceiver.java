@@ -96,12 +96,4 @@ public class AutoUpdateBroadcastReceiver extends BroadcastReceiver{
 
     }
 
-    private String getMIMEType(File var0) {
-        String var1 = "";
-        String var2 = var0.getName();
-        String var3 = var2.substring(var2.lastIndexOf(".") + 1, var2.length()).toLowerCase();
-        var1 = MimeTypeMap.getSingleton().getMimeTypeFromExtension(var3);
-        return var1;
-    }
-
 }

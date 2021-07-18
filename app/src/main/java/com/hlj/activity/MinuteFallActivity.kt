@@ -48,7 +48,7 @@ import kotlin.collections.ArrayList
 /**
  * 分钟级降水
  */
-class MinuteFallActivity : BaseActivity(), View.OnClickListener, CaiyunManager.RadarListener, AMap.OnMapClickListener, GeocodeSearch.OnGeocodeSearchListener, AMapLocationListener {
+class MinuteFallActivity : BaseActivity(), View.OnClickListener, CaiyunManager.RadarListener, AMap.OnMapClickListener, GeocodeSearch.OnGeocodeSearchListener, AMapLocationListener, AMap.OnMapScreenShotListener {
 
     private var aMap: AMap? = null
     private val dataList: ArrayList<MinuteFallDto> = ArrayList()
@@ -70,6 +70,9 @@ class MinuteFallActivity : BaseActivity(), View.OnClickListener, CaiyunManager.R
 
     private fun initWidget() {
         llBack!!.setOnClickListener(this)
+        ivControl.setImageResource(R.drawable.icon_share)
+        ivControl.setOnClickListener(this)
+        ivControl.visibility = View.VISIBLE
         ivPlay!!.setOnClickListener(this)
         ivRank!!.setOnClickListener(this)
         seekBar!!.setOnSeekBarChangeListener(seekbarListener)
@@ -512,11 +515,26 @@ class MinuteFallActivity : BaseActivity(), View.OnClickListener, CaiyunManager.R
         tvTime!!.text = sdf.format(date)
     }
 
+    override fun onMapScreenShot(bitmap1: Bitmap?) { //bitmap1为地图截屏
+        val bitmap2 = CommonUtil.captureView(clShare)
+        val bitmap3 = CommonUtil.mergeBitmap(this, bitmap1, bitmap2, true)
+        CommonUtil.clearBitmap(bitmap1)
+        CommonUtil.clearBitmap(bitmap2)
+        val bitmap4 = BitmapFactory.decodeResource(resources, R.drawable.legend_share_portrait)
+        val bitmap = CommonUtil.mergeBitmap(this, bitmap3, bitmap4, false)
+        CommonUtil.clearBitmap(bitmap3)
+        CommonUtil.clearBitmap(bitmap4)
+        CommonUtil.share(this, bitmap)
+    }
+
+    override fun onMapScreenShot(arg0: Bitmap?, arg1: Int) {}
+
     override fun onClick(v: View) {
         when (v.id) {
             R.id.llBack -> {
                 finish()
             }
+            R.id.ivControl -> aMap!!.getMapScreenShot(this)
             R.id.ivPlay -> {
                 if (mRadarThread != null && mRadarThread!!.currentState == STATE_PLAYING) {
                     mRadarThread!!.pause()

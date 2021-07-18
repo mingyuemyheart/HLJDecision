@@ -1,5 +1,6 @@
 package com.hlj.utils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -13,6 +14,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PaintFlagsDrawFilter;
 import android.graphics.Path;
+import android.graphics.Picture;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
@@ -34,14 +36,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.MarginLayoutParams;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.TranslateAnimation;
 import android.view.inputmethod.InputMethodManager;
+import android.webkit.WebView;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -54,6 +59,12 @@ import com.amap.api.maps.model.MarkerOptions;
 import com.amap.api.maps.model.PolygonOptions;
 import com.amap.api.maps.model.PolylineOptions;
 import com.hlj.common.CONST;
+import com.umeng.socialize.ShareAction;
+import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.umeng.socialize.media.UMImage;
+import com.umeng.socialize.media.UMWeb;
+import com.umeng.socialize.shareboard.SnsPlatform;
+import com.umeng.socialize.utils.ShareBoardlistener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -69,8 +80,10 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
@@ -1136,6 +1149,229 @@ public class CommonUtil {
 				view.clearAnimation();
 			}
 		});
+	}
+
+	/**
+	 * 截取webView快照(webView加载的整个内容的大小)
+	 * @param webView
+	 * @return
+	 */
+	public static Bitmap captureWebView(WebView webView){
+		Picture snapShot = webView.capturePicture();
+		Bitmap bitmap = Bitmap.createBitmap(snapShot.getWidth(),snapShot.getHeight(), Config.ARGB_8888);
+		Canvas canvas = new Canvas(bitmap);
+		snapShot.draw(canvas);
+		clearCanvas(canvas);
+		return bitmap;
+	}
+
+	/**
+	 * 截取scrollView
+	 * @param scrollView
+	 * @return
+	 */
+	public static Bitmap captureScrollView(ScrollView scrollView) {
+		int height = 0;
+		// 获取scrollview实际高度
+		for (int i = 0; i < scrollView.getChildCount(); i++) {
+			height += scrollView.getChildAt(i).getHeight();
+			scrollView.getChildAt(i).setBackgroundColor(0xffffffff);
+		}
+		// 创建对应大小的bitmap
+		Bitmap bitmap = Bitmap.createBitmap(scrollView.getWidth(), height, Config.ARGB_8888);
+		Canvas canvas = new Canvas(bitmap);
+		scrollView.draw(canvas);
+		clearCanvas(canvas);
+		return bitmap;
+	}
+
+	/**
+	 * 截取listview
+	 * @param listView
+	 * @return
+	 */
+	public static Bitmap captureListView(ListView listView){
+		ListAdapter listAdapter = listView.getAdapter();
+		int count = listAdapter.getCount();
+		if (count > 30) {
+			count = 30;
+		}
+		List<View> childViews = new ArrayList<>(count);
+		int totalHeight = 0;
+		for(int i = 0; i < count; i++){
+			View itemView = listAdapter.getView(i, null, listView);
+			itemView.measure(0, 0);
+			childViews.add(itemView);
+			totalHeight += itemView.getMeasuredHeight();
+		}
+		Bitmap bitmap = Bitmap.createBitmap(listView.getWidth(), totalHeight, Config.ARGB_8888);
+		Canvas canvas = new Canvas(bitmap);
+
+		int yPos = 0;
+		//把每个ItemView生成图片，并画到背景画布上
+		for(int j = 0; j < childViews.size(); j++){
+			View itemView = childViews.get(j);
+			int childHeight = itemView.getMeasuredHeight();
+			itemView.layout(0, 0, listView.getWidth(), childHeight);
+			itemView.buildDrawingCache();
+			Bitmap itemBitmap = itemView.getDrawingCache();
+			if(itemBitmap!=null){
+				canvas.drawBitmap(itemBitmap, 0, yPos, null);
+			}
+			yPos = childHeight +yPos;
+		}
+		canvas.save();
+		canvas.restore();
+		clearCanvas(canvas);
+		return bitmap;
+	}
+
+	/**
+	 * 截屏自定义view
+	 * @param view
+	 * @return
+	 */
+	public static Bitmap captureMyView(View view) {
+		if (view == null) {
+			return null;
+		}
+		int width = view.getWidth();
+		int height = view.getHeight();
+		if (width <= 0 || height <= 0) {
+			return null;
+		}
+		Bitmap bitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Config.ARGB_8888);
+		Canvas canvas = new Canvas(bitmap);
+		view.draw(canvas);
+		view.setDrawingCacheEnabled(true);
+		view.buildDrawingCache();
+		bitmap = view.getDrawingCache();
+		clearCanvas(canvas);
+		return bitmap;
+	}
+
+	/**
+	 * 截屏,可是区域
+	 * @return
+	 */
+	public static Bitmap captureView(View view) {
+		if (view == null) {
+			return null;
+		}
+		int width = view.getWidth();
+		int height = view.getHeight();
+		if (width <= 0 || height <= 0) {
+			return null;
+		}
+		Bitmap bitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Config.ARGB_8888);
+		Canvas canvas = new Canvas(bitmap);
+		view.draw(canvas);
+		clearCanvas(canvas);
+		return bitmap;
+	}
+
+	/**
+	 * 合成图片
+	 * @param bitmap1
+	 * @param bitmap2
+	 * @param isCover 判断是否为覆盖合成
+	 * @return
+	 */
+	public static Bitmap mergeBitmap(Context context, Bitmap bitmap1, Bitmap bitmap2, boolean isCover) {
+		if (bitmap1 == null || bitmap2 == null) {
+			return null;
+		}
+
+		WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+		int width = wm.getDefaultDisplay().getWidth();
+		bitmap1 = Bitmap.createScaledBitmap(bitmap1, width, width*bitmap1.getHeight()/bitmap1.getWidth(), true);
+		bitmap2 = Bitmap.createScaledBitmap(bitmap2, width, width*bitmap2.getHeight()/bitmap2.getWidth(), true);
+
+		Bitmap bitmap;
+		Canvas canvas;
+		if (isCover) {
+			int height;
+			if (bitmap1.getHeight() > bitmap2.getHeight()) {
+				height = bitmap1.getHeight();
+			}else {
+				height = bitmap2.getHeight();
+			}
+			bitmap = Bitmap.createBitmap(bitmap1.getWidth(), height, Config.ARGB_8888);
+			canvas = new Canvas(bitmap);
+			canvas.drawBitmap(bitmap1, 0, 0 , null);
+			canvas.drawBitmap(bitmap2, 0, 0, null);
+		}else {
+			bitmap = Bitmap.createBitmap(bitmap1.getWidth(), bitmap1.getHeight()+bitmap2.getHeight(), Config.ARGB_8888);
+			canvas = new Canvas(bitmap);
+			canvas.drawBitmap(bitmap1, 0, 0 , null);
+			canvas.drawBitmap(bitmap2, 0, bitmap1.getHeight(), null);
+		}
+		clearCanvas(canvas);
+		return bitmap;
+	}
+
+	public static void clearBitmap(Bitmap bitmap) {
+		if (bitmap != null) {
+//			if (!bitmap.isRecycled()) {
+//				bitmap.recycle();
+//			}
+			bitmap = null;
+			System.gc();
+		}
+	}
+
+	public static void clearCanvas(Canvas canvas) {
+		if (canvas != null) {
+			canvas = null;
+		}
+	}
+
+	/**
+	 * 分享功能
+	 * @param activity
+	 */
+	public static void share(final Activity activity, final Bitmap bitmap) {
+		ShareAction panelAction = new ShareAction(activity);
+		panelAction.setDisplayList(SHARE_MEDIA.WEIXIN,SHARE_MEDIA.WEIXIN_CIRCLE,SHARE_MEDIA.EMAIL,SHARE_MEDIA.SMS);
+		panelAction.setShareboardclickCallback(new ShareBoardlistener() {
+			@Override
+			public void onclick(SnsPlatform arg0, SHARE_MEDIA arg1) {
+				ShareAction shareAction = new ShareAction(activity);
+				shareAction.setPlatform(arg1);
+				if (bitmap != null) {
+					shareAction.withMedia(new UMImage(activity, bitmap));
+				}
+				shareAction.share();
+			}
+		});
+		panelAction.open();
+	}
+
+	/**
+	 * 分享功能
+	 * @param activity
+	 */
+	public static void share(final Activity activity, final String title, final String content, final String imgUrl, final String url) {
+		ShareAction panelAction = new ShareAction(activity);
+		panelAction.setDisplayList(SHARE_MEDIA.WEIXIN,SHARE_MEDIA.WEIXIN_CIRCLE,SHARE_MEDIA.EMAIL,SHARE_MEDIA.SMS);
+		panelAction.setShareboardclickCallback(new ShareBoardlistener() {
+			@Override
+			public void onclick(SnsPlatform arg0, SHARE_MEDIA arg1) {
+				ShareAction sAction = new ShareAction(activity);
+				sAction.setPlatform(arg1);
+				UMWeb web = new UMWeb(url);
+				web.setTitle(title);//标题
+				if (!TextUtils.isEmpty(imgUrl)) {
+					web.setThumb(new UMImage(activity, imgUrl));  //缩略图
+				}else {
+					web.setThumb(new UMImage(activity, R.drawable.iv_icon));
+				}
+				web.setDescription(content);
+				sAction.withMedia(web);
+				sAction.share();
+			}
+		});
+		panelAction.open();
 	}
 
 }

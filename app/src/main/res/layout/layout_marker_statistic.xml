@@ -12,14 +12,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
         android:gravity="center"
-        android:textColor="#7EB362"
+        android:background="@drawable/bg_marker_name"
+        android:textColor="@color/white"
         android:textSize="@dimen/level_5" />
 
     <ImageView
         android:id="@+id/ivPoint"
         android:layout_width="12dp"
         android:layout_height="12dp"
+        android:layout_marginTop="3dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvName"
