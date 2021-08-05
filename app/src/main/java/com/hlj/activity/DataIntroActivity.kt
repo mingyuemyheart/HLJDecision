@@ -2,13 +2,17 @@ package com.hlj.activity
 
 import android.os.Bundle
 import android.text.TextUtils
+import android.view.View
 import com.hlj.common.CONST
 import com.hlj.common.MyApplication
 import kotlinx.android.synthetic.main.activity_data_intro.*
 import kotlinx.android.synthetic.main.layout_title.*
 import shawn.cxwl.com.hlj.R
 
-class DataIntroActivity : BaseActivity() {
+/**
+ * 客户端数据说明
+ */
+class DataIntroActivity : BaseActivity(), View.OnClickListener {
 
     private var desc = ""
 
@@ -16,6 +20,7 @@ class DataIntroActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_data_intro)
 
+        llBack.setOnClickListener(this)
         val title = intent.getStringExtra(CONST.ACTIVITY_NAME)
         if (!TextUtils.isEmpty(title)) {
             tvTitle.text = title
@@ -36,6 +41,12 @@ class DataIntroActivity : BaseActivity() {
             desc+=desc1
         }
         tvDesc.text = desc
+    }
+
+    override fun onClick(v: View?) {
+        when(v!!.id) {
+            R.id.llBack -> finish()
+        }
     }
 
 }

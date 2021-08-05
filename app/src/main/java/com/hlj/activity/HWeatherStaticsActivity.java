@@ -1,9 +1,5 @@
 package com.hlj.activity;
 
-/**
- * 天气统计
- */
-
 import android.animation.Animator;
 import android.animation.Animator.AnimatorListener;
 import android.animation.ObjectAnimator;
@@ -70,6 +66,9 @@ import okhttp3.Request;
 import okhttp3.Response;
 import shawn.cxwl.com.hlj.R;
 
+/**
+ * 天气统计
+ */
 public class HWeatherStaticsActivity extends BaseActivity implements OnClickListener, OnMarkerClickListener,
         OnMapClickListener, AMap.OnCameraChangeListener, AMapLocationListener {
 	

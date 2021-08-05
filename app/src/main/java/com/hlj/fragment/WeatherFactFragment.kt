@@ -239,6 +239,18 @@ class WeatherFactFragment : Fragment() {
                     intent.putExtra(CONST.WEB_URL, dto.dataUrl)
                     intent.putExtra(CONST.COLUMN_ID, dto.columnId)
                     startActivity(intent)
+                } else if (TextUtils.equals(dto.id, "1206")) { //提问解答
+                    intent = Intent(activity, AskAnwserActivity::class.java)
+                    intent.putExtra(CONST.ACTIVITY_NAME, dto.name)
+                    startActivity(intent)
+                } else if (TextUtils.equals(dto.id, "122")) { //灾情反馈
+                    intent = Intent(activity, DisasterActivity::class.java)
+                    intent.putExtra(CONST.ACTIVITY_NAME, dto.name)
+                    startActivity(intent)
+                } else if (TextUtils.equals(dto.id, "123")) { //通讯录
+                    intent = Intent(activity, AddrBookActivity::class.java)
+                    intent.putExtra(CONST.ACTIVITY_NAME, dto.name)
+                    startActivity(intent)
                 } else if (TextUtils.equals(dto.id, "1401")) { //气候背景
                     intent = Intent(activity, WebviewCssActivity::class.java)
                     intent.putExtra(CONST.ACTIVITY_NAME, dto.name)

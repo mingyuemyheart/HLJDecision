@@ -342,7 +342,7 @@ public class SecretUrlUtil {
     public static String airForecast(double lng, double lat) {
         final String appid = "182e7b37a63445558b05fbcce2b3d6e7";//机密需要用到的AppId
         final String keyName = "9d0232248739420fa4ff19593c731c11";//加密秘钥名称
-        String URL = "http://openapi.mlogcn.com:8000/api/aqi/fc/coor/";
+        String URL = "https://scapi-py.tianqi.cn/api/aqi/fc/coor/";
         SimpleDateFormat sdf1 = new SimpleDateFormat("yyyyMMddHH", Locale.CHINA);
         long timestamp = new Date().getTime();
         String start = sdf1.format(timestamp);

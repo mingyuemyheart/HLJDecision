@@ -14,7 +14,7 @@ public class XiangJiManager {
 
 	private final static String APPID = "182e7b37a63445558b05fbcce2b3d6e7";//机密需要用到的AppId
 	private final static String CHINAWEATHER_DATA = "9d0232248739420fa4ff19593c731c11";//加密秘钥名称
-	private final static String URL = "http://openapi.mlogcn.com:8000/api/aqi/fc/coor/";
+	private final static String URL = "https://scapi-py.tianqi.cn/api/aqi/fc/coor/";
 	
 	public static String getDate(Calendar calendar, String format) {
 		String date = null;

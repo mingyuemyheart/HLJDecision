@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
               android:id="@+id/llContent"
-    android:background="@drawable/main_bg"
+    android:background="@drawable/bg_main"
     android:orientation="vertical" >
 
     <include

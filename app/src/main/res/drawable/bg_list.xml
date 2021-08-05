@@ -15,7 +15,7 @@
                 android:width="40dp" />
             <stroke
                 android:width="0.5dp"
-                android:color="#55B4EB"/>
+                android:color="#E6B765"/>
         </shape>
     </item>
 

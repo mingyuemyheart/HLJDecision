@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
@@ -27,6 +28,7 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
 import android.text.TextUtils;
 import android.util.Base64;
@@ -59,6 +61,7 @@ import com.amap.api.maps.model.MarkerOptions;
 import com.amap.api.maps.model.PolygonOptions;
 import com.amap.api.maps.model.PolylineOptions;
 import com.hlj.common.CONST;
+import com.hlj.dto.DisasterDto;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.media.UMImage;
@@ -1372,6 +1375,37 @@ public class CommonUtil {
 			}
 		});
 		panelAction.open();
+	}
+
+	/**
+	 * 获取所有本地图片文件信息
+	 * @return
+	 */
+	public static List<DisasterDto> getAllLocalImages(Context context) {
+		List<DisasterDto> list = new ArrayList<>();
+		if (context != null) {
+			Cursor cursor = context.getContentResolver().query(
+					MediaStore.Images.Media.EXTERNAL_CONTENT_URI, null, null,
+					null, null);
+			if (cursor != null) {
+				while (cursor.moveToNext()) {
+					int id = cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Images.Media._ID));
+					String title = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.TITLE));
+					String displayName = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DISPLAY_NAME));
+					String mimeType = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.MIME_TYPE));
+					String path = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA));
+					long size = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.SIZE));
+
+					DisasterDto dto = new DisasterDto();
+					dto.imageName = title;
+					dto.imgUrl = path;
+					list.add(0, dto);
+				}
+				cursor.close();
+			}
+		}
+
+		return list;
 	}
 
 }

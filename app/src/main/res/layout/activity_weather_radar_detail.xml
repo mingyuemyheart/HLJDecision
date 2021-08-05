@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:scaleType="fitXY"
-        android:src="@drawable/iv_no_pic"
+        android:src="@drawable/icon_no_bitmap"
         app:layout_constraintTop_toBottomOf="@+id/reTitle" />
 
     <LinearLayout

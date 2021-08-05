@@ -1,0 +1,148 @@
+package com.hlj.activity
+
+import android.content.Intent
+import android.os.Bundle
+import android.text.TextUtils
+import android.view.View
+import android.view.View.OnClickListener
+import android.widget.AdapterView.OnItemClickListener
+import com.hlj.adapter.AskAnwserAdapter
+import com.hlj.common.CONST
+import com.hlj.dto.DisasterDto
+import com.hlj.utils.OkHttpUtil
+import kotlinx.android.synthetic.main.activity_disaster.*
+import kotlinx.android.synthetic.main.layout_title.*
+import okhttp3.Call
+import okhttp3.Callback
+import okhttp3.Request
+import okhttp3.Response
+import org.json.JSONException
+import org.json.JSONObject
+import shawn.cxwl.com.hlj.R
+import java.io.IOException
+import java.util.*
+
+/**
+ * 提问解答
+ */
+class AskAnwserActivity : BaseActivity(), OnClickListener {
+
+    private var mAdapter: AskAnwserAdapter? = null
+    private val dataList: MutableList<DisasterDto> = ArrayList()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_disaster)
+        initRefreshLayout()
+        initWidget()
+        initListView()
+    }
+
+    /**
+     * 初始化下拉刷新布局
+     */
+    private fun initRefreshLayout() {
+        refreshLayout.setColorSchemeResources(CONST.color1, CONST.color2, CONST.color3, CONST.color4)
+        refreshLayout.setProgressViewEndTarget(true, 400)
+        refreshLayout.isRefreshing = true
+        refreshLayout.setOnRefreshListener { okHttpList() }
+    }
+
+    private fun initWidget() {
+        llBack.setOnClickListener(this)
+        tvControl.text = "提问"
+        tvControl.visibility = View.VISIBLE
+        tvControl.setOnClickListener(this)
+
+        val title = intent.getStringExtra(CONST.ACTIVITY_NAME)
+        if (!TextUtils.isEmpty(title)) {
+            tvTitle.text = title
+        }
+        okHttpList()
+    }
+
+    private fun initListView() {
+        mAdapter = AskAnwserAdapter(this, dataList)
+        listView.adapter = mAdapter
+        listView.onItemClickListener = OnItemClickListener { parent, view, position, id ->
+            val data = dataList[position]
+            val intent = Intent(this@AskAnwserActivity, AskAnwserDetailActivity::class.java)
+            val bundle = Bundle()
+            bundle.putParcelable("data", data)
+            intent.putExtras(bundle)
+            startActivity(intent)
+        }
+    }
+
+    private fun okHttpList() {
+        refreshLayout.isRefreshing = true
+        Thread {
+            val url = String.format("http://decision-admin.tianqi.cn/Home/workwsj/getProblemList?uid=%s&appid=%s", CONST.UID, CONST.APPID)
+            OkHttpUtil.enqueue(Request.Builder().url(url).build(), object : Callback {
+                override fun onFailure(call: Call, e: IOException) {}
+
+                @Throws(IOException::class)
+                override fun onResponse(call: Call, response: Response) {
+                    if (!response.isSuccessful) {
+                        return
+                    }
+                    val result = response.body!!.string()
+                    runOnUiThread {
+                        refreshLayout!!.isRefreshing = false
+                        if (!TextUtils.isEmpty(result)) {
+                            try {
+                                val obj = JSONObject(result)
+                                if (!obj.isNull("data")) {
+                                    dataList.clear()
+                                    val array = obj.getJSONArray("data")
+                                    for (i in 0 until array.length()) {
+                                        val itemObj = array.getJSONObject(i)
+                                        val dto = DisasterDto()
+                                        if (!itemObj.isNull("title")) {
+                                            dto.title = itemObj.getString("title")
+                                        }
+                                        if (!itemObj.isNull("content")) {
+                                            dto.content = itemObj.getString("content")
+                                        }
+                                        if (!itemObj.isNull("addtime")) {
+                                            dto.time = itemObj.getString("addtime")
+                                        }
+                                        if (!itemObj.isNull("img")) {
+                                            dto.imgUrl = itemObj.getString("img")
+                                        }
+                                        if (!itemObj.isNull("reply_content")) {
+                                            dto.reply_content = itemObj.getString("reply_content")
+                                        }
+                                        dataList.add(dto)
+                                    }
+                                    if (mAdapter != null) {
+                                        mAdapter!!.notifyDataSetChanged()
+                                    }
+                                }
+                            } catch (e: JSONException) {
+                                e.printStackTrace()
+                            }
+                        }
+                    }
+                }
+            })
+        }.start()
+    }
+
+    override fun onClick(v: View?) {
+        when (v!!.id) {
+            R.id.llBack -> finish()
+            R.id.tvControl -> startActivityForResult(Intent(this, AskAnwserUploadActivity::class.java), 1001)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == RESULT_OK) {
+            when(requestCode) {
+                1001 -> okHttpList()
+            }
+        }
+    }
+
+}

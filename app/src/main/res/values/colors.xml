@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#889BE8</color>
-    <color name="colorPrimaryDark">#889BE8</color>
-    <color name="colorAccent">#889BE8</color>
+    <color name="colorPrimary">#299B8B</color>
+    <color name="colorPrimaryDark">#299B8B</color>
+    <color name="colorAccent">#299B8B</color>
 
-    <color name="refresh_color1">#889BE8</color>
-    <color name="refresh_color2">#A0889BE8</color>
-    <color name="refresh_color3">#80889BE8</color>
-    <color name="refresh_color4">#40889BE8</color>
+    <color name="refresh_color1">#299B8B</color>
+    <color name="refresh_color2">#A0299B8B</color>
+    <color name="refresh_color3">#80299B8B</color>
+    <color name="refresh_color4">#40299B8B</color>
 
     <color name="aqi0">#abd338</color>
     <color name="aqi1">#ffc739</color>
@@ -39,9 +39,7 @@
     <color name="shachen">#FD6801</color>
     <color name="mai">#232440</color>
     <color name="typhoon_bg">#f3758c97</color>
-    <color name="title_bg">#889BE8</color>
-    <color name="detail_bg_color">#3d45ca</color>
-    <color name="list_double_bg_color">#f1f5f8</color>
+    <color name="title_bg">#299B8B</color>
     <color name="text_color1">#CBCBCB</color>
     <color name="text_color2">#A3A7AC</color>
     <color name="text_color3">#f0000000</color>

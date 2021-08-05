@@ -210,6 +210,8 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
 					fragment = new WebviewFragment();//旅游气象
 				} else if (TextUtils.equals(id, "12")) {
 					fragment = new ContactUsFragment();//联系我们
+				} else {
+					fragment = new CommonListFragment();
 				}
 			} else if (TextUtils.equals(showType, CONST.NEWS)) {
 				fragment = new CommonListFragment();

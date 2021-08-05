@@ -322,6 +322,38 @@
             android:name="com.hlj.activity.HanghuaDetailActivity"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name="com.hlj.activity.DisasterActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.hlj.activity.DisasterDetailActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.hlj.activity.DisasterUploadActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.hlj.activity.SelectPictureActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.hlj.activity.AskAnwserActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.hlj.activity.AskAnwserDetailActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.hlj.activity.AskAnwserUploadActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.hlj.activity.AddrBookActivity"
+            android:screenOrientation="portrait" />
+
         <!--umeng share-->
         <activity
             android:name="com.hlj.wxapi.WXEntryActivity"

@@ -940,7 +940,11 @@ class WeatherDetailActivity : BaseActivity(), OnClickListener, CaiyunManager.Rad
                         runOnUiThread { //获取预警信息
                             val warningId = queryWarningIdByCityId(cityId)
                             if (!TextUtils.isEmpty(warningId)) {
-                                setPushTags(warningId)
+                                if (warningId!!.startsWith("23")) {
+                                    val city = warningId.substring(0, 4)+"00"
+                                    val ids = "${warningId},230000,${city}"
+                                    setPushTags(ids)
+                                }
                                 OkHttpWarning("http://decision-admin.tianqi.cn/Home/extra/getwarns?order=0&areaid=" + warningId!!.substring(0, 2), warningId)
                             }
                         }

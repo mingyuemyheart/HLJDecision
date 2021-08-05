@@ -274,7 +274,7 @@ public class WeatherRadarDetailActivity extends BaseActivity implements OnClickL
 
 										if (radarList.size() <= 0) {
 											cancelDialog();
-											imageView.setImageResource(R.drawable.iv_no_pic);
+											imageView.setImageResource(R.drawable.icon_no_bitmap);
 										}
 									} catch (JSONException e) {
 										e.printStackTrace();

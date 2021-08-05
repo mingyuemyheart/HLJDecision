@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@color/light_gray"
-              android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_gray"
+    android:orientation="vertical">
 
     <include
         android:id="@+id/reTitle"
-        layout="@layout/layout_title"/>
+        layout="@layout/layout_title" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,8 +15,8 @@
         android:background="#0A5487"
         android:gravity="center"
         android:orientation="vertical"
-        android:paddingBottom="20dp"
-        android:paddingTop="50dp" >
+        android:paddingTop="50dp"
+        android:paddingBottom="20dp">
 
         <ImageView
             android:id="@+id/ivPortrait"
@@ -28,8 +28,8 @@
             android:id="@+id/tvUserName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
             android:layout_marginTop="5dp"
+            android:gravity="center_horizontal"
             android:text="点击登录"
             android:textColor="@color/white"
             android:textSize="@dimen/level_4" />
@@ -52,12 +52,12 @@
             android:layout_weight="1"
             android:text="@string/setting_feedback"
             android:textColor="@color/text_color3"
-            android:textSize="@dimen/level_4"/>
+            android:textSize="@dimen/level_4" />
 
         <ImageView
             android:layout_width="10dp"
             android:layout_height="18dp"
-            android:background="@drawable/iv_arrow"/>
+            android:background="@drawable/iv_arrow" />
     </LinearLayout>
 
     <LinearLayout
@@ -75,20 +75,20 @@
             android:layout_weight="1"
             android:text="@string/setting_version"
             android:textColor="@color/text_color3"
-            android:textSize="@dimen/level_4"/>
+            android:textSize="@dimen/level_4" />
 
         <TextView
             android:id="@+id/tvVersion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
-            android:textColor="@color/blue"
-            android:textSize="@dimen/level_4"/>
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/level_4" />
 
         <ImageView
             android:layout_width="10dp"
             android:layout_height="18dp"
-            android:background="@drawable/iv_arrow"/>
+            android:background="@drawable/iv_arrow" />
     </LinearLayout>
 
     <LinearLayout
@@ -106,20 +106,20 @@
             android:layout_weight="1"
             android:text="@string/setting_clearcache"
             android:textColor="@color/text_color3"
-            android:textSize="@dimen/level_4"/>
+            android:textSize="@dimen/level_4" />
 
         <TextView
             android:id="@+id/tvCache"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
-            android:textColor="@color/blue"
-            android:textSize="@dimen/level_4"/>
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/level_4" />
 
         <ImageView
             android:layout_width="10dp"
             android:layout_height="18dp"
-            android:background="@drawable/iv_arrow"/>
+            android:background="@drawable/iv_arrow" />
     </LinearLayout>
 
     <LinearLayout
@@ -137,12 +137,12 @@
             android:layout_weight="1"
             android:text="@string/setting_build"
             android:textColor="@color/text_color3"
-            android:textSize="@dimen/level_4"/>
+            android:textSize="@dimen/level_4" />
 
         <ImageView
             android:layout_width="10dp"
             android:layout_height="18dp"
-            android:background="@drawable/iv_arrow"/>
+            android:background="@drawable/iv_arrow" />
     </LinearLayout>
 
     <LinearLayout
@@ -161,7 +161,7 @@
             android:layout_weight="1"
             android:text="@string/setting_cleardata"
             android:textColor="@color/text_color3"
-            android:textSize="@dimen/level_4"/>
+            android:textSize="@dimen/level_4" />
 
         <TextView
             android:id="@+id/tvData"
@@ -169,12 +169,12 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
             android:textColor="@color/blue"
-            android:textSize="@dimen/level_4"/>
+            android:textSize="@dimen/level_4" />
 
         <ImageView
             android:layout_width="10dp"
             android:layout_height="18dp"
-            android:background="@drawable/iv_arrow"/>
+            android:background="@drawable/iv_arrow" />
     </LinearLayout>
 
     <LinearLayout
@@ -192,12 +192,12 @@
             android:layout_weight="1"
             android:text="关注城市"
             android:textColor="@color/text_color3"
-            android:textSize="@dimen/level_4"/>
+            android:textSize="@dimen/level_4" />
 
         <ImageView
             android:layout_width="10dp"
             android:layout_height="18dp"
-            android:background="@drawable/iv_arrow"/>
+            android:background="@drawable/iv_arrow" />
     </LinearLayout>
 
     <LinearLayout
@@ -215,7 +215,7 @@
             android:layout_weight="1"
             android:text="消息推送"
             android:textColor="@color/text_color3"
-            android:textSize="@dimen/level_4"/>
+            android:textSize="@dimen/level_4" />
 
         <ImageView
             android:id="@+id/ivPushNews"
@@ -239,12 +239,12 @@
             android:layout_weight="1"
             android:text="用户协议"
             android:textColor="@color/text_color3"
-            android:textSize="@dimen/level_4"/>
+            android:textSize="@dimen/level_4" />
 
         <ImageView
             android:layout_width="10dp"
             android:layout_height="18dp"
-            android:background="@drawable/iv_arrow"/>
+            android:background="@drawable/iv_arrow" />
     </LinearLayout>
 
     <LinearLayout
@@ -262,12 +262,12 @@
             android:layout_weight="1"
             android:text="隐私政策"
             android:textColor="@color/text_color3"
-            android:textSize="@dimen/level_4"/>
+            android:textSize="@dimen/level_4" />
 
         <ImageView
             android:layout_width="10dp"
             android:layout_height="18dp"
-            android:background="@drawable/iv_arrow"/>
+            android:background="@drawable/iv_arrow" />
     </LinearLayout>
 
     <TextView

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/selector_item"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:maxHeight="180dp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/icon_no_bitmap"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="这是是灾情标题"
+        android:textColor="@color/text_color3"
+        android:textSize="@dimen/level_3"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <ImageView
+        android:id="@+id/ivEventType"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/icon_event_type"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+
+    <TextView
+        android:id="@+id/tvType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:singleLine="true"
+        android:text="事件类型"
+        android:textColor="@color/text_color4"
+        android:textSize="@dimen/level_4"
+        app:layout_constraintBottom_toBottomOf="@+id/ivEventType"
+        app:layout_constraintStart_toEndOf="@+id/ivEventType"
+        app:layout_constraintTop_toTopOf="@+id/ivEventType" />
+
+    <TextView
+        android:id="@+id/tvTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="2021-08-04 10:11:57 发布"
+        android:textColor="@color/text_color4"
+        android:textSize="@dimen/level_4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivEventType" />
+
+    <ImageView
+        android:id="@+id/ivAddr"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/iv_location"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTime" />
+
+    <TextView
+        android:id="@+id/tvAddr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:singleLine="true"
+        android:text="这里是具体的位置"
+        android:textColor="@color/text_color4"
+        android:textSize="@dimen/level_4"
+        app:layout_constraintBottom_toBottomOf="@+id/ivAddr"
+        app:layout_constraintStart_toEndOf="@+id/ivAddr"
+        app:layout_constraintTop_toTopOf="@+id/ivAddr" />
+
+</android.support.constraint.ConstraintLayout>
