@@ -15,6 +15,7 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.CAMERA" />
     <!--//添加允许安装未知应用市场权限，这个权限不是动态权限，所以不用进行动态申请，否则自动更新功能失效-->
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
 
@@ -168,7 +169,7 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.hlj.activity.ShawnFactMonitorActivity"
+            android:name="com.hlj.activity.FactMonitorActivity"
             android:screenOrientation="portrait" />
 
         <activity

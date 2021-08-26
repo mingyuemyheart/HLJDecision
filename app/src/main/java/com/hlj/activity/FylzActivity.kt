@@ -94,6 +94,7 @@ class FylzActivity : BaseActivity(), OnClickListener, OnMarkerClickListener {
         }
         val guizhouLatLng = LatLng(46.102915, 128.121040)
         aMap!!.moveCamera(CameraUpdateFactory.newLatLngZoom(guizhouLatLng, zoom))
+        aMap!!.mapType = AMap.MAP_TYPE_SATELLITE
         aMap!!.uiSettings.isZoomControlsEnabled = false
         aMap!!.uiSettings.isRotateGesturesEnabled = false
         aMap!!.setOnMarkerClickListener(this)
@@ -111,7 +112,7 @@ class FylzActivity : BaseActivity(), OnClickListener, OnMarkerClickListener {
             val data = dataList[position]
             val intent = Intent(this, WebviewActivity::class.java)
             intent.putExtra(CONST.ACTIVITY_NAME, data.name)
-            intent.putExtra(CONST.WEB_URL, "https://decision-admin.tianqi.cn/Public/htmls/hlj/fylz/detail.html?code=${data.stationId}")
+            intent.putExtra(CONST.WEB_URL, "http://decision-admin.tianqi.cn/Public/htmls/hlj/fylz/detail.html?code=${data.stationId}")
             startActivity(intent)
         }
     }
@@ -218,13 +219,13 @@ class FylzActivity : BaseActivity(), OnClickListener, OnMarkerClickListener {
     override fun onMarkerClick(marker: Marker): Boolean {
         val intent = Intent(this, WebviewActivity::class.java)
         intent.putExtra(CONST.ACTIVITY_NAME, marker.title)
-        intent.putExtra(CONST.WEB_URL, "https://decision-admin.tianqi.cn/Public/htmls/hlj/fylz/detail.html?code=${marker.snippet}")
+        intent.putExtra(CONST.WEB_URL, "http://decision-admin.tianqi.cn/Public/htmls/hlj/fylz/detail.html?code=${marker.snippet}")
         startActivity(intent)
         return true
     }
 
-    override fun onClick(v: View) {
-        when (v.id) {
+    override fun onClick(v: View?) {
+        when (v!!.id) {
             R.id.llBack -> finish()
             R.id.tvMap -> {
                 tvMap.setTextColor(ContextCompat.getColor(this, R.color.colorPrimary))

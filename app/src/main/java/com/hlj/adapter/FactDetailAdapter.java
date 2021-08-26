@@ -19,20 +19,17 @@ import shawn.cxwl.com.hlj.R;
 /**
  * 实况资料详情
  */
-
-public class FactDetailAdapter extends BaseAdapter{
+public class FactDetailAdapter extends BaseAdapter {
 	
-	private Context mContext = null;
-	private LayoutInflater mInflater = null;
-	private List<FactDto> mArrayList = new ArrayList<>();
+	private Context mContext;
+	private LayoutInflater mInflater;
+	private List<FactDto> mArrayList;
 	
 	private final class ViewHolder{
 		TextView tvStationName;
 		TextView tvArea;
 		TextView tvValue;
 	}
-	
-	private ViewHolder mHolder = null;
 	
 	public FactDetailAdapter(Context context, List<FactDto> mArrayList) {
 		mContext = context;
@@ -57,6 +54,7 @@ public class FactDetailAdapter extends BaseAdapter{
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
+		ViewHolder mHolder;
 		if (convertView == null) {
 			convertView = mInflater.inflate(R.layout.adapter_fact_detail, null);
 			mHolder = new ViewHolder();

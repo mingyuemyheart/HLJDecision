@@ -16,6 +16,7 @@ public class DisasterDto implements Parcelable {
     public boolean isSelected;
     public boolean isLastItem;//为了区分添加按钮
     public ArrayList<String> imgList = new ArrayList<>();//图片集合
+    public long fileSize;//文件大小
 
     public DisasterDto() {
     }

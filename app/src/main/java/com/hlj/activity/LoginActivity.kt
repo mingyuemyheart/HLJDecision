@@ -331,6 +331,38 @@ class LoginActivity : BaseActivity(), OnClickListener, AMapLocationListener {
 												if (!child2Obj.isNull("showtype")) {
 													child2.showType = child2Obj.getString("showtype")
 												}
+												if (!child2Obj.isNull("child")) {
+													val child3Array = JSONArray(child2Obj.getString("child"))
+													for (m in 0 until child3Array.length()) {
+														val child3Obj = child3Array.getJSONObject(m)
+														val child3 = ColumnData()
+														if (!child3Obj.isNull("id")) {
+															child3.columnId = child3Obj.getString("id")
+														}
+														if (!child3Obj.isNull("localviewid")) {
+															child3.id = child3Obj.getString("localviewid")
+														}
+														if (!child3Obj.isNull("name")) {
+															child3.name = child3Obj.getString("name")
+														}
+														if (!child3Obj.isNull("desc")) {
+															child3.desc = child3Obj.getString("desc")
+														}
+														if (!child3Obj.isNull("icon")) {
+															child3.icon = child3Obj.getString("icon")
+														}
+														if (!child3Obj.isNull("icon2")) {
+															child3.icon2 = child3Obj.getString("icon2")
+														}
+														if (!child3Obj.isNull("dataurl")) {
+															child3.dataUrl = child3Obj.getString("dataurl")
+														}
+														if (!child3Obj.isNull("showtype")) {
+															child3.showType = child3Obj.getString("showtype")
+														}
+														child2.child.add(child3)
+													}
+												}
 												dto.child.add(child2)
 											}
 										}

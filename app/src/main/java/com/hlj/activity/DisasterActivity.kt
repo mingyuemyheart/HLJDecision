@@ -12,10 +12,7 @@ import com.hlj.dto.DisasterDto
 import com.hlj.utils.OkHttpUtil
 import kotlinx.android.synthetic.main.activity_disaster.*
 import kotlinx.android.synthetic.main.layout_title.*
-import okhttp3.Call
-import okhttp3.Callback
-import okhttp3.Request
-import okhttp3.Response
+import okhttp3.*
 import org.json.JSONException
 import org.json.JSONObject
 import shawn.cxwl.com.hlj.R
@@ -77,8 +74,12 @@ class DisasterActivity : BaseActivity(), OnClickListener {
     private fun okHttpList() {
         refreshLayout.isRefreshing = true
         Thread {
-            val url = String.format("http://decision-admin.tianqi.cn/home/work2019/hlj_zqfkSelect?uid=%s&appid=%s", CONST.UID, CONST.APPID)
-            OkHttpUtil.enqueue(Request.Builder().url(url).build(), object : Callback {
+            val url = "http://decision-admin.tianqi.cn/home/work2019/hlj_zqfkSelect"
+            val builder = FormBody.Builder()
+            builder.add("appid", CONST.APPID)
+            builder.add("uid", CONST.UID)
+            val body: RequestBody = builder.build()
+            OkHttpUtil.enqueue(Request.Builder().post(body).url(url).build(), object : Callback {
                 override fun onFailure(call: Call, e: IOException) {}
 
                 @Throws(IOException::class)

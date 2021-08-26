@@ -49,7 +49,7 @@ import com.amap.api.maps.model.Polygon;
 import com.amap.api.maps.model.Polyline;
 import com.amap.api.maps.model.PolylineOptions;
 import com.amap.api.maps.model.Text;
-import com.hlj.adapter.FactAdapter2;
+import com.hlj.adapter.FactMonitorAdapter;
 import com.hlj.adapter.FactTimeAdapter;
 import com.hlj.common.CONST;
 import com.hlj.common.ColumnData;
@@ -96,7 +96,7 @@ public class FactActivity2 extends BaseFragmentActivity implements View.OnClickL
     private float zoom = 5.5f;
     private ScrollView scrollView = null;
     private ListView listView = null;
-    private FactAdapter2 factAdapter = null;
+    private FactMonitorAdapter factAdapter = null;
     private List<FactDto> factList = new ArrayList<>();
     private LinearLayout listTitle = null;
     private TextView tv1, tv2, tv3;
@@ -219,7 +219,7 @@ public class FactActivity2 extends BaseFragmentActivity implements View.OnClickL
 
     private void initListView() {
         listView = (ListView) findViewById(R.id.listView);
-        factAdapter = new FactAdapter2(mContext, factList);
+        factAdapter = new FactMonitorAdapter(mContext, factList);
         listView.setAdapter(factAdapter);
     }
 

@@ -217,7 +217,7 @@ class DisasterUploadActivity : BaseActivity(), OnClickListener {
         }
     }
 
-    private val maxCount = 9
+    private val maxCount = 3
     private fun intentAlbum() {
         val intent = Intent(this, SelectPictureActivity::class.java)
         intent.putExtra("maxCount", maxCount)

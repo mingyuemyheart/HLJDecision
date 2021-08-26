@@ -75,10 +75,12 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Field;
+import java.math.BigDecimal;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.ParseException;
@@ -647,7 +649,7 @@ public class CommonUtil {
 					if (name.contains("加格达奇")) {
 						polylineOption.setDottedLine(true);
 					}
-					polylineOption.width(5).color(0xff406bbf);
+					polylineOption.width(5).color(context.getResources().getColor(R.color.colorPrimary));
 					for (int j = 0; j < array2.length(); j++) {
 						JSONArray itemArray = array2.getJSONArray(j);
 						double lng = itemArray.getDouble(0);
@@ -1394,11 +1396,12 @@ public class CommonUtil {
 					String displayName = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DISPLAY_NAME));
 					String mimeType = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.MIME_TYPE));
 					String path = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA));
-					long size = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.SIZE));
+					long fileSize = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.SIZE));
 
 					DisasterDto dto = new DisasterDto();
 					dto.imageName = title;
 					dto.imgUrl = path;
+					dto.fileSize = fileSize;
 					list.add(0, dto);
 				}
 				cursor.close();
@@ -1406,6 +1409,52 @@ public class CommonUtil {
 		}
 
 		return list;
+	}
+
+	/**
+	 * 格式化文件单位
+	 * @param size
+	 * @return
+	 */
+	public static String getFormatSize(long size) {
+		long kiloByte = size / 1024;
+		if (kiloByte < 1) {
+			return "0KB";
+		}
+
+		long megaByte = kiloByte / 1024;
+		if (megaByte < 1) {
+			BigDecimal result1 = new BigDecimal(Double.toString(kiloByte));
+			return result1.setScale(2, BigDecimal.ROUND_HALF_UP).toPlainString() + "KB";
+		}
+
+		long gigaByte = megaByte / 1024;
+		if (gigaByte < 1) {
+			BigDecimal result2 = new BigDecimal(Double.toString(megaByte));
+			return result2.setScale(2, BigDecimal.ROUND_HALF_UP).toPlainString() + "MB";
+		}
+
+		long teraBytes = gigaByte / 1024;
+		if (teraBytes < 1) {
+			BigDecimal result3 = new BigDecimal(Double.toString(gigaByte));
+			return result3.setScale(2, BigDecimal.ROUND_HALF_UP).toPlainString() + "GB";
+		}
+		BigDecimal result4 = new BigDecimal(teraBytes);
+		return result4.setScale(2, BigDecimal.ROUND_HALF_UP).toPlainString()+ "TB";
+	}
+
+	/**
+	 * 广播通知相册刷新
+	 * @param context
+	 * @param file
+	 */
+	public static void notifyAlbum(Context context, File file) {
+		try {
+			MediaStore.Images.Media.insertImage(context.getContentResolver(), file.getAbsolutePath(), file.getName(), null);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(file)));
 	}
 
 }

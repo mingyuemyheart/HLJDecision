@@ -21,6 +21,8 @@ public class CONST {
 	public static final String PDF = "pdf";
 	public static final String MP4 = "mp4";
 
+	public static String JPG = ".jpg";
+
 	//intent传值的标示
 	public static final String LOCAL_ID = "local_id";//栏目id
 	public static final String COLUMN_ID = "column_id";//栏目id

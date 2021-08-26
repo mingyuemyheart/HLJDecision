@@ -4,6 +4,7 @@
     android:id="@+id/refreshLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/bg_main"
     android:orientation="vertical">
 
     <ScrollView
@@ -284,7 +285,7 @@
                 android:layout_width="30dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
-                android:layout_marginTop="150dp"
+                android:layout_marginTop="300dp"
                 android:adjustViewBounds="true"
                 android:src="@drawable/icon_climate"
                 app:layout_constraintStart_toStartOf="parent"

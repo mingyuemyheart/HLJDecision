@@ -1,41 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@color/white"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <include
         android:id="@+id/reTitle"
         layout="@layout/layout_title" />
-    
+
     <TextView
-            android:id="@+id/tvPrompt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:background="@color/gray"
-            android:textColor="@color/text_color3"
-            android:textSize="@dimen/level_5" />
+        android:id="@+id/tvPrompt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/gray"
+        android:gravity="center"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:textColor="@color/text_color3"
+        android:textSize="@dimen/level_5" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#a6c4e0"
         android:orientation="horizontal"
-        android:paddingBottom="5dp"
-        android:paddingTop="5dp" >
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp">
 
         <LinearLayout
             android:id="@+id/ll1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:paddingLeft="10dp"
             android:gravity="center_vertical"
-            android:orientation="horizontal" >
+            android:orientation="horizontal"
+            android:paddingStart="10dp">
 
             <TextView
                 android:id="@+id/tv1"
@@ -57,7 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1.3"
             android:gravity="center_vertical|center"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/tv2"
@@ -79,7 +79,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1.3"
             android:gravity="center_vertical|center"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/tv3"
@@ -102,9 +102,9 @@
         android:layout_height="wrap_content"
         android:cacheColorHint="@color/transparent"
         android:divider="@null"
-        android:dividerHeight="0.0dip"
+        android:dividerHeight="0.0dp"
         android:listSelector="@color/transparent"
         android:overScrollMode="never"
-        android:scrollbars="none"/>
+        android:scrollbars="none" />
 
 </LinearLayout>

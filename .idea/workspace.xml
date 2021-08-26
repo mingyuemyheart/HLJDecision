@@ -6,6 +6,7 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="urlurl" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="error" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
   </component>
@@ -60,80 +61,39 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="15ab3c4b-28f1-4ec7-90ce-56991a316228" name="Default" comment="1.修改决策登录对话框提示逻辑&#10;2.适配天气详情逐小时预报和分钟级降水UI&#10;3.增加预警推送功能">
-      <change afterPath="$PROJECT_DIR$/app/libs/uk-co-senab-photoview.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/AddrBookActivity.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/AskAnwserActivity.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/AskAnwserDetailActivity.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/DisasterActivity.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/DisasterDetailActivity.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/DisasterUploadActivity.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/SelectPictureActivity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/adapter/AddrBookAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/adapter/AddrTypeAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/adapter/AskAnwserAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/adapter/DisasterAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/adapter/DisasterUploadAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/adapter/SelectPictureAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/dto/ContactDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/view/PhotoView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/view/SlideBar.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/bg_corner_edittext3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/bg_main.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/icon_add.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/icon_ask.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/icon_event_type.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/icon_no_bitmap.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_addrbook.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_ask_anwser_detail.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_ask_anwser_upload.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_disaster.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_disaster_detail.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_disaster_upload.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_select_picture.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/adapter_addr_book.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/adapter_addr_type.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/adapter_ask_anwser.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/adapter_disaster.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/adapter_disaster_upload.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/adapter_select_picture.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/SelectListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/DataIntroActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/DataIntroActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/HWeatherStaticsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/HWeatherStaticsActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/WeatherDetailActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/WeatherDetailActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/WeatherRadarDetailActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/WeatherRadarDetailActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/fragment/ForecastFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/fragment/ForecastFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/AskAnwserUploadActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/AskAnwserUploadActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/DisasterActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/DisasterActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/DisasterUploadActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/DisasterUploadActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/FactActivity2.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/FactActivity2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/FactDetailActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/FactDetailActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/FactDetailChartActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/FactDetailChartActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/FylzActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/FylzActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/LoginActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/LoginActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/SelectPictureActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/SelectPictureActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/ShawnFactMonitorActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/FactMonitorActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/WelcomeActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/WelcomeActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/adapter/FactAdapter2.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/adapter/FactMonitorAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/adapter/FactCheckCitysAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/adapter/FactCheckCitysAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/adapter/FactDetailAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/adapter/FactDetailAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/adapter/SelectPictureAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/adapter/SelectPictureAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/common/CONST.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/common/CONST.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/dto/DisasterDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/dto/DisasterDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/fragment/FactCheckFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/fragment/FactCheckFragment.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/fragment/WeatherFactFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/fragment/WeatherFactFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/manager/XiangJiManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/manager/XiangJiManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/utils/CommonUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/utils/CommonUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/utils/SecretUrlUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/utils/SecretUrlUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/bg_chart.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/bg_chart.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/bg_chart_press.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/bg_chart_press.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/bg_checkbox_selected.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/bg_checkbox_selected.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/bg_list.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/bg_list.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/bg_list_press.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/bg_list_press.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/bg_marker_name.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/bg_marker_name.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/bg_warning2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/bg_warning2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/fragment_bg.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/bg_main2.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/icon_fifteen.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/icon_fifteen.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/icon_hour_rain.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/icon_hour_rain.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/icon_minute_rain.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/icon_minute_rain.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/iv_no_pic.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/iv_portrait.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/iv_portrait.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/main_bg.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_common_list.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_common_list.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_fact_detail.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_fact_detail.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_product.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_product.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_setting.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_setting.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_weather_detail.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_weather_detail.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_weather_radar_detail.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_weather_radar_detail.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/dialog_delete.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/dialog_delete.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/adapter_fact2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/adapter_fact_monitor.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/adapter_select_picture.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/adapter_select_picture.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_fact_check.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_fact_check.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_forecast.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_forecast.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/hactivity_trend_detail.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/hactivity_trend_detail.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/layout_fact.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/layout_fact.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/shawn_activity_fact_monitor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_fact_monitor.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -231,7 +191,7 @@
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1536661182344" />
     <property name="device.picker.selection" value="66J5T19318007315" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/layout" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/drawable" />
     <property name="not.eligible.for.single.variant.sync" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.17" />
@@ -246,30 +206,30 @@
     <option name="LAST_EDITED_BUILD_TYPE" value="release" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
+      <recent name="com.hlj.activity" />
+      <recent name="com.hlj.adapter" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/src/main/res/drawable" />
+      <recent name="$PROJECT_DIR$/app/src/main/res/layout" />
+      <recent name="$PROJECT_DIR$/app/libs" />
+      <recent name="$PROJECT_DIR$/app/src/main/res/values" />
+      <recent name="$PROJECT_DIR$/app/src/main/res/anim" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.hlj.activity" />
+      <recent name="com.hlj.adapter" />
+      <recent name="com.hlj.dto" />
+      <recent name="com.hlj.view" />
+      <recent name="com.hlj.wxapi" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/src/main/res/layout" />
       <recent name="$PROJECT_DIR$/hLJDecision/src/main/res/drawable" />
       <recent name="$PROJECT_DIR$/hLJDecision/src/main/assets" />
       <recent name="$PROJECT_DIR$/hLJDecision/src/main/assets/echarts" />
       <recent name="$PROJECT_DIR$/hLJDecision/src/main/res/layout" />
-    </key>
-    <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
-      <recent name="com.hlj.activity" />
-      <recent name="com.hlj.adapter" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.hlj.adapter" />
-      <recent name="com.hlj.dto" />
-      <recent name="com.hlj.view" />
-      <recent name="com.hlj.activity" />
-      <recent name="com.hlj.wxapi" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/app/src/main/res/layout" />
-      <recent name="$PROJECT_DIR$/app/src/main/res/drawable" />
-      <recent name="$PROJECT_DIR$/app/libs" />
-      <recent name="$PROJECT_DIR$/app/src/main/res/values" />
-      <recent name="$PROJECT_DIR$/app/src/main/res/anim" />
     </key>
   </component>
   <component name="RunManager" selected="Android App.app">
@@ -1035,70 +995,80 @@
     <option name="LAST_COMMIT_MESSAGE" value="替换天气数据" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="557" y="184" key="#com.intellij.ide.util.MemberChooser" timestamp="1628000606277">
+    <state x="557" y="184" key="#com.intellij.ide.util.MemberChooser" timestamp="1629812567089">
       <screen x="49" y="23" width="1391" height="877" />
     </state>
-    <state x="557" y="184" key="#com.intellij.ide.util.MemberChooser/49.23.1391.877@49.23.1391.877" timestamp="1628000606277" />
+    <state x="557" y="184" key="#com.intellij.ide.util.MemberChooser/49.23.1391.877@49.23.1391.877" timestamp="1629812567089" />
     <state x="2142" y="217" key="#com.intellij.ide.util.MemberChooser/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1622767279600" />
     <state x="558" y="184" key="#com.intellij.ide.util.MemberChooser/50.23.1390.877@50.23.1390.877" timestamp="1626453305513" />
-    <state x="482" y="215" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1627999677154">
+    <state x="1888" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1629856207335">
+      <screen x="1440" y="23" width="1920" height="1057" />
+    </state>
+    <state x="1888" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/49.23.1391.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1629856207335" />
+    <state x="482" y="215" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1629810241212">
       <screen x="49" y="23" width="1391" height="877" />
     </state>
-    <state x="482" y="215" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/49.23.1391.877@49.23.1391.877" timestamp="1627999677154" />
+    <state x="482" y="215" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/49.23.1391.877@49.23.1391.877" timestamp="1629810241212" />
     <state x="483" y="215" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/50.23.1390.877@50.23.1390.877" timestamp="1626455104036" />
-    <state width="1878" height="341" key="GridCell.Tab.0.bottom" timestamp="1628128056366">
+    <state width="392" height="466" key="DebuggerActiveHint" timestamp="1629941624744">
+      <screen x="1440" y="23" width="1920" height="1057" />
+    </state>
+    <state width="392" height="466" key="DebuggerActiveHint/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1629941624744" />
+    <state width="1878" height="340" key="GridCell.Tab.0.bottom" timestamp="1629879185951">
       <screen x="1440" y="23" width="1920" height="1057" />
     </state>
     <state width="1878" height="341" key="GridCell.Tab.0.bottom/46.23.1394.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1628128056366" />
     <state width="1348" height="271" key="GridCell.Tab.0.bottom/47.23.1393.877@47.23.1393.877" timestamp="1628085475908" />
-    <state width="1878" height="342" key="GridCell.Tab.0.bottom/49.23.1391.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1628070022564" />
-    <state width="1348" height="271" key="GridCell.Tab.0.bottom/49.23.1391.877@49.23.1391.877" timestamp="1628081572311" />
-    <state width="1878" height="344" key="GridCell.Tab.0.bottom/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1623317108077" />
+    <state width="1878" height="340" key="GridCell.Tab.0.bottom/49.23.1391.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1629871883073" />
+    <state width="1349" height="270" key="GridCell.Tab.0.bottom/49.23.1391.877@49.23.1391.877" timestamp="1629805135073" />
+    <state width="1878" height="340" key="GridCell.Tab.0.bottom/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1629879185951" />
     <state width="1348" height="306" key="GridCell.Tab.0.bottom/50.23.1390.877@50.23.1390.877" timestamp="1626487688026" />
-    <state width="1878" height="341" key="GridCell.Tab.0.center" timestamp="1628128056365">
+    <state width="1878" height="340" key="GridCell.Tab.0.center" timestamp="1629879185950">
       <screen x="1440" y="23" width="1920" height="1057" />
     </state>
     <state width="1878" height="341" key="GridCell.Tab.0.center/46.23.1394.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1628128056365" />
     <state width="1348" height="271" key="GridCell.Tab.0.center/47.23.1393.877@47.23.1393.877" timestamp="1628085475906" />
-    <state width="1878" height="342" key="GridCell.Tab.0.center/49.23.1391.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1628070022562" />
-    <state width="1348" height="271" key="GridCell.Tab.0.center/49.23.1391.877@49.23.1391.877" timestamp="1628081572310" />
-    <state width="1878" height="344" key="GridCell.Tab.0.center/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1623317108076" />
+    <state width="1878" height="340" key="GridCell.Tab.0.center/49.23.1391.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1629871883073" />
+    <state width="1349" height="270" key="GridCell.Tab.0.center/49.23.1391.877@49.23.1391.877" timestamp="1629805135072" />
+    <state width="1878" height="340" key="GridCell.Tab.0.center/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1629879185950" />
     <state width="1348" height="306" key="GridCell.Tab.0.center/50.23.1390.877@50.23.1390.877" timestamp="1626487688025" />
-    <state width="1878" height="341" key="GridCell.Tab.0.left" timestamp="1628128056365">
+    <state width="1878" height="340" key="GridCell.Tab.0.left" timestamp="1629879185950">
       <screen x="1440" y="23" width="1920" height="1057" />
     </state>
     <state width="1878" height="341" key="GridCell.Tab.0.left/46.23.1394.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1628128056365" />
     <state width="1348" height="271" key="GridCell.Tab.0.left/47.23.1393.877@47.23.1393.877" timestamp="1628085475906" />
-    <state width="1878" height="342" key="GridCell.Tab.0.left/49.23.1391.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1628070022560" />
-    <state width="1348" height="271" key="GridCell.Tab.0.left/49.23.1391.877@49.23.1391.877" timestamp="1628081572309" />
-    <state width="1878" height="344" key="GridCell.Tab.0.left/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1623317108076" />
+    <state width="1878" height="340" key="GridCell.Tab.0.left/49.23.1391.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1629871883072" />
+    <state width="1349" height="270" key="GridCell.Tab.0.left/49.23.1391.877@49.23.1391.877" timestamp="1629805135070" />
+    <state width="1878" height="340" key="GridCell.Tab.0.left/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1629879185950" />
     <state width="1348" height="306" key="GridCell.Tab.0.left/50.23.1390.877@50.23.1390.877" timestamp="1626487688025" />
-    <state width="1878" height="341" key="GridCell.Tab.0.right" timestamp="1628128056365">
+    <state width="1878" height="340" key="GridCell.Tab.0.right" timestamp="1629879185951">
       <screen x="1440" y="23" width="1920" height="1057" />
     </state>
     <state width="1878" height="341" key="GridCell.Tab.0.right/46.23.1394.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1628128056365" />
     <state width="1348" height="271" key="GridCell.Tab.0.right/47.23.1393.877@47.23.1393.877" timestamp="1628085475906" />
-    <state width="1878" height="342" key="GridCell.Tab.0.right/49.23.1391.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1628070022563" />
-    <state width="1348" height="271" key="GridCell.Tab.0.right/49.23.1391.877@49.23.1391.877" timestamp="1628081572310" />
-    <state width="1878" height="344" key="GridCell.Tab.0.right/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1623317108077" />
+    <state width="1878" height="340" key="GridCell.Tab.0.right/49.23.1391.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1629871883073" />
+    <state width="1349" height="270" key="GridCell.Tab.0.right/49.23.1391.877@49.23.1391.877" timestamp="1629805135072" />
+    <state width="1878" height="340" key="GridCell.Tab.0.right/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1629879185951" />
     <state width="1348" height="306" key="GridCell.Tab.0.right/50.23.1390.877@50.23.1390.877" timestamp="1626487688026" />
-    <state x="1579" y="144" width="1643" height="816" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1628124621259">
+    <state x="1579" y="144" width="1643" height="816" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1629880468297">
       <screen x="1440" y="23" width="1920" height="1057" />
     </state>
-    <state x="1579" y="144" width="1643" height="816" key="com.intellij.history.integration.ui.views.FileHistoryDialog/49.23.1391.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1628124621259" />
-    <state x="150" y="123" width="1190" height="677" key="com.intellij.history.integration.ui.views.FileHistoryDialog/49.23.1391.877@49.23.1391.877" timestamp="1628082832621" />
-    <state x="1982" y="256" width="836" height="625" key="find.popup" timestamp="1628124878578">
+    <state x="1579" y="144" width="1643" height="816" key="com.intellij.history.integration.ui.views.FileHistoryDialog/49.23.1391.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1629861800478" />
+    <state x="150" y="123" width="1190" height="677" key="com.intellij.history.integration.ui.views.FileHistoryDialog/49.23.1391.877@49.23.1391.877" timestamp="1629814147852" />
+    <state x="1579" y="144" width="1643" height="816" key="com.intellij.history.integration.ui.views.FileHistoryDialog/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1629880468297" />
+    <state x="1983" y="256" width="835" height="591" key="find.popup" timestamp="1629941344898">
       <screen x="1440" y="23" width="1920" height="1057" />
     </state>
-    <state x="1982" y="256" width="836" height="625" key="find.popup/49.23.1391.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1628124878578" />
-    <state x="442" y="216" width="605" height="518" key="find.popup/49.23.1391.877@49.23.1391.877" timestamp="1628000581216" />
-    <state x="1983" y="256" width="835" height="591" key="find.popup/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1627611459088" />
+    <state x="1982" y="256" width="836" height="625" key="find.popup/49.23.1391.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1629856949656" />
+    <state x="442" y="216" width="605" height="518" key="find.popup/49.23.1391.877@49.23.1391.877" timestamp="1629813552483" />
+    <state x="1983" y="256" width="835" height="591" key="find.popup/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1629941344898" />
     <state x="443" y="216" width="605" height="491" key="find.popup/50.23.1390.877/1440.23.1920.1057@50.23.1390.877" timestamp="1627614375273" />
     <state x="443" y="216" width="604" height="518" key="find.popup/50.23.1390.877@50.23.1390.877" timestamp="1627740114547" />
-    <state x="408" y="213" width="672" height="676" key="search.everywhere.popup" timestamp="1628084380367">
-      <screen x="47" y="23" width="1393" height="877" />
+    <state x="409" y="213" width="672" height="676" key="search.everywhere.popup" timestamp="1629809966527">
+      <screen x="49" y="23" width="1391" height="877" />
     </state>
     <state x="408" y="213" width="672" height="676" key="search.everywhere.popup/47.23.1393.877@47.23.1393.877" timestamp="1628084380367" />
+    <state x="409" y="213" width="672" height="676" key="search.everywhere.popup/49.23.1391.877@49.23.1391.877" timestamp="1629809966527" />
     <state x="410" y="213" width="670" height="676" key="search.everywhere.popup/50.23.1390.877@50.23.1390.877" timestamp="1626453385010" />
   </component>
   <component name="XDebuggerManager">
@@ -1113,6 +1083,16 @@
           <url>file://$PROJECT_DIR$/app/src/main/java/com/hlj/view/ExpandableTextView.java</url>
           <line>165</line>
           <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/hlj/activity/WebviewActivity.kt</url>
+          <line>142</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/hlj/activity/FylzActivity.kt</url>
+          <line>222</line>
+          <option name="timeStamp" value="23" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

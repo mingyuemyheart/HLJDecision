@@ -201,10 +201,13 @@ class WeatherFactFragment : Fragment() {
                     intent.putExtra(CONST.ACTIVITY_NAME, dto.name)
                     startActivity(intent)
                 } else if (TextUtils.equals(dto.id, "119")) { //自动站实况监测
-                    intent = Intent(activity, ShawnFactMonitorActivity::class.java)
+                    intent = Intent(activity, FactMonitorActivity::class.java)
                     intent.putExtra(CONST.COLUMN_ID, dto.columnId)
                     intent.putExtra(CONST.ACTIVITY_NAME, dto.name)
                     intent.putExtra(CONST.WEB_URL, dto.dataUrl)
+                    val bundle = Bundle()
+                    bundle.putParcelable("data", dto)
+                    intent.putExtras(bundle)
                     startActivity(intent)
                 } else if (TextUtils.equals(dto.id, "209")) { //雷电预报
                     intent = Intent(activity, ThunderForeActivity::class.java)

@@ -116,9 +116,6 @@ class AskAnwserUploadActivity : BaseActivity(), OnClickListener {
         }
     }
 
-    /**
-     * 灾情反馈
-     */
     private fun okHttpPost() {
         showDialog()
         val url = "http://decision-admin.tianqi.cn/Home/workwsj/decisionAddProblem"

@@ -1,9 +1,5 @@
 package com.hlj.adapter;
 
-/**
- * 实况查询城市列表
- */
-
 import android.content.Context;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -12,25 +8,24 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-
 import com.hlj.dto.FactDto;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import shawn.cxwl.com.hlj.R;
 
-public class FactCheckCitysAdapter extends BaseAdapter{
+/**
+ * 实况查询城市列表
+ */
+public class FactCheckCitysAdapter extends BaseAdapter {
 
-	private Context mContext = null;
-	private LayoutInflater mInflater = null;
-	private List<FactDto> mArrayList = new ArrayList<>();
+	private Context mContext;
+	private LayoutInflater mInflater;
+	private List<FactDto> mArrayList;
 
 	private final class ViewHolder{
 		TextView tvArea;
 	}
-
-	private ViewHolder mHolder = null;
 
 	public FactCheckCitysAdapter(Context context, List<FactDto> mArrayList) {
 		mContext = context;
@@ -55,6 +50,7 @@ public class FactCheckCitysAdapter extends BaseAdapter{
 
 	@Override
 	public View getView(final int position, View convertView, ViewGroup parent) {
+		ViewHolder mHolder;
 		if (convertView == null) {
 			convertView = mInflater.inflate(R.layout.adapter_fact_check_citys, null);
 			mHolder = new ViewHolder();
