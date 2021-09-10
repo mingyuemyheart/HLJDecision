@@ -12,7 +12,7 @@ import java.util.List;
 public class DisasterDto implements Parcelable {
 
     public String disasterName,disasterType;//对应预警类型名称,预警类型，如11B09
-    public String aoiName,addr,title,content,time,imgUrl,imageName,createtime,reply_content;
+    public String aoiName,addr,title,content,time,imgUrl,imageName,createtime,reply_content,status_cn;
     public boolean isSelected;
     public boolean isLastItem;//为了区分添加按钮
     public ArrayList<String> imgList = new ArrayList<>();//图片集合
@@ -39,6 +39,7 @@ public class DisasterDto implements Parcelable {
         dest.writeString(this.imageName);
         dest.writeString(this.createtime);
         dest.writeString(this.reply_content);
+        dest.writeString(this.status_cn);
         dest.writeByte(this.isSelected ? (byte) 1 : (byte) 0);
         dest.writeByte(this.isLastItem ? (byte) 1 : (byte) 0);
         dest.writeStringList(this.imgList);
@@ -56,6 +57,7 @@ public class DisasterDto implements Parcelable {
         this.imageName = in.readString();
         this.createtime = in.readString();
         this.reply_content = in.readString();
+        this.status_cn = in.readString();
         this.isSelected = in.readByte() != 0;
         this.isLastItem = in.readByte() != 0;
         this.imgList = in.createStringArrayList();

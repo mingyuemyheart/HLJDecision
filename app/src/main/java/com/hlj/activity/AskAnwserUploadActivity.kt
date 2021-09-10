@@ -23,6 +23,7 @@ import android.widget.*
 import android.widget.AdapterView.OnItemClickListener
 import com.hlj.adapter.DisasterUploadAdapter
 import com.hlj.common.CONST
+import com.hlj.common.MyApplication
 import com.hlj.dto.DisasterDto
 import com.hlj.utils.AuthorityUtil
 import com.hlj.utils.CommonUtil
@@ -39,7 +40,6 @@ import shawn.cxwl.com.hlj.R
 import uk.co.senab.photoview.PhotoViewAttacher.OnPhotoTapListener
 import java.io.File
 import java.io.IOException
-import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -121,7 +121,7 @@ class AskAnwserUploadActivity : BaseActivity(), OnClickListener {
         val url = "http://decision-admin.tianqi.cn/Home/workwsj/decisionAddProblem"
         val builder = MultipartBody.Builder()
         builder.setType(MultipartBody.FORM)
-        builder.addFormDataPart("uid", CONST.UID)
+        builder.addFormDataPart("uid", MyApplication.UID)
         builder.addFormDataPart("appid", CONST.APPID)
         if (!TextUtils.isEmpty(etTitle!!.text.toString())) {
             builder.addFormDataPart("title", etTitle!!.text.toString())

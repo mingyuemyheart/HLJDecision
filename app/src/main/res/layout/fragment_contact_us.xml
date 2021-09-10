@@ -60,8 +60,8 @@
             android:id="@+id/clMsg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingBottom="50dp"
             android:background="@color/colorPrimary"
-            android:paddingBottom="20dp"
             app:layout_constraintTop_toBottomOf="@+id/clLogin">
 
             <ImageView
@@ -104,6 +104,16 @@
 
         </android.support.constraint.ConstraintLayout>
 
+        <com.hlj.view.ArcBackgroundView
+            android:id="@+id/arcView1"
+            app:layout_constraintTop_toBottomOf="@+id/clMsg"
+            android:layout_width="match_parent"
+            android:background="@color/colorPrimary"
+            app:ArcBackgroundViewEndColor="@color/white"
+            app:ArcBackgroundViewStartColor="@color/white"
+            app:ArcBackgroundViewTopHeight="30dp"
+            android:layout_height="60dp" />
+
         <android.support.constraint.ConstraintLayout
             android:id="@+id/clPhone"
             android:layout_width="match_parent"
@@ -111,6 +121,7 @@
             android:layout_margin="10dp"
             android:background="@drawable/bg_contact_us"
             android:padding="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/clMsg"
             app:layout_constraintTop_toBottomOf="@+id/clMsg">
 
             <TextView
@@ -165,7 +176,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:background="@drawable/selector_detail"
+            android:background="@drawable/selector_item"
             android:padding="10dp"
             app:layout_constraintTop_toBottomOf="@+id/clPhone">
 
@@ -339,13 +350,13 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:background="@drawable/bg_contact_item"
-            android:padding="10dp"
+            android:padding="15dp"
             app:layout_constraintTop_toBottomOf="@+id/text5">
 
             <ImageView
                 android:id="@+id/ivModel"
-                android:layout_width="15dp"
-                android:layout_height="15dp"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
                 android:layout_marginBottom="5dp"
                 android:src="@drawable/icon_model_reserve"
                 app:layout_constraintBottom_toTopOf="@+id/tvModel"
@@ -354,8 +365,8 @@
 
             <ImageView
                 android:id="@+id/ivSpecial"
-                android:layout_width="15dp"
-                android:layout_height="15dp"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
                 android:layout_marginBottom="5dp"
                 android:src="@drawable/icon_special"
                 app:layout_constraintBottom_toTopOf="@+id/tvSpecial"
@@ -401,6 +412,7 @@
             android:id="@+id/tvLogo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/clReserve"
             app:layout_constraintTop_toTopOf="@+id/clReserve"
             app:layout_constraintEnd_toEndOf="@+id/clReserve"
             android:gravity="center"
@@ -409,28 +421,47 @@
             android:textColor="@color/text_color3"
             android:textSize="@dimen/level_6" />
 
-        <ImageView
-            android:id="@+id/ivQRCode"
-            android:layout_width="160dp"
-            android:layout_height="160dp"
-            android:layout_marginTop="20dp"
-            android:adjustViewBounds="true"
-            android:src="@drawable/icon_qr_image"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/clReserve" />
+        <com.hlj.view.ArcBackgroundView
+            android:id="@+id/arcView2"
+            app:layout_constraintTop_toBottomOf="@+id/clReserve"
+            android:layout_width="match_parent"
+            android:rotation="180"
+            android:background="@color/colorPrimary"
+            app:ArcBackgroundViewEndColor="@color/white"
+            app:ArcBackgroundViewStartColor="@color/white"
+            app:ArcBackgroundViewTopHeight="50dp"
+            android:layout_height="100dp" />
 
-        <TextView
-            android:id="@+id/tvAbout"
-            android:layout_width="wrap_content"
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="-关于我们-"
-            android:textColor="@color/text_color3"
-            android:textSize="@dimen/level_4"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivQRCode" />
+            android:paddingBottom="10dp"
+            app:layout_constraintTop_toBottomOf="@+id/arcView2"
+            android:background="@color/colorPrimary">
+
+            <ImageView
+                android:id="@+id/ivQRCode"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                app:layout_constraintTop_toTopOf="parent"
+                android:adjustViewBounds="true"
+                android:src="@drawable/icon_qr_image"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/tvAbout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="-关于我们-"
+                android:textColor="@color/white"
+                android:textSize="@dimen/level_4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivQRCode" />
+
+        </android.support.constraint.ConstraintLayout>
 
     </android.support.constraint.ConstraintLayout>
 

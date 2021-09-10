@@ -6,6 +6,7 @@ import android.view.View
 import android.view.View.OnClickListener
 import android.widget.Toast
 import com.hlj.common.CONST
+import com.hlj.common.MyApplication
 import com.hlj.utils.OkHttpUtil
 import kotlinx.android.synthetic.main.activity_feedback.*
 import kotlinx.android.synthetic.main.layout_title.*
@@ -40,7 +41,7 @@ class FeedbackActivity : BaseActivity(), OnClickListener{
     private fun okHttpFeedBack() {
         val url = "http://decision-admin.tianqi.cn/Home/Work/request"
         val builder = FormBody.Builder()
-        builder.add("uid", CONST.UID)
+        builder.add("uid", MyApplication.UID)
         builder.add("content", etContent!!.text.toString())
         builder.add("appid", CONST.APPID)
         val body: RequestBody = builder.build()

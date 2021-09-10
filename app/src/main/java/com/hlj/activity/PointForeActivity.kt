@@ -145,12 +145,12 @@ class PointForeActivity : BaseActivity(), OnClickListener, AMapLocationListener,
         val latLng = LatLng(locationLat, locationLng)
         val options = MarkerOptions()
         options.anchor(0.5f, 0.5f)
-        val bitmap = ThumbnailUtils.extractThumbnail(BitmapFactory.decodeResource(resources, R.drawable.iv_map_location),
-                CommonUtil.dip2px(this, 15f).toInt(), CommonUtil.dip2px(this, 15f).toInt())
+        val bitmap = ThumbnailUtils.extractThumbnail(BitmapFactory.decodeResource(resources, R.drawable.icon_map_location),
+                CommonUtil.dip2px(this, 16f).toInt(), CommonUtil.dip2px(this, 24f).toInt())
         if (bitmap != null) {
             options.icon(BitmapDescriptorFactory.fromBitmap(bitmap))
         } else {
-            options.icon(BitmapDescriptorFactory.fromResource(R.drawable.iv_map_location))
+            options.icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_map_location))
         }
         options.position(latLng)
         locationMarker = aMap!!.addMarker(options)

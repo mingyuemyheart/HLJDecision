@@ -14,6 +14,7 @@ import com.amap.api.maps.model.Marker
 import com.amap.api.maps.model.MarkerOptions
 import com.hlj.adapter.HanghuaDetailAdapter
 import com.hlj.common.CONST
+import com.hlj.common.MyApplication
 import com.hlj.dto.StationMonitorDto
 import com.hlj.utils.CommonUtil
 import com.hlj.utils.OkHttpUtil
@@ -103,7 +104,7 @@ class HanghuaActivity : BaseActivity(), View.OnClickListener, AMap.OnMapClickLis
 
     private fun okHttpList() {
         Thread(Runnable {
-            val url = "http://decision-admin.tianqi.cn/Home/work2019/hlj_getmyhanghuoData?uid=${CONST.UID}"
+            val url = "http://decision-admin.tianqi.cn/Home/work2019/hlj_getmyhanghuoData?uid=${MyApplication.UID}"
             OkHttpUtil.enqueue(Request.Builder().url(url).build(), object : Callback {
                 override fun onFailure(call: Call, e: IOException) {
                 }

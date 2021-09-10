@@ -17,6 +17,7 @@ import com.hlj.activity.LoginActivity
 import com.hlj.adapter.ContactAdapter
 import com.hlj.common.CONST
 import com.hlj.common.ColumnData
+import com.hlj.common.MyApplication
 import com.hlj.utils.CommonUtil
 import com.hlj.utils.OkHttpUtil
 import kotlinx.android.synthetic.main.dialog_delete.view.*
@@ -57,7 +58,7 @@ class ContactUsFragment : Fragment(), View.OnClickListener {
         tvMsg.setOnClickListener(this)
         clData.setOnClickListener(this)
 
-        if (TextUtils.isEmpty(CONST.USERNAME) || TextUtils.equals(CONST.USERNAME, CONST.publicUser)) {
+        if (TextUtils.isEmpty(MyApplication.USERNAME) || TextUtils.equals(MyApplication.USERNAME, CONST.publicUser)) {
             clLogin.visibility = View.VISIBLE
         } else {
             clLogin.visibility = View.GONE

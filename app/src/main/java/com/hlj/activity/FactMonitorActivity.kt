@@ -118,7 +118,6 @@ class FactMonitorActivity : BaseFragmentActivity(), View.OnClickListener, AMap.O
         llBack.setOnClickListener(this)
         tvDetail.setOnClickListener(this)
         tvHistory.setOnClickListener(this)
-        ivCheck.setOnClickListener(this)
 
         val title = intent.getStringExtra(CONST.ACTIVITY_NAME)
         if (!TextUtils.isEmpty(title)) {
@@ -263,23 +262,34 @@ class FactMonitorActivity : BaseFragmentActivity(), View.OnClickListener, AMap.O
                                     name.setTextColor(Color.WHITE)
                                     name.setBackgroundColor(Color.TRANSPARENT)
                                     childId = itemTag
-                                    okHttpFact("")
+                                    if (name.text.startsWith("任意时段")) {
+                                        viewPager!!.visibility = View.VISIBLE
+                                        scrollView!!.visibility = View.GONE
+                                        if (llContainer2 != null) {
+                                            for (n in 0 until llContainer2.childCount) {
+                                                val ll = llContainer2.getChildAt(n) as LinearLayout
+                                                ll.visibility = View.INVISIBLE
+                                            }
+                                        }
+                                        initViewPager()
+                                    } else {
+                                        if (viewPager!!.visibility == View.VISIBLE) {
+                                            viewPager!!.visibility = View.GONE
+                                            scrollView!!.visibility = View.VISIBLE
+                                        }
+                                        okHttpFact("")
+                                    }
                                 } else {
                                     name.setTextColor(ContextCompat.getColor(this, R.color.text_color4))
                                     name.setBackgroundColor(Color.WHITE)
                                 }
                             }
-
+                            llItem.visibility = View.GONE
                         }
                     }
                     llContainer2.addView(llItem)
 
                     tvName.setOnClickListener { arg0 ->
-                        if (TextUtils.equals(tvName.text.toString(), "降水")) {
-                            ivCheck.visibility = View.VISIBLE
-                        } else {
-                            ivCheck.visibility = View.GONE
-                        }
                         if (llContainer != null) {
                             for (j in 0 until llContainer!!.childCount) {
                                 val name = llContainer!!.getChildAt(j) as TextView
@@ -305,56 +315,6 @@ class FactMonitorActivity : BaseFragmentActivity(), View.OnClickListener, AMap.O
                 }
             }
         }
-    }
-
-    private fun switchTag(tag: String) {
-//        if (TextUtils.equals(tag, "1151")) { //降水
-//            if (llRain!!.visibility == View.VISIBLE) {
-//                llRain!!.visibility = View.INVISIBLE
-//            } else {
-//                llRain!!.visibility = View.VISIBLE
-//            }
-//            llTemp.visibility = View.INVISIBLE
-//            llWind.visibility = View.INVISIBLE
-//            llHumidity.visibility = View.INVISIBLE
-//            ivCheck!!.visibility = View.VISIBLE
-//        } else if (TextUtils.equals(tag, "1131")) { //温度
-//            llRain!!.visibility = View.INVISIBLE
-//            if (llTemp.visibility == View.VISIBLE) {
-//                llTemp.visibility = View.INVISIBLE
-//            } else {
-//                llTemp.visibility = View.VISIBLE
-//            }
-//            llWind.visibility = View.INVISIBLE
-//            llHumidity.visibility = View.INVISIBLE
-//            ivCheck!!.visibility = View.GONE
-//            viewPager!!.visibility = View.GONE
-//            scrollView!!.visibility = View.VISIBLE
-//        } else if (TextUtils.equals(tag, "1141")) { //风速风向
-//            llRain!!.visibility = View.INVISIBLE
-//            llTemp.visibility = View.INVISIBLE
-//            if (llWind.visibility == View.VISIBLE) {
-//                llWind.visibility = View.INVISIBLE
-//            } else {
-//                llWind.visibility = View.VISIBLE
-//            }
-//            llHumidity.visibility = View.INVISIBLE
-//            ivCheck!!.visibility = View.GONE
-//            viewPager!!.visibility = View.GONE
-//            scrollView!!.visibility = View.VISIBLE
-//        } else if (TextUtils.equals(tag, "1161")) { //湿度
-//            llRain!!.visibility = View.INVISIBLE
-//            llTemp.visibility = View.INVISIBLE
-//            llWind.visibility = View.INVISIBLE
-//            if (llHumidity.visibility == View.VISIBLE) {
-//                llHumidity.visibility = View.INVISIBLE
-//            } else {
-//                llHumidity.visibility = View.VISIBLE
-//            }
-//            ivCheck!!.visibility = View.GONE
-//            viewPager!!.visibility = View.GONE
-//            scrollView!!.visibility = View.VISIBLE
-//        }
     }
 
     /**
@@ -970,22 +930,6 @@ class FactMonitorActivity : BaseFragmentActivity(), View.OnClickListener, AMap.O
                 startActivity(intent)
             }
             R.id.tvHistory -> dialogHistory()
-            R.id.ivCheck -> {
-                if (viewPager!!.visibility == View.VISIBLE) {
-                    viewPager!!.visibility = View.GONE
-                    scrollView!!.visibility = View.VISIBLE
-                } else {
-                    viewPager!!.visibility = View.VISIBLE
-                    scrollView!!.visibility = View.GONE
-                    if (llContainer2 != null) {
-                        for (n in 0 until llContainer2.childCount) {
-                            val ll = llContainer2.getChildAt(n) as LinearLayout
-                            ll.visibility = View.INVISIBLE
-                        }
-                    }
-                    initViewPager()
-                }
-            }
         }
     }
     

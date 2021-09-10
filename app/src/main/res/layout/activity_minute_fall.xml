@@ -27,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:background="@drawable/bg_corner_black"
+            android:background="@drawable/bg_corner_white"
             android:padding="10dp"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -35,7 +35,7 @@
                 android:id="@+id/ivLocation"
                 android:layout_width="16dp"
                 android:layout_height="16dp"
-                android:src="@drawable/icon_location_white"
+                android:src="@drawable/icon_location_black"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -43,23 +43,21 @@
                 android:id="@+id/tvAddr"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:textSize="@dimen/level_5"
+                android:textColor="@color/text_color3"
+                android:textSize="13sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/ivLocation"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tvRain"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:paddingTop="10dp"
+                android:paddingTop="5dp"
                 android:paddingBottom="10dp"
-                android:textColor="@color/white"
-                android:textSize="@dimen/level_5"
+                android:textColor="@color/black"
+                android:textSize="15sp"
                 android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvAddr" />
 

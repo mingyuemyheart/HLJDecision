@@ -55,14 +55,12 @@ class SettingActivity : BaseActivity(), OnClickListener {
         ivPortrait!!.setOnClickListener(this)
         tvUserName!!.setOnClickListener(this)
         ivPushNews!!.setOnClickListener(this)
-        val sharedPreferences = getSharedPreferences(CONST.USERINFO, Context.MODE_PRIVATE)
-        val userName = sharedPreferences.getString(CONST.UserInfo.userName, "")
-        val uGroupName = sharedPreferences.getString(CONST.UserInfo.uGroupName, "")
-        if (TextUtils.equals(userName, CONST.publicUser) || TextUtils.isEmpty(userName)) { //公众用户或为空
+
+        if (TextUtils.equals(MyApplication.USERNAME, CONST.publicUser) || TextUtils.isEmpty(MyApplication.USERNAME)) { //公众用户或为空
             tvUserName!!.text = "点击登录\n非注册用户"
             tvLogout!!.visibility = View.GONE
         } else {
-            tvUserName!!.text = "$userName\n分组：$uGroupName"
+            tvUserName!!.text = "${MyApplication.USERNAME}\n分组：${MyApplication.UGROUPNAME}"
             tvLogout!!.visibility = View.VISIBLE
         }
         tvCache!!.text = DataCleanManager.getCacheSize(this)
@@ -120,17 +118,7 @@ class SettingActivity : BaseActivity(), OnClickListener {
         view.llNegative.setOnClickListener { dialog.dismiss() }
         view.llPositive.setOnClickListener {
             dialog.dismiss()
-            val sharedPreferences = getSharedPreferences(CONST.USERINFO, Context.MODE_PRIVATE)
-            val editor = sharedPreferences.edit()
-            editor.clear()
-            editor.apply()
-            CONST.UID = "2606" //用户id
-            CONST.USERNAME = CONST.publicUser //用户名
-            CONST.PASSWORD = CONST.publicPwd //用户密码
-            CONST.TOKEN = "" //token
-            CONST.GROUPID = "50"
-            CONST.UGROUPNAME = "" //uGroupName
-
+            MyApplication.clearUserInfo(this)
             MyApplication.destoryActivity()
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
@@ -141,7 +129,7 @@ class SettingActivity : BaseActivity(), OnClickListener {
      * 温馨提示对话框
      */
     private fun promptDialog() {
-        if (!TextUtils.equals(CONST.publicUser, CONST.USERNAME)) {
+        if (!TextUtils.equals(CONST.publicUser, MyApplication.USERNAME)) {
             return
         }
 

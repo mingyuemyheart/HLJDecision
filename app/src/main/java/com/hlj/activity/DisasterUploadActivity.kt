@@ -23,6 +23,7 @@ import android.widget.*
 import android.widget.AdapterView.OnItemClickListener
 import com.hlj.adapter.DisasterUploadAdapter
 import com.hlj.common.CONST
+import com.hlj.common.MyApplication
 import com.hlj.dto.DisasterDto
 import com.hlj.utils.AuthorityUtil
 import com.hlj.utils.CommonUtil
@@ -126,7 +127,7 @@ class DisasterUploadActivity : BaseActivity(), OnClickListener {
         val url = "http://decision-admin.tianqi.cn/home/work2019/hlj_zqfkupload"
         val builder = MultipartBody.Builder()
         builder.setType(MultipartBody.FORM)
-        builder.addFormDataPart("uid", CONST.UID)
+        builder.addFormDataPart("uid", MyApplication.UID)
         if (!TextUtils.isEmpty(etTitle!!.text.toString())) {
             builder.addFormDataPart("title", etTitle!!.text.toString())
         }

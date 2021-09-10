@@ -249,7 +249,7 @@ public class SecretUrlUtil {
      * 风场某点详情
      */
     public static String windDetail(double lng, double lat) {
-        String URL = "http://scapi.weather.com.cn/weather/getBase_WindD";
+        String URL = "http://decision-admin.tianqi.cn/Home/work2019/getBase_WindD";
         SimpleDateFormat sdf1 = new SimpleDateFormat("yyyyMMddHH", Locale.CHINA);
         String sysdate = sdf1.format(new Date());
         StringBuffer buffer = new StringBuffer();

@@ -224,8 +224,8 @@ public class CrashHandler implements UncaughtExceptionHandler {
                 builder.addFormDataPart("appid", CONST.APPID);
                 builder.addFormDataPart("platform", "Android");
                 builder.addFormDataPart("other_param", CommonUtil.getVersion(mContext));
-                builder.addFormDataPart("other_param1", CONST.USERNAME);
-                builder.addFormDataPart("other_param2", CONST.TOKEN);
+                builder.addFormDataPart("other_param1", MyApplication.USERNAME);
+                builder.addFormDataPart("other_param2", MyApplication.TOKEN);
                 if (!TextUtils.isEmpty(filePath)) {
                     File file = new File(filePath);
                     if (file.exists()) {

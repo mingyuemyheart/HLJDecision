@@ -1,6 +1,7 @@
 package com.hlj.activity
 
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
 import android.support.v4.view.PagerAdapter
 import android.support.v4.view.ViewPager
 import android.text.TextUtils
@@ -54,6 +55,20 @@ class DisasterDetailActivity : BaseActivity(), OnClickListener {
             }
             if (!TextUtils.isEmpty(data.addr)) {
                 tvAddr.text = data.addr
+            }
+            if (data.status_cn != null) {
+                tvStatus.text = data.status_cn
+            }
+            when {
+                TextUtils.equals(data.status_cn, "审核中") -> {
+                    tvStatus.setTextColor(ContextCompat.getColor(this, R.color.text_color4))
+                }
+                TextUtils.equals(data.status_cn, "审核不通过") -> {
+                    tvStatus.setTextColor(ContextCompat.getColor(this, R.color.red))
+                }
+                TextUtils.equals(data.status_cn, "审核通过") -> {
+                    tvStatus.setTextColor(ContextCompat.getColor(this, R.color.colorPrimary))
+                }
             }
             if (!TextUtils.isEmpty(data.disasterType)) {
                 tvType.text = data.disasterType

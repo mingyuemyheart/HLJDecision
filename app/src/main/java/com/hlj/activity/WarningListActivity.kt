@@ -57,6 +57,12 @@ class WarningListActivity : BaseActivity(), OnClickListener {
         }
         warningList.addAll(intent.extras.getParcelableArrayList("warningList"))
         showList.addAll(warningList)
+
+        if (warningList.size > 0) {
+            tvPrompt.visibility = View.GONE
+        } else {
+            tvPrompt.visibility = View.VISIBLE
+        }
     }
 
     private val watcher: TextWatcher = object : TextWatcher {

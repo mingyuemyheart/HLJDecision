@@ -8,6 +8,7 @@ import android.view.View.OnClickListener
 import android.widget.AdapterView.OnItemClickListener
 import com.hlj.adapter.DisasterAdapter
 import com.hlj.common.CONST
+import com.hlj.common.MyApplication
 import com.hlj.dto.DisasterDto
 import com.hlj.utils.OkHttpUtil
 import kotlinx.android.synthetic.main.activity_disaster.*
@@ -77,7 +78,7 @@ class DisasterActivity : BaseActivity(), OnClickListener {
             val url = "http://decision-admin.tianqi.cn/home/work2019/hlj_zqfkSelect"
             val builder = FormBody.Builder()
             builder.add("appid", CONST.APPID)
-            builder.add("uid", CONST.UID)
+            builder.add("uid", MyApplication.UID)
             val body: RequestBody = builder.build()
             OkHttpUtil.enqueue(Request.Builder().post(body).url(url).build(), object : Callback {
                 override fun onFailure(call: Call, e: IOException) {}
@@ -116,6 +117,9 @@ class DisasterActivity : BaseActivity(), OnClickListener {
                                         }
                                         if (!itemObj.isNull("createtime")) {
                                             dto.createtime = itemObj.getString("createtime")
+                                        }
+                                        if (!itemObj.isNull("status_cn")) {
+                                            dto.status_cn = itemObj.getString("status_cn")
                                         }
                                         if (!itemObj.isNull("pic")) {
                                             val imgArray = itemObj.getJSONArray("pic")

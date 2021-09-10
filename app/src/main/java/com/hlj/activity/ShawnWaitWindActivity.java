@@ -209,12 +209,12 @@ public class ShawnWaitWindActivity extends BaseActivity implements OnClickListen
         MarkerOptions options = new MarkerOptions();
         options.position(latLng);
         options.anchor(0.5f, 1.0f);
-        Bitmap bitmap = ThumbnailUtils.extractThumbnail(BitmapFactory.decodeResource(getResources(), R.drawable.shawn_icon_map_location),
-                (int)(CommonUtil.dip2px(mContext, 21)), (int)(CommonUtil.dip2px(mContext, 32)));
+        Bitmap bitmap = ThumbnailUtils.extractThumbnail(BitmapFactory.decodeResource(getResources(), R.drawable.icon_map_location),
+                (int)(CommonUtil.dip2px(mContext, 16)), (int)(CommonUtil.dip2px(mContext, 24)));
         if (bitmap != null) {
             options.icon(BitmapDescriptorFactory.fromBitmap(bitmap));
         }else {
-            options.icon(BitmapDescriptorFactory.fromResource(R.drawable.shawn_icon_map_location));
+            options.icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_map_location));
         }
         if (locationMarker != null) {
             locationMarker.remove();

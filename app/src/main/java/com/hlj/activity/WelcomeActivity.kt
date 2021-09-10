@@ -1,6 +1,5 @@
 package com.hlj.activity
 
-import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -89,18 +88,11 @@ class WelcomeActivity : BaseActivity(), AMapLocationListener {
 			imageView.visibility = View.VISIBLE
 
 			Handler().postDelayed({
-				val sharedPreferences = getSharedPreferences(CONST.USERINFO, Context.MODE_PRIVATE)
-				val userName = sharedPreferences.getString(CONST.UserInfo.userName, null)
-				val pwd = sharedPreferences.getString(CONST.UserInfo.passWord, null)
-				val token = sharedPreferences.getString(CONST.UserInfo.token, null)
-				CONST.TOKEN = token
-				CONST.USERNAME = userName
-				CONST.PASSWORD = pwd
-				if (!TextUtils.isEmpty(token)) {//手机号登录
+				if (!TextUtils.isEmpty(MyApplication.TOKEN)) {//手机号登录
 					okHttpTokenLogin()
 				} else {//账号密码登录
-					if (!TextUtils.isEmpty(userName) && !TextUtils.equals(userName, CONST.publicUser)) { //决策用户
-						okHttpLogin(userName, pwd)
+					if (!TextUtils.isEmpty(MyApplication.USERNAME) && !TextUtils.equals(MyApplication.USERNAME, CONST.publicUser)) { //决策用户
+						okHttpLogin(MyApplication.USERNAME, MyApplication.PASSWORD)
 					} else {
 						okHttpLogin(CONST.publicUser, CONST.publicPwd)
 					}
@@ -139,8 +131,8 @@ class WelcomeActivity : BaseActivity(), AMapLocationListener {
 	private fun okHttpTokenLogin() {
 		val url = "http://decision-admin.tianqi.cn/Home/work2019/hlgRefreshLogin"
 		val builder = FormBody.Builder()
-		builder.add("mobile", CONST.USERNAME)
-		builder.add("token", CONST.TOKEN)
+		builder.add("mobile", MyApplication.USERNAME)
+		builder.add("token", MyApplication.TOKEN)
 		builder.add("appid", CONST.APPID)
 		builder.add("device_id", "")
 		builder.add("platform", "android")
@@ -173,8 +165,8 @@ class WelcomeActivity : BaseActivity(), AMapLocationListener {
 	 * 账号密码登录
 	 */
 	private fun okHttpLogin(userName: String, pwd: String) {
-		CONST.USERNAME = userName
-		CONST.PASSWORD = pwd
+		MyApplication.USERNAME = userName
+		MyApplication.PASSWORD = pwd
 		val url = "http://decision-admin.tianqi.cn/Home/Work/login_1"
 		val builder = FormBody.Builder()
 		builder.add("username", userName)
@@ -349,33 +341,13 @@ class WelcomeActivity : BaseActivity(), AMapLocationListener {
 								if (!obj.isNull("id")) {
 									val uid = obj.getString("id")
 									if (uid != null) {
-										//把用户信息保存在sharedPreferance里
-										if (!TextUtils.equals(CONST.USERNAME, CONST.publicUser)) { //决策用户
-											val sharedPreferences = getSharedPreferences(CONST.USERINFO, Context.MODE_PRIVATE)
-											val editor = sharedPreferences.edit()
-											editor.putString(CONST.UserInfo.uId, uid)
-											editor.putString(CONST.UserInfo.userName, obj.getString("username"))
-											if (!obj.isNull("token")) {
-												editor.putString(CONST.UserInfo.userName, obj.getString("mobile"))
-												editor.putString(CONST.UserInfo.token, obj.getString("token"))
-												CONST.TOKEN = obj.getString("token")
-											} else {
-												CONST.TOKEN = ""
-											}
-											if (!obj.isNull("usergroup")) {
-												editor.putString(CONST.UserInfo.groupId, obj.getString("usergroup"))
-												CONST.GROUPID = obj.getString("usergroup")
-											} else {
-												CONST.GROUPID = ""
-											}
-											if (!obj.isNull("usergroup_name")) {
-												editor.putString(CONST.UserInfo.uGroupName, obj.getString("usergroup_name"))
-												CONST.UGROUPNAME = obj.getString("usergroup_name")
-											} else {
-												CONST.UGROUPNAME = ""
-											}
-											editor.apply()
-											CONST.UID = uid
+										if (!TextUtils.equals(MyApplication.USERNAME, CONST.publicUser)) { //决策用户
+											MyApplication.UID = uid
+											MyApplication.USERNAME = obj.getString("username")
+											MyApplication.TOKEN = obj.getString("token")
+											MyApplication.GROUPID = obj.getString("usergroup")
+											MyApplication.UGROUPNAME = obj.getString("usergroup_name")
+											MyApplication.saveUserInfo(this)
 
 											okHttpPushToken()
 										}
@@ -391,17 +363,6 @@ class WelcomeActivity : BaseActivity(), AMapLocationListener {
 								if (msg != null) {
 									Toast.makeText(this@WelcomeActivity, msg, Toast.LENGTH_SHORT).show()
 								}
-								val sharedPreferences = getSharedPreferences(CONST.USERINFO, Context.MODE_PRIVATE)
-								val editor = sharedPreferences.edit()
-								editor.clear()
-								editor.apply()
-								CONST.UID = "2606" //用户id
-								CONST.USERNAME = CONST.publicUser //用户名
-								CONST.PASSWORD = CONST.publicPwd //用户密码
-								CONST.TOKEN = "" //token
-								CONST.GROUPID = "50"
-								CONST.UGROUPNAME = "" //uGroupName
-
 								okHttpLogin(CONST.publicUser, CONST.publicPwd)
 							}
 						}
@@ -419,8 +380,8 @@ class WelcomeActivity : BaseActivity(), AMapLocationListener {
 		val androidId = Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
 		val serial = Build.SERIAL
 		builder.add("uuid", androidId+serial)
-		builder.add("uid", CONST.UID)
-		builder.add("groupid", CONST.GROUPID)
+		builder.add("uid", MyApplication.UID)
+		builder.add("groupid", MyApplication.GROUPID)
 		builder.add("pushtoken", MyApplication.DEVICETOKEN)
 		builder.add("platform", "android")
 		builder.add("um_key", MyApplication.appKey)

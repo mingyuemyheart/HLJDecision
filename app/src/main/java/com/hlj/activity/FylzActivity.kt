@@ -1,6 +1,7 @@
-package com.hlj.activity;
+package com.hlj.activity
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.text.TextUtils
@@ -30,6 +31,8 @@ import com.hlj.view.wheelview.WheelView
 import kotlinx.android.synthetic.main.activity_fylz.*
 import kotlinx.android.synthetic.main.layout_date.*
 import kotlinx.android.synthetic.main.layout_title.*
+import kotlinx.android.synthetic.main.layout_marker_statistic.*
+import kotlinx.android.synthetic.main.layout_marker_statistic.view.*
 import okhttp3.Call
 import okhttp3.Callback
 import okhttp3.Request
@@ -80,7 +83,6 @@ class FylzActivity : BaseActivity(), OnClickListener, OnMarkerClickListener {
         if (title != null) {
             tvTitle!!.text = title
         }
-
         startTime = sdf1.format(Date())
     }
 
@@ -211,8 +213,8 @@ class FylzActivity : BaseActivity(), OnClickListener, OnMarkerClickListener {
     private fun getTextBitmap(name: String): View? {
         val inflater = getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val view = inflater.inflate(R.layout.layout_marker_statistic, null) ?: return null
-        val tvName = view.findViewById<TextView>(R.id.tvName)
-        tvName.text = name
+        view.tvName.text = name
+        view.tvName.setBgColor(Color.YELLOW)
         return view
     }
 

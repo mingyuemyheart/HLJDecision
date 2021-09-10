@@ -8,6 +8,7 @@ import android.view.View.OnClickListener
 import android.widget.AdapterView.OnItemClickListener
 import com.hlj.adapter.AskAnwserAdapter
 import com.hlj.common.CONST
+import com.hlj.common.MyApplication
 import com.hlj.dto.DisasterDto
 import com.hlj.utils.OkHttpUtil
 import kotlinx.android.synthetic.main.activity_disaster.*
@@ -77,7 +78,7 @@ class AskAnwserActivity : BaseActivity(), OnClickListener {
     private fun okHttpList() {
         refreshLayout.isRefreshing = true
         Thread {
-            val url = String.format("http://decision-admin.tianqi.cn/Home/workwsj/getProblemList?uid=%s&appid=%s", CONST.UID, CONST.APPID)
+            val url = String.format("http://decision-admin.tianqi.cn/Home/workwsj/getProblemList?uid=%s&appid=%s", MyApplication.UID, CONST.APPID)
             OkHttpUtil.enqueue(Request.Builder().url(url).build(), object : Callback {
                 override fun onFailure(call: Call, e: IOException) {}
 

@@ -31,7 +31,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.hlj.adapter.BaseViewPagerAdapter;
 import com.hlj.adapter.MyPagerAdapter;
 import com.hlj.common.CONST;
 import com.hlj.common.ColumnData;
@@ -111,7 +110,7 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
 
 		if (TextUtils.equals(MyApplication.getAppTheme(), "1")) {
 			clMain.setBackgroundColor(Color.BLACK);
-			ivSetting.setImageBitmap(CommonUtil.grayScaleImage(BitmapFactory.decodeResource(getResources(), R.drawable.iv_setting)));
+			ivSetting.setImageBitmap(CommonUtil.grayScaleImage(BitmapFactory.decodeResource(getResources(), R.drawable.icon_setting)));
 		}
 
 		//是否显示登录对话框
@@ -193,7 +192,7 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
 			tvBar.setLayoutParams(params1);
 			llContainer1.addView(tvBar, i);
 
-			Fragment fragment = null;
+			Fragment fragment;
 			String showType = channel.showType;
 			if (TextUtils.equals(showType, CONST.LOCAL)) {
 				String id = channel.id;

@@ -22,6 +22,7 @@
         android:id="@+id/tvLogo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/tvName"
         app:layout_constraintTop_toTopOf="@+id/tvName"
         app:layout_constraintEnd_toEndOf="@+id/tvName"
         android:gravity="center"

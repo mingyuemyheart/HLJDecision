@@ -61,6 +61,7 @@ import com.amap.api.maps.model.MarkerOptions;
 import com.amap.api.maps.model.PolygonOptions;
 import com.amap.api.maps.model.PolylineOptions;
 import com.hlj.common.CONST;
+import com.hlj.common.MyApplication;
 import com.hlj.dto.DisasterDto;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.bean.SHARE_MEDIA;
@@ -649,7 +650,7 @@ public class CommonUtil {
 					if (name.contains("加格达奇")) {
 						polylineOption.setDottedLine(true);
 					}
-					polylineOption.width(5).color(context.getResources().getColor(R.color.colorPrimary));
+					polylineOption.width(5).color(context.getResources().getColor(R.color.yellow));
 					for (int j = 0; j < array2.length(); j++) {
 						JSONArray itemArray = array2.getJSONArray(j);
 						double lng = itemArray.getDouble(0);
@@ -902,7 +903,7 @@ public class CommonUtil {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHH", Locale.CHINA);
 		String addtime = sdf.format(new Date());
 		final String clickUrl = String.format("http://decision-admin.tianqi.cn/Home/Count/clickCount?addtime=%s&appid=%s&eventid=menuClick_%s&eventname=%s&userid=%s&username=%s",
-				addtime, CONST.APPID, columnId, name, CONST.UID, CONST.USERNAME);
+				addtime, CONST.APPID, columnId, name, MyApplication.UID, MyApplication.USERNAME);
 		new Thread(new Runnable() {
 			@Override
 			public void run() {

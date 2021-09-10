@@ -174,12 +174,12 @@ class WeatherDetailActivity : BaseActivity(), OnClickListener, CaiyunManager.Rad
         val options = MarkerOptions()
         options.position(latLng)
         options.anchor(0.5f, 0.5f)
-        val bitmap = ThumbnailUtils.extractThumbnail(BitmapFactory.decodeResource(resources, R.drawable.iv_map_location),
-                CommonUtil.dip2px(this, 15f).toInt(), CommonUtil.dip2px(this, 15f).toInt())
+        val bitmap = ThumbnailUtils.extractThumbnail(BitmapFactory.decodeResource(resources, R.drawable.icon_map_location),
+                CommonUtil.dip2px(this, 16f).toInt(), CommonUtil.dip2px(this, 24f).toInt())
         if (bitmap != null) {
             options.icon(BitmapDescriptorFactory.fromBitmap(bitmap))
         } else {
-            options.icon(BitmapDescriptorFactory.fromResource(R.drawable.iv_map_location))
+            options.icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_map_location))
         }
         aMap!!.addMarker(options)
         aMap!!.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 6.0f))
@@ -1148,11 +1148,7 @@ class WeatherDetailActivity : BaseActivity(), OnClickListener, CaiyunManager.Rad
     override fun onClick(v: View) {
         when (v.id) {
             R.id.llBack -> finish()
-            R.id.tvPosition -> {
-                val intent = Intent(this, CityActivity::class.java)
-                intent.putExtra("selectCity", "selectCity")
-                startActivityForResult(intent, 1001)
-            }
+            R.id.tvPosition -> startActivityForResult(Intent(this, CityActivity::class.java), 1001)
             R.id.tvFact -> {
                 tvTemp.text = tvFact.tag.toString() + ""
                 tvFact.setTextColor(Color.WHITE)

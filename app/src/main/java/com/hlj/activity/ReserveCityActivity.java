@@ -497,9 +497,7 @@ public class ReserveCityActivity extends BaseActivity implements View.OnClickLis
                     Toast.makeText(mContext, "最多只能关注10个城市", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                Intent intent = new Intent(mContext, CityActivity.class);
-                intent.putExtra("reserveCity", "reserveCity");
-                startActivityForResult(intent, 1000);
+                startActivityForResult(new Intent(mContext, CityActivity.class), 1001);
                 break;
         }
     }
@@ -509,7 +507,7 @@ public class ReserveCityActivity extends BaseActivity implements View.OnClickLis
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
-                case 1000:
+                case 1001:
                     if (data != null) {
                         CityDto dto = data.getExtras().getParcelable("data");
                         if (dto != null) {

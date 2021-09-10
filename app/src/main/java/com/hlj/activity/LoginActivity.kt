@@ -1,14 +1,12 @@
 package com.hlj.activity
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Message
 import android.provider.Settings
-import android.support.v4.content.ContextCompat
 import android.text.TextUtils
 import android.util.Log
 import android.view.View
@@ -38,7 +36,6 @@ class LoginActivity : BaseActivity(), OnClickListener, AMapLocationListener {
 	private var lat = 0.0
 	private var lng = 0.0
 	private var areaId = ""
-	private var isMobileLogin = true
 	private var seconds:Int = 60
 	private var timer: Timer? = null
 
@@ -81,8 +78,6 @@ class LoginActivity : BaseActivity(), OnClickListener, AMapLocationListener {
 		llBack.setOnClickListener(this)
 		tvTitle.text = "用户登录"
 		tvSend.setOnClickListener(this)
-		tvUser.setOnClickListener(this)
-		tvPhone.setOnClickListener(this)
 		tvLogin.setOnClickListener(this)
 
 		startLocation()
@@ -103,13 +98,14 @@ class LoginActivity : BaseActivity(), OnClickListener, AMapLocationListener {
 		val builder = FormBody.Builder()
 		builder.add("mobile", etPhone!!.text.toString())
 		val body: RequestBody = builder.build()
-		Thread(Runnable {
+		Thread {
 			OkHttpUtil.enqueue(Request.Builder().post(body).url(url).build(), object : Callback {
 				override fun onFailure(call: Call, e: IOException) {
 					runOnUiThread {
 						resetTimer()
 					}
 				}
+
 				override fun onResponse(call: Call, response: Response) {
 					if (!response.isSuccessful) {
 						return
@@ -122,7 +118,6 @@ class LoginActivity : BaseActivity(), OnClickListener, AMapLocationListener {
 							if (!obj.isNull("column")) {//有权限
 								parseData(result)
 							} else {//无权限
-								ivCode.visibility = View.VISIBLE
 								etCode.visibility = View.VISIBLE
 								dividerCode.visibility = View.VISIBLE
 								tvSend.visibility = View.VISIBLE
@@ -142,7 +137,7 @@ class LoginActivity : BaseActivity(), OnClickListener, AMapLocationListener {
 					}
 				}
 			})
-		}).start()
+		}.start()
 	}
 
 	@SuppressLint("HandlerLeak")
@@ -176,34 +171,19 @@ class LoginActivity : BaseActivity(), OnClickListener, AMapLocationListener {
 	}
 
 	private fun okHttpLogin() {
-		val url: String?
-		val builder = FormBody.Builder()
-		if (isMobileLogin) {
-			if (TextUtils.isEmpty(etPhone!!.text.toString())) {
-				Toast.makeText(this, "请输入手机号", Toast.LENGTH_SHORT).show()
-				return
-			}
-			if (TextUtils.isEmpty(etCode!!.text.toString())) {
-				Toast.makeText(this, "请输入验证码", Toast.LENGTH_SHORT).show()
-				return
-			}
-			url = "http://decision-admin.tianqi.cn/Home/work2019/hlgVcodeLogin"
-			builder.add("mobile", etPhone!!.text.toString())
-			builder.add("vcode", etCode!!.text.toString())
-		} else {
-			if (TextUtils.isEmpty(etUserName!!.text.toString())) {
-				Toast.makeText(this, "请输入用户名", Toast.LENGTH_SHORT).show()
-				return
-			}
-			if (TextUtils.isEmpty(etPwd!!.text.toString())) {
-				Toast.makeText(this, "请输入密码", Toast.LENGTH_SHORT).show()
-				return
-			}
-			url = "http://decision-admin.tianqi.cn/Home/Work/login_1"
-			builder.add("username", etUserName!!.text.toString())
-			builder.add("password", etPwd!!.text.toString())
+		if (TextUtils.isEmpty(etPhone!!.text.toString())) {
+			Toast.makeText(this, "请输入手机号", Toast.LENGTH_SHORT).show()
+			return
+		}
+		if (TextUtils.isEmpty(etCode!!.text.toString())) {
+			Toast.makeText(this, "请输入验证码", Toast.LENGTH_SHORT).show()
+			return
 		}
 		showDialog()
+		val url = "http://decision-admin.tianqi.cn/Home/work2019/hlgVcodeLogin"
+		val builder = FormBody.Builder()
+		builder.add("mobile", etPhone!!.text.toString())
+		builder.add("vcode", etCode!!.text.toString())
 		builder.add("appid", CONST.APPID)
 		builder.add("device_id", "")
 		builder.add("platform", "android")
@@ -214,7 +194,7 @@ class LoginActivity : BaseActivity(), OnClickListener, AMapLocationListener {
 		builder.add("lat", lat.toString() + "")
 		builder.add("lon", lng.toString() + "")
 		val body: RequestBody = builder.build()
-		Thread(Runnable {
+		Thread {
 			OkHttpUtil.enqueue(Request.Builder().post(body).url(url).build(), object : Callback {
 				override fun onFailure(call: Call, e: IOException) {
 					runOnUiThread { resetTimer() }
@@ -229,7 +209,7 @@ class LoginActivity : BaseActivity(), OnClickListener, AMapLocationListener {
 					parseData(result)
 				}
 			})
-		}).start()
+		}.start()
 	}
 
 	private fun parseData(result: String) {
@@ -377,40 +357,14 @@ class LoginActivity : BaseActivity(), OnClickListener, AMapLocationListener {
 									val uid = obj.getString("id")
 									if (uid != null) {
 										//把用户信息保存在sharedPreferance里
-										val sharedPreferences = getSharedPreferences(CONST.USERINFO, Context.MODE_PRIVATE)
-										val editor = sharedPreferences.edit()
-										editor.putString(CONST.UserInfo.uId, uid)
-										if (isMobileLogin) {
-											editor.putString(CONST.UserInfo.userName, obj.getString("mobile"))
-										} else {
-											editor.putString(CONST.UserInfo.userName, obj.getString("username"))
-										}
-										editor.putString(CONST.UserInfo.passWord, etPwd!!.text.toString())
-										if (!obj.isNull("token")) {
-											editor.putString(CONST.UserInfo.token, obj.getString("token"))
-											CONST.TOKEN = obj.getString("token")
-										} else {
-											CONST.TOKEN = ""
-										}
-										if (!obj.isNull("usergroup")) {
-											editor.putString(CONST.UserInfo.groupId, obj.getString("usergroup"))
-											CONST.GROUPID = obj.getString("usergroup")
-										} else {
-											CONST.GROUPID = ""
-										}
-										if (!obj.isNull("usergroup_name")) {
-											editor.putString(CONST.UserInfo.uGroupName, obj.getString("usergroup_name"))
-											CONST.UGROUPNAME = obj.getString("usergroup_name")
-										} else {
-											CONST.UGROUPNAME = ""
-										}
-										editor.apply()
+										MyApplication.UID = uid
+										MyApplication.USERNAME = obj.getString("username")
+										MyApplication.TOKEN = obj.getString("token")
+										MyApplication.GROUPID = obj.getString("usergroup")
+										MyApplication.UGROUPNAME = obj.getString("usergroup_name")
+										MyApplication.saveUserInfo(this)
 
 										resetTimer()
-										CONST.UID = uid
-										CONST.USERNAME = etUserName!!.text.toString()
-										CONST.PASSWORD = etPwd!!.text.toString()
-
 										okHttpPushToken()
 
 										MyApplication.destoryActivity()
@@ -443,17 +397,18 @@ class LoginActivity : BaseActivity(), OnClickListener, AMapLocationListener {
 		val androidId = Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
 		val serial = Build.SERIAL
 		builder.add("uuid", androidId+serial)
-		builder.add("uid", CONST.UID)
-		builder.add("groupid", CONST.GROUPID)
+		builder.add("uid", MyApplication.UID)
+		builder.add("groupid", MyApplication.GROUPID)
 		builder.add("pushtoken", MyApplication.DEVICETOKEN)
 		builder.add("platform", "android")
 		builder.add("um_key", MyApplication.appKey)
 		builder.add("areaid", areaId)
 		val body = builder.build()
-		Thread(Runnable {
+		Thread {
 			OkHttpUtil.enqueue(Request.Builder().url(url).post(body).build(), object : Callback {
 				override fun onFailure(call: Call, e: IOException) {
 				}
+
 				override fun onResponse(call: Call, response: Response) {
 					if (!response.isSuccessful) {
 						return
@@ -462,32 +417,12 @@ class LoginActivity : BaseActivity(), OnClickListener, AMapLocationListener {
 					Log.e("result", result)
 				}
 			})
-		}).start()
+		}.start()
 	}
 
 	override fun onClick(v: View) {
 		when (v.id) {
 			R.id.llBack -> finish()
-			R.id.tvUser -> {
-				isMobileLogin = false
-				tvUser.setTextColor(ContextCompat.getColor(this, R.color.colorPrimary))
-				tvUserLine.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary))
-				tvPhone.setTextColor(ContextCompat.getColor(this, R.color.text_color4))
-				tvPhoneLine.setBackgroundColor(ContextCompat.getColor(this, R.color.transparent))
-				clUser.visibility = View.VISIBLE
-				clPhone.visibility = View.GONE
-				tvLogin.text = "登录"
-			}
-			R.id.tvPhone -> {
-				isMobileLogin = true
-				tvUser.setTextColor(ContextCompat.getColor(this, R.color.text_color4))
-				tvUserLine.setBackgroundColor(ContextCompat.getColor(this, R.color.transparent))
-				tvPhone.setTextColor(ContextCompat.getColor(this, R.color.colorPrimary))
-				tvPhoneLine.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary))
-				clUser.visibility = View.GONE
-				clPhone.visibility = View.VISIBLE
-				tvLogin.text = "获取验证码登录"
-			}
 			R.id.tvSend -> {
 				if (TextUtils.equals(tvSend.text.toString(), "获取验证码")) {
 					okHttpNext()

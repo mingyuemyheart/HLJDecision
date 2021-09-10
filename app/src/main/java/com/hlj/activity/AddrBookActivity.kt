@@ -14,7 +14,6 @@ import android.text.TextWatcher
 import android.view.View
 import android.widget.AdapterView.OnItemClickListener
 import com.hlj.adapter.AddrBookAdapter
-import com.hlj.adapter.AddrTypeAdapter
 import com.hlj.common.CONST
 import com.hlj.dto.ContactDto
 import com.hlj.utils.AuthorityUtil
@@ -35,8 +34,6 @@ import java.io.IOException
  */
 class AddrBookActivity : BaseActivity(), View.OnClickListener {
 
-    private var typeAdapter: AddrTypeAdapter? = null
-    private val typeList: ArrayList<ContactDto> = ArrayList()
     private var mAdapter: AddrBookAdapter? = null
     private val dataList: ArrayList<ContactDto> = ArrayList()
     private var dialNumber = ""
@@ -45,7 +42,6 @@ class AddrBookActivity : BaseActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_addrbook)
         initWidget()
-        initGridView()
         initListView()
     }
 
@@ -76,34 +72,26 @@ class AddrBookActivity : BaseActivity(), View.OnClickListener {
         okHttpList()
     }
 
-    private fun initGridView() {
-        typeAdapter = AddrTypeAdapter(this, typeList)
-        gridView.adapter = typeAdapter
-        gridView.setOnItemClickListener { parent, view, position, id ->
-            val data = typeList[position]
-            for (i in 0 until dataList.size) {
-                val dto = dataList[i]
-                if (dto.company.startsWith(data.company)) {
-                    listView.setSelection(i)
-                    break
-                }
-            }
-        }
-    }
-
     private fun initListView() {
         mAdapter = AddrBookAdapter(this, dataList)
         listView!!.adapter = mAdapter
         listView!!.onItemClickListener = OnItemClickListener { arg0, arg1, arg2, arg3 ->
             val data = dataList[arg2]
-            dialNumber = data.number
-            checkPhoneAuthority()
+            if (TextUtils.equals(data.type, "0")) {
+                dialNumber = data.worktelephone
+                checkPhoneAuthority()
+            } else {
+                val intent = Intent(this, AddrBookActivity::class.java)
+                intent.putExtra(CONST.ACTIVITY_NAME, tvTitle.text.toString())
+                intent.putExtra("id", data.id)
+                startActivity(intent)
+            }
         }
 
         slideBar.setOnTouchLetterChangeListenner { isTouch, letter ->
             for (i in 0 until dataList.size) {
                 val dto = dataList[i]
-                if (TextUtils.equals(dto.prefix, letter)) {
+                if (TextUtils.equals(dto.letter, letter)) {
                     listView.setSelection(i)
                     break
                 }
@@ -115,8 +103,13 @@ class AddrBookActivity : BaseActivity(), View.OnClickListener {
      * 获取资讯信息
      */
     private fun okHttpList() {
+        val id = if (!intent.hasExtra("id")) {
+            ""
+        } else {
+            intent.getStringExtra("id")
+        }
         Thread {
-            val url = "https://decision-admin.tianqi.cn/Home/workwsj/getPhoneBook"
+            val url = "https://decision-admin.tianqi.cn/Home/workwsj/getPhoneBook?pid=$id"
             OkHttpUtil.enqueue(Request.Builder().url(url).build(), object : Callback {
                 override fun onFailure(call: Call, e: IOException) {}
 
@@ -131,19 +124,21 @@ class AddrBookActivity : BaseActivity(), View.OnClickListener {
                             try {
                                 val obj = JSONObject(result)
 
-                                if (!obj.isNull("type")) {
-                                    typeList.clear()
-                                    val array = obj.getJSONArray("type")
+                                var level = ""
+                                if (!obj.isNull("level")) {
+                                    val array = obj.getJSONArray("level")
                                     for (i in 0 until array.length()) {
                                         val itemObj = array.getJSONObject(i)
-                                        val dto = ContactDto()
                                         if (!itemObj.isNull("company")) {
-                                            dto.company = itemObj.getString("company")
+                                            val company = itemObj.getString("company")
+                                            if (!TextUtils.isEmpty(company)) {
+                                                level += if (i == array.length()-1) {
+                                                    company
+                                                } else {
+                                                    "$company > "
+                                                }
+                                            }
                                         }
-                                        typeList.add(dto)
-                                    }
-                                    if (typeAdapter != null) {
-                                        typeAdapter!!.notifyDataSetChanged()
                                     }
                                 }
 
@@ -153,8 +148,8 @@ class AddrBookActivity : BaseActivity(), View.OnClickListener {
                                     for (i in 0 until array.length()) {
                                         val itemObj = array.getJSONObject(i)
                                         val dto = ContactDto()
-                                        if (!itemObj.isNull("worktelephone")) {
-                                            dto.number = itemObj.getString("worktelephone")
+                                        if (!itemObj.isNull("id")) {
+                                            dto.id = itemObj.getString("id")
                                         }
                                         if (!itemObj.isNull("name")) {
                                             dto.name = itemObj.getString("name")
@@ -162,8 +157,21 @@ class AddrBookActivity : BaseActivity(), View.OnClickListener {
                                         if (!itemObj.isNull("company")) {
                                             dto.company = itemObj.getString("company")
                                         }
+                                        if (!itemObj.isNull("worktelephone")) {
+                                            dto.worktelephone = itemObj.getString("worktelephone")
+                                        }
                                         if (!itemObj.isNull("letter")) {
-                                            dto.prefix = itemObj.getString("letter")
+                                            dto.letter = itemObj.getString("letter")
+                                        }
+                                        if (!itemObj.isNull("type")) {
+                                            dto.type = itemObj.getString("type")
+                                            if (TextUtils.equals(dto.type, "0")) {
+                                                slideBar.visibility = View.VISIBLE
+                                                if (!TextUtils.isEmpty(level)) {
+                                                    tvLevel.text = level
+                                                    tvLevel.visibility = View.VISIBLE
+                                                }
+                                            }
                                         }
                                         dataList.add(dto)
                                     }

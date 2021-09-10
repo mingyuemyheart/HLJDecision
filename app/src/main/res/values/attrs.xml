@@ -33,4 +33,12 @@
         <attr name="radius"/>
     </declare-styleable>
 
+    <!--弧形的界面属性-->
+    <declare-styleable name="ArcBackgroundView">
+        <attr name="ArcBackgroundViewStartColor" format="color" />
+        <attr name="ArcBackgroundViewTopHeight" format="dimension" />
+        <attr name="ArcBackgroundViewEndColor" format="color" />
+    </declare-styleable>
+
+
 </resources>

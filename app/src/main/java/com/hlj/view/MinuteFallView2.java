@@ -1,9 +1,15 @@
 package com.hlj.view;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.LinearGradient;
 import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.Shader;
+import android.media.ThumbnailUtils;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -13,21 +19,20 @@ import com.hlj.utils.CommonUtil;
 import java.util.ArrayList;
 import java.util.List;
 
+import shawn.cxwl.com.hlj.R;
+
 /**
  * 分钟级降水图
  */
-public class MinuteFallView2 extends View{
+public class MinuteFallView2 extends View {
 
-	private Context mContext;
+	private Context mContext ;
 	private List<WeatherDto> tempList = new ArrayList<>();
-	private float maxValue = 0;
-	private float minValue = 0;
-	private Paint lineP = null;//画线画笔
-	private Paint textP = null;//写字画笔
+	private float maxValue,minValue;
+	private Paint lineP,textP,shaderPaint;//画线画笔
 	private float level1 = 0.05f, level2 = 0.15f, level3 = 0.35f;//0.05-0.15是小雨，0.15-0.35是中雨, 0.35以上是大雨
-	private String rain_level1 = "小雨";
-	private String rain_level2 = "中雨";
-	private String rain_level3 = "大雨";
+	private String rain_level1 = "小雨",rain_level2 = "中雨",rain_level3 = "大雨";
+	private Bitmap bitmap1, bitmap2, bitmap3;
 
 	public MinuteFallView2(Context context) {
 		super(context);
@@ -50,10 +55,24 @@ public class MinuteFallView2 extends View{
 	private void init() {
 		lineP = new Paint();
 		lineP.setStyle(Paint.Style.STROKE);
+		lineP.setStrokeCap(Paint.Cap.ROUND);
 		lineP.setAntiAlias(true);
 
 		textP = new Paint();
 		textP.setAntiAlias(true);
+
+		shaderPaint = new Paint();
+		shaderPaint.setStyle(Paint.Style.STROKE);
+		shaderPaint.setStrokeCap(Paint.Cap.ROUND);
+		shaderPaint.setAntiAlias(true);
+
+
+		bitmap1 = ThumbnailUtils.extractThumbnail(BitmapFactory.decodeResource(getResources(), R.drawable.icon_minute_xy),
+				(int)(CommonUtil.dip2px(mContext, 17)), (int)(CommonUtil.dip2px(mContext, 13)));
+		bitmap2 = ThumbnailUtils.extractThumbnail(BitmapFactory.decodeResource(getResources(), R.drawable.icon_minute_zy),
+				(int)(CommonUtil.dip2px(mContext, 17)), (int)(CommonUtil.dip2px(mContext, 13)));
+		bitmap3 = ThumbnailUtils.extractThumbnail(BitmapFactory.decodeResource(getResources(), R.drawable.icon_minute_dy),
+				(int)(CommonUtil.dip2px(mContext, 17)), (int)(CommonUtil.dip2px(mContext, 16)));
 	}
 
 	/**
@@ -87,6 +106,7 @@ public class MinuteFallView2 extends View{
 
 			maxValue = 0.5f;
 			minValue = 0;
+
 		}
 	}
 
@@ -98,15 +118,14 @@ public class MinuteFallView2 extends View{
 		}
 
 		canvas.drawColor(Color.TRANSPARENT);
-		float w = canvas.getWidth()-CommonUtil.dip2px(mContext, 70);
+		float w = canvas.getWidth();
 		float h = canvas.getHeight();
-		float chartW = w-CommonUtil.dip2px(mContext, 20);
+		float chartW = w-CommonUtil.dip2px(mContext, 60);
 		float chartH = h-CommonUtil.dip2px(mContext, 30);
 		float leftMargin = CommonUtil.dip2px(mContext, 10);
 		float rightMargin = CommonUtil.dip2px(mContext, 10);
 		float topMargin = CommonUtil.dip2px(mContext, 10);
 		float bottomMargin = CommonUtil.dip2px(mContext, 20);
-		float chartMaxH = chartH * maxValue / (Math.abs(maxValue)+Math.abs(minValue));//同时存在正负值时，正值高度
 
 		int size = tempList.size();
 		//获取曲线上每个温度点的坐标
@@ -115,98 +134,84 @@ public class MinuteFallView2 extends View{
 			dto.x = (chartW/(size-1))*i + leftMargin;
 
 			float value = tempList.get(i).minuteFall;
-			if (value >= 0) {
-				dto.y = chartMaxH - chartH*Math.abs(value)/(Math.abs(maxValue)+Math.abs(minValue)) + topMargin;
-				if (minValue >= 0) {
-					dto.y = chartH - chartH*Math.abs(value)/(Math.abs(maxValue)+Math.abs(minValue)) + topMargin;
-				}
-			}else {
-				dto.y = chartMaxH + chartH*Math.abs(value)/(Math.abs(maxValue)+Math.abs(minValue)) + topMargin;
-				if (maxValue < 0) {
-					dto.y = chartH*Math.abs(value)/(Math.abs(maxValue)+Math.abs(minValue)) + topMargin;
-				}
-			}
+			dto.y = chartH - chartH* Math.abs(value)/(Math.abs(maxValue)+ Math.abs(minValue)) + topMargin;
 			tempList.set(i, dto);
 		}
 
-		//绘制小雨与中雨的分割线
-		float dividerY = 0;
-		float value = level2;
-		if (value >= 0) {
-			dividerY = chartMaxH - chartH*Math.abs(value)/(Math.abs(maxValue)+Math.abs(minValue)) + topMargin;
-			if (minValue >= 0) {
-				dividerY = chartH - chartH*Math.abs(value)/(Math.abs(maxValue)+Math.abs(minValue)) + topMargin;
-			}
-		}else {
-			dividerY = chartMaxH + chartH*Math.abs(value)/(Math.abs(maxValue)+Math.abs(minValue)) + topMargin;
-			if (maxValue < 0) {
-				dividerY = chartH*Math.abs(value)/(Math.abs(maxValue)+Math.abs(minValue)) + topMargin;
+		//绘制区域
+		//新建一个线性渐变，前两个参数是渐变开始的点坐标，第三四个参数是渐变结束的点的坐标。连接这2个点就拉出一条渐变线了，玩过PS的都懂。然后那个数组是渐变的颜色。下一个参数是渐变颜色的分布，如果为空，每个颜色就是均匀分布的。最后是模式，这里设置的是循环渐变
+		Shader mShader = new LinearGradient(w/2,h,w/2,bottomMargin,new int[] {0xfff6fafd,0xff6fc9ed},null,Shader.TileMode.REPEAT);
+		shaderPaint.setShader(mShader);
+		shaderPaint.setStrokeWidth(CommonUtil.dip2px(mContext, 1));
+		shaderPaint.setStyle(Paint.Style.FILL_AND_STROKE);
+		for (int i = 0; i < size-1; i++) {
+			float x1 = tempList.get(i).x;
+			float y1 = tempList.get(i).y;
+			float x2 = tempList.get(i+1).x;
+			float y2 = tempList.get(i+1).y;
+
+			if (i != size-1) {
+				Path rectPath = new Path();
+				rectPath.moveTo(x1, y1);
+				rectPath.lineTo(x2, y2);
+				rectPath.lineTo(x2, h-bottomMargin);
+				rectPath.lineTo(x1, h-bottomMargin);
+				rectPath.close();
+				canvas.drawPath(rectPath, shaderPaint);
 			}
 		}
+
+		//绘制小雨与中雨的分割线
+		float dividerY;
+		float value = level2;
+		dividerY = chartH - chartH* Math.abs(value)/(Math.abs(maxValue)+ Math.abs(minValue)) + topMargin;
 		lineP.setStrokeWidth(CommonUtil.dip2px(mContext, 0.5f));
-		lineP.setColor(Color.WHITE);
+		lineP.setColor(0x809aadd9);
 		canvas.drawLine(leftMargin, dividerY, w-rightMargin, dividerY, lineP);
-		textP.setColor(Color.WHITE);
-		textP.setTextSize(CommonUtil.dip2px(mContext, 12));
-		canvas.drawText(rain_level1, w, dividerY+CommonUtil.dip2px(mContext, 17), textP);
+		textP.setColor(0xff999999);
+		textP.setTextSize(CommonUtil.dip2px(mContext, 10));
+//		canvas.drawText(String.valueOf(value)+"mm", CommonUtil.dip2px(mContext, 5), dividerY-CommonUtil.dip2px(mContext, 2.5f), textP);
+		textP.setTextSize(CommonUtil.dip2px(mContext, 10));
+		canvas.drawText(rain_level1, chartW, dividerY+CommonUtil.dip2px(mContext, 17), textP);
+		canvas.drawBitmap(bitmap1, leftMargin, dividerY+CommonUtil.dip2px(mContext, 7), textP);
 
 		//绘制中雨与大雨的分割线
-		dividerY = 0;
 		value = level3;
-		if (value >= 0) {
-			dividerY = chartMaxH - chartH*Math.abs(value)/(Math.abs(maxValue)+Math.abs(minValue)) + topMargin;
-			if (minValue >= 0) {
-				dividerY = chartH - chartH*Math.abs(value)/(Math.abs(maxValue)+Math.abs(minValue)) + topMargin;
-			}
-		}else {
-			dividerY = chartMaxH + chartH*Math.abs(value)/(Math.abs(maxValue)+Math.abs(minValue)) + topMargin;
-			if (maxValue < 0) {
-				dividerY = chartH*Math.abs(value)/(Math.abs(maxValue)+Math.abs(minValue)) + topMargin;
-			}
-		}
+		dividerY = chartH - chartH* Math.abs(value)/(Math.abs(maxValue)+ Math.abs(minValue)) + topMargin;
 		lineP.setStrokeWidth(CommonUtil.dip2px(mContext, 0.5f));
-		lineP.setColor(Color.WHITE);
+		lineP.setColor(0x809aadd9);
 		canvas.drawLine(leftMargin, dividerY, w-rightMargin, dividerY, lineP);
-		canvas.drawText(rain_level2, w, dividerY+CommonUtil.dip2px(mContext, 22f), textP);
-		canvas.drawText(rain_level3, w, dividerY-CommonUtil.dip2px(mContext, 10f), textP);
+		textP.setColor(0xff999999);
+		textP.setTextSize(CommonUtil.dip2px(mContext, 10));
+//		canvas.drawText(String.valueOf(value)+"mm", CommonUtil.dip2px(mContext, 5), dividerY-CommonUtil.dip2px(mContext, 2.5f), textP);
+		textP.setTextSize(CommonUtil.dip2px(mContext, 10));
+		canvas.drawText(rain_level2, chartW, dividerY+CommonUtil.dip2px(mContext, 22f), textP);
+		canvas.drawBitmap(bitmap2, leftMargin, dividerY+bitmap2.getHeight()/2, textP);
+		textP.setTextSize(CommonUtil.dip2px(mContext, 10));
+		canvas.drawText(rain_level3, chartW, dividerY-CommonUtil.dip2px(mContext, 10f), textP);
+		canvas.drawBitmap(bitmap3, leftMargin, dividerY-CommonUtil.dip2px(mContext, 25f), textP);
 
 		//绘制分钟刻度线
-		dividerY = 0;
 		value = 0;
-		if (value >= 0) {
-			dividerY = chartMaxH - chartH*Math.abs(value)/(Math.abs(maxValue)+Math.abs(minValue)) + topMargin;
-			if (minValue >= 0) {
-				dividerY = chartH - chartH*Math.abs(value)/(Math.abs(maxValue)+Math.abs(minValue)) + topMargin;
-			}
-		}else {
-			dividerY = chartMaxH + chartH*Math.abs(value)/(Math.abs(maxValue)+Math.abs(minValue)) + topMargin;
-			if (maxValue < 0) {
-				dividerY = chartH*Math.abs(value)/(Math.abs(maxValue)+Math.abs(minValue)) + topMargin;
-			}
-		}
-		lineP.setStrokeWidth(CommonUtil.dip2px(mContext, 1));
-		lineP.setColor(Color.WHITE);
+		dividerY = chartH - chartH* Math.abs(value)/(Math.abs(maxValue)+ Math.abs(minValue)) + topMargin;
+		lineP.setStrokeWidth(CommonUtil.dip2px(mContext, 0.5f));
+		lineP.setColor(0xff999999);
 		canvas.drawLine(leftMargin, dividerY, w-rightMargin, dividerY, lineP);
 
-		textP.setColor(Color.WHITE);
-		textP.setTextSize(CommonUtil.dip2px(mContext, 10));
 		for (int i = 0; i < size; i++) {
 			WeatherDto dto = tempList.get(i);
-
-			if (i % 10 == 0 || i == size-1) {
-				lineP.setStrokeWidth(CommonUtil.dip2px(mContext, 10));
-				lineP.setColor(0xff61cdf1);
-				canvas.drawLine(dto.x, dividerY, dto.x, dto.y, lineP);
+			//绘制分钟刻度线上的刻度
+			if (i == 0 || i == 20 || i == 40 || i == 60 || i == 80 || i == 100 || i == 119) {
+				lineP.setColor(0xff999999);
+				lineP.setStrokeWidth(CommonUtil.dip2px(mContext, 1));
+				canvas.drawLine(dto.x, dividerY, dto.x, dividerY+CommonUtil.dip2px(mContext, 4), lineP);
 			}
-
-			if (i % 20 == 0) {
-				float tempWidth = textP.measureText(i+"");
-				canvas.drawText(i+"", dto.x-tempWidth/2, dividerY+CommonUtil.dip2px(mContext, 15), textP);
-			}
-			if (i == size-1) {
-				int num = i == size-1 ? size : i;
-				float tempWidth = textP.measureText(num+"");
-				canvas.drawText(num+" / 分钟", dto.x-tempWidth/2, dividerY+CommonUtil.dip2px(mContext, 15), textP);
+			//绘制10、30、50分钟值
+			if (i == 20 || i == 60 || i == 100) {
+				textP.setColor(0xff999999);
+				textP.setTextSize(CommonUtil.dip2px(mContext, 10));
+				float tempWidth = textP.measureText(i+"分钟");
+				canvas.drawText(i+"分钟", dto.x-tempWidth/2, dividerY+CommonUtil.dip2px(mContext, 15), textP);
 			}
 		}
 

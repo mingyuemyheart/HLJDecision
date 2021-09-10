@@ -39,24 +39,6 @@ public class CONST {
 	public static final int color3 = android.R.color.holo_blue_bright;
 	public static final int color4 = android.R.color.holo_blue_light;
 
-	//本地保存用户信息参数
-	public static String USERINFO = "userInfo";//userInfo sharedPreferance名称
-	public static class UserInfo {
-		public static final String uId = "uId";
-		public static final String userName = "uName";
-		public static final String passWord = "pwd";
-		public static final String token = "token";
-		public static final String groupId = "groupId";
-		public static final String uGroupName = "uGroupName";
-	}
-
-	public static String UID = "2606";//用户id
-	public static String USERNAME = publicUser;//用户名
-	public static String PASSWORD = publicPwd;//用户密码
-	public static String TOKEN = "";//token
-	public static String GROUPID = "50";
-	public static String UGROUPNAME = "";//uGroupName
-
 	//预警颜色对应规则
 	public static String[] blue = {"01", "_blue"};
 	public static String[] yellow = {"02", "_yellow"};

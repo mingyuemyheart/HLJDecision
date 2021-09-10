@@ -28,7 +28,6 @@ import com.hlj.dto.WeatherDto
 import com.hlj.manager.CaiyunManager
 import com.hlj.utils.CommonUtil
 import com.hlj.utils.OkHttpUtil
-import com.hlj.view.MinuteFallView
 import com.hlj.view.MinuteFallView2
 import kotlinx.android.synthetic.main.activity_minute_fall.*
 import kotlinx.android.synthetic.main.layout_title.*
@@ -205,19 +204,22 @@ class MinuteFallActivity : BaseActivity(), View.OnClickListener, CaiyunManager.R
         aMap!!.uiSettings.isZoomControlsEnabled = false
         aMap!!.uiSettings.isRotateGesturesEnabled = false
         aMap!!.setOnMapClickListener(this)
-        tvMapNumber.text = aMap!!.mapContentApprovalNumber
+        aMap!!.setOnMapLoadedListener {
+            tvMapNumber.text = aMap!!.mapContentApprovalNumber
+            CommonUtil.drawHLJJson(this, aMap)
+        }
     }
 
     private fun addMarkerToMap(latLng: LatLng) {
         val options = MarkerOptions()
         options.position(latLng)
         options.anchor(0.5f, 0.5f)
-        val bitmap = ThumbnailUtils.extractThumbnail(BitmapFactory.decodeResource(resources, R.drawable.iv_map_location),
-                CommonUtil.dip2px(this, 15f).toInt(), CommonUtil.dip2px(this, 15f).toInt())
+        val bitmap = ThumbnailUtils.extractThumbnail(BitmapFactory.decodeResource(resources, R.drawable.icon_map_location),
+                CommonUtil.dip2px(this, 16f).toInt(), CommonUtil.dip2px(this, 24f).toInt())
         if (bitmap != null) {
             options.icon(BitmapDescriptorFactory.fromBitmap(bitmap))
         } else {
-            options.icon(BitmapDescriptorFactory.fromResource(R.drawable.iv_map_location))
+            options.icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_map_location))
         }
         clickMarker = aMap!!.addMarker(options)
         query(latLng.longitude, latLng.latitude)

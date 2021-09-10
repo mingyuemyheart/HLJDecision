@@ -2,40 +2,30 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
+    <com.hlj.view.ArrowTextView
         android:id="@+id/tvName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:paddingStart="5dp"
-        android:paddingEnd="5dp"
+        android:paddingStart="2dp"
+        android:paddingEnd="2dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
         android:gravity="center"
-        android:background="@drawable/bg_marker_name"
-        android:textColor="@color/white"
+        android:textColor="@color/text_color3"
         android:textSize="@dimen/level_5" />
 
     <ImageView
         android:id="@+id/ivPoint"
         android:layout_width="12dp"
         android:layout_height="12dp"
-        android:layout_marginTop="3dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvName"
         android:src="@drawable/bg_statistic_marker" />
-
-    <ImageView
-        android:layout_width="6dp"
-        android:layout_height="6dp"
-        app:layout_constraintStart_toStartOf="@+id/ivPoint"
-        app:layout_constraintEnd_toEndOf="@+id/ivPoint"
-        app:layout_constraintTop_toTopOf="@+id/ivPoint"
-        app:layout_constraintBottom_toBottomOf="@+id/ivPoint"
-        android:src="@drawable/bg_statistic_marker2" />
 
 </android.support.constraint.ConstraintLayout>

@@ -300,12 +300,12 @@ public class TyphoonRouteActivity extends BaseActivity implements OnClickListene
 		MarkerOptions options = new MarkerOptions();
 		options.position(latLng);
 		options.anchor(0.5f, 0.5f);
-		Bitmap bitmap = ThumbnailUtils.extractThumbnail(BitmapFactory.decodeResource(getResources(), R.drawable.iv_map_location),
-				(int)(CommonUtil.dip2px(mContext, 15)), (int)(CommonUtil.dip2px(mContext, 15)));
+		Bitmap bitmap = ThumbnailUtils.extractThumbnail(BitmapFactory.decodeResource(getResources(), R.drawable.icon_map_location),
+				(int)(CommonUtil.dip2px(mContext, 16)), (int)(CommonUtil.dip2px(mContext, 24)));
 		if (bitmap != null) {
 			options.icon(BitmapDescriptorFactory.fromBitmap(bitmap));
 		}else {
-			options.icon(BitmapDescriptorFactory.fromResource(R.drawable.iv_map_location));
+			options.icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_map_location));
 		}
 		if (locationMarker != null) {
 			locationMarker.remove();

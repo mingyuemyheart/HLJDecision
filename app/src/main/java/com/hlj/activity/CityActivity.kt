@@ -91,26 +91,10 @@ class CityActivity : BaseActivity(), OnClickListener {
     private fun intentWeatherDetail(data: CityDto) {
         val bundle = Bundle()
         bundle.putParcelable("data", data)
-        val intent: Intent
-        when {
-            getIntent().hasExtra("reserveCity") -> {
-                intent = Intent()
-                intent.putExtras(bundle)
-                setResult(Activity.RESULT_OK, intent)
-                finish()
-            }
-            getIntent().hasExtra("selectCity") -> { //首页定位失败，手动选择
-                intent = Intent()
-                intent.putExtras(bundle)
-                setResult(Activity.RESULT_OK, intent)
-                finish()
-            }
-            else -> {
-                intent = Intent(this, WeatherDetailActivity::class.java)
-                intent.putExtras(bundle)
-                startActivity(intent)
-            }
-        }
+        val intent = Intent()
+        intent.putExtras(bundle)
+        setResult(Activity.RESULT_OK, intent)
+        finish()
     }
 
     /**

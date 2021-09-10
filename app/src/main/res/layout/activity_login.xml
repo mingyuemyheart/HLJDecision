@@ -3,109 +3,77 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/light_gray"
     android:orientation="vertical">
 
     <include
         android:id="@+id/reTitle"
         layout="@layout/layout_title" />
 
-    <ImageView
-        android:id="@+id/ivLogo"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        android:layout_marginTop="80dp"
-        android:src="@drawable/icon_logo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reTitle" />
-
-    <TextView
-        android:visibility="gone"
-        android:id="@+id/tvPhone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="手机号登录"
-        android:textColor="@color/colorPrimary"
-        android:textSize="@dimen/level_4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintEnd_toStartOf="@+id/tvUser"
-        app:layout_constraintTop_toBottomOf="@+id/ivLogo" />
-
-    <TextView
-        android:visibility="gone"
-        android:id="@+id/tvPhoneLine"
-        android:layout_width="100dp"
-        android:layout_height="2dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/colorPrimary"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintEnd_toStartOf="@+id/tvUser"
-        app:layout_constraintTop_toBottomOf="@+id/tvPhone" />
-
-    <TextView
-        android:visibility="gone"
-        android:id="@+id/tvUser"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="用户名登录"
-        android:textColor="@color/text_color4"
-        android:textSize="@dimen/level_4"
-        app:layout_constraintStart_toEndOf="@+id/tvPhone"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivLogo" />
-
-    <TextView
-        android:visibility="gone"
-        android:id="@+id/tvUserLine"
-        android:layout_width="100dp"
-        android:layout_height="2dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/transparent"
-        app:layout_constraintStart_toEndOf="@+id/tvPhone"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvUser" />
-
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/cl"
+        android:id="@+id/clLogo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
-        app:layout_constraintTop_toBottomOf="@+id/tvUserLine">
+        android:background="@color/colorPrimary"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/reTitle">
+
+        <ImageView
+            android:id="@+id/ivLogo"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:src="@drawable/icon_logo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/app_name"
+            android:textColor="@color/white"
+            android:textSize="@dimen/level_1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivLogo" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/clBg"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@color/colorPrimary"
+        app:layout_constraintTop_toBottomOf="@id/clLogo" />
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:background="@drawable/bg_corner_white"
+        android:paddingTop="50dp"
+        android:paddingBottom="50dp"
+        app:layout_constraintTop_toBottomOf="@+id/clLogo">
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/clPhone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="visible"
             app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:id="@+id/ivUser2"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
-                android:src="@drawable/iv_user"
-                app:layout_constraintBottom_toBottomOf="@+id/etPhone"
-                app:layout_constraintEnd_toStartOf="@+id/etPhone"
-                app:layout_constraintTop_toTopOf="@+id/etPhone" />
 
             <EditText
                 android:id="@+id/etPhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
-                android:layout_marginEnd="50dp"
-                android:inputType="phone"
-                android:maxLength="11"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
                 android:background="@color/transparent"
                 android:hint="请输入手机号"
+                android:inputType="phone"
+                android:maxLength="11"
                 android:paddingStart="10dp"
                 android:paddingTop="5dp"
                 android:paddingEnd="10dp"
@@ -125,27 +93,16 @@
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="30dp"
-                android:background="@color/colorPrimary"
+                android:background="@color/gray"
                 app:layout_constraintTop_toBottomOf="@+id/etPhone" />
 
-            <ImageView
-                android:visibility="gone"
-                android:id="@+id/ivCode"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
-                android:src="@drawable/iv_pwd"
-                app:layout_constraintBottom_toBottomOf="@+id/etCode"
-                app:layout_constraintEnd_toStartOf="@+id/etCode"
-                app:layout_constraintTop_toTopOf="@+id/etCode" />
-
             <EditText
-                android:visibility="gone"
                 android:id="@+id/etCode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
+                android:layout_marginStart="30dp"
                 android:layout_marginTop="25dp"
-                android:layout_marginEnd="50dp"
+                android:layout_marginEnd="30dp"
                 android:background="@color/transparent"
                 android:hint="请输入验证码"
                 android:paddingStart="10dp"
@@ -156,148 +113,59 @@
                 android:textColor="@color/text_color3"
                 android:textColorHint="@color/text_color4"
                 android:textSize="@dimen/level_4"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/divider3" />
 
             <TextView
-                android:visibility="gone"
                 android:id="@+id/dividerCode"
                 android:layout_width="1dp"
                 android:layout_height="30dp"
-                android:layout_marginEnd="20dp"
-                android:background="@color/colorPrimary"
+                android:layout_marginEnd="10dp"
+                android:background="@color/gray"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="@+id/etCode"
                 app:layout_constraintEnd_toStartOf="@+id/tvSend" />
 
             <TextView
-                android:visibility="gone"
                 android:id="@+id/tvSend"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
                 android:text="59s"
                 android:textColor="@color/colorPrimary"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="@+id/etCode"
-                app:layout_constraintEnd_toEndOf="@id/etCode"
+                app:layout_constraintEnd_toEndOf="@+id/etCode"
                 app:layout_constraintTop_toTopOf="@+id/etCode" />
 
             <TextView
-                android:visibility="gone"
                 android:id="@+id/divider4"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="30dp"
-                android:background="@color/colorPrimary"
+                android:background="@color/gray"
+                android:visibility="gone"
                 app:layout_constraintTop_toBottomOf="@+id/etCode" />
 
         </android.support.constraint.ConstraintLayout>
 
-        <android.support.constraint.ConstraintLayout
-            android:id="@+id/clUser"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/tvLogin"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:visibility="gone"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:id="@+id/ivUser"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
-                android:src="@drawable/iv_user"
-                app:layout_constraintBottom_toBottomOf="@+id/etUserName"
-                app:layout_constraintEnd_toStartOf="@+id/etUserName"
-                app:layout_constraintTop_toTopOf="@+id/etUserName" />
-
-            <EditText
-                android:id="@+id/etUserName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
-                android:layout_marginEnd="50dp"
-                android:background="@color/transparent"
-                android:hint="请输入用户名"
-                android:paddingStart="10dp"
-                android:paddingTop="5dp"
-                android:paddingEnd="10dp"
-                android:paddingBottom="5dp"
-                android:singleLine="true"
-                android:textColor="@color/text_color3"
-                android:textColorHint="@color/text_color4"
-                android:textSize="@dimen/level_4"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/divider1"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="30dp"
-                android:background="@color/colorPrimary"
-                app:layout_constraintTop_toBottomOf="@+id/etUserName" />
-
-            <ImageView
-                android:id="@+id/ivPwd"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
-                android:src="@drawable/iv_pwd"
-                app:layout_constraintBottom_toBottomOf="@+id/etPwd"
-                app:layout_constraintEnd_toStartOf="@+id/etPwd"
-                app:layout_constraintTop_toTopOf="@+id/etPwd" />
-
-            <EditText
-                android:id="@+id/etPwd"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
-                android:layout_marginTop="25dp"
-                android:layout_marginEnd="50dp"
-                android:background="@color/transparent"
-                android:hint="请输入密码"
-                android:paddingStart="10dp"
-                android:paddingTop="5dp"
-                android:paddingEnd="10dp"
-                android:paddingBottom="5dp"
-                android:inputType="textPassword"
-                android:singleLine="true"
-                android:textColor="@color/text_color3"
-                android:textColorHint="@color/text_color4"
-                android:textSize="@dimen/level_4"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider1" />
-
-            <TextView
-                android:id="@+id/divider2"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="30dp"
-                android:background="@color/colorPrimary"
-                app:layout_constraintTop_toBottomOf="@+id/etPwd" />
-
-        </android.support.constraint.ConstraintLayout>
-
+            android:layout_marginTop="50dp"
+            android:background="@drawable/selector_login"
+            android:gravity="center_vertical|center"
+            android:text="获取验证码登录"
+            android:textColor="@color/white"
+            android:textSize="@dimen/level_3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/clPhone" />
     </android.support.constraint.ConstraintLayout>
-
-    <TextView
-        android:id="@+id/tvLogin"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:background="@drawable/selector_login"
-        android:gravity="center_vertical|center"
-        android:text="获取验证码登录"
-        android:textColor="@color/white"
-        android:textSize="@dimen/level_2"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cl" />
 
 </android.support.constraint.ConstraintLayout>

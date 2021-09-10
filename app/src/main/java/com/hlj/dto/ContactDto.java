@@ -8,7 +8,7 @@ import android.os.Parcelable;
  */
 public class ContactDto implements Parcelable {
 
-    public String name, company, number, prefix;
+    public String id, name, company, worktelephone, letter, type;
     public int drawable;
 
     public ContactDto() {
@@ -21,18 +21,22 @@ public class ContactDto implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.id);
         dest.writeString(this.name);
         dest.writeString(this.company);
-        dest.writeString(this.number);
-        dest.writeString(this.prefix);
+        dest.writeString(this.worktelephone);
+        dest.writeString(this.letter);
+        dest.writeString(this.type);
         dest.writeInt(this.drawable);
     }
 
     protected ContactDto(Parcel in) {
+        this.id = in.readString();
         this.name = in.readString();
         this.company = in.readString();
-        this.number = in.readString();
-        this.prefix = in.readString();
+        this.worktelephone = in.readString();
+        this.letter = in.readString();
+        this.type = in.readString();
         this.drawable = in.readInt();
     }
 

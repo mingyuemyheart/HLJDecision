@@ -12,6 +12,7 @@ import android.widget.AdapterView.OnItemLongClickListener
 import android.widget.Toast
 import com.hlj.adapter.HanghuaListAdapter
 import com.hlj.common.CONST
+import com.hlj.common.MyApplication
 import com.hlj.dto.StationMonitorDto
 import com.hlj.utils.OkHttpUtil
 import kotlinx.android.synthetic.main.activity_hanghua_list.*
@@ -93,7 +94,7 @@ class HanghuaListActivity : BaseActivity(), View.OnClickListener {
 
     private fun okHttpList() {
         Thread(Runnable {
-            val url = "http://decision-admin.tianqi.cn/Home/work2019/hlj_getmyhanghuoData?uid=${CONST.UID}"
+            val url = "http://decision-admin.tianqi.cn/Home/work2019/hlj_getmyhanghuoData?uid=${MyApplication.UID}"
             OkHttpUtil.enqueue(Request.Builder().url(url).build(), object : Callback {
                 override fun onFailure(call: Call, e: IOException) {
                 }
@@ -175,7 +176,7 @@ class HanghuaListActivity : BaseActivity(), View.OnClickListener {
 
     private fun okHttpAdd(name: String, lat: String, lng: String) {
         Thread(Runnable {
-            val url = "http://decision-admin.tianqi.cn/Home/work2019/hlj_addmyhanghuoData?uid=${CONST.UID}&name=$name&lat=$lat&lon=$lng"
+            val url = "http://decision-admin.tianqi.cn/Home/work2019/hlj_addmyhanghuoData?uid=${MyApplication.UID}&name=$name&lat=$lat&lon=$lng"
             OkHttpUtil.enqueue(Request.Builder().url(url).build(), object : Callback {
                 override fun onFailure(call: Call, e: IOException) {
                 }
@@ -225,7 +226,7 @@ class HanghuaListActivity : BaseActivity(), View.OnClickListener {
 
     private fun okHttpDelete(id: String) {
         Thread(Runnable {
-            val url = "http://decision-admin.tianqi.cn/Home/work2019/hlj_removemyhanghuoData?id=$id&uid=${CONST.UID}"
+            val url = "http://decision-admin.tianqi.cn/Home/work2019/hlj_removemyhanghuoData?id=$id&uid=${MyApplication.UID}"
             OkHttpUtil.enqueue(Request.Builder().url(url).build(), object : Callback {
                 override fun onFailure(call: Call, e: IOException) {
                 }

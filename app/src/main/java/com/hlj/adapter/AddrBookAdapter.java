@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hlj.dto.ContactDto;
@@ -25,6 +26,7 @@ public class AddrBookAdapter extends BaseAdapter{
 
 	private final class ViewHolder {
 		TextView tvName,tvNumber;
+		ImageView ivArrow;
 	}
 
 	public AddrBookAdapter(Context context, List<ContactDto> mArrayList) {
@@ -56,6 +58,7 @@ public class AddrBookAdapter extends BaseAdapter{
 			mHolder = new ViewHolder();
 			mHolder.tvName = convertView.findViewById(R.id.tvName);
 			mHolder.tvNumber = convertView.findViewById(R.id.tvNumber);
+			mHolder.ivArrow = convertView.findViewById(R.id.ivArrow);
 			convertView.setTag(mHolder);
 		}else {
 			mHolder = (ViewHolder) convertView.getTag();
@@ -63,11 +66,19 @@ public class AddrBookAdapter extends BaseAdapter{
 
 		ContactDto dto = mArrayList.get(position);
 
-		if (!TextUtils.isEmpty(dto.name)) {
-			mHolder.tvName.setText(dto.name);
-		}
-		if (!TextUtils.isEmpty(dto.number)) {
-			mHolder.tvNumber.setText(dto.number);
+		if (TextUtils.equals(dto.type, "0")) {
+			if (!TextUtils.isEmpty(dto.name)) {
+				mHolder.tvName.setText(dto.name);
+			}
+			if (!TextUtils.isEmpty(dto.worktelephone)) {
+				mHolder.tvNumber.setText(dto.worktelephone);
+			}
+			mHolder.ivArrow.setVisibility(View.GONE);
+		} else {
+			if (!TextUtils.isEmpty(dto.company)) {
+				mHolder.tvName.setText(dto.company);
+			}
+			mHolder.ivArrow.setVisibility(View.VISIBLE);
 		}
 
 		return convertView;

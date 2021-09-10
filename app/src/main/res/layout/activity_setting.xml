@@ -12,7 +12,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#0A5487"
+        android:background="@color/colorPrimary"
         android:gravity="center"
         android:orientation="vertical"
         android:paddingTop="50dp"
@@ -41,7 +41,7 @@
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_marginTop="15dp"
-        android:background="@drawable/selector_detail"
+        android:background="@drawable/selector_item"
         android:gravity="center_vertical"
         android:paddingStart="15dp"
         android:paddingEnd="10dp">
@@ -64,7 +64,7 @@
         android:id="@+id/llVersion"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:background="@drawable/selector_detail"
+        android:background="@drawable/selector_item"
         android:gravity="center_vertical"
         android:paddingStart="15dp"
         android:paddingEnd="10dp">
@@ -95,7 +95,7 @@
         android:id="@+id/llClearCache"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:background="@drawable/selector_detail"
+        android:background="@drawable/selector_item"
         android:gravity="center_vertical"
         android:paddingStart="15dp"
         android:paddingEnd="10dp">
@@ -126,7 +126,7 @@
         android:id="@+id/llBuild"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:background="@drawable/selector_detail"
+        android:background="@drawable/selector_item"
         android:gravity="center_vertical"
         android:paddingStart="15dp"
         android:paddingEnd="10dp">
@@ -149,7 +149,7 @@
         android:id="@+id/llClearData"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:background="@drawable/selector_detail"
+        android:background="@drawable/selector_item"
         android:gravity="center_vertical"
         android:paddingStart="15dp"
         android:paddingEnd="10dp"
@@ -181,7 +181,7 @@
         android:id="@+id/llCity"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:background="@drawable/selector_detail"
+        android:background="@drawable/selector_item"
         android:gravity="center_vertical"
         android:paddingStart="15dp"
         android:paddingEnd="10dp">
@@ -204,7 +204,7 @@
         android:id="@+id/llPush"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:background="@drawable/selector_detail"
+        android:background="@drawable/selector_item"
         android:gravity="center_vertical"
         android:paddingStart="15dp"
         android:paddingEnd="10dp">
@@ -228,7 +228,7 @@
         android:id="@+id/llProtocal"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:background="@drawable/selector_detail"
+        android:background="@drawable/selector_item"
         android:gravity="center_vertical"
         android:paddingStart="15dp"
         android:paddingEnd="10dp">
@@ -251,7 +251,7 @@
         android:id="@+id/llPolicy"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:background="@drawable/selector_detail"
+        android:background="@drawable/selector_item"
         android:gravity="center_vertical"
         android:paddingStart="15dp"
         android:paddingEnd="10dp">
@@ -275,7 +275,7 @@
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_marginTop="25dp"
-        android:background="@drawable/selector_detail"
+        android:background="@drawable/selector_item"
         android:gravity="center"
         android:padding="5dp"
         android:text="退出登录"

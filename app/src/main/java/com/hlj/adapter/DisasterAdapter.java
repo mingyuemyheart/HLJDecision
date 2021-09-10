@@ -22,16 +22,18 @@ import shawn.cxwl.com.hlj.R;
  */
 public class DisasterAdapter extends BaseAdapter {
 
+	private Context context;
 	private LayoutInflater mInflater;
 	private List<DisasterDto> mArrayList;
 	private List<DisasterDto> typeList = new ArrayList<>();
 
 	private final class ViewHolder{
 		ImageView imageView;
-		TextView tvTitle,tvType,tvAddr,tvTime;
+		TextView tvTitle,tvType,tvAddr,tvTime,tvStatus;
 	}
 
 	public DisasterAdapter(Context context, List<DisasterDto> mArrayList) {
+		this.context = context;
 		this.mArrayList = mArrayList;
 		mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
@@ -72,6 +74,7 @@ public class DisasterAdapter extends BaseAdapter {
 			mHolder.tvType = convertView.findViewById(R.id.tvType);
 			mHolder.tvAddr = convertView.findViewById(R.id.tvAddr);
 			mHolder.tvTime = convertView.findViewById(R.id.tvTime);
+			mHolder.tvStatus = convertView.findViewById(R.id.tvStatus);
 			convertView.setTag(mHolder);
 		}else {
 			mHolder = (ViewHolder) convertView.getTag();
@@ -96,6 +99,17 @@ public class DisasterAdapter extends BaseAdapter {
 
 		if (!TextUtils.isEmpty(dto.addr)) {
 			mHolder.tvAddr.setText(dto.addr);
+		}
+
+		if (dto.status_cn != null) {
+			mHolder.tvStatus.setText(dto.status_cn);
+		}
+		if (TextUtils.equals(dto.status_cn, "审核中")) {
+			mHolder.tvStatus.setTextColor(context.getResources().getColor(R.color.text_color4));
+		} else if (TextUtils.equals(dto.status_cn, "审核不通过")) {
+			mHolder.tvStatus.setTextColor(context.getResources().getColor(R.color.red));
+		} else if (TextUtils.equals(dto.status_cn, "审核通过")) {
+			mHolder.tvStatus.setTextColor(context.getResources().getColor(R.color.colorPrimary));
 		}
 
 		if (!TextUtils.isEmpty(dto.time)) {

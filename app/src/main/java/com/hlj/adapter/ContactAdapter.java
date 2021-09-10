@@ -1,6 +1,7 @@
 package com.hlj.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -79,9 +80,11 @@ public class ContactAdapter extends BaseAdapter{
 			mHolder.tvLogo.setText("");
 		} else if (TextUtils.equals(flag, "2")) {
 			mHolder.tvLogo.setText("公众");
+			mHolder.tvLogo.setTextColor(Color.WHITE);
 			mHolder.tvLogo.setBackgroundResource(R.drawable.bg_public);
 		} else if (TextUtils.equals(flag, "3")) {
 			mHolder.tvLogo.setText("专业");
+			mHolder.tvLogo.setTextColor(Color.BLACK);
 			mHolder.tvLogo.setBackgroundResource(R.drawable.bg_special);
 		}
 
