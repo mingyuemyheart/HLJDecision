@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <include
+        android:id="@+id/reTitle"
+        layout="@layout/layout_title" />
+
+    <LinearLayout
+        android:id="@+id/llPortrait"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_item"
+        android:gravity="center_vertical"
+        android:padding="15dp"
+        app:layout_constraintTop_toBottomOf="@+id/reTitle">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="头像"
+            android:textColor="@color/text_color3"
+            android:textSize="@dimen/level_4" />
+
+        <ImageView
+            android:id="@+id/ivPortrait"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/iv_portrait" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/divider1"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:background="@color/light_gray"
+        app:layout_constraintTop_toBottomOf="@+id/llPortrait" />
+
+    <LinearLayout
+        android:id="@+id/llNickName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_item"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        app:layout_constraintTop_toBottomOf="@+id/divider1">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="姓名"
+            android:textColor="@color/text_color3"
+            android:textSize="@dimen/level_4" />
+
+        <TextView
+            android:id="@+id/tvNickName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:text="未设置"
+            android:textColor="@color/text_color4"
+            android:textSize="@dimen/level_4" />
+
+        <ImageView
+            android:layout_width="8dp"
+            android:layout_height="15dp"
+            android:src="@drawable/iv_arrow" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/divider2"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:background="@color/light_gray"
+        app:layout_constraintTop_toBottomOf="@+id/llNickName" />
+
+    <LinearLayout
+        android:id="@+id/llMobile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_item"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        app:layout_constraintTop_toBottomOf="@+id/divider2">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="手机号"
+            android:textColor="@color/text_color3"
+            android:textSize="@dimen/level_4" />
+
+        <TextView
+            android:id="@+id/tvMobile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="未设置"
+            android:textColor="@color/text_color4"
+            android:textSize="@dimen/level_4" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/divider3"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:background="@color/light_gray"
+        app:layout_constraintTop_toBottomOf="@+id/llMobile" />
+
+    <LinearLayout
+        android:id="@+id/llUnit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_item"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        app:layout_constraintTop_toBottomOf="@+id/divider3">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="单位名称"
+            android:textColor="@color/text_color3"
+            android:textSize="@dimen/level_4" />
+
+        <TextView
+            android:id="@+id/tvUnit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="未设置"
+            android:textColor="@color/text_color4"
+            android:textSize="@dimen/level_4" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:background="@color/light_gray"
+        app:layout_constraintTop_toBottomOf="@+id/llUnit" />
+
+</android.support.constraint.ConstraintLayout>

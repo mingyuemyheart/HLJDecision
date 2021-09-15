@@ -60,95 +60,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="15ab3c4b-28f1-4ec7-90ce-56991a316228" name="Default" comment="1.修改决策登录对话框提示逻辑&#10;2.适配天气详情逐小时预报和分钟级降水UI&#10;3.增加预警推送功能">
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/icon_map_location.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/icon_minute_dy.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/icon_minute_xy.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/icon_minute_zy.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/icon_setting.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/icon_map.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/layout_marker_info.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/AddrBookActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/AddrBookActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/AskAnwserActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/AskAnwserActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/AskAnwserUploadActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/AskAnwserUploadActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/CityActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/CityActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/DisasterActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/DisasterActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/DisasterDetailActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/DisasterDetailActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/DisasterUploadActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/DisasterUploadActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/FactMonitorActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/FactMonitorActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/FeedbackActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/FeedbackActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/FylzActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/FylzActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/HanghuaActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/HanghuaActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/HanghuaListActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/HanghuaListActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/LoginActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/LoginActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/MinuteFallActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/MinuteFallActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/PointForeActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/PointForeActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/ReserveCityActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/ReserveCityActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/SettingActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/SettingActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/ShawnWaitWindActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/ShawnWaitWindActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/TyphoonRouteActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/TyphoonRouteActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/WarningListActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/WarningListActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/WeatherDetailActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/WeatherDetailActivity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/WelcomeActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/WelcomeActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/adapter/AddrBookAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/adapter/AddrBookAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/adapter/AddrTypeAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/adapter/ContactAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/adapter/ContactAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/adapter/DisasterAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/adapter/DisasterAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/common/CONST.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/common/CONST.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/common/MyApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/common/MyApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/dto/ContactDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/dto/ContactDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/dto/DisasterDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/dto/DisasterDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/fragment/ContactUsFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/fragment/ContactUsFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/dto/AgriDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/dto/AgriDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/fragment/ForecastFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/fragment/ForecastFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/utils/CommonUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/utils/CommonUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/utils/CrashHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/utils/CrashHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/utils/SecretUrlUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/utils/SecretUrlUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/view/MinuteFallView2.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/view/MinuteFallView2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/bg_detail.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/bg_detail_press.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/bg_marker_name.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/bg_public.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/bg_public.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/bg_reserve.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/bg_reserve.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/bg_statistic_marker.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/bg_statistic_marker2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/bg_welcome.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/icon_contact_add.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/icon_contact_add.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/icon_contact_data.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/icon_contact_data.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/icon_logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/icon_logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/icon_model_reserve.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/icon_model_reserve.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/icon_msg.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/icon_msg.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/icon_pause.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/icon_pause.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/icon_play.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/icon_play.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/icon_special.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/icon_special.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/icon_user.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/icon_user.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/iv_map_location.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/iv_pwd.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/iv_setting.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/iv_user.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/selector_detail.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/shawn_icon_location_black.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/icon_location_black.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/shawn_icon_map_location.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_addrbook.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_addrbook.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_disaster_detail.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_disaster_detail.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_fact_monitor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_fact_monitor.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_minute_fall.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_minute_fall.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_setting.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_setting.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_thunder_fore.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_thunder_fore.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/shawn_icon_search.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/icon_search.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_warning_list.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_warning_list.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/adapter_addr_book.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/adapter_addr_book.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/adapter_addr_type.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/adapter_city_search.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/adapter_city_search.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/adapter_contact.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/adapter_contact.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/adapter_disaster.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/adapter_disaster.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/adapter_fact_time.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/adapter_fact_time.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_contact_us.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_contact_us.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_weather_fact.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_weather_fact.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/layout_marker_statistic.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/layout_marker_statistic.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/trend_fragment_cell.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/trend_fragment_cell.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/attrs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/attrs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_forecast.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_forecast.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -250,7 +176,7 @@
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1536661182344" />
     <property name="device.picker.selection" value="66J5T19318007315" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/drawable" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/layout" />
     <property name="not.eligible.for.single.variant.sync" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.17" />
@@ -265,30 +191,30 @@
     <option name="LAST_EDITED_BUILD_TYPE" value="release" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
-      <recent name="com.hlj.activity" />
-      <recent name="com.hlj.adapter" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/app/src/main/res/drawable" />
-      <recent name="$PROJECT_DIR$/app/src/main/res/layout" />
-      <recent name="$PROJECT_DIR$/app/libs" />
-      <recent name="$PROJECT_DIR$/app/src/main/res/values" />
-      <recent name="$PROJECT_DIR$/app/src/main/res/anim" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.hlj.view" />
-      <recent name="com.hlj.activity" />
-      <recent name="com.hlj.adapter" />
-      <recent name="com.hlj.dto" />
-      <recent name="com.hlj.wxapi" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/src/main/res/layout" />
       <recent name="$PROJECT_DIR$/hLJDecision/src/main/res/drawable" />
       <recent name="$PROJECT_DIR$/hLJDecision/src/main/assets" />
       <recent name="$PROJECT_DIR$/hLJDecision/src/main/assets/echarts" />
       <recent name="$PROJECT_DIR$/hLJDecision/src/main/res/layout" />
+    </key>
+    <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
+      <recent name="com.hlj.activity" />
+      <recent name="com.hlj.adapter" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.hlj.activity" />
+      <recent name="com.hlj.adapter" />
+      <recent name="com.hlj.view" />
+      <recent name="com.hlj.dto" />
+      <recent name="com.hlj.wxapi" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/src/main/res/layout" />
+      <recent name="$PROJECT_DIR$/app/src/main/res/drawable" />
+      <recent name="$PROJECT_DIR$/app/libs" />
+      <recent name="$PROJECT_DIR$/app/src/main/res/values" />
+      <recent name="$PROJECT_DIR$/app/src/main/res/anim" />
     </key>
   </component>
   <component name="RunManager" selected="Android App.app">
@@ -1058,7 +984,6 @@
       <screen x="49" y="23" width="1391" height="877" />
     </state>
     <state x="557" y="184" key="#com.intellij.ide.util.MemberChooser/49.23.1391.877@49.23.1391.877" timestamp="1629812567089" />
-    <state x="2142" y="217" key="#com.intellij.ide.util.MemberChooser/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1622767279600" />
     <state x="558" y="184" key="#com.intellij.ide.util.MemberChooser/50.23.1390.877@50.23.1390.877" timestamp="1626453305513" />
     <state x="1888" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1629856207335">
       <screen x="1440" y="23" width="1920" height="1057" />
@@ -1125,18 +1050,19 @@
       <screen x="50" y="23" width="1390" height="877" />
     </state>
     <state x="337" y="79" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/50.23.1390.877@50.23.1390.877" timestamp="1631191114262" />
-    <state x="443" y="216" width="604" height="518" key="find.popup" timestamp="1631278341820">
+    <state x="443" y="216" width="604" height="518" key="find.popup" timestamp="1631710936797">
       <screen x="50" y="23" width="1390" height="877" />
     </state>
     <state x="1982" y="256" width="836" height="625" key="find.popup/49.23.1391.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1629856949656" />
     <state x="442" y="216" width="605" height="518" key="find.popup/49.23.1391.877@49.23.1391.877" timestamp="1629813552483" />
     <state x="1983" y="256" width="835" height="591" key="find.popup/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1629941344898" />
     <state x="443" y="216" width="605" height="551" key="find.popup/50.23.1390.877/1440.23.1920.1057@50.23.1390.877" timestamp="1631177877308" />
-    <state x="443" y="216" width="604" height="518" key="find.popup/50.23.1390.877@50.23.1390.877" timestamp="1631278341820" />
-    <state x="2217" y="447" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1629943144286">
-      <screen x="1440" y="23" width="1920" height="1057" />
+    <state x="443" y="216" width="604" height="518" key="find.popup/50.23.1390.877@50.23.1390.877" timestamp="1631710936797" />
+    <state x="613" y="375" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1631279684316">
+      <screen x="50" y="23" width="1390" height="877" />
     </state>
     <state x="2217" y="447" key="git4idea.remote.GitConfigureRemotesDialog/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1629943144286" />
+    <state x="613" y="375" key="git4idea.remote.GitConfigureRemotesDialog/50.23.1390.877@50.23.1390.877" timestamp="1631279684316" />
     <state x="409" y="213" width="672" height="676" key="search.everywhere.popup" timestamp="1629809966527">
       <screen x="49" y="23" width="1391" height="877" />
     </state>

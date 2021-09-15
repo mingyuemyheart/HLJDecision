@@ -355,6 +355,18 @@
             android:name="com.hlj.activity.AddrBookActivity"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name="com.hlj.activity.SelectPositionActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.hlj.activity.PersonInfoActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.hlj.activity.ModifyInfoActivity"
+            android:screenOrientation="portrait" />
+
         <!--umeng share-->
         <activity
             android:name="com.hlj.wxapi.WXEntryActivity"

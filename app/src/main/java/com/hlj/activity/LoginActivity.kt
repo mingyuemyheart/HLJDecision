@@ -362,6 +362,8 @@ class LoginActivity : BaseActivity(), OnClickListener, AMapLocationListener {
 										MyApplication.TOKEN = obj.getString("token")
 										MyApplication.GROUPID = obj.getString("usergroup")
 										MyApplication.UGROUPNAME = obj.getString("usergroup_name")
+										MyApplication.NAME = obj.getString("name")
+										MyApplication.DEPARTMENT = obj.getString("department")
 										MyApplication.saveUserInfo(this)
 
 										resetTimer()

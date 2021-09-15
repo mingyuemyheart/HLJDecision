@@ -30,7 +30,7 @@
         android:layout_width="18dp"
         android:layout_height="18dp"
         android:layout_marginStart="10dp"
-        android:src="@drawable/shawn_icon_search"
+        android:src="@drawable/icon_search"
         app:layout_constraintBottom_toBottomOf="@+id/etSearch"
         app:layout_constraintStart_toStartOf="@+id/etSearch"
         app:layout_constraintTop_toTopOf="@+id/etSearch" />

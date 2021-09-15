@@ -17,6 +17,7 @@ import android.os.*
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
 import android.text.TextUtils
+import android.util.Log
 import android.util.TypedValue
 import android.view.*
 import android.view.View.OnClickListener
@@ -34,10 +35,7 @@ import com.amap.api.location.AMapLocationListener
 import com.amap.api.maps.AMap
 import com.amap.api.maps.CameraUpdateFactory
 import com.amap.api.maps.model.*
-import com.hlj.activity.CityActivity
-import com.hlj.activity.HeadWarningActivity
-import com.hlj.activity.MinuteFallActivity
-import com.hlj.activity.WebviewActivity
+import com.hlj.activity.*
 import com.hlj.adapter.WeeklyForecastAdapter
 import com.hlj.common.CONST
 import com.hlj.common.MyApplication
@@ -78,6 +76,8 @@ import kotlin.collections.ArrayList
  */
 class ForecastFragment : Fragment(), OnClickListener, AMapLocationListener, CaiyunManager.RadarListener{
 
+    private var lat = 0.0
+    private var lng = 0.0
     private var timer: Timer? = null
     private var mReceiver: MyBroadCastReceiver? = null
     private var mAdapter: WeeklyForecastAdapter? = null
@@ -102,7 +102,6 @@ class ForecastFragment : Fragment(), OnClickListener, AMapLocationListener, Caiy
     private var mEngineType = SpeechConstant.TYPE_CLOUD// 引擎类型
     private var mToast : Toast? = null
     private var weatherText = ""
-    private var cityName : String? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_forecast, null)
@@ -163,6 +162,7 @@ class ForecastFragment : Fragment(), OnClickListener, AMapLocationListener, Caiy
      */
     private fun initWidget() {
         //解决scrollView嵌套listview，动态计算listview高度后，自动滚动到屏幕底部
+        ivMap.setOnClickListener(this)
         tvPosition.setOnClickListener(this)
         tvFact.setOnClickListener(this)
         tvBody.setOnClickListener(this)
@@ -239,29 +239,19 @@ class ForecastFragment : Fragment(), OnClickListener, AMapLocationListener, Caiy
 
     override fun onLocationChanged(amapLocation: AMapLocation?) {
         if (amapLocation != null && amapLocation.errorCode == AMapLocation.LOCATION_SUCCESS) {
-            val district = amapLocation.district
-            val street = amapLocation.street + amapLocation.streetNum
-            cityName = district+street
-            tvPosition!!.text = cityName
-            addMarkerToMap(LatLng(amapLocation.latitude, amapLocation.longitude))
+            tvPosition!!.text = amapLocation.district+amapLocation.street + amapLocation.streetNum
+            lat = amapLocation.latitude
+            lng = amapLocation.longitude
+            addMarkerToMap(LatLng(lat, lat))
 
             if (amapLocation.province.contains(amapLocation.city)) {
                 okHttpInfo(amapLocation.city, amapLocation.district)
             } else {
                 okHttpInfo(amapLocation.province, amapLocation.city)
             }
-            okHttpHourRain(amapLocation.longitude,amapLocation.latitude)
-            getWeatherInfo(amapLocation.longitude,amapLocation.latitude)
+            okHttpHourRain(lng,lat)
+            getWeatherInfo(false, lng,lat)
         }
-    }
-
-    private fun locationComplete() {
-        cityName = "哈尔滨市"
-        tvPosition!!.text = cityName
-        addMarkerToMap(LatLng(45.803775, 126.534967))
-        okHttpInfo("黑龙江省", cityName!!)
-        okHttpHourRain(126.534967,45.803775)
-        getWeatherInfo(126.534967,45.803775)
     }
 
     private fun addMarkerToMap(latLng: LatLng) {
@@ -638,14 +628,14 @@ class ForecastFragment : Fragment(), OnClickListener, AMapLocationListener, Caiy
     /**
      * 获取天气数据
      */
-    private fun getWeatherInfo(lng: Double, lat: Double) {
-        okHttpXiangJiAqi(lat, lng)
+    private fun getWeatherInfo(isFusion: Boolean, lng: Double, lat: Double) {
+        okHttpXiangJiAqi(isFusion, lat, lng)
     }
 
     /**
      * 请求象辑aqi
      */
-    private fun okHttpXiangJiAqi(lat: Double, lng: Double) {
+    private fun okHttpXiangJiAqi(isFusion: Boolean, lat: Double, lng: Double) {
         Thread {
             val timestamp = Date().time
             val start1 = sdf5.format(timestamp)
@@ -689,7 +679,7 @@ class ForecastFragment : Fragment(), OnClickListener, AMapLocationListener, Caiy
                             if (!geoObj.isNull("id")) {
                                 val cityId = geoObj.getString("id")
                                 if (!TextUtils.isEmpty(cityId)) {
-                                    getWeatherInfo(cityId)
+                                    getWeatherInfo(isFusion, cityId, lat, lng)
                                 }
                             }
                         } catch (e: JSONException) {
@@ -705,9 +695,13 @@ class ForecastFragment : Fragment(), OnClickListener, AMapLocationListener, Caiy
         }.start()
     }
 
-    private fun getWeatherInfo(cityId: String) {
+    private fun getWeatherInfo(isFusion: Boolean, cityId: String, lat: Double, lng: Double) {
+        refreshLayout.isRefreshing = true
         Thread {
-            val url = String.format("http://api.weatherdt.com/common/?area=%s&type=forecast|observe|alarm|air|rise&key=eca9a6c9ee6fafe74ac6bc81f577a680", cityId)
+            var url = "http://api.weatherdt.com/common/?area=$cityId&type=forecast|observe|alarm|air|rise&key=eca9a6c9ee6fafe74ac6bc81f577a680"
+            if (isFusion) {
+                url = "http://decision-admin.tianqi.cn/Home/Work2019/hlj_fusion_weather?lat=$lat&lon=$lng&type=forecast|observe&key=eca9a6c9ee6fafe74ac6bc81f577a680"
+            }
             OkHttpUtil.enqueue(Request.Builder().url(url).build(), object : Callback {
                 override fun onFailure(call: Call, e: IOException) {}
 
@@ -718,6 +712,7 @@ class ForecastFragment : Fragment(), OnClickListener, AMapLocationListener, Caiy
                     }
                     val result = response.body!!.string()
                     activity!!.runOnUiThread {
+                        refreshLayout.isRefreshing = false
                         if (!TextUtils.isEmpty(result)) {
                             try {
                                 val obj = JSONObject(result)
@@ -1353,6 +1348,12 @@ class ForecastFragment : Fragment(), OnClickListener, AMapLocationListener, Caiy
 
     override fun onClick(v: View?) {
         when (v!!.id) {
+            R.id.ivMap -> {
+                val intent = Intent(activity, SelectPositionActivity::class.java)
+                intent.putExtra("lat", lat)
+                intent.putExtra("lng", lng)
+                startActivityForResult(intent, 1004)
+            }
             R.id.tvPosition -> startActivityForResult(Intent(activity, CityActivity::class.java), 1001)
             R.id.tvFact -> {
                 tvTemp.text = tvFact.tag.toString()
@@ -1526,7 +1527,23 @@ class ForecastFragment : Fragment(), OnClickListener, AMapLocationListener, Caiy
                             getLatlngByCityid(dto.cityId)
                         } else {
                             okHttpHourRain(dto.lng, dto.lat)
-                            getWeatherInfo(dto.lng, dto.lat)
+                            getWeatherInfo(false, dto.lng, dto.lat)
+                        }
+                    }
+                }
+                1004 -> {
+                    if (data != null) {
+                        val bundle = data.extras
+                        if (bundle != null) {
+                            lat = bundle.getDouble("lat", lat)
+                            lng = bundle.getDouble("lng", lat)
+                            val position = bundle.getString("position")
+                            Log.e("position", position)
+                            if (!TextUtils.isEmpty(position)) {
+                                tvPosition.text = position
+                            }
+                            okHttpHourRain(lng, lat)
+                            getWeatherInfo(true, lng, lat)
                         }
                     }
                 }
@@ -1549,7 +1566,7 @@ class ForecastFragment : Fragment(), OnClickListener, AMapLocationListener, Caiy
                                     val lng = c.getDouble("c13")
                                     val lat = c.getDouble("c14")
                                     okHttpHourRain(lng, lat)
-                                    getWeatherInfo(lng, lat)
+                                    getWeatherInfo(false, lng, lat)
                                 }
                             } catch (e: JSONException) {
                                 e.printStackTrace()

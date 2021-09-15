@@ -257,6 +257,8 @@ public class MyApplication extends Application{
 		public static final String token = "token";
 		public static final String groupId = "groupId";
 		public static final String uGroupName = "uGroupName";
+		public static final String name = "name";
+		public static final String department = "department";
 	}
 
 	public static String UID = "2606";//用户id
@@ -265,6 +267,8 @@ public class MyApplication extends Application{
 	public static String TOKEN = "";//token
 	public static String GROUPID = "50";
 	public static String UGROUPNAME = "";//uGroupName
+	public static String NAME = "";
+	public static String DEPARTMENT = "";
 
 	public static void getUserInfo(Context context) {
 		SharedPreferences sharedPreferences = context.getSharedPreferences(USERINFO, Context.MODE_PRIVATE);
@@ -274,6 +278,8 @@ public class MyApplication extends Application{
 		TOKEN = sharedPreferences.getString(UserInfo.token, TOKEN);
 		GROUPID = sharedPreferences.getString(UserInfo.groupId, GROUPID);
 		UGROUPNAME = sharedPreferences.getString(UserInfo.uGroupName, UGROUPNAME);
+		NAME = sharedPreferences.getString(UserInfo.name, NAME);
+		DEPARTMENT = sharedPreferences.getString(UserInfo.department, DEPARTMENT);
 	}
 
 	public static void saveUserInfo(Context context) {
@@ -285,6 +291,8 @@ public class MyApplication extends Application{
 		editor.putString(UserInfo.token, TOKEN);
 		editor.putString(UserInfo.groupId, GROUPID);
 		editor.putString(UserInfo.uGroupName, UGROUPNAME);
+		editor.putString(UserInfo.name, NAME);
+		editor.putString(UserInfo.department, DEPARTMENT);
 		editor.apply();
 	}
 
@@ -299,6 +307,8 @@ public class MyApplication extends Application{
 		TOKEN = "";
 		GROUPID = "50";
 		UGROUPNAME = "";
+		NAME = "";
+		DEPARTMENT = "";
 	}
 
 }

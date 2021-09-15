@@ -129,10 +129,6 @@ class SettingActivity : BaseActivity(), OnClickListener {
      * 温馨提示对话框
      */
     private fun promptDialog() {
-        if (!TextUtils.equals(CONST.publicUser, MyApplication.USERNAME)) {
-            return
-        }
-
         val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val view = inflater.inflate(R.layout.dialog_prompt, null)
         val dialog = Dialog(this, R.style.CustomProgressDialog)
@@ -160,7 +156,13 @@ class SettingActivity : BaseActivity(), OnClickListener {
     override fun onClick(v: View) {
         when (v.id) {
             R.id.llBack -> finish()
-            R.id.ivPortrait, R.id.tvUserName -> promptDialog()
+            R.id.ivPortrait, R.id.tvUserName -> {
+                if (TextUtils.equals(CONST.publicUser, MyApplication.USERNAME)) {
+                    promptDialog()
+                } else {
+                    startActivity(Intent(this, PersonInfoActivity::class.java))
+                }
+            }
             R.id.llFeedBack -> {
                 val intent = Intent(this, FeedbackActivity::class.java)
                 intent.putExtra(CONST.ACTIVITY_NAME, getString(R.string.setting_feedback))

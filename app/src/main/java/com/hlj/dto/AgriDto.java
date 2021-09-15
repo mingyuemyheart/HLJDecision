@@ -20,7 +20,7 @@ public class AgriDto implements Parcelable{
 	public String dataUrl;
 	public String time;
 	public String type;//区分pdf、html等
-	public List<ColumnData> child = new ArrayList<ColumnData>();
+	public List<ColumnData> child = new ArrayList<>();
 	public double lat;
 	public double lng;
 	public String radarId;
