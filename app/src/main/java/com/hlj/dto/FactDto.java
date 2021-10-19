@@ -53,6 +53,8 @@ public class FactDto implements Parcelable{
 	public String factTime;
 	public float x = 0;
 	public float y = 0;
+	public String humidity;
+	public String visibility;
 
 	public FactDto() {
 	}
@@ -107,6 +109,8 @@ public class FactDto implements Parcelable{
 		dest.writeString(this.factTime);
 		dest.writeFloat(this.x);
 		dest.writeFloat(this.y);
+		dest.writeString(this.humidity);
+		dest.writeString(this.visibility);
 	}
 
 	protected FactDto(Parcel in) {
@@ -153,6 +157,8 @@ public class FactDto implements Parcelable{
 		this.factTime = in.readString();
 		this.x = in.readFloat();
 		this.y = in.readFloat();
+		this.humidity = in.readString();
+		this.visibility = in.readString();
 	}
 
 	public static final Creator<FactDto> CREATOR = new Creator<FactDto>() {

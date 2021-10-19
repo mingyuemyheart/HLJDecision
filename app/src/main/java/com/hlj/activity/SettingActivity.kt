@@ -23,6 +23,7 @@ import kotlinx.android.synthetic.main.dialog_delete.view.tvPositive
 import kotlinx.android.synthetic.main.dialog_prompt.view.*
 import kotlinx.android.synthetic.main.layout_title.*
 import shawn.cxwl.com.hlj.R
+import java.util.*
 
 /**
  * 设置
@@ -32,7 +33,6 @@ class SettingActivity : BaseActivity(), OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_setting)
-        MyApplication.addDestoryActivity(this, "SettingActivity")
         initWidget()
     }
 
@@ -55,6 +55,7 @@ class SettingActivity : BaseActivity(), OnClickListener {
         ivPortrait!!.setOnClickListener(this)
         tvUserName!!.setOnClickListener(this)
         ivPushNews!!.setOnClickListener(this)
+        llManage!!.setOnClickListener(this)
 
         if (TextUtils.equals(MyApplication.USERNAME, CONST.publicUser) || TextUtils.isEmpty(MyApplication.USERNAME)) { //公众用户或为空
             tvUserName!!.text = "点击登录\n非注册用户"
@@ -164,7 +165,7 @@ class SettingActivity : BaseActivity(), OnClickListener {
                 }
             }
             R.id.llFeedBack -> {
-                val intent = Intent(this, FeedbackActivity::class.java)
+                val intent = Intent(this, FeedbackListActivity::class.java)
                 intent.putExtra(CONST.ACTIVITY_NAME, getString(R.string.setting_feedback))
                 startActivity(intent)
             }
@@ -209,6 +210,21 @@ class SettingActivity : BaseActivity(), OnClickListener {
                 intent.putExtra(CONST.ACTIVITY_NAME, "隐私政策")
                 intent.putExtra(CONST.WEB_URL, "http://decision-admin.tianqi.cn/Public/share/hlj_htmls/yscl.html")
                 startActivity(intent)
+            }
+            R.id.llManage -> {
+                startActivityForResult(Intent(this, ManageActivity::class.java), 1001)
+            }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == RESULT_OK) {
+            when (requestCode) {
+                1001 -> {
+                    setResult(RESULT_OK)
+                    finish()
+                }
             }
         }
     }

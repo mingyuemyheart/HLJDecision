@@ -9,7 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.hlj.dto.DisasterDto;
+import com.hlj.dto.AgriDto;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -22,14 +22,14 @@ import shawn.cxwl.com.hlj.R;
 public class AskAnwserAdapter extends BaseAdapter {
 
 	private LayoutInflater mInflater;
-	private List<DisasterDto> mArrayList;
+	private List<AgriDto> mArrayList;
 
 	private final class ViewHolder{
 		ImageView imageView;
 		TextView tvTitle,tvReply,tvTime;
 	}
 
-	public AskAnwserAdapter(Context context, List<DisasterDto> mArrayList) {
+	public AskAnwserAdapter(Context context, List<AgriDto> mArrayList) {
 		this.mArrayList = mArrayList;
 		mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	}
@@ -64,7 +64,7 @@ public class AskAnwserAdapter extends BaseAdapter {
 			mHolder = (ViewHolder) convertView.getTag();
 		}
 
-		DisasterDto dto = mArrayList.get(position);
+		AgriDto dto = mArrayList.get(position);
 
 		if (!TextUtils.isEmpty(dto.imgUrl)) {
 			Picasso.get().load(dto.imgUrl).error(R.drawable.icon_no_bitmap).into(mHolder.imageView);

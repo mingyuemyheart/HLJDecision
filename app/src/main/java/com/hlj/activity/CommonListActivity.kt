@@ -90,7 +90,7 @@ class CommonListActivity : BaseActivity(), View.OnClickListener {
             val dto = dataList[arg2]
             val intent = when {
                 TextUtils.equals(dto.type, CONST.PDF) -> {
-                    Intent(this, HPDFActivity::class.java)
+                    Intent(this, PDFActivity::class.java)
                 }
                 TextUtils.equals(dto.type, "tw") || TextUtils.equals(dto.type, "jcbw") -> {
                     Intent(this, WebviewCssActivity::class.java)

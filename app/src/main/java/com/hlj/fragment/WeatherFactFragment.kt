@@ -15,6 +15,7 @@ import com.hlj.activity.*
 import com.hlj.adapter.CommonFragmentAdapter
 import com.hlj.common.CONST
 import com.hlj.common.ColumnData
+import com.hlj.common.MyApplication
 import com.hlj.dto.AgriDto
 import com.hlj.utils.CommonUtil
 import com.hlj.utils.OkHttpUtil
@@ -35,7 +36,7 @@ class WeatherFactFragment : Fragment() {
 
     private var mReceiver: MyBroadCastReceiver? = null
     private var mAdapter: CommonFragmentAdapter? = null
-    private val dataList: ArrayList<AgriDto> = ArrayList()
+    private val dataList: MutableList<AgriDto> = ArrayList()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         return inflater.inflate(R.layout.fragment_weather_fact, null)
@@ -79,16 +80,30 @@ class WeatherFactFragment : Fragment() {
     private fun initGridView() {
         dataList.clear()
         val data: ColumnData = arguments!!.getParcelable("data")
-        for (i in data.child.indices) {
+
+        val columnIds = MyApplication.getColumnIds(activity)
+        val list: MutableList<ColumnData> = ArrayList()
+        if (TextUtils.isEmpty(columnIds)) {
+            list.addAll(data.child)
+        } else {
+            for (i in 0 until data.child.size) {
+                val item1 = data.child[i]
+                if (!columnIds.contains(item1.columnId+"--")) { //已经有保存的栏目
+                    list.add(item1)
+                }
+            }
+        }
+        for (i in list.indices) {
+            val item = list[i]
             val dto = AgriDto()
-            dto.columnId = data.child[i].columnId
-            dto.id = data.child[i].id
-            dto.icon = data.child[i].icon
-            dto.icon2 = data.child[i].icon2
-            dto.showType = data.child[i].showType
-            dto.name = data.child[i].name
-            dto.dataUrl = data.child[i].dataUrl
-            dto.child = data.child[i].child
+            dto.columnId = item.columnId
+            dto.id = item.id
+            dto.icon = item.icon
+            dto.icon2 = item.icon2
+            dto.showType = item.showType
+            dto.name = item.name
+            dto.dataUrl = item.dataUrl
+            dto.child = item.child
             dataList.add(dto)
         }
 
@@ -230,7 +245,7 @@ class WeatherFactFragment : Fragment() {
                 } else if (TextUtils.equals(dto.id, "131")) {//森林火险等级预报
                     okHttpDetail(dto.dataUrl)
                 } else if (TextUtils.equals(dto.id, "132")) {//林场站气象要素
-                    intent = Intent(activity, SinglePDFActivity::class.java)
+                    intent = Intent(activity, PDFSingleActivity::class.java)
                     intent.putExtra(CONST.COLUMN_ID, dto.columnId)
                     val bundle = Bundle()
                     bundle.putParcelable("data", dto)
@@ -252,6 +267,10 @@ class WeatherFactFragment : Fragment() {
                     startActivity(intent)
                 } else if (TextUtils.equals(dto.id, "123")) { //通讯录
                     intent = Intent(activity, AddrBookActivity::class.java)
+                    intent.putExtra(CONST.ACTIVITY_NAME, dto.name)
+                    startActivity(intent)
+                } else if (TextUtils.equals(dto.id, "125")) { //实况站点查询
+                    intent = Intent(activity, FactQueryActivity::class.java)
                     intent.putExtra(CONST.ACTIVITY_NAME, dto.name)
                     startActivity(intent)
                 } else if (TextUtils.equals(dto.id, "1401")) { //气候背景

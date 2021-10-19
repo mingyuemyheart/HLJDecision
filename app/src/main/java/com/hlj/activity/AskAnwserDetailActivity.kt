@@ -4,12 +4,9 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
 import android.view.View.OnClickListener
-import com.hlj.dto.DisasterDto
+import com.hlj.dto.AgriDto
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_ask_anwser_detail.*
-import kotlinx.android.synthetic.main.activity_disaster_detail.tvContent
-import kotlinx.android.synthetic.main.activity_disaster_detail.tvSubtitle
-import kotlinx.android.synthetic.main.activity_disaster_detail.tvTime
 import kotlinx.android.synthetic.main.layout_title.*
 import shawn.cxwl.com.hlj.R
 
@@ -28,7 +25,7 @@ class AskAnwserDetailActivity : BaseActivity(), OnClickListener {
         llBack.setOnClickListener(this)
         tvTitle.text = "提问解答详情"
 
-        val data: DisasterDto = intent.getParcelableExtra("data")
+        val data: AgriDto = intent.getParcelableExtra("data")
         if (data != null) {
             if (!TextUtils.isEmpty(data.time)) {
                 tvTime.text = data.time

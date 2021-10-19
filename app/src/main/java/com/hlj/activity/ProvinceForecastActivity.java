@@ -66,7 +66,7 @@ public class ProvinceForecastActivity extends BaseActivity implements OnClickLis
     private boolean isBigText = false;
     private Context mContext = null;
     private LinearLayout llBack = null;
-    private TextView tvTitle = null;
+    private TextView tvControl = null;
     private MapView mapView = null;//高德地图
     private AMap aMap = null;//高德地图
     private float zoom = 5.5f;
@@ -97,11 +97,11 @@ public class ProvinceForecastActivity extends BaseActivity implements OnClickLis
     private void initWidget() {
         llBack = (LinearLayout) findViewById(R.id.llBack);
         llBack.setOnClickListener(this);
-        tvTitle = (TextView) findViewById(R.id.tvTitle);
-        ImageView ivControl = findViewById(R.id.ivControl);
-        ivControl.setImageResource(R.drawable.icon_text);
-        ivControl.setVisibility(View.VISIBLE);
-        ivControl.setOnClickListener(this);
+        TextView tvTitle = (TextView) findViewById(R.id.tvTitle);
+        tvControl = findViewById(R.id.tvControl);
+        tvControl.setText("放大字体");
+        tvControl.setVisibility(View.VISIBLE);
+        tvControl.setOnClickListener(this);
         llContainer = (ExpandableTextView) findViewById(R.id.llContainer);
 
         String title = getIntent().getStringExtra(CONST.ACTIVITY_NAME);
@@ -651,11 +651,13 @@ public class ProvinceForecastActivity extends BaseActivity implements OnClickLis
             case R.id.llBack:
                 finish();
                 break;
-            case R.id.ivControl:
+            case R.id.tvControl:
                 isBigText = !isBigText;
                 if (isBigText) {
+                    tvControl.setText("缩小字体");
                     llContainer.setTextSize(18);
                 } else {
+                    tvControl.setText("放大字体");
                     llContainer.setTextSize(14);
                 }
                 break;

@@ -34,7 +34,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
-                android:singleLine="true"
                 android:layout_marginTop="10dp"
                 android:textColor="@color/white"
                 android:textSize="@dimen/level_4"
@@ -620,7 +619,7 @@
                 <LinearLayout
                     android:id="@+id/llContainerHour"
                     android:layout_width="wrap_content"
-                    android:layout_height="300dp"
+                    android:layout_height="200dp"
                     android:orientation="horizontal" />
             </HorizontalScrollView>
 
@@ -720,7 +719,7 @@
                 <LinearLayout
                     android:id="@+id/llContainerFifteen"
                     android:layout_width="wrap_content"
-                    android:layout_height="320dp"
+                    android:layout_height="360dp"
                     android:orientation="horizontal" />
             </HorizontalScrollView>
 

@@ -35,8 +35,8 @@ class PersonInfoActivity : BaseActivity(), OnClickListener {
         if (!TextUtils.isEmpty(MyApplication.NAME)) {
             tvNickName!!.text = MyApplication.NAME
         }
-        if (!TextUtils.isEmpty(MyApplication.USERNAME)) {
-            tvMobile.text = MyApplication.USERNAME
+        if (!TextUtils.isEmpty(MyApplication.MOBILE)) {
+            tvMobile.text = MyApplication.MOBILE
         }
         if (!TextUtils.isEmpty(MyApplication.DEPARTMENT)) {
             tvUnit.text = MyApplication.DEPARTMENT

@@ -15,6 +15,8 @@ public class WeatherDto implements Parcelable{
 	public float y = 0;//y轴坐标点
 	public int hourlyWindDirCode = 0;
 	public int hourlyWindForceCode = 0;
+	public String hourlyWindForceString;
+	public String hourlyAqi;
 
 	//列表、趋势
 	public String week = null;//周几
@@ -52,6 +54,8 @@ public class WeatherDto implements Parcelable{
 		dest.writeFloat(this.y);
 		dest.writeInt(this.hourlyWindDirCode);
 		dest.writeInt(this.hourlyWindForceCode);
+		dest.writeString(this.hourlyWindForceString);
+		dest.writeString(this.hourlyAqi);
 		dest.writeString(this.week);
 		dest.writeString(this.date);
 		dest.writeString(this.lowPhe);
@@ -79,6 +83,8 @@ public class WeatherDto implements Parcelable{
 		this.y = in.readFloat();
 		this.hourlyWindDirCode = in.readInt();
 		this.hourlyWindForceCode = in.readInt();
+		this.hourlyWindForceString = in.readString();
+		this.hourlyAqi = in.readString();
 		this.week = in.readString();
 		this.date = in.readString();
 		this.lowPhe = in.readString();

@@ -26,6 +26,12 @@ public class ColumnData implements Parcelable{
 	public String bannerUrl;
 	public String imgUrl;
 
+	//模块管理用
+	public int section;
+	public String headerName;
+	public boolean isSelected = true;
+	public String deleteable;
+
 	public ColumnData() {
 	}
 
@@ -53,6 +59,10 @@ public class ColumnData implements Parcelable{
 		dest.writeString(this.localTag);
 		dest.writeString(this.bannerUrl);
 		dest.writeString(this.imgUrl);
+		dest.writeInt(this.section);
+		dest.writeString(this.headerName);
+		dest.writeByte(this.isSelected ? (byte) 1 : (byte) 0);
+		dest.writeString(this.deleteable);
 	}
 
 	protected ColumnData(Parcel in) {
@@ -73,6 +83,10 @@ public class ColumnData implements Parcelable{
 		this.localTag = in.readString();
 		this.bannerUrl = in.readString();
 		this.imgUrl = in.readString();
+		this.section = in.readInt();
+		this.headerName = in.readString();
+		this.isSelected = in.readByte() != 0;
+		this.deleteable = in.readString();
 	}
 
 	public static final Creator<ColumnData> CREATOR = new Creator<ColumnData>() {

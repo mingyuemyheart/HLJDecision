@@ -9,7 +9,7 @@ import android.widget.AdapterView.OnItemClickListener
 import com.hlj.adapter.DisasterAdapter
 import com.hlj.common.CONST
 import com.hlj.common.MyApplication
-import com.hlj.dto.DisasterDto
+import com.hlj.dto.AgriDto
 import com.hlj.utils.OkHttpUtil
 import kotlinx.android.synthetic.main.activity_disaster.*
 import kotlinx.android.synthetic.main.layout_title.*
@@ -26,7 +26,7 @@ import java.util.*
 class DisasterActivity : BaseActivity(), OnClickListener {
 
     private var mAdapter: DisasterAdapter? = null
-    private val dataList: MutableList<DisasterDto> = ArrayList()
+    private val dataList: MutableList<AgriDto> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -99,7 +99,7 @@ class DisasterActivity : BaseActivity(), OnClickListener {
                                     val array = obj.getJSONArray("data")
                                     for (i in 0 until array.length()) {
                                         val itemObj = array.getJSONObject(i)
-                                        val dto = DisasterDto()
+                                        val dto = AgriDto()
                                         if (!itemObj.isNull("title")) {
                                             dto.title = itemObj.getString("title")
                                         }

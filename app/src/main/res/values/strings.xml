@@ -53,7 +53,7 @@
     <string name="long_press_order">长按拖拽排序</string>
     <string name="click_add_channel">点击添加频道</string>
     <string name="no_radar_data">该雷达站暂无数据</string>
-    <string name="write_feedback">欢迎写下您宝贵的建议...</string>
+    <string name="write_feedback">欢迎写下您宝贵的建议，请及时查看工作人员的回复</string>
     <string name="submit">提交</string>
     <string name="submit_success">提交成功，感谢您的宝贵建议！</string>
     <string name="table">列表</string>

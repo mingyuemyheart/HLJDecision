@@ -10,7 +10,7 @@ import android.view.View.OnClickListener
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
-import com.hlj.dto.DisasterDto
+import com.hlj.dto.AgriDto
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_disaster_detail.*
 import kotlinx.android.synthetic.main.layout_title.*
@@ -31,7 +31,7 @@ class DisasterDetailActivity : BaseActivity(), OnClickListener {
         llBack.setOnClickListener(this)
         tvTitle.text = "灾情详情"
 
-        val data: DisasterDto = intent.getParcelableExtra("data")
+        val data: AgriDto = intent.getParcelableExtra("data")
         if (data != null) {
             if (data.imgList.size > 0) {
                 val size = data.imgList.size

@@ -30,7 +30,7 @@
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_marginStart="10dp"
-        android:src="@drawable/iv_search"
+        android:src="@drawable/icon_search_white"
         app:layout_constraintBottom_toBottomOf="@+id/etSearch"
         app:layout_constraintStart_toStartOf="@+id/etSearch"
         app:layout_constraintTop_toTopOf="@+id/etSearch" />

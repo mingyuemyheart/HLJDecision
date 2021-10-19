@@ -259,6 +259,8 @@ public class MyApplication extends Application{
 		public static final String uGroupName = "uGroupName";
 		public static final String name = "name";
 		public static final String department = "department";
+		public static final String mobile = "mobile";
+		public static final String jc_download = "jc_download";
 	}
 
 	public static String UID = "2606";//用户id
@@ -269,6 +271,8 @@ public class MyApplication extends Application{
 	public static String UGROUPNAME = "";//uGroupName
 	public static String NAME = "";
 	public static String DEPARTMENT = "";
+	public static String MOBILE = "";
+	public static String JC_DOWNLOAD = "";//1才有下载权限
 
 	public static void getUserInfo(Context context) {
 		SharedPreferences sharedPreferences = context.getSharedPreferences(USERINFO, Context.MODE_PRIVATE);
@@ -280,6 +284,8 @@ public class MyApplication extends Application{
 		UGROUPNAME = sharedPreferences.getString(UserInfo.uGroupName, UGROUPNAME);
 		NAME = sharedPreferences.getString(UserInfo.name, NAME);
 		DEPARTMENT = sharedPreferences.getString(UserInfo.department, DEPARTMENT);
+		MOBILE = sharedPreferences.getString(UserInfo.mobile, MOBILE);
+		JC_DOWNLOAD = sharedPreferences.getString(UserInfo.jc_download, JC_DOWNLOAD);
 	}
 
 	public static void saveUserInfo(Context context) {
@@ -293,6 +299,8 @@ public class MyApplication extends Application{
 		editor.putString(UserInfo.uGroupName, UGROUPNAME);
 		editor.putString(UserInfo.name, NAME);
 		editor.putString(UserInfo.department, DEPARTMENT);
+		editor.putString(UserInfo.mobile, MOBILE);
+		editor.putString(UserInfo.jc_download, JC_DOWNLOAD);
 		editor.apply();
 	}
 
@@ -309,6 +317,26 @@ public class MyApplication extends Application{
 		UGROUPNAME = "";
 		NAME = "";
 		DEPARTMENT = "";
+		MOBILE = "";
+		JC_DOWNLOAD = "";
+	}
+
+	/**
+	 * 保存columnIds
+	 */
+	public static void saveColumnIds(Context context, String columnIds) {
+		SharedPreferences sharedPreferences = context.getSharedPreferences("COLUMNIDS", Context.MODE_PRIVATE);
+		SharedPreferences.Editor editor = sharedPreferences.edit();
+		editor.putString("columnIds", columnIds);
+		editor.apply();
+	}
+
+	/**
+	 * 获取columnIds
+	 */
+	public static String getColumnIds(Context context) {
+		SharedPreferences sharedPreferences = context.getSharedPreferences("COLUMNIDS", Context.MODE_PRIVATE);
+		return sharedPreferences.getString("columnIds", "");
 	}
 
 }

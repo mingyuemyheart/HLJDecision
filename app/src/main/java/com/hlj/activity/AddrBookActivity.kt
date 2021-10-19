@@ -1,22 +1,17 @@
 package com.hlj.activity
 
-import android.Manifest
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.net.Uri
-import android.os.Build
 import android.os.Bundle
-import android.support.v4.app.ActivityCompat
-import android.support.v4.content.ContextCompat
 import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView.OnItemClickListener
 import com.hlj.adapter.AddrBookAdapter
 import com.hlj.common.CONST
+import com.hlj.common.MyApplication
 import com.hlj.dto.ContactDto
-import com.hlj.utils.AuthorityUtil
 import com.hlj.utils.OkHttpUtil
 import kotlinx.android.synthetic.main.activity_addrbook.*
 import kotlinx.android.synthetic.main.layout_title.*
@@ -34,9 +29,9 @@ import java.io.IOException
  */
 class AddrBookActivity : BaseActivity(), View.OnClickListener {
 
+    private var key = ""
     private var mAdapter: AddrBookAdapter? = null
     private val dataList: ArrayList<ContactDto> = ArrayList()
-    private var dialNumber = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,6 +42,7 @@ class AddrBookActivity : BaseActivity(), View.OnClickListener {
 
     private fun initWidget() {
         llBack.setOnClickListener(this)
+        tvSearch.setOnClickListener(this)
 
         val title = intent.getStringExtra(CONST.ACTIVITY_NAME)
         if (!TextUtils.isEmpty(title)) {
@@ -55,13 +51,7 @@ class AddrBookActivity : BaseActivity(), View.OnClickListener {
 
         etSearch.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                for (i in 0 until dataList.size) {
-                    val dto = dataList[i]
-                    if (dto.name.startsWith(s.toString())) {
-                        listView.setSelection(i)
-                        break
-                    }
-                }
+                key = s.toString()
             }
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
@@ -69,7 +59,7 @@ class AddrBookActivity : BaseActivity(), View.OnClickListener {
             }
         })
 
-        okHttpList()
+        okHttpList(false)
     }
 
     private fun initListView() {
@@ -78,11 +68,15 @@ class AddrBookActivity : BaseActivity(), View.OnClickListener {
         listView!!.onItemClickListener = OnItemClickListener { arg0, arg1, arg2, arg3 ->
             val data = dataList[arg2]
             if (TextUtils.equals(data.type, "0")) {
-                dialNumber = data.worktelephone
-                checkPhoneAuthority()
+                val intent = Intent(this, AddrBookDetailActivity::class.java)
+                val bundle = Bundle()
+                intent.putExtra(CONST.ACTIVITY_NAME, data.name)
+                bundle.putParcelable("data", data)
+                intent.putExtras(bundle)
+                startActivity(intent)
             } else {
                 val intent = Intent(this, AddrBookActivity::class.java)
-                intent.putExtra(CONST.ACTIVITY_NAME, tvTitle.text.toString())
+                intent.putExtra(CONST.ACTIVITY_NAME, data.company)
                 intent.putExtra("id", data.id)
                 startActivity(intent)
             }
@@ -102,14 +96,18 @@ class AddrBookActivity : BaseActivity(), View.OnClickListener {
     /**
      * 获取资讯信息
      */
-    private fun okHttpList() {
+    private fun okHttpList(isSearch: Boolean) {
         val id = if (!intent.hasExtra("id")) {
             ""
         } else {
             intent.getStringExtra("id")
         }
         Thread {
-            val url = "https://decision-admin.tianqi.cn/Home/workwsj/getPhoneBook?pid=$id"
+            var url = "https://decision-admin.tianqi.cn/Home/workwsj/getPhoneBook?pid=$id&key=$key&uid=${MyApplication.UID}"
+            if (isSearch) {
+                url = "https://decision-admin.tianqi.cn/Home/workwsj/getPhoneBook?all=1&key=$key&uid=${MyApplication.UID}"
+            }
+            Log.e("addrBook", url)
             OkHttpUtil.enqueue(Request.Builder().url(url).build(), object : Callback {
                 override fun onFailure(call: Call, e: IOException) {}
 
@@ -120,6 +118,7 @@ class AddrBookActivity : BaseActivity(), View.OnClickListener {
                     }
                     val result = response.body!!.string()
                     runOnUiThread {
+                        cancelDialog()
                         if (!TextUtils.isEmpty(result)) {
                             try {
                                 val obj = JSONObject(result)
@@ -160,18 +159,23 @@ class AddrBookActivity : BaseActivity(), View.OnClickListener {
                                         if (!itemObj.isNull("worktelephone")) {
                                             dto.worktelephone = itemObj.getString("worktelephone")
                                         }
+                                        if (!itemObj.isNull("mobile")) {
+                                            dto.mobile = itemObj.getString("mobile")
+                                        }
+                                        if (!itemObj.isNull("updatetime")) {
+                                            dto.updatetime = itemObj.getString("updatetime")
+                                        }
                                         if (!itemObj.isNull("letter")) {
                                             dto.letter = itemObj.getString("letter")
                                         }
                                         if (!itemObj.isNull("type")) {
                                             dto.type = itemObj.getString("type")
-                                            if (TextUtils.equals(dto.type, "0")) {
-                                                slideBar.visibility = View.VISIBLE
-                                                if (!TextUtils.isEmpty(level)) {
-                                                    tvLevel.text = level
-                                                    tvLevel.visibility = View.VISIBLE
-                                                }
-                                            }
+                                        }
+                                        if (!itemObj.isNull("duties")) {
+                                            dto.duties = itemObj.getString("duties")
+                                        }
+                                        if (!itemObj.isNull("level")) {
+                                            dto.level = itemObj.getString("level")
                                         }
                                         dataList.add(dto)
                                     }
@@ -192,41 +196,9 @@ class AddrBookActivity : BaseActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v!!.id) {
             R.id.llBack -> finish()
-        }
-    }
-
-    /**
-     * 申请电话权限
-     */
-    private fun checkPhoneAuthority() {
-        if (Build.VERSION.SDK_INT < 23) {
-            try {
-                startActivity(Intent(Intent.ACTION_CALL, Uri.parse("tel:$dialNumber")))
-            } catch (e: SecurityException) {
-                e.printStackTrace()
-            }
-        } else {
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) !== PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CALL_PHONE), AuthorityUtil.AUTHOR_PHONE)
-            } else {
-                startActivity(Intent(Intent.ACTION_CALL, Uri.parse("tel:$dialNumber")))
-            }
-        }
-    }
-
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String?>, grantResults: IntArray) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        when (requestCode) {
-            AuthorityUtil.AUTHOR_PHONE -> if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                try {
-                    startActivity(Intent(Intent.ACTION_CALL, Uri.parse("tel:$dialNumber")))
-                } catch (e: SecurityException) {
-                    e.printStackTrace()
-                }
-            } else {
-                if (!ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CALL_PHONE)) {
-                    AuthorityUtil.intentAuthorSetting(this, "\"" + getString(R.string.app_name) + "\"" + "需要使用电话权限，是否前往设置？")
-                }
+            R.id.tvSearch -> {
+                showDialog()
+                okHttpList(true)
             }
         }
     }

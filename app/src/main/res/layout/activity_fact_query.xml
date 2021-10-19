@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/reTitle"
+        layout="@layout/layout_title" />
+
+    <LinearLayout
+        app:layout_constraintTop_toBottomOf="@+id/reTitle"
+        android:id="@+id/llContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"/>
+
+    <LinearLayout
+        app:layout_constraintTop_toBottomOf="@+id/llContainer"
+        android:id="@+id/llContainer1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"/>
+
+    <TextView
+        android:id="@+id/divider1"
+        app:layout_constraintTop_toBottomOf="@+id/llContainer1"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/light_gray"/>
+
+    <com.hlj.view.MainViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider1" />
+
+</android.support.constraint.ConstraintLayout>

@@ -17,7 +17,8 @@ import android.widget.AdapterView.OnItemClickListener
 import android.widget.Toast
 import com.hlj.adapter.SelectPictureAdapter
 import com.hlj.common.CONST
-import com.hlj.dto.DisasterDto
+import com.hlj.dto.AgriDto
+import com.hlj.interfaces.SelectListener
 import com.hlj.utils.AuthorityUtil
 import com.hlj.utils.CommonUtil
 import kotlinx.android.synthetic.main.activity_select_picture.*
@@ -33,7 +34,7 @@ import java.util.*
 class SelectPictureActivity : BaseActivity(), View.OnClickListener, SelectListener {
 
     private var mAdapter: SelectPictureAdapter? = null
-    private val dataList: ArrayList<DisasterDto> = ArrayList()
+    private val dataList: ArrayList<AgriDto> = ArrayList()
     private var maxCount = 0 // 允许上传最大值
     private var lastCount = 0 //上一次已经选了几张
     private var selectCount = 0
@@ -67,7 +68,7 @@ class SelectPictureActivity : BaseActivity(), View.OnClickListener, SelectListen
     private fun loadImages() {
         dataList.clear()
         dataList.addAll(CommonUtil.getAllLocalImages(this))
-        val dto = DisasterDto()
+        val dto = AgriDto()
         dto.imageName = "拍照"
         dto.imgUrl = ""
         dataList.add(0, dto)
@@ -106,7 +107,7 @@ class SelectPictureActivity : BaseActivity(), View.OnClickListener, SelectListen
                 if (selectCount <= 0) {
                     Toast.makeText(this, "请选择需要上传的图片！", Toast.LENGTH_SHORT).show()
                 } else {
-                    val list: ArrayList<DisasterDto?> = ArrayList()
+                    val list: ArrayList<AgriDto?> = ArrayList()
                     var i = 0
                     while (i < dataList.size) {
                         val dto = dataList[i]
@@ -137,7 +138,7 @@ class SelectPictureActivity : BaseActivity(), View.OnClickListener, SelectListen
                         fis = FileInputStream(cameraFile)
                         val bitmap = BitmapFactory.decodeStream(fis)
 
-                        val dto = DisasterDto()
+                        val dto = AgriDto()
                         dto.imageName = cameraFile!!.name
                         dto.imgUrl = cameraFile!!.absolutePath
                         dataList.add(1, dto)

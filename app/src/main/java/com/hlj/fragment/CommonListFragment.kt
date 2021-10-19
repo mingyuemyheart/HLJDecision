@@ -11,7 +11,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView.OnItemClickListener
-import com.hlj.activity.HPDFActivity
+import com.hlj.activity.DisasterDetailActivity
+import com.hlj.activity.PDFActivity
 import com.hlj.activity.WebviewActivity
 import com.hlj.adapter.CommonPdfListAdapter
 import com.hlj.common.CONST
@@ -100,24 +101,35 @@ class CommonListFragment : Fragment() {
             val dto = dataList[arg2]
             val intent = when {
                 TextUtils.equals(dto.type, CONST.PDF) -> {
-                    Intent(activity, HPDFActivity::class.java)
+                    Intent(activity, PDFActivity::class.java)
                 }
                 TextUtils.equals(dto.type, CONST.MP4) -> {
                     Intent(activity, WebviewActivity::class.java)
                 }
                 else -> {
-                    Intent(activity, WebviewActivity::class.java)
+                    if (TextUtils.isEmpty(dto.uid)) {
+                        Intent(activity, WebviewActivity::class.java)
+                    } else {
+                        Intent(activity, DisasterDetailActivity::class.java)
+                    }
                 }
             }
             intent.putExtra(CONST.ACTIVITY_NAME, dto.title)
             intent.putExtra(CONST.WEB_URL, dto.dataUrl)
+            val bundle = Bundle()
+            bundle.putParcelable("data", dto)
+            intent.putExtras(bundle)
             startActivity(intent)
         }
     }
 
     private fun okHttpList() {
         val url = arguments!!.getString(CONST.WEB_URL)
-        Thread(Runnable {
+        if (TextUtils.isEmpty(url) || !url.startsWith("http")) {
+            refreshLayout.isRefreshing = false
+            return
+        }
+        Thread {
             OkHttpUtil.enqueue(Request.Builder().url(url).build(), object : Callback {
                 override fun onFailure(call: Call, e: IOException) {}
 
@@ -197,6 +209,39 @@ class CommonListFragment : Fragment() {
                                                 dto.icon = itemObj.getString("l4")
                                             }
                                             dto.type = type
+
+                                            //灾情反馈
+                                            if (!itemObj.isNull("uid")) {
+                                                dto.uid = itemObj.getString("uid")
+                                            }
+                                            if (!itemObj.isNull("title")) {
+                                                dto.title = itemObj.getString("title")
+                                            }
+                                            if (!itemObj.isNull("content")) {
+                                                dto.content = itemObj.getString("content")
+                                            }
+                                            if (!itemObj.isNull("type")) {
+                                                dto.disasterType = itemObj.getString("type")
+                                            }
+                                            if (!itemObj.isNull("location")) {
+                                                dto.addr = itemObj.getString("location")
+                                            }
+                                            if (!itemObj.isNull("addtime")) {
+                                                dto.time = itemObj.getString("addtime")
+                                            }
+                                            if (!itemObj.isNull("createtime")) {
+                                                dto.createtime = itemObj.getString("createtime")
+                                            }
+                                            if (!itemObj.isNull("status_cn")) {
+                                                dto.status_cn = itemObj.getString("status_cn")
+                                            }
+                                            if (!itemObj.isNull("pic")) {
+                                                val imgArray = itemObj.getJSONArray("pic")
+                                                for (j in 0 until imgArray.length()) {
+                                                    dto.imgList.add(imgArray.getString(j))
+                                                }
+                                            }
+
                                             dataList.add(dto)
                                         }
                                     }
@@ -211,7 +256,7 @@ class CommonListFragment : Fragment() {
                     }
                 }
             })
-        }).start()
+        }.start()
     }
 
     private val sdf11 = SimpleDateFormat("yyyyMMdd", Locale.CHINA)

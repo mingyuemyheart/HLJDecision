@@ -195,7 +195,7 @@ public class MinuteFallView extends View{
 
 			if (i % 10 == 0 || i == size-1) {
 				lineP.setStrokeWidth(CommonUtil.dip2px(mContext, 10));
-				lineP.setColor(0xff61cdf1);
+				lineP.setColor(0xffE6B765);
 				canvas.drawLine(dto.x, dividerY, dto.x, dto.y, lineP);
 			}
 

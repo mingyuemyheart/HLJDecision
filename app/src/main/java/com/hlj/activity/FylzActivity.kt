@@ -12,7 +12,6 @@ import android.view.animation.Animation
 import android.view.animation.AnimationSet
 import android.view.animation.TranslateAnimation
 import android.webkit.*
-import android.widget.TextView
 import com.amap.api.maps.AMap
 import com.amap.api.maps.AMap.OnMarkerClickListener
 import com.amap.api.maps.CameraUpdateFactory
@@ -30,9 +29,8 @@ import com.hlj.view.wheelview.OnWheelScrollListener
 import com.hlj.view.wheelview.WheelView
 import kotlinx.android.synthetic.main.activity_fylz.*
 import kotlinx.android.synthetic.main.layout_date.*
-import kotlinx.android.synthetic.main.layout_title.*
-import kotlinx.android.synthetic.main.layout_marker_statistic.*
 import kotlinx.android.synthetic.main.layout_marker_statistic.view.*
+import kotlinx.android.synthetic.main.layout_title.*
 import okhttp3.Call
 import okhttp3.Callback
 import okhttp3.Request

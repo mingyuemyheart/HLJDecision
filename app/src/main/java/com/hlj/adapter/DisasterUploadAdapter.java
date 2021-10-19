@@ -9,7 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.hlj.dto.DisasterDto;
+import com.hlj.dto.AgriDto;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
@@ -25,7 +25,7 @@ public class DisasterUploadAdapter extends BaseAdapter {
 
 	private Context mContext;
 	private LayoutInflater mInflater;
-	private ArrayList<DisasterDto> mArrayList;
+	private ArrayList<AgriDto> mArrayList;
 	private LinearLayout.LayoutParams params;
 	private int itemWidth;
 
@@ -33,7 +33,7 @@ public class DisasterUploadAdapter extends BaseAdapter {
 		ImageView imageView;
 	}
 
-	public DisasterUploadAdapter(Context context, ArrayList<DisasterDto> mArrayList, int itemWidth) {
+	public DisasterUploadAdapter(Context context, ArrayList<AgriDto> mArrayList, int itemWidth) {
 		mContext = context;
 		this.itemWidth = itemWidth;
 		this.mArrayList = mArrayList;
@@ -68,7 +68,7 @@ public class DisasterUploadAdapter extends BaseAdapter {
 			mHolder = (ViewHolder) convertView.getTag();
 		}
 		
-		DisasterDto dto = mArrayList.get(position);
+		AgriDto dto = mArrayList.get(position);
 
 		if (!dto.isLastItem) {
 			if (!TextUtils.isEmpty(dto.imgUrl)) {

@@ -9,7 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.hlj.dto.DisasterDto;
+import com.hlj.dto.AgriDto;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -24,15 +24,15 @@ public class DisasterAdapter extends BaseAdapter {
 
 	private Context context;
 	private LayoutInflater mInflater;
-	private List<DisasterDto> mArrayList;
-	private List<DisasterDto> typeList = new ArrayList<>();
+	private List<AgriDto> mArrayList;
+	private List<AgriDto> typeList = new ArrayList<>();
 
 	private final class ViewHolder{
 		ImageView imageView;
 		TextView tvTitle,tvType,tvAddr,tvTime,tvStatus;
 	}
 
-	public DisasterAdapter(Context context, List<DisasterDto> mArrayList) {
+	public DisasterAdapter(Context context, List<AgriDto> mArrayList) {
 		this.context = context;
 		this.mArrayList = mArrayList;
 		mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -41,7 +41,7 @@ public class DisasterAdapter extends BaseAdapter {
 //		String[] array = context.getResources().getStringArray(R.array.disaster_type);
 //		for (int i = 0; i < array.length; i++) {
 //			String[] value = array[i].split(",");
-//			DisasterDto dto = new DisasterDto();
+//			AgriDto dto = new AgriDto();
 //			dto.disasterType = value[0];
 //			dto.disasterName = value[1];
 //			typeList.add(dto);
@@ -80,7 +80,7 @@ public class DisasterAdapter extends BaseAdapter {
 			mHolder = (ViewHolder) convertView.getTag();
 		}
 
-		DisasterDto dto = mArrayList.get(position);
+		AgriDto dto = mArrayList.get(position);
 
 		if (dto.imgList.size() > 0) {
 			String imgUrl = dto.imgList.get(0);
@@ -120,7 +120,7 @@ public class DisasterAdapter extends BaseAdapter {
 			mHolder.tvType.setText(dto.disasterType);
 		}
 //		if (!TextUtils.isEmpty(dto.disasterType)) {
-//			for (DisasterDto data : typeList) {
+//			for (AgriDto data : typeList) {
 //				if (TextUtils.equals(dto.disasterType, data.disasterType)) {
 //					dto.disasterName = data.disasterName;
 //					break;

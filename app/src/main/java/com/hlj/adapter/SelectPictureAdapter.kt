@@ -1,29 +1,24 @@
 package com.hlj.adapter
 
-import android.content.Context;
-import android.graphics.Color;
+import android.content.Context
+import android.graphics.Color
 import android.support.constraint.ConstraintLayout
-import android.text.TextUtils;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
+import android.text.TextUtils
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.*
-import com.hlj.activity.SelectListener
-
-import com.hlj.dto.DisasterDto;
+import com.hlj.interfaces.SelectListener
+import com.hlj.dto.AgriDto
 import com.hlj.utils.CommonUtil
-import com.squareup.picasso.Picasso;
-
-import java.io.File;
-import java.util.List;
-
-import shawn.cxwl.com.hlj.R;
+import com.squareup.picasso.Picasso
+import shawn.cxwl.com.hlj.R
+import java.io.File
 
 /**
  * 选择图片
  */
-class SelectPictureAdapter(private val context: Context?, private val mArrayList: ArrayList<DisasterDto>?, private val maxCount: Int) : BaseAdapter() {
+class SelectPictureAdapter(private val context: Context?, private val mArrayList: ArrayList<AgriDto>?, private val maxCount: Int) : BaseAdapter() {
 
     private var mInflater = context!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
     private var lastCount = 0 //上一次已经选了几张

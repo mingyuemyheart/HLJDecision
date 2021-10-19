@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/clTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="5dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/colorPrimary">
+
+        <LinearLayout
+            android:id="@+id/llBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:paddingStart="10dp"
+            android:paddingTop="12dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="12dp">
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:src="@drawable/iv_back" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="@string/back"
+                android:textColor="@color/white"
+                android:textSize="@dimen/level_4" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/etSearch"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:paddingStart="40dp"
+            android:paddingEnd="5dp"
+            android:textSize="@dimen/level_4"
+            android:textColor="@color/white"
+            android:textColorHint="@color/light_gray"
+            android:hint="输入站号、站名搜索"
+            android:background="@drawable/corner_edittext4"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/llBack"
+            app:layout_constraintEnd_toStartOf="@+id/tvSearch"/>
+
+        <ImageView
+            android:layout_marginStart="10dp"
+            app:layout_constraintStart_toStartOf="@+id/etSearch"
+            app:layout_constraintTop_toTopOf="@+id/etSearch"
+            app:layout_constraintBottom_toBottomOf="@+id/etSearch"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:src="@drawable/icon_search_white"/>
+
+        <TextView
+            android:id="@+id/tvSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="搜索"
+            android:paddingStart="20dp"
+            android:paddingTop="12dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="12dp"
+            android:textColor="@color/white"
+            android:textSize="@dimen/level_4" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <ExpandableListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:cacheColorHint="@color/transparent"
+        android:childDivider="@color/light_gray"
+        android:divider="@color/light_gray"
+        android:dividerHeight="0.5dp"
+        android:groupIndicator="@null"
+        android:listSelector="@color/transparent"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        app:layout_constraintTop_toBottomOf="@+id/clTitle"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <ListView
+        android:visibility="gone"
+        android:id="@+id/listViewSearch"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:cacheColorHint="@color/transparent"
+        android:dividerHeight="0.5dp"
+        android:listSelector="@color/light_gray"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clTitle" />
+
+</android.support.constraint.ConstraintLayout>

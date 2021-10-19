@@ -225,6 +225,29 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/llManage"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@drawable/selector_item"
+        android:gravity="center_vertical"
+        android:paddingStart="15dp"
+        android:paddingEnd="10dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="服务产品定制"
+            android:textColor="@color/text_color3"
+            android:textSize="@dimen/level_4" />
+
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_height="18dp"
+            android:background="@drawable/iv_arrow" />
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/llProtocal"
         android:layout_width="match_parent"
         android:layout_height="45dp"

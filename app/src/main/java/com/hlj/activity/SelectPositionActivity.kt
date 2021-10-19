@@ -12,6 +12,10 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.AdapterView
+import com.amap.api.location.AMapLocation
+import com.amap.api.location.AMapLocationClient
+import com.amap.api.location.AMapLocationClientOption
+import com.amap.api.location.AMapLocationListener
 import com.amap.api.maps.AMap
 import com.amap.api.maps.CameraUpdateFactory
 import com.amap.api.maps.model.BitmapDescriptorFactory
@@ -38,7 +42,7 @@ import java.math.BigDecimal
 /**
  * 选择地点
  */
-class SelectPositionActivity : BaseActivity(), View.OnClickListener, AMap.OnMapClickListener, AMap.OnMarkerClickListener, AMap.InfoWindowAdapter, GeocodeSearch.OnGeocodeSearchListener {
+class SelectPositionActivity : BaseActivity(), View.OnClickListener, AMapLocationListener, AMap.OnMapClickListener, AMap.OnMarkerClickListener, AMap.InfoWindowAdapter, GeocodeSearch.OnGeocodeSearchListener {
 
     private var aMap: AMap? = null
     private val zoom = 16.0f
@@ -63,6 +67,7 @@ class SelectPositionActivity : BaseActivity(), View.OnClickListener, AMap.OnMapC
         tvControl.text = "确定"
         tvControl.visibility = View.VISIBLE
         tvControl.setOnClickListener(this)
+        ivLocation.setOnClickListener(this)
         etSearch.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
@@ -189,6 +194,28 @@ class SelectPositionActivity : BaseActivity(), View.OnClickListener, AMap.OnMapC
         aMap!!.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom))
     }
 
+    /**
+     * 开始定位
+     */
+    private fun startLocation() {
+        val mLocationOption = AMapLocationClientOption() //初始化定位参数
+        val mLocationClient = AMapLocationClient(this) //初始化定位
+        mLocationOption.locationMode = AMapLocationClientOption.AMapLocationMode.Hight_Accuracy //设置定位模式为高精度模式，Battery_Saving为低功耗模式，Device_Sensors是仅设备模式
+        mLocationOption.isNeedAddress = true //设置是否返回地址信息（默认返回地址信息）
+        mLocationOption.isOnceLocation = true //设置是否只定位一次,默认为false
+        mLocationOption.isMockEnable = false //设置是否允许模拟位置,默认为false，不允许模拟位置
+        mLocationOption.interval = 2000 //设置定位间隔,单位毫秒,默认为2000ms
+        mLocationClient.setLocationOption(mLocationOption) //给定位客户端对象设置定位参数
+        mLocationClient.setLocationListener(this)
+        mLocationClient.startLocation() //启动定位
+    }
+
+    override fun onLocationChanged(amapLocation: AMapLocation?) {
+        if (amapLocation != null && amapLocation.errorCode == AMapLocation.LOCATION_SUCCESS) {
+            addMarker(LatLng(amapLocation.latitude, amapLocation.longitude))
+        }
+    }
+
     override fun onMapClick(latLng: LatLng?) {
         addMarker(latLng)
     }
@@ -259,6 +286,7 @@ class SelectPositionActivity : BaseActivity(), View.OnClickListener, AMap.OnMapC
     override fun onClick(v: View?) {
         when (v!!.id) {
             R.id.llBack -> finish()
+            R.id.ivLocation -> startLocation()
             R.id.tvControl -> {
                 val intent = Intent()
                 intent.putExtra("lat", clickMarker!!.position.latitude)

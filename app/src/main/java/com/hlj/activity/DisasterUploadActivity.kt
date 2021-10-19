@@ -22,9 +22,8 @@ import android.view.animation.*
 import android.widget.*
 import android.widget.AdapterView.OnItemClickListener
 import com.hlj.adapter.DisasterUploadAdapter
-import com.hlj.common.CONST
 import com.hlj.common.MyApplication
-import com.hlj.dto.DisasterDto
+import com.hlj.dto.AgriDto
 import com.hlj.utils.AuthorityUtil
 import com.hlj.utils.CommonUtil
 import com.hlj.utils.OkHttpUtil
@@ -50,7 +49,7 @@ import kotlin.collections.ArrayList
 class DisasterUploadActivity : BaseActivity(), OnClickListener {
 
     private var mAdapter: DisasterUploadAdapter? = null
-    private val dataList = ArrayList<DisasterDto>()
+    private val dataList = ArrayList<AgriDto>()
     private val sdf1 = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CHINA)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -88,7 +87,7 @@ class DisasterUploadActivity : BaseActivity(), OnClickListener {
     }
 
     private fun addLastElement() {
-        val dto = DisasterDto()
+        val dto = AgriDto()
         dto.isLastItem = true
         dataList.add(dto)
     }
@@ -238,7 +237,7 @@ class DisasterUploadActivity : BaseActivity(), OnClickListener {
                         } else {
                             dataList.removeAt(dataList.size - 1)
                         }
-                        val list: ArrayList<DisasterDto> = bundle.getParcelableArrayList("dataList")
+                        val list: ArrayList<AgriDto> = bundle.getParcelableArrayList("dataList")
                         dataList.addAll(list)
                         addLastElement()
                         if (dataList.size >= (maxCount+1)) {

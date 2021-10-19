@@ -13,10 +13,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.Parcelable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -49,6 +45,7 @@ import com.amap.api.maps.model.Polygon;
 import com.amap.api.maps.model.Polyline;
 import com.amap.api.maps.model.PolylineOptions;
 import com.amap.api.maps.model.Text;
+import com.hlj.adapter.BaseViewPagerAdapter;
 import com.hlj.adapter.FactMonitorAdapter;
 import com.hlj.adapter.FactTimeAdapter;
 import com.hlj.common.CONST;
@@ -82,7 +79,6 @@ import shawn.cxwl.com.hlj.R;
 /**
  * 实况资料
  */
-
 public class FactActivity2 extends BaseFragmentActivity implements View.OnClickListener, AMap.OnCameraChangeListener {
 
     private Context mContext = null;
@@ -118,7 +114,7 @@ public class FactActivity2 extends BaseFragmentActivity implements View.OnClickL
     private String dataUrl = "", childId = "";
     private MainViewPager viewPager = null;
     private LinearLayout llViewPager = null;
-    private List<Fragment> fragments = new ArrayList<>();
+    private ArrayList<Fragment> fragments = new ArrayList<>();
     private Map<String, String> layerMap = new HashMap<>();
     private GroundOverlay factOverlay;
 
@@ -992,54 +988,8 @@ public class FactActivity2 extends BaseFragmentActivity implements View.OnClickL
             viewPager = (MainViewPager) findViewById(R.id.viewPager);
             viewPager.setSlipping(true);//设置ViewPager是否可以滑动
             viewPager.setOffscreenPageLimit(fragments.size());
-            viewPager.setOnPageChangeListener(new MyOnPageChangeListener());
         }
-        viewPager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
-    }
-
-    public class MyOnPageChangeListener implements ViewPager.OnPageChangeListener {
-        @Override
-        public void onPageSelected(int arg0) {
-
-        }
-
-        @Override
-        public void onPageScrolled(int arg0, float arg1, int arg2) {
-        }
-
-        @Override
-        public void onPageScrollStateChanged(int arg0) {
-        }
-    }
-
-    /**
-     * @ClassName: MyPagerAdapter
-     * @Description: TODO填充ViewPager的数据适配器
-     * @author Panyy
-     * @date 2013 2013年11月6日 下午2:37:47
-     *
-     */
-    private class MyPagerAdapter extends FragmentStatePagerAdapter {
-
-        public MyPagerAdapter(FragmentManager fm) {
-            super(fm);
-            notifyDataSetChanged();
-        }
-
-        @Override
-        public int getCount() {
-            return fragments.size();
-        }
-
-        @Override
-        public Fragment getItem(int arg0) {
-            return fragments.get(arg0);
-        }
-
-        @Override
-        public int getItemPosition(Object object) {
-            return PagerAdapter.POSITION_NONE;
-        }
+        viewPager.setAdapter(new BaseViewPagerAdapter(getSupportFragmentManager(), fragments));
     }
 
     private void dialogHistory() {

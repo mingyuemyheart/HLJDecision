@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/HLJDecision.iml" filepath="$PROJECT_DIR$/HLJDecision.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/android-pdf-viewer/HLJDecision.android-pdf-viewer.iml" filepath="$PROJECT_DIR$/.idea/modules/android-pdf-viewer/HLJDecision.android-pdf-viewer.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/HLJDecision.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/HLJDecision.app.iml" />
     </modules>
   </component>

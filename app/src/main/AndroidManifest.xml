@@ -230,12 +230,12 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.hlj.activity.HPDFActivity"
+            android:name="com.hlj.activity.PDFActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.hlj.activity.SinglePDFActivity"
+            android:name="com.hlj.activity.PDFSingleActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
@@ -356,6 +356,10 @@
             android:screenOrientation="portrait" />
 
         <activity
+            android:name="com.hlj.activity.AddrBookDetailActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name="com.hlj.activity.SelectPositionActivity"
             android:screenOrientation="portrait" />
 
@@ -365,6 +369,30 @@
 
         <activity
             android:name="com.hlj.activity.ModifyInfoActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.hlj.activity.FeedbackListActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.hlj.activity.FeedbackDetailActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.hlj.activity.FactQueryActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.hlj.activity.FactQueryStationActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.hlj.activity.FactQueryAreaActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.hlj.activity.ManageActivity"
             android:screenOrientation="portrait" />
 
         <!--umeng share-->

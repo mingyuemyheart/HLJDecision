@@ -12,8 +12,6 @@ import android.os.Handler
 import android.os.Message
 import android.os.Parcelable
 import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentStatePagerAdapter
 import android.support.v4.content.ContextCompat
 import android.text.TextUtils
 import android.util.Log
@@ -27,6 +25,7 @@ import android.widget.AdapterView.OnItemClickListener
 import com.amap.api.maps.AMap
 import com.amap.api.maps.CameraUpdateFactory
 import com.amap.api.maps.model.*
+import com.hlj.adapter.BaseViewPagerAdapter
 import com.hlj.adapter.FactMonitorAdapter
 import com.hlj.adapter.FactTimeAdapter
 import com.hlj.common.CONST
@@ -50,6 +49,7 @@ import org.json.JSONObject
 import shawn.cxwl.com.hlj.R
 import java.io.IOException
 import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  * 自动站实况监测
@@ -75,7 +75,7 @@ class FactMonitorActivity : BaseFragmentActivity(), View.OnClickListener, AMap.O
     private var `val` = ""
     private var timeString = ""
     private var childId = ""
-    private val fragments: MutableList<Fragment> = ArrayList()
+    private val fragments: ArrayList<Fragment> = ArrayList()
     private val layerMap: MutableMap<String, String?> = HashMap()
     private var factOverlay: GroundOverlay? = null
 
@@ -877,25 +877,7 @@ class FactMonitorActivity : BaseFragmentActivity(), View.OnClickListener, AMap.O
         fragments.add(fragment1)
         viewPager!!.setSlipping(true) //设置ViewPager是否可以滑动
         viewPager!!.offscreenPageLimit = fragments.size
-        viewPager!!.adapter = MyPagerAdapter(supportFragmentManager)
-    }
-
-    private inner class MyPagerAdapter(fm: FragmentManager?) : FragmentStatePagerAdapter(fm) {
-        override fun getCount(): Int {
-            return fragments.size
-        }
-
-        override fun getItem(arg0: Int): Fragment {
-            return fragments[arg0]
-        }
-
-        override fun getItemPosition(`object`: Any): Int {
-            return POSITION_NONE
-        }
-
-        init {
-            notifyDataSetChanged()
-        }
+        viewPager!!.adapter = BaseViewPagerAdapter(supportFragmentManager, fragments)
     }
 
     private fun dialogHistory() {

@@ -112,7 +112,7 @@ public class ProductActivity extends BaseActivity implements OnClickListener {
 				}else {
 					if (!TextUtils.isEmpty(dto.dataUrl)) {
 						if (dto.dataUrl.contains(".pdf") || dto.dataUrl.contains(".PDF")) {//pdf格式
-							intent = new Intent(mContext, HPDFActivity.class);
+							intent = new Intent(mContext, PDFActivity.class);
 							intent.putExtra(CONST.ACTIVITY_NAME, dto.name);
 							intent.putExtra(CONST.WEB_URL, dto.dataUrl);
 							startActivity(intent);

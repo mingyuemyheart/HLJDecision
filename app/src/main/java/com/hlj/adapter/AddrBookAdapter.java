@@ -25,8 +25,7 @@ public class AddrBookAdapter extends BaseAdapter{
 	private List<ContactDto> mArrayList;
 
 	private final class ViewHolder {
-		TextView tvName,tvNumber;
-		ImageView ivArrow;
+		TextView tvName,tvUnit;
 	}
 
 	public AddrBookAdapter(Context context, List<ContactDto> mArrayList) {
@@ -57,8 +56,7 @@ public class AddrBookAdapter extends BaseAdapter{
 			convertView = mInflater.inflate(R.layout.adapter_addr_book, null);
 			mHolder = new ViewHolder();
 			mHolder.tvName = convertView.findViewById(R.id.tvName);
-			mHolder.tvNumber = convertView.findViewById(R.id.tvNumber);
-			mHolder.ivArrow = convertView.findViewById(R.id.ivArrow);
+			mHolder.tvUnit = convertView.findViewById(R.id.tvUnit);
 			convertView.setTag(mHolder);
 		}else {
 			mHolder = (ViewHolder) convertView.getTag();
@@ -67,18 +65,24 @@ public class AddrBookAdapter extends BaseAdapter{
 		ContactDto dto = mArrayList.get(position);
 
 		if (TextUtils.equals(dto.type, "0")) {
-			if (!TextUtils.isEmpty(dto.name)) {
+			if (dto.name != null) {
 				mHolder.tvName.setText(dto.name);
-			}
-			if (!TextUtils.isEmpty(dto.worktelephone)) {
-				mHolder.tvNumber.setText(dto.worktelephone);
-			}
-			mHolder.ivArrow.setVisibility(View.GONE);
-		} else {
-			if (!TextUtils.isEmpty(dto.company)) {
+			} else if (dto.company != null) {
 				mHolder.tvName.setText(dto.company);
 			}
-			mHolder.ivArrow.setVisibility(View.VISIBLE);
+
+			if (dto.level != null) {
+				mHolder.tvUnit.setText(dto.level);
+			}
+			mHolder.tvUnit.setVisibility(View.VISIBLE);
+		} else {
+			if (dto.company != null) {
+				mHolder.tvName.setText(dto.company);
+			} else if (dto.name != null) {
+				mHolder.tvName.setText(dto.name);
+			}
+			mHolder.tvUnit.setText("");
+			mHolder.tvUnit.setVisibility(View.GONE);
 		}
 
 		return convertView;

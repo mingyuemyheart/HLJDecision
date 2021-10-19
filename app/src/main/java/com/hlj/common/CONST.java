@@ -22,6 +22,7 @@ public class CONST {
 	public static final String MP4 = "mp4";
 
 	public static String JPG = ".jpg";
+	public static String NO_VALUE = "--";
 
 	//intent传值的标示
 	public static final String LOCAL_ID = "local_id";//栏目id

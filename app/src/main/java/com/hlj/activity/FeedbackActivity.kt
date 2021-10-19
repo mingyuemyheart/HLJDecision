@@ -32,6 +32,7 @@ class FeedbackActivity : BaseActivity(), OnClickListener{
         tvControl!!.text = getString(R.string.submit)
         tvControl!!.visibility = View.VISIBLE
         tvControl!!.setOnClickListener(this)
+
         val title = intent.getStringExtra(CONST.ACTIVITY_NAME)
         if (title != null) {
             tvTitle!!.text = title
@@ -39,15 +40,16 @@ class FeedbackActivity : BaseActivity(), OnClickListener{
     }
 
     private fun okHttpFeedBack() {
-        val url = "http://decision-admin.tianqi.cn/Home/Work/request"
-        val builder = FormBody.Builder()
-        builder.add("uid", MyApplication.UID)
-        builder.add("content", etContent!!.text.toString())
-        builder.add("appid", CONST.APPID)
-        val body: RequestBody = builder.build()
-        Thread(Runnable {
+        Thread {
+            val url = "http://decision-admin.tianqi.cn/Home/Work/request"
+            val builder = FormBody.Builder()
+            builder.add("uid", MyApplication.UID)
+            builder.add("content", etContent!!.text.toString())
+            builder.add("appid", CONST.APPID)
+            val body: RequestBody = builder.build()
             OkHttpUtil.enqueue(Request.Builder().post(body).url(url).build(), object : Callback {
                 override fun onFailure(call: Call, e: IOException) {}
+
                 @Throws(IOException::class)
                 override fun onResponse(call: Call, response: Response) {
                     if (!response.isSuccessful) {
@@ -64,6 +66,7 @@ class FeedbackActivity : BaseActivity(), OnClickListener{
                                         val status = `object`.getInt("status")
                                         if (status == 1) { //成功
                                             Toast.makeText(this@FeedbackActivity, getString(R.string.submit_success), Toast.LENGTH_SHORT).show()
+                                            setResult(RESULT_OK)
                                             finish()
                                         } else {
                                             //失败
@@ -83,7 +86,7 @@ class FeedbackActivity : BaseActivity(), OnClickListener{
                     }
                 }
             })
-        }).start()
+        }.start()
     }
 
     override fun onClick(v: View) {

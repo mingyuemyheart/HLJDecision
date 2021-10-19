@@ -12,8 +12,7 @@ import android.widget.TextView;
 
 import com.hlj.dto.AgriDto;
 import com.hlj.utils.CommonUtil;
-
-import net.tsz.afinal.FinalBitmap;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -75,8 +74,7 @@ public class CommonFragmentAdapter extends BaseAdapter{
 		if (TextUtils.isEmpty(dto.icon)) {
 			mHolder.imageView.setImageResource(R.drawable.iv_hlj2);
 		}else {
-			FinalBitmap finalBitmap = FinalBitmap.create(mContext);
-			finalBitmap.display(mHolder.imageView, dto.icon, null, 0);
+			Picasso.get().load(dto.icon).into(mHolder.imageView);
 		}
 
 		AbsListView.LayoutParams params = new AbsListView.LayoutParams(AbsListView.LayoutParams.MATCH_PARENT, AbsListView.LayoutParams.MATCH_PARENT);

@@ -16,8 +16,8 @@ android {
 //        applicationId "shawn.cxwl.com.hlj.decision"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 405
-        versionName "4.0.5"
+        versionCode 409
+        versionName "4.0.9"
 
         ndk {
             abiFilters 'armeabi-v7a'
@@ -81,4 +81,5 @@ dependencies {
     implementation 'com.github.abel533:ECharts:3.0.0.2'
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'com.github.MikeOrtiz:TouchImageView:1.4.1'
+    implementation project(':android-pdf-viewer')
 }

@@ -1,6 +1,8 @@
 package com.hlj.utils;
 
 import android.app.Activity;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -62,7 +64,7 @@ import com.amap.api.maps.model.PolygonOptions;
 import com.amap.api.maps.model.PolylineOptions;
 import com.hlj.common.CONST;
 import com.hlj.common.MyApplication;
-import com.hlj.dto.DisasterDto;
+import com.hlj.dto.AgriDto;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.media.UMImage;
@@ -650,7 +652,7 @@ public class CommonUtil {
 					if (name.contains("加格达奇")) {
 						polylineOption.setDottedLine(true);
 					}
-					polylineOption.width(5).color(context.getResources().getColor(R.color.yellow));
+					polylineOption.width(5).color(context.getResources().getColor(R.color.colorPrimary));
 					for (int j = 0; j < array2.length(); j++) {
 						JSONArray itemArray = array2.getJSONArray(j);
 						double lng = itemArray.getDouble(0);
@@ -1384,8 +1386,8 @@ public class CommonUtil {
 	 * 获取所有本地图片文件信息
 	 * @return
 	 */
-	public static List<DisasterDto> getAllLocalImages(Context context) {
-		List<DisasterDto> list = new ArrayList<>();
+	public static List<AgriDto> getAllLocalImages(Context context) {
+		List<AgriDto> list = new ArrayList<>();
 		if (context != null) {
 			Cursor cursor = context.getContentResolver().query(
 					MediaStore.Images.Media.EXTERNAL_CONTENT_URI, null, null,
@@ -1399,7 +1401,7 @@ public class CommonUtil {
 					String path = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA));
 					long fileSize = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.SIZE));
 
-					DisasterDto dto = new DisasterDto();
+					AgriDto dto = new AgriDto();
 					dto.imageName = title;
 					dto.imgUrl = path;
 					dto.fileSize = fileSize;
@@ -1456,6 +1458,40 @@ public class CommonUtil {
 			e.printStackTrace();
 		}
 		context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(file)));
+	}
+
+	/**
+	 * 复制
+	 * @param context
+	 * @param data
+	 */
+	public static void copy(Context context, String data) {
+		// 获取系统剪贴板
+		ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+		// 创建一个剪贴数据集，包含一个普通文本数据条目（需要复制的数据）,其他的还有
+		// newHtmlText、
+		// newIntent、
+		// newUri、
+		// newRawUri
+		ClipData clipData = ClipData.newPlainText(null, data);
+		// 把数据集设置（复制）到剪贴板
+		clipboard.setPrimaryClip(clipData);
+	}
+
+	/**
+	 * 粘贴
+	 * @param context
+	 */
+	private void paste(Context context) {
+		// 获取系统剪贴板
+		ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+		// 获取剪贴板的剪贴数据集
+		ClipData clipData = clipboard.getPrimaryClip();
+		if (clipData != null && clipData.getItemCount() > 0) {
+			// 从数据集中获取（粘贴）第一条文本数据
+			CharSequence text = clipData.getItemAt(0).getText();
+//			output.setText(text);
+		}
 	}
 
 }

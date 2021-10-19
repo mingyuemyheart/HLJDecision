@@ -129,7 +129,7 @@ class WelcomeActivity : BaseActivity(), AMapLocationListener {
 	 * 手机号刷新token登录
 	 */
 	private fun okHttpTokenLogin() {
-		val url = "http://decision-admin.tianqi.cn/Home/work2019/hlgRefreshLogin"
+		val url = "http://decision-manager.tianqi.cn/Home/work2019/hlgRefreshLogin"
 		val builder = FormBody.Builder()
 		builder.add("mobile", MyApplication.USERNAME)
 		builder.add("token", MyApplication.TOKEN)
@@ -238,11 +238,15 @@ class WelcomeActivity : BaseActivity(), AMapLocationListener {
 								if (!obj.isNull("showtype")) {
 									data.showType = obj.getString("showtype")
 								}
+								if (!obj.isNull("deleteable")) {
+									data.deleteable = obj.getString("deleteable")
+								}
 								if (!obj.isNull("child")) {
 									val childArray = JSONArray(obj.getString("child"))
 									for (j in 0 until childArray.length()) {
 										val childObj = childArray.getJSONObject(j)
 										val dto = ColumnData()
+										dto.groupColumnId = data.columnId
 										if (!childObj.isNull("id")) {
 											dto.columnId = childObj.getString("id")
 										}
@@ -267,11 +271,15 @@ class WelcomeActivity : BaseActivity(), AMapLocationListener {
 										if (!childObj.isNull("dataurl")) {
 											dto.dataUrl = childObj.getString("dataurl")
 										}
+										if (!childObj.isNull("deleteable")) {
+											dto.deleteable = childObj.getString("deleteable")
+										}
 										if (!childObj.isNull("child")) {
 											val child2Array = JSONArray(childObj.getString("child"))
 											for (k in 0 until child2Array.length()) {
 												val child2Obj = child2Array.getJSONObject(k)
 												val child2 = ColumnData()
+												child2.groupColumnId = dto.columnId
 												if (!child2Obj.isNull("id")) {
 													child2.columnId = child2Obj.getString("id")
 												}
@@ -296,11 +304,15 @@ class WelcomeActivity : BaseActivity(), AMapLocationListener {
 												if (!child2Obj.isNull("showtype")) {
 													child2.showType = child2Obj.getString("showtype")
 												}
+												if (!child2Obj.isNull("deleteable")) {
+													child2.deleteable = child2Obj.getString("deleteable")
+												}
 												if (!child2Obj.isNull("child")) {
 													val child3Array = JSONArray(child2Obj.getString("child"))
 													for (m in 0 until child3Array.length()) {
 														val child3Obj = child3Array.getJSONObject(m)
 														val child3 = ColumnData()
+														child3.groupColumnId = child2.columnId
 														if (!child3Obj.isNull("id")) {
 															child3.columnId = child3Obj.getString("id")
 														}
@@ -324,6 +336,9 @@ class WelcomeActivity : BaseActivity(), AMapLocationListener {
 														}
 														if (!child3Obj.isNull("showtype")) {
 															child3.showType = child3Obj.getString("showtype")
+														}
+														if (!child3Obj.isNull("deleteable")) {
+															child3.deleteable = child3Obj.getString("deleteable")
 														}
 														child2.child.add(child3)
 													}
@@ -349,6 +364,8 @@ class WelcomeActivity : BaseActivity(), AMapLocationListener {
 											MyApplication.UGROUPNAME = obj.getString("usergroup_name")
 											MyApplication.NAME = obj.getString("name")
 											MyApplication.DEPARTMENT = obj.getString("department")
+											MyApplication.MOBILE = obj.getString("mobile")
+											MyApplication.JC_DOWNLOAD = obj.getString("jc_download")
 											MyApplication.saveUserInfo(this)
 
 											okHttpPushToken()

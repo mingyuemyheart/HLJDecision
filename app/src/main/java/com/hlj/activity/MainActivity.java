@@ -11,6 +11,7 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
@@ -31,7 +32,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.hlj.adapter.MyPagerAdapter;
+import com.hlj.adapter.BaseViewPagerAdapter;
 import com.hlj.common.CONST;
 import com.hlj.common.ColumnData;
 import com.hlj.common.MyApplication;
@@ -58,7 +59,7 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
 	private MainViewPager viewPager = null;
 	private LinearLayout llContainer,llContainer1;
 	private HorizontalScrollView hScrollView1;
-	private List<Fragment> fragments = new ArrayList<>();
+	private ArrayList<Fragment> fragments = new ArrayList<>();
 	private long mExitTime;//记录点击完返回按钮后的long型时间
 	private int columnWidth = 0;
 	private String BROADCAST_ACTION_NAME = "";//所有fragment广播名字
@@ -149,16 +150,29 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
 	 * 初始化viewpager
 	 */
 	private void initViewPager() {
-		int columnSize = MyApplication.columnDataList.size();
+		String columnIds = MyApplication.getColumnIds(this);
+		List<ColumnData> dataList = new ArrayList<>();
+		if (TextUtils.isEmpty(columnIds)) {
+			dataList.addAll(MyApplication.columnDataList);
+		} else {
+			for (int i = 0; i < MyApplication.columnDataList.size(); i++) {
+				ColumnData item1 = MyApplication.columnDataList.get(i);
+				if (!columnIds.contains(item1.columnId+"--")) {//已经有保存的栏目
+					dataList.add(item1);
+				}
+			}
+		}
+		int columnSize = dataList.size();
 		if (columnSize <= 1) {
 			llContainer.setVisibility(View.GONE);
 			llContainer1.setVisibility(View.GONE);
 		}
-
+		fragments.clear();
 		llContainer.removeAllViews();
 		llContainer1.removeAllViews();
+
 		for (int i = 0; i < columnSize; i++) {
-			ColumnData channel = MyApplication.columnDataList.get(i);
+			ColumnData channel = dataList.get(i);
 
 			TextView tvName = new TextView(mContext);
 			tvName.setGravity(Gravity.CENTER);
@@ -175,7 +189,7 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
 			columnWidth += params.width;
 			params.setMargins((int)(CommonUtil.dip2px(mContext, 10)), 0, (int)(CommonUtil.dip2px(mContext, 10)), 0);
 			tvName.setLayoutParams(params);
-			llContainer.addView(tvName, i);
+			llContainer.addView(tvName);
 
 			TextView tvBar = new TextView(mContext);
 			tvBar.setGravity(Gravity.CENTER);
@@ -190,7 +204,7 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
 			params1.height = (int)(CommonUtil.dip2px(mContext, 3));
 			params1.setMargins((int)(CommonUtil.dip2px(mContext, 10)), 0, (int)(CommonUtil.dip2px(mContext, 10)), 0);
 			tvBar.setLayoutParams(params1);
-			llContainer1.addView(tvBar, i);
+			llContainer1.addView(tvBar);
 
 			Fragment fragment;
 			String showType = channel.showType;
@@ -201,10 +215,10 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
 				} else if (TextUtils.equals(id, "5")) {
 					fragment = new WarningFragment();//天气预警
 				} else if (TextUtils.equals(id, "2") || TextUtils.equals(id, "3") || TextUtils.equals(id, "4")
-						|| TextUtils.equals(id, "10") || TextUtils.equals(id, "7")
+						|| TextUtils.equals(id, "9") || TextUtils.equals(id, "10") || TextUtils.equals(id, "7")
 						|| TextUtils.equals(id, "8") || TextUtils.equals(id, "13")
 						|| TextUtils.equals(id, "11") || TextUtils.equals(id, "14") || TextUtils.equals(id, "15")) {
-					fragment = new WeatherFactFragment();//天气实况、天气预报、科普宣传、电力气象服务、铁路气象服务、人工影响天气、森林防火、农业气象
+					fragment = new WeatherFactFragment();//天气实况、天气预报、科普宣传、气象服务产品、电力气象服务、铁路气象服务、人工影响天气、森林防火、农业气象
 				} else if (TextUtils.equals(id, "106")) {
 					fragment = new WebviewFragment();//旅游气象
 				} else if (TextUtils.equals(id, "12")) {
@@ -233,26 +247,25 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
 
 		viewPager = findViewById(R.id.viewPager);
 		viewPager.setSlipping(false);//设置ViewPager是否可以滑动
-		viewPager.setOffscreenPageLimit(fragments.size());
 		viewPager.setOnPageChangeListener(new MyOnPageChangeListener());
-		viewPager.setAdapter(new MyPagerAdapter(getSupportFragmentManager(), fragments));
+		viewPager.setAdapter(new BaseViewPagerAdapter(getSupportFragmentManager(), fragments));
 	}
 	
 	public class MyOnPageChangeListener implements OnPageChangeListener {
 		@Override
 		public void onPageSelected(int arg0) {
 			if (llContainer != null) {
-				hScrollView1.smoothScrollTo(columnWidth/llContainer.getChildCount()*arg0, 0);
+//				hScrollView1.smoothScrollTo(columnWidth/llContainer.getChildCount()*arg0, 0);
 				for (int i = 0; i < llContainer.getChildCount(); i++) {
 					TextView tvName = (TextView) llContainer.getChildAt(i);
 					if (i == arg0) {
 						String actionName = fragments.get(arg0).getClass().getName()+tvName.getText().toString();
-						if (!BROADCAST_ACTION_NAME.contains(actionName)) {
+//						if (!BROADCAST_ACTION_NAME.contains(actionName)) {
 							Intent intent = new Intent();
 							intent.setAction(actionName);
 							sendBroadcast(intent);
-							BROADCAST_ACTION_NAME += actionName;
-						}
+//							BROADCAST_ACTION_NAME += actionName;
+//						}
 					}
 				}
 			}
@@ -311,13 +324,25 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.ivSetting:
-			startActivity(new Intent(mContext, SettingActivity.class));
+			startActivityForResult(new Intent(mContext, SettingActivity.class), 1001);
 			break;
 		default:
 			break;
 		}
 	}
-	
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if (resultCode == RESULT_OK) {
+			switch (requestCode) {
+				case 1001:
+					initViewPager();
+					break;
+			}
+		}
+	}
+
 	//需要申请的所有权限
 	private String[] allPermissions = new String[] {
 			Manifest.permission.ACCESS_FINE_LOCATION,
