@@ -186,7 +186,7 @@ class ForecastFragment : Fragment(), OnClickListener, AMapLocationListener, Caiy
                         refresh()
                     }
                 }
-            }, 0, 1000*60*3)
+            }, 0, 1000*60*MyApplication.refreshTime)
         }
     }
 
@@ -538,8 +538,14 @@ class ForecastFragment : Fragment(), OnClickListener, AMapLocationListener, Caiy
                                                 if (!TextUtils.isEmpty(aqi) && !TextUtils.equals(aqi, "?") && !TextUtils.equals(aqi, "null")) {
                                                     tvAqiCount!!.text = aqi
                                                     try {
-                                                        tvAqiCount!!.setBackgroundResource(WeatherUtil.getAqiIcon(Integer.valueOf(aqi)))
-                                                        tvAqi.text = "空气质量 " + WeatherUtil.getAqi(activity, Integer.valueOf(aqi))
+                                                        val aqiCount = Integer.valueOf(aqi)
+                                                        if (aqiCount <= 150) {
+                                                            tvAqiCount!!.setTextColor(Color.BLACK)
+                                                        } else {
+                                                            tvAqiCount!!.setTextColor(Color.WHITE)
+                                                        }
+                                                        tvAqiCount!!.setBackgroundResource(WeatherUtil.getAqiIcon(aqiCount))
+                                                        tvAqi.text = "空气质量 " + WeatherUtil.getAqi(activity, aqiCount)
                                                     } catch (e: Exception) {
                                                         e.printStackTrace()
                                                     }
@@ -717,6 +723,11 @@ class ForecastFragment : Fragment(), OnClickListener, AMapLocationListener, Caiy
 
                                                         if (!TextUtils.isEmpty(tvAqiCount.text.toString()) && !TextUtils.equals(tvAqiCount.text.toString(), "?") && !TextUtils.equals(tvAqiCount.text.toString(), "null")) {
                                                             val value: Int = tvAqiCount.text.toString().toInt()
+                                                            if (value <= 150) {
+                                                                tvAqi1!!.setTextColor(Color.BLACK)
+                                                            } else {
+                                                                tvAqi1!!.setTextColor(Color.WHITE)
+                                                            }
                                                             tvAqi1.text = CommonUtil.getAqiDes(activity, value)
                                                             tvAqi1.setBackgroundResource(CommonUtil.getCornerBackground(value))
                                                         }
@@ -737,6 +748,11 @@ class ForecastFragment : Fragment(), OnClickListener, AMapLocationListener, Caiy
                                                         if (aqiList.size > 1) {
                                                             if (!TextUtils.isEmpty(aqiList[1].aqi) && !TextUtils.equals(aqiList[1].aqi, "?") && !TextUtils.equals(aqiList[1].aqi, "null")) {
                                                                 val value: Int = aqiList[1].aqi.toInt()
+                                                                if (value <= 150) {
+                                                                    tvAqi2!!.setTextColor(Color.BLACK)
+                                                                } else {
+                                                                    tvAqi2!!.setTextColor(Color.WHITE)
+                                                                }
                                                                 tvAqi2.text = CommonUtil.getAqiDes(activity, value)
                                                                 tvAqi2.setBackgroundResource(CommonUtil.getCornerBackground(value))
                                                             }

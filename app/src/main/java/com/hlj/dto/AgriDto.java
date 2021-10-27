@@ -36,7 +36,7 @@ public class AgriDto implements Parcelable{
 	public String red;
 	public String redCode;
 
-	//
+	//灾情上报
 	public String disasterName,disasterType;//对应预警类型名称,预警类型，如11B09
 	public String aoiName,addr,content,imgUrl,imageName,createtime,reply_content,status_cn,uid;
 	public boolean isSelected;

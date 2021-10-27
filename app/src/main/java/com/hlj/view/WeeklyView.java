@@ -258,20 +258,25 @@ public class WeeklyView extends View {
 			canvas.drawText(dto.windForceString, dto.highX-windForceWidth/2, h-CommonUtil.dip2px(mContext, 30), textP);
 
 			//绘制aqi数值
-			textP.setColor(getResources().getColor(R.color.white));
 			textP.setTextSize(CommonUtil.dip2px(mContext, 12));
 			if (!TextUtils.isEmpty(dto.aqi)) {
 				if (Integer.valueOf(dto.aqi) <= 50) {
+					textP.setColor(getResources().getColor(R.color.black));
 					roundP.setColor(0xff00FF01);
 				} else if (Integer.valueOf(dto.aqi) <= 100) {
+					textP.setColor(getResources().getColor(R.color.black));
 					roundP.setColor(0xff96EF01);
 				} else if (Integer.valueOf(dto.aqi) <= 150) {
+					textP.setColor(getResources().getColor(R.color.black));
 					roundP.setColor(0xffFFFF01);
 				} else if (Integer.valueOf(dto.aqi) <= 200) {
+					textP.setColor(getResources().getColor(R.color.white));
 					roundP.setColor(0xffFF6400);
 				} else if (Integer.valueOf(dto.aqi) <= 300) {
+					textP.setColor(getResources().getColor(R.color.white));
 					roundP.setColor(0xffFE0000);
 				} else {
+					textP.setColor(getResources().getColor(R.color.white));
 					roundP.setColor(0xff7E0123);
 				}
 				RectF rectF = new RectF(dto.lowX-CommonUtil.dip2px(mContext, 12.5f), h-CommonUtil.dip2px(mContext, 23),

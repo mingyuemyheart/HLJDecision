@@ -104,7 +104,7 @@ class AddrBookActivity : BaseActivity(), View.OnClickListener {
         }
         Thread {
             var url = "https://decision-admin.tianqi.cn/Home/workwsj/getPhoneBook?pid=$id&key=$key&uid=${MyApplication.UID}"
-            if (isSearch) {
+            if (isSearch && !TextUtils.isEmpty(key)) {
                 url = "https://decision-admin.tianqi.cn/Home/workwsj/getPhoneBook?all=1&key=$key&uid=${MyApplication.UID}"
             }
             Log.e("addrBook", url)

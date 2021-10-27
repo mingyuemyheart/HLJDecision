@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_gray"
-    android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/light_gray">
 
     <include
         android:id="@+id/reTitle"
@@ -12,8 +12,9 @@
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/reTitle"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <ListView
             android:id="@+id/listView"
@@ -29,4 +30,20 @@
 
     </android.support.v4.widget.SwipeRefreshLayout>
 
-</LinearLayout>
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/tvPrompt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="请将您身边的灾情及时反馈给我们，为防灾减灾提供助力。"
+        android:gravity="center"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:textColor="@color/text_color3"
+        android:textSize="@dimen/level_4" />
+
+</android.support.constraint.ConstraintLayout>

@@ -54,6 +54,8 @@ public class MyApplication extends Application{
 
 	public static ArrayList<ColumnData> columnDataList = new ArrayList<>();
 
+	public static long refreshTime = 5;//单位分钟
+
 	@Override
 	public void onCreate() {
 		super.onCreate();

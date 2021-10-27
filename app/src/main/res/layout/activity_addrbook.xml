@@ -10,12 +10,22 @@
         android:id="@+id/reTitle"
         layout="@layout/layout_title" />
 
+    <TextView
+        android:id="@+id/tvTip"
+        app:layout_constraintTop_toBottomOf="@+id/reTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/light_gray"
+        android:text="如有人员变动，请联系省气象服务中心"
+        android:textColor="@color/colorPrimary"
+        android:padding="10dp"/>
+
     <android.support.constraint.ConstraintLayout
         android:id="@+id/clSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        app:layout_constraintTop_toBottomOf="@+id/reTitle">
+        app:layout_constraintTop_toBottomOf="@+id/tvTip">
 
         <EditText
             android:id="@+id/etSearch"

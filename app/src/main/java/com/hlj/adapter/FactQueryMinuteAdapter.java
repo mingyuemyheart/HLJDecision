@@ -23,7 +23,7 @@ public class FactQueryMinuteAdapter extends BaseAdapter {
 	private List<FactDto> mArrayList;
 
 	private final class ViewHolder{
-		TextView tvStationName,tvStationCode,tvTime,tvRain;
+		TextView tvArea,tvStationName,tvStationCode,tvTime,tvRain;
 	}
 
 	public FactQueryMinuteAdapter(Context context, List<FactDto> mArrayList) {
@@ -53,6 +53,7 @@ public class FactQueryMinuteAdapter extends BaseAdapter {
 		if (convertView == null) {
 			mHolder = new ViewHolder();
 			convertView = mInflater.inflate(R.layout.adapter_fact_query_minute, null);
+			mHolder.tvArea = (TextView) convertView.findViewById(R.id.tvArea);
 			mHolder.tvStationName = (TextView) convertView.findViewById(R.id.tvStationName);
 			mHolder.tvStationCode = (TextView) convertView.findViewById(R.id.tvStationCode);
 			mHolder.tvTime = (TextView) convertView.findViewById(R.id.tvTime);
@@ -63,7 +64,10 @@ public class FactQueryMinuteAdapter extends BaseAdapter {
 		}
 
 		FactDto dto = mArrayList.get(position);
-		
+
+		if (dto.area != null) {
+			mHolder.tvArea.setText(dto.area);
+		}
 		if (dto.stationName != null) {
 			mHolder.tvStationName.setText(dto.stationName);
 		}

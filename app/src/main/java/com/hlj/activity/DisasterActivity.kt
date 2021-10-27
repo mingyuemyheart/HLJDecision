@@ -129,6 +129,11 @@ class DisasterActivity : BaseActivity(), OnClickListener {
                                         }
                                         dataList.add(dto)
                                     }
+                                    if (dataList.size <= 0) {
+                                        tvPrompt.visibility = View.VISIBLE
+                                    } else {
+                                        tvPrompt.visibility = View.GONE
+                                    }
                                     if (mAdapter != null) {
                                         mAdapter!!.notifyDataSetChanged()
                                     }

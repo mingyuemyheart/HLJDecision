@@ -351,6 +351,12 @@ class WelcomeActivity : BaseActivity(), AMapLocationListener {
 								}
 								MyApplication.columnDataList.add(data)
 							}
+							if (!obje.isNull("appinfo")) {
+								val obj = JSONObject(obje.getString("appinfo"))
+								if (!obj.isNull("frequency")) {
+									MyApplication.refreshTime = obj.getLong("frequency")
+								}
+							}
 							if (!obje.isNull("info")) {
 								val obj = JSONObject(obje.getString("info"))
 								if (!obj.isNull("id")) {

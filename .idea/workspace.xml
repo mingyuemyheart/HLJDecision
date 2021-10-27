@@ -6,7 +6,6 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="columnIds" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="error" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
   </component>
@@ -62,132 +61,107 @@
   <component name="ChangeListManager">
     <list default="true" id="15ab3c4b-28f1-4ec7-90ce-56991a316228" name="Default" comment="1.修改决策登录对话框提示逻辑&#10;2.适配天气详情逐小时预报和分钟级降水UI&#10;3.增加预警推送功能">
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/generated/source/buildConfig/release/com/github/barteksc/pdfviewer/BuildConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/generated/source/r/release/android/support/v4/R.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/generated/source/r/release/com/github/barteksc/pdfviewer/R.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/generated/source/r/release/com/shockwave/pdfium/R.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/attr/R.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/android/support/v4/R.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/AnimationManager$FlingAnimation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/AnimationManager$XAnimation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/AnimationManager$YAnimation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/AnimationManager$ZoomAnimation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/AnimationManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/BuildConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/CacheManager$PagePartComparator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/CacheManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/DecodingAsyncTask.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/DragPinchManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/PDFView$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/PDFView$Configurator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/PDFView$ScrollDir.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/PDFView$State.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/PDFView.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/PagesLoader$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/PagesLoader$Holder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/PagesLoader.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/R$attr.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/R$drawable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/R$string.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/R$styleable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/R.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/RenderingHandler$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/RenderingHandler$RenderingTask.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/RenderingHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/exception/FileNotFoundException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/listener/OnDrawListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/listener/OnErrorListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/listener/OnLoadCompleteListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/listener/OnPageChangeListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/listener/OnPageScrollListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/listener/OnRenderListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/model/PagePart.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/scroll/DefaultScrollHandle$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/scroll/DefaultScrollHandle.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/scroll/ScrollHandle.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/source/AssetSource.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/source/ByteArraySource.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/source/DocumentSource.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/source/FileSource.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/source/InputStreamSource.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/source/UriSource.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/util/ArrayUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/util/Constants$Cache.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/util/Constants$Pinch.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/util/Constants.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/util/FileUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/util/MathUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/util/Util.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/shockwave/pdfium/R$string.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/shockwave/pdfium/R.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/incremental/compileReleaseAidl/dependency.store" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/incremental/mergeReleaseJniLibFolders/merger.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/incremental/mergeReleaseShaders/merger.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/incremental/packageReleaseAssets/merger.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/incremental/packageReleaseResources/compile-file-map.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/incremental/packageReleaseResources/merged.dir/values/values.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/incremental/packageReleaseResources/merger.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/incremental/release-mergeJniLibs/merge-state" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/intermediate-jars/release/classes.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/intermediate-jars/release/res.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/javaPrecompile/release/annotationProcessors.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/manifests/aapt/release/AndroidManifest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/manifests/aapt/release/output.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/manifests/full/release/AndroidManifest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/manifests/full/release/output.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/packaged_res/release/drawable/default_scroll_handle_bottom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/packaged_res/release/drawable/default_scroll_handle_left.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/packaged_res/release/drawable/default_scroll_handle_right.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/packaged_res/release/drawable/default_scroll_handle_top.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/packaged_res/release/values/values.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/res/symbol-table-with-package/release/package-aware-r.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/symbols/release/R.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/transforms/mergeJniLibs/release/__content__.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/transforms/stripDebugSymbol/release/__content__.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/outputs/logs/manifest-merger-release-report.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/libs/vudroid-pdfview-1.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/AddrBookActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/AddrBookActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/AskAnwserActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/AskAnwserActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/AskAnwserDetailActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/AskAnwserDetailActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/AskAnwserUploadActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/AskAnwserUploadActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/CommonListActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/CommonListActivity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/DisasterActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/DisasterActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/DisasterDetailActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/DisasterDetailActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/DisasterUploadActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/DisasterUploadActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/FactActivity2.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/FactActivity2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/FactMonitorActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/FactMonitorActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/FeedbackActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/FeedbackActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/FylzActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/FylzActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/HPDFActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/PDFActivity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/LoginActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/LoginActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/MinuteFallActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/MinuteFallActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/PersonInfoActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/PersonInfoActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/ProductActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/ProductActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/ProvinceForecastActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/ProvinceForecastActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/SelectListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/interfaces/SelectListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/SelectPictureActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/SelectPictureActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/SelectPositionActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/SelectPositionActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/SettingActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/SettingActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/ShawnWeatherMeetingActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/ShawnWeatherMeetingActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/SinglePDFActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/PDFSingleActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/WebviewActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/WebviewActivity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/WelcomeActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/WelcomeActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/adapter/AddrBookAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/adapter/AddrBookAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/adapter/AskAnwserAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/adapter/AskAnwserAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/adapter/CommonFragmentAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/adapter/CommonFragmentAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/adapter/DisasterAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/adapter/DisasterAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/adapter/DisasterUploadAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/adapter/DisasterUploadAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/adapter/MyPagerAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/adapter/SelectPictureAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/adapter/SelectPictureAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/common/CONST.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/common/CONST.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/common/ColumnData.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/common/ColumnData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/adapter/FactQueryMinuteAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/adapter/FactQueryMinuteAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/common/MyApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/common/MyApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/dto/AgriDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/dto/AgriDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/dto/ContactDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/dto/ContactDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/dto/DisasterDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/dto/FactDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/dto/FactDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/dto/WeatherDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/dto/WeatherDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/fragment/CommonListFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/fragment/CommonListFragment.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/fragment/ForecastFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/fragment/ForecastFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/fragment/ShawnWeatherMeetingFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/fragment/WeatherMeetingFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/fragment/WeatherFactFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/fragment/WeatherFactFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/utils/CommonUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/utils/CommonUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/view/CubicView.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/view/HourlyView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/view/MinuteFallView.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/view/MinuteFallView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/view/HourlyView.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/view/HourlyView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/view/WeeklyView.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/view/WeeklyView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/corner_left_blue.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/corner_left_blue.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/corner_left_white.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/corner_left_white.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/corner_right_blue.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/corner_right_blue.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/corner_right_white.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/corner_right_white.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/iv_blue_marker1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/iv_blue_marker2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/iv_blue_marker3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/iv_blue_marker4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/iv_blue_marker5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/iv_next_page.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/iv_orange_marker1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/iv_orange_marker2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/iv_orange_marker3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/iv_orange_marker4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/iv_orange_marker5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/iv_pre_page.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/iv_red_marker1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/iv_red_marker2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/iv_red_marker3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/iv_red_marker4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/iv_red_marker5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/iv_search.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/iv_yellow_marker1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/iv_yellow_marker2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/iv_yellow_marker3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/iv_yellow_marker4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/iv_yellow_marker5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/tab1_channel1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/tab1_channel2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/tab1_channel3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/tab1_channel4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/tab1_channel5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/tab1_channel6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/tab2_channel1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/tab2_channel2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/tab2_channel3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/tab2_channel4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/tab2_channel5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/tab2_channel6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/typhoon_icon0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/typhoon_icon1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/typhoon_icon10.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/typhoon_icon11.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/typhoon_icon12.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/typhoon_icon13.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/typhoon_icon14.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/typhoon_icon15.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/typhoon_icon16.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/typhoon_icon17.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/typhoon_icon2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/typhoon_icon3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/typhoon_icon4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/typhoon_icon5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/typhoon_icon6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/typhoon_icon7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/typhoon_icon8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/typhoon_icon9.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_addrbook.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_addrbook.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_city.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_city.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_minute_fall.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_minute_fall.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_select_position.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_select_position.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_setting.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_setting.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/adapter_addr_book.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/adapter_addr_book.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_forecast.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_forecast.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/hactivity_pdfview.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_pdf.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/pdfview_fragment.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/shawn_fragment_weather_meeting.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_weather_meeting.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_disaster.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_disaster.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/adapter_common_fragment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/adapter_common_fragment.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/adapter_fact_query_minute.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/adapter_fact_query_minute.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_fact_query_area.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_fact_query_area.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_fact_query_station.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_fact_query_station.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -271,6 +245,7 @@
     <property name="ExportApk.Flavors" value="" />
     <property name="ExportApk.SignV1" value="true" />
     <property name="ExportApk.SignV2" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android-custom-view/Users/sunxiaoming/Downloads/AndroidStudioProjects/HLJDecision/app/src/main/java/com/hlj/stickygridheaders/StickyGridHeadersGridView.java_SELECTED" value="StickyGridHeadersGridView" />
     <property name="android-custom-view/Users/sunxiaoming/Downloads/AndroidStudioProjects/HLJDecision/app/src/main/java/com/hlj/view/ArcView.java_SELECTED" value="ArcBackgroundView" />
@@ -1128,45 +1103,45 @@
       <screen x="1440" y="23" width="1920" height="1057" />
     </state>
     <state x="1540" y="123" width="1720" height="857" key="DiffContextDialog/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1632381164438" />
-    <state width="1878" height="545" key="GridCell.Tab.0.bottom" timestamp="1634630869331">
-      <screen x="1440" y="23" width="1920" height="1057" />
+    <state width="1348" height="319" key="GridCell.Tab.0.bottom" timestamp="1635315029830">
+      <screen x="50" y="23" width="1390" height="877" />
     </state>
     <state width="1878" height="341" key="GridCell.Tab.0.bottom/46.23.1394.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1628128056366" />
     <state width="1348" height="271" key="GridCell.Tab.0.bottom/47.23.1393.877@47.23.1393.877" timestamp="1628085475908" />
     <state width="1878" height="340" key="GridCell.Tab.0.bottom/49.23.1391.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1629871883073" />
     <state width="1349" height="270" key="GridCell.Tab.0.bottom/49.23.1391.877@49.23.1391.877" timestamp="1629805135073" />
-    <state width="1878" height="545" key="GridCell.Tab.0.bottom/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1634630869331" />
-    <state width="1348" height="305" key="GridCell.Tab.0.bottom/50.23.1390.877/1440.23.1920.1057@50.23.1390.877" timestamp="1633911385508" />
+    <state width="1878" height="332" key="GridCell.Tab.0.bottom/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1634633740798" />
+    <state width="1348" height="319" key="GridCell.Tab.0.bottom/50.23.1390.877/1440.23.1920.1057@50.23.1390.877" timestamp="1635315029830" />
     <state width="1348" height="428" key="GridCell.Tab.0.bottom/50.23.1390.877@50.23.1390.877" timestamp="1633844266975" />
-    <state width="1878" height="545" key="GridCell.Tab.0.center" timestamp="1634630869330">
-      <screen x="1440" y="23" width="1920" height="1057" />
+    <state width="1348" height="319" key="GridCell.Tab.0.center" timestamp="1635315029829">
+      <screen x="50" y="23" width="1390" height="877" />
     </state>
     <state width="1878" height="341" key="GridCell.Tab.0.center/46.23.1394.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1628128056365" />
     <state width="1348" height="271" key="GridCell.Tab.0.center/47.23.1393.877@47.23.1393.877" timestamp="1628085475906" />
     <state width="1878" height="340" key="GridCell.Tab.0.center/49.23.1391.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1629871883073" />
     <state width="1349" height="270" key="GridCell.Tab.0.center/49.23.1391.877@49.23.1391.877" timestamp="1629805135072" />
-    <state width="1878" height="545" key="GridCell.Tab.0.center/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1634630869330" />
-    <state width="1348" height="305" key="GridCell.Tab.0.center/50.23.1390.877/1440.23.1920.1057@50.23.1390.877" timestamp="1633911385507" />
+    <state width="1878" height="332" key="GridCell.Tab.0.center/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1634633740797" />
+    <state width="1348" height="319" key="GridCell.Tab.0.center/50.23.1390.877/1440.23.1920.1057@50.23.1390.877" timestamp="1635315029829" />
     <state width="1348" height="428" key="GridCell.Tab.0.center/50.23.1390.877@50.23.1390.877" timestamp="1633844266974" />
-    <state width="1878" height="545" key="GridCell.Tab.0.left" timestamp="1634630869329">
-      <screen x="1440" y="23" width="1920" height="1057" />
+    <state width="1348" height="319" key="GridCell.Tab.0.left" timestamp="1635315029828">
+      <screen x="50" y="23" width="1390" height="877" />
     </state>
     <state width="1878" height="341" key="GridCell.Tab.0.left/46.23.1394.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1628128056365" />
     <state width="1348" height="271" key="GridCell.Tab.0.left/47.23.1393.877@47.23.1393.877" timestamp="1628085475906" />
     <state width="1878" height="340" key="GridCell.Tab.0.left/49.23.1391.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1629871883072" />
     <state width="1349" height="270" key="GridCell.Tab.0.left/49.23.1391.877@49.23.1391.877" timestamp="1629805135070" />
-    <state width="1878" height="545" key="GridCell.Tab.0.left/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1634630869329" />
-    <state width="1348" height="305" key="GridCell.Tab.0.left/50.23.1390.877/1440.23.1920.1057@50.23.1390.877" timestamp="1633911385505" />
+    <state width="1878" height="332" key="GridCell.Tab.0.left/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1634633740797" />
+    <state width="1348" height="319" key="GridCell.Tab.0.left/50.23.1390.877/1440.23.1920.1057@50.23.1390.877" timestamp="1635315029828" />
     <state width="1348" height="428" key="GridCell.Tab.0.left/50.23.1390.877@50.23.1390.877" timestamp="1633844266974" />
-    <state width="1878" height="545" key="GridCell.Tab.0.right" timestamp="1634630869331">
-      <screen x="1440" y="23" width="1920" height="1057" />
+    <state width="1348" height="319" key="GridCell.Tab.0.right" timestamp="1635315029829">
+      <screen x="50" y="23" width="1390" height="877" />
     </state>
     <state width="1878" height="341" key="GridCell.Tab.0.right/46.23.1394.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1628128056365" />
     <state width="1348" height="271" key="GridCell.Tab.0.right/47.23.1393.877@47.23.1393.877" timestamp="1628085475906" />
     <state width="1878" height="340" key="GridCell.Tab.0.right/49.23.1391.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1629871883073" />
     <state width="1349" height="270" key="GridCell.Tab.0.right/49.23.1391.877@49.23.1391.877" timestamp="1629805135072" />
-    <state width="1878" height="545" key="GridCell.Tab.0.right/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1634630869331" />
-    <state width="1348" height="305" key="GridCell.Tab.0.right/50.23.1390.877/1440.23.1920.1057@50.23.1390.877" timestamp="1633911385508" />
+    <state width="1878" height="332" key="GridCell.Tab.0.right/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1634633740798" />
+    <state width="1348" height="319" key="GridCell.Tab.0.right/50.23.1390.877/1440.23.1920.1057@50.23.1390.877" timestamp="1635315029829" />
     <state width="1348" height="428" key="GridCell.Tab.0.right/50.23.1390.877@50.23.1390.877" timestamp="1633844266975" />
     <state x="151" y="123" width="1190" height="678" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1633838138361">
       <screen x="50" y="23" width="1390" height="877" />
@@ -1180,13 +1155,13 @@
       <screen x="50" y="23" width="1390" height="877" />
     </state>
     <state x="337" y="79" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/50.23.1390.877@50.23.1390.877" timestamp="1631191114262" />
-    <state x="2053" y="284" width="835" height="591" key="find.popup" timestamp="1634631454640">
-      <screen x="1440" y="23" width="1920" height="1057" />
+    <state x="443" y="216" width="605" height="551" key="find.popup" timestamp="1635313917693">
+      <screen x="50" y="23" width="1390" height="877" />
     </state>
     <state x="1982" y="256" width="836" height="625" key="find.popup/49.23.1391.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1633765210819" />
     <state x="442" y="216" width="605" height="518" key="find.popup/49.23.1391.877@49.23.1391.877" timestamp="1629813552483" />
-    <state x="2053" y="284" width="835" height="591" key="find.popup/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1634631454640" />
-    <state x="443" y="216" width="605" height="551" key="find.popup/50.23.1390.877/1440.23.1920.1057@50.23.1390.877" timestamp="1633654801488" />
+    <state x="2053" y="284" width="835" height="591" key="find.popup/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1634806289966" />
+    <state x="443" y="216" width="605" height="551" key="find.popup/50.23.1390.877/1440.23.1920.1057@50.23.1390.877" timestamp="1635313917693" />
     <state x="443" y="216" width="604" height="518" key="find.popup/50.23.1390.877@50.23.1390.877" timestamp="1633868993485" />
     <state x="613" y="375" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1631279684316">
       <screen x="50" y="23" width="1390" height="877" />
