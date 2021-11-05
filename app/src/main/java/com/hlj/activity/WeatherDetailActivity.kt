@@ -642,11 +642,11 @@ class WeatherDetailActivity : BaseActivity(), OnClickListener, CaiyunManager.Rad
                                             }
                                             if (!o.isNull("004")) {
                                                 val windDir = o.getString("004")
-                                                if (TextUtils.isEmpty(windDir) && !TextUtils.equals(windDir, "?") && !TextUtils.equals(windDir, "null")) {
+                                                if (!TextUtils.isEmpty(windDir) && !TextUtils.equals(windDir, "?") && !TextUtils.equals(windDir, "null")) {
                                                     val dir = getString(WeatherUtil.getWindDirection(Integer.valueOf(windDir)))
                                                     if (!o.isNull("003")) {
                                                         val windForce = o.getString("003")
-                                                        if (TextUtils.isEmpty(windForce) && !TextUtils.equals(windForce, "?") && !TextUtils.equals(windForce, "null")) {
+                                                        if (!TextUtils.isEmpty(windForce) && !TextUtils.equals(windForce, "?") && !TextUtils.equals(windForce, "null")) {
                                                             val force = WeatherUtil.getFactWindForce(Integer.valueOf(windForce))
                                                             tvWind!!.text = "$dir $force"
                                                             when {

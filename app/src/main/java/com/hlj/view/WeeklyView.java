@@ -260,24 +260,25 @@ public class WeeklyView extends View {
 			//绘制aqi数值
 			textP.setTextSize(CommonUtil.dip2px(mContext, 12));
 			if (!TextUtils.isEmpty(dto.aqi)) {
-				if (Integer.valueOf(dto.aqi) <= 50) {
+				int aqi = Integer.valueOf(dto.aqi);
+				if (aqi <= 50) {
 					textP.setColor(getResources().getColor(R.color.black));
-					roundP.setColor(0xff00FF01);
-				} else if (Integer.valueOf(dto.aqi) <= 100) {
+					roundP.setColor(0xff50b74a);
+				} else if (aqi <= 100) {
 					textP.setColor(getResources().getColor(R.color.black));
-					roundP.setColor(0xff96EF01);
-				} else if (Integer.valueOf(dto.aqi) <= 150) {
+					roundP.setColor(0xfff4f01b);
+				} else if (aqi <= 150) {
 					textP.setColor(getResources().getColor(R.color.black));
-					roundP.setColor(0xffFFFF01);
-				} else if (Integer.valueOf(dto.aqi) <= 200) {
+					roundP.setColor(0xfff38025);
+				} else if (aqi <= 200) {
 					textP.setColor(getResources().getColor(R.color.white));
-					roundP.setColor(0xffFF6400);
-				} else if (Integer.valueOf(dto.aqi) <= 300) {
+					roundP.setColor(0xffec2222);
+				} else if (aqi <= 300) {
 					textP.setColor(getResources().getColor(R.color.white));
-					roundP.setColor(0xffFE0000);
+					roundP.setColor(0xff7b297d);
 				} else {
 					textP.setColor(getResources().getColor(R.color.white));
-					roundP.setColor(0xff7E0123);
+					roundP.setColor(0xff771512);
 				}
 				RectF rectF = new RectF(dto.lowX-CommonUtil.dip2px(mContext, 12.5f), h-CommonUtil.dip2px(mContext, 23),
 						dto.lowX+CommonUtil.dip2px(mContext, 12.5f), h-CommonUtil.dip2px(mContext, 6));

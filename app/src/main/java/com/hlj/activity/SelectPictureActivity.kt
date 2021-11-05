@@ -88,9 +88,7 @@ class SelectPictureActivity : BaseActivity(), View.OnClickListener, SelectListen
                 checkCameraAuthority()
             } else {
                 val intent = Intent(this, DisplayPictureActivity::class.java)
-                val bundle = Bundle()
-                bundle.putParcelable("data", dto)
-                intent.putExtras(bundle)
+                intent.putExtra(CONST.WEB_URL, dto.imgUrl)
                 startActivity(intent)
             }
         }
@@ -103,6 +101,7 @@ class SelectPictureActivity : BaseActivity(), View.OnClickListener, SelectListen
 
     override fun onClick(v: View?) {
         when (v!!.id) {
+            R.id.llBack -> finish()
             R.id.tvControl -> {
                 if (selectCount <= 0) {
                     Toast.makeText(this, "请选择需要上传的图片！", Toast.LENGTH_SHORT).show()

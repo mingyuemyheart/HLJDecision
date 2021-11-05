@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnClickListener
 import android.widget.TextView
+import android.widget.Toast
 import com.hlj.common.CONST
 import com.hlj.common.MyApplication
 import com.hlj.manager.DataCleanManager
@@ -165,9 +166,13 @@ class SettingActivity : BaseActivity(), OnClickListener {
                 }
             }
             R.id.llFeedBack -> {
-                val intent = Intent(this, FeedbackListActivity::class.java)
-                intent.putExtra(CONST.ACTIVITY_NAME, getString(R.string.setting_feedback))
-                startActivity(intent)
+                if (TextUtils.equals(CONST.publicUser, MyApplication.USERNAME)) {
+                    Toast.makeText(this, "登录后才可以使用该功能", Toast.LENGTH_SHORT).show()
+                } else {
+                    val intent = Intent(this, FeedbackListActivity::class.java)
+                    intent.putExtra(CONST.ACTIVITY_NAME, getString(R.string.setting_feedback))
+                    startActivity(intent)
+                }
             }
             R.id.llVersion -> {
                 AutoUpdateUtil.checkUpdate(this@SettingActivity, this, "41", getString(R.string.app_name), false) //黑龙江气象
@@ -212,7 +217,11 @@ class SettingActivity : BaseActivity(), OnClickListener {
                 startActivity(intent)
             }
             R.id.llManage -> {
-                startActivityForResult(Intent(this, ManageActivity::class.java), 1001)
+                if (TextUtils.equals(CONST.publicUser, MyApplication.USERNAME)) {
+                    Toast.makeText(this, "登录后才可以使用该功能", Toast.LENGTH_SHORT).show()
+                } else {
+                    startActivityForResult(Intent(this, ManageActivity::class.java), 1001)
+                }
             }
         }
     }

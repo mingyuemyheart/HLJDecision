@@ -87,11 +87,11 @@ class ForecastFragment : Fragment(), OnClickListener, AMapLocationListener, Caiy
     private val sdf4 = SimpleDateFormat("yyyyMMddHHmm", Locale.CHINA)
     private val sdf5 = SimpleDateFormat("yyyyMMddHH", Locale.CHINA)
     private val sdf6 = SimpleDateFormat("HH:mm", Locale.CHINA)
-    private var hour = 0
     private val disWarnings: MutableList<WarningDto?> = ArrayList()
     private val cityWarnings: MutableList<WarningDto?> = ArrayList()
     private val proWarnings: MutableList<WarningDto?> = ArrayList()
-    private val aqiList: ArrayList<WeatherDto> = ArrayList()
+    private val hourAqiList: ArrayList<WeatherDto> = ArrayList()
+    private val dayAqiList: ArrayList<WeatherDto> = ArrayList()
 
     //语音播报
     private var mTts : SpeechSynthesizer? = null// 语音合成对象
@@ -120,9 +120,13 @@ class ForecastFragment : Fragment(), OnClickListener, AMapLocationListener, Caiy
             mTts!!.stopSpeaking()
         }
         refreshLayout.isRefreshing = true
-        hour = sdf1.format(Date()).toInt()
-        okHttpXiangJiAqi()
-        okHttpHourRain()
+
+        if (CommonUtil.isLocationOpen(activity)) {
+            startLocation()
+        } else {
+            Toast.makeText(activity, "未开启定位，请选择城市", Toast.LENGTH_LONG).show()
+            startActivityForResult(Intent(activity, CityActivity::class.java), 1001)
+        }
     }
 
     /**
@@ -169,13 +173,6 @@ class ForecastFragment : Fragment(), OnClickListener, AMapLocationListener, Caiy
             clFifteen.setBackgroundColor(Color.BLACK)
             ivHourly.setImageBitmap(CommonUtil.grayScaleImage(BitmapFactory.decodeResource(resources, R.drawable.icon_hour_rain)))
             ivFifteen.setImageBitmap(CommonUtil.grayScaleImage(BitmapFactory.decodeResource(resources, R.drawable.icon_fifteen)))
-        }
-
-        if (CommonUtil.isLocationOpen(activity)) {
-            startLocation()
-        } else {
-            Toast.makeText(activity, "未开启定位，请选择城市", Toast.LENGTH_LONG).show()
-            startActivityForResult(Intent(activity, CityActivity::class.java), 1001)
         }
 
         if (timer == null) {
@@ -229,6 +226,8 @@ class ForecastFragment : Fragment(), OnClickListener, AMapLocationListener, Caiy
             lng = amapLocation.longitude
             addMarkerToMap(LatLng(lat, lng))
 
+            okHttpHourAqi()
+            okHttpHourRain()
             if (amapLocation.province.contains(amapLocation.city)) {
                 okHttpInfo(amapLocation.city, amapLocation.district)
             } else {
@@ -327,14 +326,55 @@ class ForecastFragment : Fragment(), OnClickListener, AMapLocationListener, Caiy
     }
 
     /**
-     * 请求象辑aqi
+     * 获取逐小时aqi
      */
-    private fun okHttpXiangJiAqi() {
+    private fun okHttpHourAqi() {
         Thread {
             val timestamp = Date().time
             val start1 = sdf5.format(timestamp)
             val end1 = sdf5.format(timestamp + 1000 * 60 * 60 * 24)
             val url = XiangJiManager.getXJSecretUrl(lng, lat, start1, end1, timestamp)
+            OkHttpUtil.enqueue(Request.Builder().url(url).build(), object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+                }
+                @Throws(IOException::class)
+                override fun onResponse(call: Call, response: Response) {
+                    if (!response.isSuccessful) {
+                        return
+                    }
+                    val result = response.body!!.string()
+                    if (!TextUtils.isEmpty(result)) {
+                        try {
+                            val obj = JSONObject(result)
+
+                            if (!obj.isNull("series")) {
+                                hourAqiList.clear()
+                                val array = obj.getJSONArray("series")
+                                for (i in 0 until array.length()) {
+                                    val data = WeatherDto()
+                                    data.aqi = array[i].toString()
+                                    hourAqiList.add(data)
+                                }
+                                okHttpDayAqi()
+                            }
+                        } catch (e1: JSONException) {
+                            e1.printStackTrace()
+                        }
+                    }
+                }
+            })
+        }.start()
+    }
+
+    /**
+     * 获取15天aqi
+     */
+    private fun okHttpDayAqi() {
+        Thread {
+            val timestamp = Date().time
+            val start1 = sdf5.format(timestamp)
+            val end1 = sdf5.format(timestamp + 1000 * 60 * 60 * 24 * 15)
+            val url = XiangJiManager.getXJSecretUrl2(lng, lat, start1, end1, timestamp)
             OkHttpUtil.enqueue(Request.Builder().url(url).build(), object : Callback {
                 override fun onFailure(call: Call, e: IOException) {
                     getGeo(isFusion)
@@ -351,12 +391,12 @@ class ForecastFragment : Fragment(), OnClickListener, AMapLocationListener, Caiy
                             val obj = JSONObject(result)
 
                             if (!obj.isNull("series")) {
-                                aqiList.clear()
+                                dayAqiList.clear()
                                 val array = obj.getJSONArray("series")
                                 for (i in 0 until array.length()) {
                                     val data = WeatherDto()
                                     data.aqi = array[i].toString()
-                                    aqiList.add(data)
+                                    dayAqiList.add(data)
                                 }
 
                                 getGeo(isFusion)
@@ -447,11 +487,11 @@ class ForecastFragment : Fragment(), OnClickListener, AMapLocationListener, Caiy
                                             }
                                             if (!o.isNull("004")) {
                                                 val windDir = o.getString("004")
-                                                if (TextUtils.isEmpty(windDir) && !TextUtils.equals(windDir, "?") && !TextUtils.equals(windDir, "null")) {
+                                                if (!TextUtils.isEmpty(windDir) && !TextUtils.equals(windDir, "?") && !TextUtils.equals(windDir, "null")) {
                                                     val dir = getString(WeatherUtil.getWindDirection(Integer.valueOf(windDir)))
                                                     if (!o.isNull("003")) {
                                                         val windForce = o.getString("003")
-                                                        if (TextUtils.isEmpty(windForce) && !TextUtils.equals(windForce, "?") && !TextUtils.equals(windForce, "null")) {
+                                                        if (!TextUtils.isEmpty(windForce) && !TextUtils.equals(windForce, "?") && !TextUtils.equals(windForce, "null")) {
                                                             val force = WeatherUtil.getFactWindForce(Integer.valueOf(windForce))
                                                             tvWind!!.text = "$dir $force"
                                                             when {
@@ -527,33 +567,35 @@ class ForecastFragment : Fragment(), OnClickListener, AMapLocationListener, Caiy
                                 }
 
                                 //空气质量
-                                if (!obj.isNull("air")) {
-                                    val `object` = obj.getJSONObject("air")
-                                    if (!`object`.isNull(cityId)) {
-                                        val object1 = `object`.getJSONObject(cityId)
-                                        if (!object1.isNull("2001006")) {
-                                            val k = object1.getJSONObject("2001006")
-                                            if (!k.isNull("002")) {
-                                                val aqi = k.getString("002")
-                                                if (!TextUtils.isEmpty(aqi) && !TextUtils.equals(aqi, "?") && !TextUtils.equals(aqi, "null")) {
-                                                    tvAqiCount!!.text = aqi
-                                                    try {
-                                                        val aqiCount = Integer.valueOf(aqi)
-                                                        if (aqiCount <= 150) {
-                                                            tvAqiCount!!.setTextColor(Color.BLACK)
-                                                        } else {
-                                                            tvAqiCount!!.setTextColor(Color.WHITE)
-                                                        }
-                                                        tvAqiCount!!.setBackgroundResource(WeatherUtil.getAqiIcon(aqiCount))
-                                                        tvAqi.text = "空气质量 " + WeatherUtil.getAqi(activity, aqiCount)
-                                                    } catch (e: Exception) {
-                                                        e.printStackTrace()
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
+//                                if (!obj.isNull("air")) {
+//                                    val `object` = obj.getJSONObject("air")
+//                                    if (!`object`.isNull(cityId)) {
+//                                        val object1 = `object`.getJSONObject(cityId)
+//                                        if (!object1.isNull("2001006")) {
+//                                            val k = object1.getJSONObject("2001006")
+//                                            if (!k.isNull("002")) {
+//                                                val aqi = k.getString("002")
+//                                                if (!TextUtils.isEmpty(aqi) && !TextUtils.equals(aqi, "?") && !TextUtils.equals(aqi, "null")) {
+//                                                    tvAqiCount!!.text = aqi
+//                                                    try {
+//                                                        val aqiCount = Integer.valueOf(aqi)
+//                                                        if (aqiCount <= 150) {
+//                                                            tvAqiCount!!.setTextColor(Color.BLACK)
+//                                                        } else {
+//                                                            tvAqiCount!!.setTextColor(Color.WHITE)
+//                                                        }
+//                                                        tvAqiCount!!.setBackgroundResource(WeatherUtil.getAqiIcon(aqiCount))
+//                                                        tvAqi.text = "空气质量 " + WeatherUtil.getAqi(activity, aqiCount)
+//                                                    } catch (e: Exception) {
+//                                                        e.printStackTrace()
+//                                                    }
+//                                                }
+//                                            }
+//                                        }
+//                                    }
+//                                }
+
+                                //预报
                                 if (!obj.isNull("forecast")) {
                                     val forecast = obj.getJSONObject("forecast")
 
@@ -591,14 +633,38 @@ class ForecastFragment : Fragment(), OnClickListener, AMapLocationListener, Caiy
                                                             dto.hourlyWindForceCode = Integer.valueOf(three)
                                                             dto.hourlyWindForceString = WeatherUtil.getHourWindForce(dto.hourlyWindForceCode.toFloat())
                                                         }
-                                                        val five = itemObj.getString("005")
-                                                        if (!TextUtils.isEmpty(five) && !TextUtils.equals(five, "?") && !TextUtils.equals(five, "null")) {
-                                                            dto.hourlyAqi = five
+//                                                        val five = itemObj.getString("005")
+//                                                        if (!TextUtils.isEmpty(five) && !TextUtils.equals(five, "?") && !TextUtils.equals(five, "null")) {
+//                                                            dto.hourlyAqi = five
+//                                                        }
+                                                        if (hourAqiList.size > 0 && i < hourAqiList.size) {
+                                                            val aqiValue = hourAqiList[i].aqi
+                                                            if (!TextUtils.isEmpty(aqiValue)) {
+                                                                dto.hourlyAqi = aqiValue
+                                                            }
                                                         }
                                                     } catch (e: Exception) {
                                                         e.printStackTrace()
                                                     }
                                                     hourlyList.add(dto)
+
+                                                    if (i == 0) {
+                                                        if (!TextUtils.isEmpty(dto.hourlyAqi) && !TextUtils.equals(dto.hourlyAqi, "?") && !TextUtils.equals(dto.hourlyAqi, "null")) {
+                                                            tvAqiCount!!.text = dto.hourlyAqi
+                                                            try {
+                                                                val aqiCount = Integer.valueOf(dto.hourlyAqi)
+                                                                if (aqiCount <= 150) {
+                                                                    tvAqiCount!!.setTextColor(Color.BLACK)
+                                                                } else {
+                                                                    tvAqiCount!!.setTextColor(Color.WHITE)
+                                                                }
+                                                                tvAqiCount!!.setBackgroundResource(WeatherUtil.getAqiIcon(aqiCount))
+                                                                tvAqi.text = "空气质量 " + WeatherUtil.getAqi(activity, aqiCount)
+                                                            } catch (e: Exception) {
+                                                                e.printStackTrace()
+                                                            }
+                                                        }
+                                                    }
                                                 }
 
                                                 //逐小时预报信息
@@ -663,6 +729,7 @@ class ForecastFragment : Fragment(), OnClickListener, AMapLocationListener, Caiy
                                                     if (!TextUtils.isEmpty(three) && !TextUtils.equals(three, "?") && !TextUtils.equals(three, "null")) {
                                                         dto.highTemp = Integer.valueOf(three)
                                                     }
+                                                    val hour = sdf1.format(Date()).toInt()
                                                     if (hour in 5..17) {
                                                         val seven = weeklyObj.getString("007")
                                                         if (!TextUtils.isEmpty(seven) && !TextUtils.equals(seven, "?") && !TextUtils.equals(seven, "null")) {
@@ -684,8 +751,8 @@ class ForecastFragment : Fragment(), OnClickListener, AMapLocationListener, Caiy
                                                             dto.windForceString = WeatherUtil.getDayWindForce(dto.windForce)
                                                         }
                                                     }
-                                                    if (aqiList.size > 0 && i < aqiList.size) {
-                                                        val aqiValue = aqiList[i].aqi
+                                                    if (dayAqiList.size > 0 && i < dayAqiList.size) {
+                                                        val aqiValue = dayAqiList[i].aqi
                                                         if (!TextUtils.isEmpty(aqiValue)) {
                                                             dto.aqi = aqiValue
                                                         }
@@ -721,8 +788,8 @@ class ForecastFragment : Fragment(), OnClickListener, AMapLocationListener, Caiy
                                                         }
                                                         tvTemp1!!.text = dto.lowTemp.toString() + "/" + dto.highTemp + "℃"
 
-                                                        if (!TextUtils.isEmpty(tvAqiCount.text.toString()) && !TextUtils.equals(tvAqiCount.text.toString(), "?") && !TextUtils.equals(tvAqiCount.text.toString(), "null")) {
-                                                            val value: Int = tvAqiCount.text.toString().toInt()
+                                                        if (!TextUtils.isEmpty(dto.aqi) && !TextUtils.equals(dto.aqi, "?") && !TextUtils.equals(dto.aqi, "null")) {
+                                                            val value: Int = dto.aqi.toInt()
                                                             if (value <= 150) {
                                                                 tvAqi1!!.setTextColor(Color.BLACK)
                                                             } else {
@@ -745,9 +812,9 @@ class ForecastFragment : Fragment(), OnClickListener, AMapLocationListener, Caiy
                                                             tvPhe2!!.text = getString(WeatherUtil.getWeatherId(dto.lowPheCode))
                                                         }
                                                         tvTemp2!!.text = dto.lowTemp.toString() + "/" + dto.highTemp + "℃"
-                                                        if (aqiList.size > 1) {
-                                                            if (!TextUtils.isEmpty(aqiList[1].aqi) && !TextUtils.equals(aqiList[1].aqi, "?") && !TextUtils.equals(aqiList[1].aqi, "null")) {
-                                                                val value: Int = aqiList[1].aqi.toInt()
+                                                        if (dayAqiList.size > 1) {
+                                                            if (!TextUtils.isEmpty(dto.aqi) && !TextUtils.equals(dto.aqi, "?") && !TextUtils.equals(dto.aqi, "null")) {
+                                                                val value: Int = dto.aqi.toInt()
                                                                 if (value <= 150) {
                                                                     tvAqi2!!.setTextColor(Color.BLACK)
                                                                 } else {

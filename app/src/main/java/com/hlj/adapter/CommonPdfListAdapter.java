@@ -75,7 +75,7 @@ public class CommonPdfListAdapter extends BaseAdapter{
 		}
 		
 		if (TextUtils.isEmpty(dto.icon)) {
-			mHolder.imageView.setImageResource(R.drawable.icon_default_pdf);
+			mHolder.imageView.setImageResource(R.drawable.icon_no_bitmap);
 		}else {
 			Picasso.get().load(dto.icon).into(mHolder.imageView);
 		}

@@ -9,300 +9,313 @@
         android:id="@+id/reTitle"
         layout="@layout/layout_title" />
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:paddingTop="50dp"
-        android:paddingBottom="20dp">
+        android:scrollbars="none">
 
-        <ImageView
-            android:id="@+id/ivPortrait"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:src="@drawable/iv_portrait" />
-
-        <TextView
-            android:id="@+id/tvUserName"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:gravity="center_horizontal"
-            android:text="点击登录"
-            android:textColor="@color/white"
-            android:textSize="@dimen/level_4" />
+            android:orientation="vertical">
 
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingTop="50dp"
+                android:paddingBottom="20dp">
 
-    <LinearLayout
-        android:id="@+id/llFeedBack"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/selector_item"
-        android:gravity="center_vertical"
-        android:paddingStart="15dp"
-        android:paddingEnd="10dp">
+                <ImageView
+                    android:id="@+id/ivPortrait"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/iv_portrait" />
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/setting_feedback"
-            android:textColor="@color/text_color3"
-            android:textSize="@dimen/level_4" />
+                <TextView
+                    android:id="@+id/tvUserName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_horizontal"
+                    android:text="点击登录"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/level_4" />
 
-        <ImageView
-            android:layout_width="10dp"
-            android:layout_height="18dp"
-            android:background="@drawable/iv_arrow" />
-    </LinearLayout>
+            </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/llVersion"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:background="@drawable/selector_item"
-        android:gravity="center_vertical"
-        android:paddingStart="15dp"
-        android:paddingEnd="10dp">
+            <LinearLayout
+                android:id="@+id/llFeedBack"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/selector_item"
+                android:gravity="center_vertical"
+                android:paddingStart="15dp"
+                android:paddingEnd="10dp">
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/setting_version"
-            android:textColor="@color/text_color3"
-            android:textSize="@dimen/level_4" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/setting_feedback"
+                    android:textColor="@color/text_color3"
+                    android:textSize="@dimen/level_4" />
 
-        <TextView
-            android:id="@+id/tvVersion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
-            android:textColor="@color/colorPrimary"
-            android:textSize="@dimen/level_4" />
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="18dp"
+                    android:background="@drawable/iv_arrow" />
+            </LinearLayout>
 
-        <ImageView
-            android:layout_width="10dp"
-            android:layout_height="18dp"
-            android:background="@drawable/iv_arrow" />
-    </LinearLayout>
+            <LinearLayout
+                android:id="@+id/llVersion"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@drawable/selector_item"
+                android:gravity="center_vertical"
+                android:paddingStart="15dp"
+                android:paddingEnd="10dp">
 
-    <LinearLayout
-        android:id="@+id/llClearCache"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:background="@drawable/selector_item"
-        android:gravity="center_vertical"
-        android:paddingStart="15dp"
-        android:paddingEnd="10dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/setting_version"
+                    android:textColor="@color/text_color3"
+                    android:textSize="@dimen/level_4" />
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/setting_clearcache"
-            android:textColor="@color/text_color3"
-            android:textSize="@dimen/level_4" />
+                <TextView
+                    android:id="@+id/tvVersion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/level_4" />
 
-        <TextView
-            android:id="@+id/tvCache"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
-            android:textColor="@color/colorPrimary"
-            android:textSize="@dimen/level_4" />
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="18dp"
+                    android:background="@drawable/iv_arrow" />
+            </LinearLayout>
 
-        <ImageView
-            android:layout_width="10dp"
-            android:layout_height="18dp"
-            android:background="@drawable/iv_arrow" />
-    </LinearLayout>
+            <LinearLayout
+                android:id="@+id/llClearCache"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@drawable/selector_item"
+                android:gravity="center_vertical"
+                android:paddingStart="15dp"
+                android:paddingEnd="10dp">
 
-    <LinearLayout
-        android:id="@+id/llBuild"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:background="@drawable/selector_item"
-        android:gravity="center_vertical"
-        android:paddingStart="15dp"
-        android:paddingEnd="10dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/setting_clearcache"
+                    android:textColor="@color/text_color3"
+                    android:textSize="@dimen/level_4" />
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/setting_build"
-            android:textColor="@color/text_color3"
-            android:textSize="@dimen/level_4" />
+                <TextView
+                    android:id="@+id/tvCache"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/level_4" />
 
-        <ImageView
-            android:layout_width="10dp"
-            android:layout_height="18dp"
-            android:background="@drawable/iv_arrow" />
-    </LinearLayout>
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="18dp"
+                    android:background="@drawable/iv_arrow" />
+            </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/llClearData"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:background="@drawable/selector_item"
-        android:gravity="center_vertical"
-        android:paddingStart="15dp"
-        android:paddingEnd="10dp"
-        android:visibility="gone">
+            <LinearLayout
+                android:id="@+id/llBuild"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@drawable/selector_item"
+                android:gravity="center_vertical"
+                android:paddingStart="15dp"
+                android:paddingEnd="10dp">
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/setting_cleardata"
-            android:textColor="@color/text_color3"
-            android:textSize="@dimen/level_4" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/setting_build"
+                    android:textColor="@color/text_color3"
+                    android:textSize="@dimen/level_4" />
 
-        <TextView
-            android:id="@+id/tvData"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
-            android:textColor="@color/blue"
-            android:textSize="@dimen/level_4" />
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="18dp"
+                    android:background="@drawable/iv_arrow" />
+            </LinearLayout>
 
-        <ImageView
-            android:layout_width="10dp"
-            android:layout_height="18dp"
-            android:background="@drawable/iv_arrow" />
-    </LinearLayout>
+            <LinearLayout
+                android:id="@+id/llClearData"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@drawable/selector_item"
+                android:gravity="center_vertical"
+                android:paddingStart="15dp"
+                android:paddingEnd="10dp"
+                android:visibility="gone">
 
-    <LinearLayout
-        android:id="@+id/llCity"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:background="@drawable/selector_item"
-        android:gravity="center_vertical"
-        android:paddingStart="15dp"
-        android:paddingEnd="10dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/setting_cleardata"
+                    android:textColor="@color/text_color3"
+                    android:textSize="@dimen/level_4" />
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="关注城市"
-            android:textColor="@color/text_color3"
-            android:textSize="@dimen/level_4" />
+                <TextView
+                    android:id="@+id/tvData"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/level_4" />
 
-        <ImageView
-            android:layout_width="10dp"
-            android:layout_height="18dp"
-            android:background="@drawable/iv_arrow" />
-    </LinearLayout>
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="18dp"
+                    android:background="@drawable/iv_arrow" />
+            </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/llPush"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:background="@drawable/selector_item"
-        android:gravity="center_vertical"
-        android:paddingStart="15dp"
-        android:paddingEnd="10dp">
+            <LinearLayout
+                android:id="@+id/llCity"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@drawable/selector_item"
+                android:gravity="center_vertical"
+                android:paddingStart="15dp"
+                android:paddingEnd="10dp">
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="消息推送"
-            android:textColor="@color/text_color3"
-            android:textSize="@dimen/level_4" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="关注城市"
+                    android:textColor="@color/text_color3"
+                    android:textSize="@dimen/level_4" />
 
-        <ImageView
-            android:id="@+id/ivPushNews"
-            android:layout_width="60dp"
-            android:layout_height="20dp"
-            android:src="@drawable/setting_checkbox_on" />
-    </LinearLayout>
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="18dp"
+                    android:background="@drawable/iv_arrow" />
+            </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/llManage"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:background="@drawable/selector_item"
-        android:gravity="center_vertical"
-        android:paddingStart="15dp"
-        android:paddingEnd="10dp">
+            <LinearLayout
+                android:id="@+id/llPush"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@drawable/selector_item"
+                android:gravity="center_vertical"
+                android:paddingStart="15dp"
+                android:paddingEnd="10dp">
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="服务产品定制"
-            android:textColor="@color/text_color3"
-            android:textSize="@dimen/level_4" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="消息推送"
+                    android:textColor="@color/text_color3"
+                    android:textSize="@dimen/level_4" />
 
-        <ImageView
-            android:layout_width="10dp"
-            android:layout_height="18dp"
-            android:background="@drawable/iv_arrow" />
-    </LinearLayout>
+                <ImageView
+                    android:id="@+id/ivPushNews"
+                    android:layout_width="60dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/setting_checkbox_on" />
+            </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/llProtocal"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:background="@drawable/selector_item"
-        android:gravity="center_vertical"
-        android:paddingStart="15dp"
-        android:paddingEnd="10dp">
+            <LinearLayout
+                android:id="@+id/llManage"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@drawable/selector_item"
+                android:gravity="center_vertical"
+                android:paddingStart="15dp"
+                android:paddingEnd="10dp">
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="用户协议"
-            android:textColor="@color/text_color3"
-            android:textSize="@dimen/level_4" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="服务产品定制"
+                    android:textColor="@color/text_color3"
+                    android:textSize="@dimen/level_4" />
 
-        <ImageView
-            android:layout_width="10dp"
-            android:layout_height="18dp"
-            android:background="@drawable/iv_arrow" />
-    </LinearLayout>
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="18dp"
+                    android:background="@drawable/iv_arrow" />
+            </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/llPolicy"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:background="@drawable/selector_item"
-        android:gravity="center_vertical"
-        android:paddingStart="15dp"
-        android:paddingEnd="10dp">
+            <LinearLayout
+                android:id="@+id/llProtocal"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@drawable/selector_item"
+                android:gravity="center_vertical"
+                android:paddingStart="15dp"
+                android:paddingEnd="10dp">
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="隐私政策"
-            android:textColor="@color/text_color3"
-            android:textSize="@dimen/level_4" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="用户协议"
+                    android:textColor="@color/text_color3"
+                    android:textSize="@dimen/level_4" />
 
-        <ImageView
-            android:layout_width="10dp"
-            android:layout_height="18dp"
-            android:background="@drawable/iv_arrow" />
-    </LinearLayout>
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="18dp"
+                    android:background="@drawable/iv_arrow" />
+            </LinearLayout>
 
-    <TextView
-        android:id="@+id/tvLogout"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:layout_marginTop="25dp"
-        android:background="@drawable/selector_item"
-        android:gravity="center"
-        android:padding="5dp"
-        android:text="退出登录"
-        android:textColor="@color/red"
-        android:textSize="@dimen/level_2" />
+            <LinearLayout
+                android:id="@+id/llPolicy"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@drawable/selector_item"
+                android:gravity="center_vertical"
+                android:paddingStart="15dp"
+                android:paddingEnd="10dp">
 
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="隐私政策"
+                    android:textColor="@color/text_color3"
+                    android:textSize="@dimen/level_4" />
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="18dp"
+                    android:background="@drawable/iv_arrow" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvLogout"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/selector_item"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="退出登录"
+                android:textColor="@color/red"
+                android:textSize="@dimen/level_2" />
+
+        </LinearLayout>
+
+    </ScrollView>
 </LinearLayout>

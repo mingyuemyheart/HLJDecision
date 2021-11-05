@@ -21,6 +21,7 @@ import com.hlj.common.CONST
 import com.hlj.dto.FactDto
 import com.hlj.utils.OkHttpUtil
 import com.hlj.view.wheelview.NumericWheelAdapter
+import com.hlj.view.wheelview.NumericWheelTenMinuteAdapter
 import com.hlj.view.wheelview.OnWheelScrollListener
 import com.hlj.view.wheelview.WheelView
 import kotlinx.android.synthetic.main.fragment_fact_query_area.*
@@ -249,9 +250,9 @@ class FactQueryAreaFragment : BaseFragment(), OnClickListener {
                 clMinute.visibility = View.VISIBLE
                 listViewMinute.visibility = View.VISIBLE
                 hScrollView.visibility = View.GONE
-                if (!TextUtils.isEmpty(city) && !TextUtils.isEmpty(area)) {
-                    okHttpList()
-                }
+//                if (!TextUtils.isEmpty(city) && !TextUtils.isEmpty(area)) {
+//                    okHttpList()
+//                }
             }
             R.id.tvHour -> {
                 isMinute = false
@@ -263,17 +264,17 @@ class FactQueryAreaFragment : BaseFragment(), OnClickListener {
                 clMinute.visibility = View.GONE
                 listViewMinute.visibility = View.GONE
                 hScrollView.visibility = View.VISIBLE
-                if (!TextUtils.isEmpty(city) && !TextUtils.isEmpty(area)) {
-                    okHttpList()
-                }
+//                if (!TextUtils.isEmpty(city) && !TextUtils.isEmpty(area)) {
+//                    okHttpList()
+//                }
             }
             R.id.tvStartTime, R.id.tvNegtive -> bootTimeLayoutAnimation(layoutDate)
             R.id.tvPositive -> {
                 setTextViewValue()
                 bootTimeLayoutAnimation(layoutDate)
-                if (!TextUtils.isEmpty(city) && !TextUtils.isEmpty(area)) {
-                    okHttpList()
-                }
+//                if (!TextUtils.isEmpty(city) && !TextUtils.isEmpty(area)) {
+//                    okHttpList()
+//                }
             }
             R.id.tvSearch -> {
                 startActivityForResult(Intent(activity, FactQueryAreaActivity::class.java), 1001)
@@ -649,7 +650,7 @@ class FactQueryAreaFragment : BaseFragment(), OnClickListener {
                             area = bundle.getString("area")
                             if (!TextUtils.isEmpty(city) && !TextUtils.isEmpty(area)) {
                                 tvSearch.text = "$area($city)"
-                                okHttpList()
+//                                okHttpList()
                             }
                         }
                     }
@@ -700,7 +701,7 @@ class FactQueryAreaFragment : BaseFragment(), OnClickListener {
         hour.visibleItems = 7
         hour.visibility = View.VISIBLE
 
-        val numericWheelAdapter4 = NumericWheelAdapter(activity, 0, 59, "%02d")
+        val numericWheelAdapter4 = NumericWheelTenMinuteAdapter(activity, 0, 5, "%02d")
         numericWheelAdapter4.setLabel("分")
         minute.viewAdapter = numericWheelAdapter4
         minute.isCyclic = false
