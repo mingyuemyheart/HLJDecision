@@ -146,20 +146,21 @@
       <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/transforms/stripDebugSymbol/release/__content__.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/outputs/logs/manifest-merger-release-report.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/SelectPictureActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/SelectPictureActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/SettingActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/SettingActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/WeatherDetailActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/WeatherDetailActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/adapter/CommonPdfListAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/adapter/CommonPdfListAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/adapter/ProductAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/adapter/ProductAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/CityActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/CityActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/ManageActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/ManageActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/WarningListActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/WarningListActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/WelcomeActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/WelcomeActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/adapter/WeeklyForecastAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/adapter/WeeklyForecastAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/fragment/FactCheckFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/fragment/FactCheckFragment.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/fragment/FactQueryAreaFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/fragment/FactQueryAreaFragment.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/fragment/FactQueryStationFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/fragment/FactQueryStationFragment.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/fragment/ForecastFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/fragment/ForecastFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/view/HourlyView.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/view/HourlyView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/view/WeeklyView.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/view/WeeklyView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/icon_default_pdf.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/iv_winddir.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/iv_winddir.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_setting.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_setting.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/manager/XiangJiManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/manager/XiangJiManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/adapter_common_pdf_list.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/adapter_common_pdf_list.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_fact_check.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_fact_check.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_forecast.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_forecast.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/raw/stations.db" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/raw/stations.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/arrays.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/arrays.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -169,7 +170,7 @@
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[SerialNumber@CTV0220C17019284]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -270,7 +271,7 @@
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1536661182344" />
     <property name="device.picker.selection" value="66J5T19318007315" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/drawable" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/raw" />
     <property name="not.eligible.for.single.variant.sync" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.17" />
@@ -285,17 +286,17 @@
     <option name="LAST_EDITED_BUILD_TYPE" value="release" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/app/src/main/res/layout" />
-      <recent name="$PROJECT_DIR$/hLJDecision/src/main/res/drawable" />
-      <recent name="$PROJECT_DIR$/hLJDecision/src/main/assets" />
-      <recent name="$PROJECT_DIR$/hLJDecision/src/main/assets/echarts" />
-      <recent name="$PROJECT_DIR$/hLJDecision/src/main/res/layout" />
-    </key>
     <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
       <recent name="com.hlj.adapter" />
       <recent name="com.hlj.activity" />
       <recent name="com.hlj.fragment" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/src/main/res/raw" />
+      <recent name="$PROJECT_DIR$/app/src/main/res/drawable" />
+      <recent name="$PROJECT_DIR$/app/src/main/res/layout" />
+      <recent name="$PROJECT_DIR$/app/src/main/java/com/hlj" />
+      <recent name="$PROJECT_DIR$/app/libs" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.hlj.view.wheelview" />
@@ -304,12 +305,12 @@
       <recent name="com.hlj.interfaces" />
       <recent name="com.hlj.view" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/app/src/main/res/drawable" />
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/src/main/res/layout" />
-      <recent name="$PROJECT_DIR$/app/src/main/java/com/hlj" />
-      <recent name="$PROJECT_DIR$/app/libs" />
-      <recent name="$PROJECT_DIR$/app/src/main/res/values" />
+      <recent name="$PROJECT_DIR$/hLJDecision/src/main/res/drawable" />
+      <recent name="$PROJECT_DIR$/hLJDecision/src/main/assets" />
+      <recent name="$PROJECT_DIR$/hLJDecision/src/main/assets/echarts" />
+      <recent name="$PROJECT_DIR$/hLJDecision/src/main/res/layout" />
     </key>
   </component>
   <component name="RunManager" selected="Android App.app">
@@ -1086,10 +1087,11 @@
     </state>
     <state x="1888" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/49.23.1391.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1629856207335" />
     <state x="1888" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1632490092191" />
-    <state x="483" y="215" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1633778770609">
-      <screen x="50" y="23" width="1390" height="877" />
+    <state x="2038" y="254" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1636510016849">
+      <screen x="1440" y="23" width="1920" height="1057" />
     </state>
     <state x="482" y="215" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/49.23.1391.877@49.23.1391.877" timestamp="1629810241212" />
+    <state x="2038" y="254" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1636510016849" />
     <state x="483" y="215" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/50.23.1390.877/1440.23.1920.1057@50.23.1390.877" timestamp="1631175436064" />
     <state x="483" y="215" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/50.23.1390.877@50.23.1390.877" timestamp="1633778770609" />
     <state width="416" height="387" key="DebuggerActiveHint" timestamp="1632823727650">
@@ -1101,64 +1103,64 @@
       <screen x="1440" y="23" width="1920" height="1057" />
     </state>
     <state x="1540" y="123" width="1720" height="857" key="DiffContextDialog/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1632381164438" />
-    <state width="1878" height="331" key="GridCell.Tab.0.bottom" timestamp="1636094976802">
+    <state width="1878" height="410" key="GridCell.Tab.0.bottom" timestamp="1636510500398">
       <screen x="1440" y="23" width="1920" height="1057" />
     </state>
     <state width="1878" height="341" key="GridCell.Tab.0.bottom/46.23.1394.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1628128056366" />
     <state width="1348" height="271" key="GridCell.Tab.0.bottom/47.23.1393.877@47.23.1393.877" timestamp="1628085475908" />
     <state width="1878" height="340" key="GridCell.Tab.0.bottom/49.23.1391.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1629871883073" />
     <state width="1349" height="270" key="GridCell.Tab.0.bottom/49.23.1391.877@49.23.1391.877" timestamp="1629805135073" />
-    <state width="1878" height="331" key="GridCell.Tab.0.bottom/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1636094976802" />
+    <state width="1878" height="410" key="GridCell.Tab.0.bottom/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1636510500398" />
     <state width="1348" height="319" key="GridCell.Tab.0.bottom/50.23.1390.877/1440.23.1920.1057@50.23.1390.877" timestamp="1635315029830" />
     <state width="1348" height="428" key="GridCell.Tab.0.bottom/50.23.1390.877@50.23.1390.877" timestamp="1633844266975" />
-    <state width="1878" height="331" key="GridCell.Tab.0.center" timestamp="1636094976802">
+    <state width="1878" height="410" key="GridCell.Tab.0.center" timestamp="1636510500396">
       <screen x="1440" y="23" width="1920" height="1057" />
     </state>
     <state width="1878" height="341" key="GridCell.Tab.0.center/46.23.1394.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1628128056365" />
     <state width="1348" height="271" key="GridCell.Tab.0.center/47.23.1393.877@47.23.1393.877" timestamp="1628085475906" />
     <state width="1878" height="340" key="GridCell.Tab.0.center/49.23.1391.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1629871883073" />
     <state width="1349" height="270" key="GridCell.Tab.0.center/49.23.1391.877@49.23.1391.877" timestamp="1629805135072" />
-    <state width="1878" height="331" key="GridCell.Tab.0.center/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1636094976802" />
+    <state width="1878" height="410" key="GridCell.Tab.0.center/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1636510500396" />
     <state width="1348" height="319" key="GridCell.Tab.0.center/50.23.1390.877/1440.23.1920.1057@50.23.1390.877" timestamp="1635315029829" />
     <state width="1348" height="428" key="GridCell.Tab.0.center/50.23.1390.877@50.23.1390.877" timestamp="1633844266974" />
-    <state width="1878" height="331" key="GridCell.Tab.0.left" timestamp="1636094976801">
+    <state width="1878" height="410" key="GridCell.Tab.0.left" timestamp="1636510500396">
       <screen x="1440" y="23" width="1920" height="1057" />
     </state>
     <state width="1878" height="341" key="GridCell.Tab.0.left/46.23.1394.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1628128056365" />
     <state width="1348" height="271" key="GridCell.Tab.0.left/47.23.1393.877@47.23.1393.877" timestamp="1628085475906" />
     <state width="1878" height="340" key="GridCell.Tab.0.left/49.23.1391.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1629871883072" />
     <state width="1349" height="270" key="GridCell.Tab.0.left/49.23.1391.877@49.23.1391.877" timestamp="1629805135070" />
-    <state width="1878" height="331" key="GridCell.Tab.0.left/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1636094976801" />
+    <state width="1878" height="410" key="GridCell.Tab.0.left/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1636510500396" />
     <state width="1348" height="319" key="GridCell.Tab.0.left/50.23.1390.877/1440.23.1920.1057@50.23.1390.877" timestamp="1635315029828" />
     <state width="1348" height="428" key="GridCell.Tab.0.left/50.23.1390.877@50.23.1390.877" timestamp="1633844266974" />
-    <state width="1878" height="331" key="GridCell.Tab.0.right" timestamp="1636094976802">
+    <state width="1878" height="410" key="GridCell.Tab.0.right" timestamp="1636510500397">
       <screen x="1440" y="23" width="1920" height="1057" />
     </state>
     <state width="1878" height="341" key="GridCell.Tab.0.right/46.23.1394.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1628128056365" />
     <state width="1348" height="271" key="GridCell.Tab.0.right/47.23.1393.877@47.23.1393.877" timestamp="1628085475906" />
     <state width="1878" height="340" key="GridCell.Tab.0.right/49.23.1391.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1629871883073" />
     <state width="1349" height="270" key="GridCell.Tab.0.right/49.23.1391.877@49.23.1391.877" timestamp="1629805135072" />
-    <state width="1878" height="331" key="GridCell.Tab.0.right/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1636094976802" />
+    <state width="1878" height="410" key="GridCell.Tab.0.right/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1636510500397" />
     <state width="1348" height="319" key="GridCell.Tab.0.right/50.23.1390.877/1440.23.1920.1057@50.23.1390.877" timestamp="1635315029829" />
     <state width="1348" height="428" key="GridCell.Tab.0.right/50.23.1390.877@50.23.1390.877" timestamp="1633844266975" />
-    <state x="151" y="123" width="1190" height="678" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1633838138361">
-      <screen x="50" y="23" width="1390" height="877" />
+    <state x="1579" y="144" width="1643" height="816" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1636505497820">
+      <screen x="1440" y="23" width="1920" height="1057" />
     </state>
     <state x="1579" y="144" width="1643" height="816" key="com.intellij.history.integration.ui.views.FileHistoryDialog/49.23.1391.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1629861800478" />
     <state x="150" y="123" width="1190" height="677" key="com.intellij.history.integration.ui.views.FileHistoryDialog/49.23.1391.877@49.23.1391.877" timestamp="1629814147852" />
-    <state x="1579" y="144" width="1643" height="816" key="com.intellij.history.integration.ui.views.FileHistoryDialog/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1632827058522" />
+    <state x="1579" y="144" width="1643" height="816" key="com.intellij.history.integration.ui.views.FileHistoryDialog/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1636505497820" />
     <state x="151" y="123" width="1190" height="678" key="com.intellij.history.integration.ui.views.FileHistoryDialog/50.23.1390.877/1440.23.1920.1057@50.23.1390.877" timestamp="1631172643908" />
     <state x="151" y="123" width="1190" height="678" key="com.intellij.history.integration.ui.views.FileHistoryDialog/50.23.1390.877@50.23.1390.877" timestamp="1633838138361" />
     <state x="337" y="79" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1631191114262">
       <screen x="50" y="23" width="1390" height="877" />
     </state>
     <state x="337" y="79" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/50.23.1390.877@50.23.1390.877" timestamp="1631191114262" />
-    <state x="2053" y="284" width="835" height="591" key="find.popup" timestamp="1636095424740">
+    <state x="2053" y="284" width="835" height="591" key="find.popup" timestamp="1636512877393">
       <screen x="1440" y="23" width="1920" height="1057" />
     </state>
     <state x="1982" y="256" width="836" height="625" key="find.popup/49.23.1391.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1633765210819" />
     <state x="442" y="216" width="605" height="518" key="find.popup/49.23.1391.877@49.23.1391.877" timestamp="1629813552483" />
-    <state x="2053" y="284" width="835" height="591" key="find.popup/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1636095424740" />
+    <state x="2053" y="284" width="835" height="591" key="find.popup/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1636512877393" />
     <state x="443" y="216" width="605" height="551" key="find.popup/50.23.1390.877/1440.23.1920.1057@50.23.1390.877" timestamp="1635409340738" />
     <state x="443" y="216" width="604" height="518" key="find.popup/50.23.1390.877@50.23.1390.877" timestamp="1633868993485" />
     <state x="613" y="375" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1631279684316">
@@ -1180,6 +1182,16 @@
           <url>file://$PROJECT_DIR$/app/src/main/java/com/hlj/view/ExpandableTextView.java</url>
           <line>165</line>
           <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/hlj/manager/XiangJiManager.java</url>
+          <line>79</line>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/hlj/fragment/FactQueryAreaFragment.kt</url>
+          <line>771</line>
+          <option name="timeStamp" value="21" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

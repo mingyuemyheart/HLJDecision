@@ -46,6 +46,7 @@ class FactCheckFragment : Fragment(), OnClickListener {
     private var b3 = false //false为将序，true为升序
     private var checkAdapter: FactDetailAdapter? = null
     private val checkList: MutableList<FactDto> = ArrayList()
+    private val dataList: MutableList<FactDto> = ArrayList()
     private val sdf3 = SimpleDateFormat("yyyyMMddHHmmss", Locale.CHINA)
     private var startTimeCheck: String? = null
     private var endTimeCheck: String? = null
@@ -81,6 +82,55 @@ class FactCheckFragment : Fragment(), OnClickListener {
         ll1!!.setOnClickListener(this)
         ll2.setOnClickListener(this)
         ll3.setOnClickListener(this)
+
+        cb1.setOnCheckedChangeListener { buttonView, isChecked ->
+            checkList.clear()
+            if (isChecked && cb2.isChecked) {
+                checkList.addAll(dataList)
+            } else if (isChecked && !cb2.isChecked) {
+                for (i in 0 until dataList.size) {
+                    val dto = dataList[i]
+                    if (dto.stationCode.startsWith("5")) {//国家站
+                        checkList.add(dto)
+                    }
+                }
+            } else if (!isChecked && cb2.isChecked) {
+                for (i in 0 until dataList.size) {
+                    val dto = dataList[i]
+                    if (dto.stationCode.startsWith("H")) {//骨干站
+                        checkList.add(dto)
+                    }
+                }
+            }
+            if (checkAdapter != null) {
+                checkAdapter!!.notifyDataSetChanged()
+            }
+        }
+
+        cb2.setOnCheckedChangeListener { buttonView, isChecked ->
+            checkList.clear()
+            if (cb1.isChecked && isChecked) {
+                checkList.addAll(dataList)
+            } else if (cb1.isChecked && !isChecked) {
+                for (i in 0 until dataList.size) {
+                    val dto = dataList[i]
+                    if (dto.stationCode.startsWith("5")) {//国家站
+                        checkList.add(dto)
+                    }
+                }
+            } else if (!cb1.isChecked && isChecked) {
+                for (i in 0 until dataList.size) {
+                    val dto = dataList[i]
+                    if (dto.stationCode.startsWith("H")) {//骨干站
+                        checkList.add(dto)
+                    }
+                }
+            }
+            if (checkAdapter != null) {
+                checkAdapter!!.notifyDataSetChanged()
+            }
+        }
+
         okHttpCheck("http://decision-171.tianqi.cn/api/heilj/dates/getcitid?city=&start=&end=&cid=$childId")
     }
 
@@ -181,6 +231,7 @@ class FactCheckFragment : Fragment(), OnClickListener {
                                 }
                                 if (!obj.isNull("list")) {
                                     checkList.clear()
+                                    dataList.clear()
                                     val array = obj.getJSONArray("list")
                                     for (i in 0 until array.length()) {
                                         val itemObj = array.getJSONObject(i)
@@ -199,9 +250,10 @@ class FactCheckFragment : Fragment(), OnClickListener {
                                         }
                                         if (!TextUtils.isEmpty(dto.area)) {
                                             checkList.add(dto)
+                                            dataList.add(dto)
                                         }
                                     }
-                                    if (checkList.size > 0 && checkAdapter != null) {
+                                    if (checkAdapter != null) {
                                         checkAdapter!!.notifyDataSetChanged()
                                     }
                                 }

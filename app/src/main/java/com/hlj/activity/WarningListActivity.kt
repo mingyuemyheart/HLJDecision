@@ -1,6 +1,8 @@
 package com.hlj.activity
 
 import android.content.Intent
+import android.database.Cursor
+import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextUtils
@@ -11,6 +13,7 @@ import android.widget.AdapterView.OnItemClickListener
 import com.hlj.adapter.WarningAdapter
 import com.hlj.adapter.WarningListScreenAdapter
 import com.hlj.dto.WarningDto
+import com.hlj.manager.DBManager
 import com.hlj.utils.CommonUtil
 import kotlinx.android.synthetic.main.activity_warning_list.*
 import kotlinx.android.synthetic.main.layout_title.*
@@ -110,28 +113,39 @@ class WarningListActivity : BaseActivity(), OnClickListener {
      */
     private fun initGridView() {
         gridList.clear()
-        val array3 = resources.getStringArray(R.array.warningDis)
-        for (i in array3.indices) {
+        val dbManager = DBManager(this)
+        dbManager.openDateBase()
+        dbManager.closeDatabase()
+        val database = SQLiteDatabase.openOrCreateDatabase(DBManager.DB_PATH + "/" + DBManager.DB_NAME, null)
+        var cursor: Cursor? = null
+        val keyword = "黑龙江"
+        cursor = database.rawQuery("select * from " + DBManager.TABLE_NAME3 + " where pro like " + "\"%" + keyword + "%\"", null)
+        for (i in 0 until cursor.count) {
+            cursor.moveToPosition(i)
+            val dto = WarningDto()
+            dto.sectionName = cursor.getString(cursor.getColumnIndex("city"))
+            dto.areaName = cursor.getString(cursor.getColumnIndex("dis"))
+            dto.cityId = cursor.getString(cursor.getColumnIndex("cid"))
+            dto.warningId = cursor.getString(cursor.getColumnIndex("wid"))
+            dto.lat = cursor.getDouble(cursor.getColumnIndex("lat"))
+            dto.lng = cursor.getDouble(cursor.getColumnIndex("lng"))
+
             val map = HashMap<String, Int>()
-            val value = array3[i].split(",").toTypedArray()
             var count = 0
             for (j in warningList.indices) {
                 val dto2 = warningList[j]
                 val array = dto2.html.split("-").toTypedArray()
                 val warningId = array[0]
-                if (TextUtils.equals(warningId, value[3])) {
+                if (TextUtils.equals(warningId, dto.warningId)) {
                     map[warningId] = count++
                 }
             }
-            val dto = WarningDto()
-            dto.sectionName = value[0]
-            dto.areaName = value[1]
-            dto.warningId = value[3]
             dto.count = count
             if (i == 0 || count != 0) {
                 gridList.add(dto)
             }
         }
+
         for (i in gridList.indices) {
             val sectionDto = gridList[i]
             if (!sectionMap.containsKey(sectionDto.sectionName)) {

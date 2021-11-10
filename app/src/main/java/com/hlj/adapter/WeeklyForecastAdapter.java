@@ -23,8 +23,8 @@ import com.hlj.utils.CommonUtil;
 
 public class WeeklyForecastAdapter extends BaseAdapter{
 	
-	private Context mContext = null;
-	private LayoutInflater mInflater = null;
+	private Context mContext;
+	private LayoutInflater mInflater;
 	private List<WeatherDto> mArrayList = new ArrayList<>();
 	private SimpleDateFormat sdf1 = new SimpleDateFormat("yyyyMMdd");
 	private SimpleDateFormat sdf2 = new SimpleDateFormat("MM/dd");

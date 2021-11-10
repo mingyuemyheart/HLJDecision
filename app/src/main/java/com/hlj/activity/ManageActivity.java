@@ -43,7 +43,7 @@ public class ManageActivity extends BaseActivity implements View.OnClickListener
         LinearLayout llBack = findViewById(R.id.llBack);
         llBack.setOnClickListener(this);
         TextView tvTitle = findViewById(R.id.tvTitle);
-        tvTitle.setText("模块管理");
+        tvTitle.setText("服务产品定制");
         TextView tvControl = findViewById(R.id.tvControl);
         tvControl.setOnClickListener(this);
         tvControl.setText("保存");

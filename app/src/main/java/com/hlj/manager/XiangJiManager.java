@@ -48,6 +48,7 @@ public class XiangJiManager {
 		buffer.append("&");
 		buffer.append("key=").append(key.substring(0, key.length() - 3));
 		String result = buffer.toString();
+		Log.e("getXJSecretUrl", result);
 		return result;
 	}
 	
@@ -75,6 +76,7 @@ public class XiangJiManager {
 		buffer.append("&");
 		buffer.append("key=").append(key.substring(0, key.length() - 3));
 		String result = buffer.toString();
+		Log.e("getXJSecretUrl2", result);
 		return result;
 	}
 	

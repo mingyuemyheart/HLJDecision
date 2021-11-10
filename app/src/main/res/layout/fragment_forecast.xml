@@ -323,15 +323,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:text="新冠肺炎疫\n情实时动态"
                 android:background="@drawable/bg_warning2"
                 android:lineSpacingExtra="1dp"
-                android:paddingStart="30dp"
+                android:paddingStart="20dp"
                 android:paddingTop="6dp"
                 android:paddingEnd="10dp"
                 android:paddingBottom="6dp"
                 android:textColor="@color/white"
                 android:textSize="@dimen/level_5"
-                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="@+id/ivClimate"
                 app:layout_constraintEnd_toEndOf="parent" />
 

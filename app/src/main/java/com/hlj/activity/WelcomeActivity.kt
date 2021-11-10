@@ -183,7 +183,9 @@ class WelcomeActivity : BaseActivity(), AMapLocationListener {
 		val body: RequestBody = builder.build()
 		Thread(Runnable {
 			OkHttpUtil.enqueue(Request.Builder().post(body).url(url).build(), object : Callback {
-				override fun onFailure(call: Call, e: IOException) {}
+				override fun onFailure(call: Call, e: IOException) {
+					Log.e("onFailure", "onFailure")
+				}
 
 				@Throws(IOException::class)
 				override fun onResponse(call: Call, response: Response) {

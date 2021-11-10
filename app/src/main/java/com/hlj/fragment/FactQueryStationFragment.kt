@@ -784,7 +784,15 @@ class FactQueryStationFragment : BaseFragment(), OnClickListener {
         val monthStr = if (month.currentItem + 1 < 10) "0" + (month.currentItem + 1) else (month.currentItem + 1).toString()
         val dayStr = if (day.currentItem + 1 < 10) "0" + (day.currentItem + 1) else (day.currentItem + 1).toString()
         val hourStr = if (hour.currentItem < 10) "0" + (hour.currentItem) else (hour.currentItem).toString()
-        val minuteStr = if (minute.currentItem < 10) "0" + (minute.currentItem) else (minute.currentItem).toString()
+        var minuteStr = if (minute.currentItem < 10) "0" + (minute.currentItem) else (minute.currentItem).toString()
+        when(minute.currentItem) {
+            0 -> minuteStr = "00"
+            1 -> minuteStr = "10"
+            2 -> minuteStr = "20"
+            3 -> minuteStr = "30"
+            4 -> minuteStr = "40"
+            5 -> minuteStr = "50"
+        }
         val secondStr = if (second.currentItem < 10) "0" + (second.currentItem) else (second.currentItem).toString()
         if (isMinute) {
             if (isStart) {
