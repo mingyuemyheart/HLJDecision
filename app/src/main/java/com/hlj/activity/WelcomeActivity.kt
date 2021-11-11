@@ -147,6 +147,7 @@ class WelcomeActivity : BaseActivity(), AMapLocationListener {
 			OkHttpUtil.enqueue(Request.Builder().post(body).url(url).build(), object : Callback {
 				override fun onFailure(call: Call, e: IOException) {
 					Log.e("onFailure", e.message)
+					okHttpTokenLogin()
 				}
 
 				@Throws(IOException::class)

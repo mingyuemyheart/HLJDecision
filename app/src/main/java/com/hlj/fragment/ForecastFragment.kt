@@ -171,17 +171,6 @@ class ForecastFragment : Fragment(), OnClickListener, AMapLocationListener, Caiy
             ivFifteen.setImageBitmap(CommonUtil.grayScaleImage(BitmapFactory.decodeResource(resources, R.drawable.icon_fifteen)))
         }
 
-        if (timer == null) {
-            timer = Timer()
-            timer!!.schedule(object : TimerTask() {
-                override fun run() {
-                    activity!!.runOnUiThread {
-                        refresh()
-                    }
-                }
-            }, 0, 1000*60*MyApplication.refreshTime)
-        }
-
         if (mTts != null && mTts!!.isSpeaking) {
             mTts!!.stopSpeaking()
         }
@@ -231,7 +220,16 @@ class ForecastFragment : Fragment(), OnClickListener, AMapLocationListener, Caiy
             tvPosition!!.text = amapLocation.district+amapLocation.street + amapLocation.streetNum
             lat = amapLocation.latitude
             lng = amapLocation.longitude
-            completeLocation()
+            if (timer == null) {
+                timer = Timer()
+                timer!!.schedule(object : TimerTask() {
+                    override fun run() {
+                        activity!!.runOnUiThread {
+                            refresh()
+                        }
+                    }
+                }, 0, 1000*60*MyApplication.refreshTime)
+            }
         }
     }
 
