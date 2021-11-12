@@ -22,10 +22,9 @@ import com.umeng.message.IUmengCallback;
 import com.umeng.message.IUmengRegisterCallback;
 import com.umeng.message.PushAgent;
 import com.umeng.message.UmengNotificationClickHandler;
-import com.umeng.message.common.inter.ITagManager.Result;
+import com.umeng.message.common.inter.ITagManager;
 import com.umeng.message.entity.UMessage;
 import com.umeng.message.tag.TagManager;
-import com.umeng.message.tag.TagManager.TCallBack;
 import com.umeng.socialize.PlatformConfig;
 
 import org.json.JSONException;
@@ -33,6 +32,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -41,7 +41,6 @@ public class MyApplication extends Application{
 	public static String appKey = "5755277767e58e5ca4000e07", msgSecret = "3464bbdf388960ddcea9c5cebf46cd66";//旧
 //	public static String appKey = "5efe98800cafb240580000e2", msgSecret = "a03a519f1e2867391368d006baefd69f";//新
     private static PushAgent mPushAgent = null;
-    private static TagManager tagManager = null;
 	public static String DEVICETOKEN = "";
 
 	private static String appTheme = "0";
@@ -176,16 +175,28 @@ public class MyApplication extends Application{
 	 * @param tags
 	 */
 	public static void resetTags(final String tags) {
-		if (tagManager != null) {
-			tagManager.addTags(new TCallBack() {
-				@Override
-				public void onMessage(boolean arg0, Result arg1) {
-					Log.d("", "");
-				}
-			}, tags);
-		}
+		Log.e("tags", tags);
+		mPushAgent.getTagManager().addTags(new TagManager.TCallBack() {
+			@Override
+			public void onMessage(boolean b, ITagManager.Result result) {
+				mPushAgent.getTagManager().getTags(new TagManager.TagListCallBack() {
+					@Override
+					public void onMessage(boolean b, List<String> list) {
+						String tags = "";
+						for (int i = 0; i < list.size(); i++) {
+							if (i == list.size()-1) {
+								tags += list.get(i);
+							} else {
+								tags += list.get(i)+",";
+							}
+						}
+						Log.e("Tags", tags);
+					}
+				});
+			}
+		}, tags);
 	}
-	
+
 	/**
 	 * 打开推送
 	 */

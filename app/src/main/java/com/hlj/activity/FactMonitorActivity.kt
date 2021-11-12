@@ -54,7 +54,7 @@ import kotlin.collections.ArrayList
 /**
  * 自动站实况监测
  */
-class FactMonitorActivity : BaseFragmentActivity(), View.OnClickListener, AMap.OnCameraChangeListener {
+class FactMonitorActivity : BaseFragmentActivity(), View.OnClickListener, AMap.OnCameraChangeListener, AMap.OnMapScreenShotListener {
 
     private var aMap: AMap? = null //高德地图
     private var zoom = 5.5f
@@ -115,6 +115,9 @@ class FactMonitorActivity : BaseFragmentActivity(), View.OnClickListener, AMap.O
     }
 
     private fun initWidget() {
+        ivControl.setImageResource(R.drawable.icon_share)
+        ivControl.setOnClickListener(this)
+        ivControl.visibility = View.VISIBLE
         llBack.setOnClickListener(this)
         tvDetail.setOnClickListener(this)
         tvHistory.setOnClickListener(this)
@@ -896,9 +899,38 @@ class FactMonitorActivity : BaseFragmentActivity(), View.OnClickListener, AMap.O
         view.tvNegative.setOnClickListener { dialog.dismiss() }
     }
 
+    override fun onMapScreenShot(bitmap1: Bitmap?) { //bitmap1为地图截屏
+        val bitmap2 = CommonUtil.captureView(reTitle)
+        val bitmap3 = CommonUtil.captureView(llContainer)
+        val bitmap4 = CommonUtil.mergeBitmap(this, bitmap2, bitmap3, false)
+        CommonUtil.clearBitmap(bitmap2)
+        CommonUtil.clearBitmap(bitmap3)
+        val bitmap5 = CommonUtil.captureView(llContainer1)
+        val bitmap6 = CommonUtil.mergeBitmap(this, bitmap4, bitmap5, false)
+        CommonUtil.clearBitmap(bitmap4)
+        CommonUtil.clearBitmap(bitmap5)
+        val bitmap7 = CommonUtil.mergeBitmap(this, bitmap6, bitmap1, false)
+        CommonUtil.clearBitmap(bitmap6)
+        CommonUtil.clearBitmap(bitmap1)
+        val bitmap8 = CommonUtil.captureView(clMain)
+        val bitmap9 = CommonUtil.mergeBitmap(this, bitmap7, bitmap8, true)
+        CommonUtil.clearBitmap(bitmap7)
+        CommonUtil.clearBitmap(bitmap8)
+        val bitmap10 = BitmapFactory.decodeResource(resources, R.drawable.legend_share_portrait)
+        val bitmap = CommonUtil.mergeBitmap(this, bitmap9, bitmap10, false)
+        CommonUtil.clearBitmap(bitmap9)
+        CommonUtil.clearBitmap(bitmap10)
+        CommonUtil.share(this, bitmap)
+    }
+
+    override fun onMapScreenShot(arg0: Bitmap?, arg1: Int) {}
+
     override fun onClick(v: View) {
         when (v.id) {
             R.id.llBack -> finish()
+            R.id.ivControl -> {
+                aMap!!.getMapScreenShot(this)
+            }
             R.id.tvDetail -> {
                 val intent = Intent(this, FactDetailActivity::class.java)
                 intent.putExtra("title", "详情数据")

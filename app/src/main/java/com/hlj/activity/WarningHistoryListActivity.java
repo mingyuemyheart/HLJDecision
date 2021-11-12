@@ -134,9 +134,7 @@ public class WarningHistoryListActivity extends BaseActivity implements View.OnC
                 OkHttpUtil.enqueue(new Request.Builder().url(url).build(), new Callback() {
                     @Override
                     public void onFailure(Call call, IOException e) {
-
                     }
-
                     @Override
                     public void onResponse(Call call, Response response) throws IOException {
                         if (!response.isSuccessful()) {
@@ -180,7 +178,6 @@ public class WarningHistoryListActivity extends BaseActivity implements View.OnC
                                                 }
 
                                                 List<WarningDto> list = new ArrayList<>();
-                                                list.clear();
                                                 WarningDto d = new WarningDto();
                                                 d.time = dto.time;
                                                 d.time2 = dto.time2;
