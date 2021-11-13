@@ -47,7 +47,7 @@ class WelcomeActivity : BaseActivity(), AMapLocationListener {
 	 * 获取背景
 	 */
 	private fun okHttpTheme() {
-		var delayMillis : Long = 0
+		var delayMillis : Long = 1
 		val url = "https://decision-admin.tianqi.cn/Home/work2019/decision_theme_data?appid=${CONST.APPID}"
 		Thread {
 			OkHttpUtil.enqueue(Request.Builder().url(url).build(), object : Callback {
@@ -131,7 +131,7 @@ class WelcomeActivity : BaseActivity(), AMapLocationListener {
 	private fun okHttpTokenLogin() {
 		val url = "http://decision-manager.tianqi.cn/Home/work2019/hlgRefreshLogin"
 		val builder = FormBody.Builder()
-		builder.add("mobile", MyApplication.USERNAME)
+		builder.add("mobile", MyApplication.MOBILE)
 		builder.add("token", MyApplication.TOKEN)
 		builder.add("appid", CONST.APPID)
 		builder.add("device_id", "")
@@ -147,7 +147,6 @@ class WelcomeActivity : BaseActivity(), AMapLocationListener {
 			OkHttpUtil.enqueue(Request.Builder().post(body).url(url).build(), object : Callback {
 				override fun onFailure(call: Call, e: IOException) {
 					Log.e("onFailure", e.message)
-					okHttpTokenLogin()
 				}
 
 				@Throws(IOException::class)
