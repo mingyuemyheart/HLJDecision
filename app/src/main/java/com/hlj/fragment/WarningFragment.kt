@@ -9,7 +9,6 @@ import android.content.IntentFilter
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.os.Parcelable
-import android.support.v4.app.Fragment
 import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.TextUtils
@@ -56,7 +55,7 @@ import java.util.*
 /**
  * 天气预警
  */
-class WarningFragment : Fragment(), OnClickListener, OnMapClickListener, OnMarkerClickListener, InfoWindowAdapter {
+class WarningFragment : BaseFragment(), OnClickListener, OnMapClickListener, OnMarkerClickListener, InfoWindowAdapter {
 
     private var mReceiver: MyBroadCastReceiver? = null
     private var aMap: AMap? = null
@@ -100,9 +99,6 @@ class WarningFragment : Fragment(), OnClickListener, OnMapClickListener, OnMarke
     private fun init() {
         initWidget()
         initListView()
-        val columnId = arguments!!.getString(CONST.COLUMN_ID)
-        val title = arguments!!.getString(CONST.ACTIVITY_NAME)
-        CommonUtil.submitClickCount(columnId, title)
     }
 
     /**
@@ -113,7 +109,7 @@ class WarningFragment : Fragment(), OnClickListener, OnMapClickListener, OnMarke
         if (aMap == null) {
             aMap = mapView.map
         }
-        aMap!!.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(35.926628, 105.178100), 6.0f))
+        aMap!!.moveCamera(CameraUpdateFactory.newLatLngZoom(CONST.guizhouLatLng, 6.0f))
         aMap!!.uiSettings.isMyLocationButtonEnabled = false // 设置默认定位按钮是否显示
         aMap!!.uiSettings.isZoomControlsEnabled = false
         aMap!!.uiSettings.isRotateGesturesEnabled = false
@@ -121,7 +117,9 @@ class WarningFragment : Fragment(), OnClickListener, OnMapClickListener, OnMarke
         aMap!!.setOnMarkerClickListener(this)
         aMap!!.setInfoWindowAdapter(this)
         tvMapNumber.text = aMap!!.mapContentApprovalNumber
-        CommonUtil.drawHLJJson(activity, aMap)
+        aMap!!.setOnMapLoadedListener {
+            CommonUtil.drawHLJJson(activity, aMap)
+        }
     }
 
     /**
@@ -148,7 +146,7 @@ class WarningFragment : Fragment(), OnClickListener, OnMapClickListener, OnMarke
     }
 
     private fun refresh() {
-        Thread(Runnable { okHttpWarning() }).start()
+        Thread { okHttpWarning() }.start()
     }
 
     /**
@@ -384,8 +382,7 @@ class WarningFragment : Fragment(), OnClickListener, OnMapClickListener, OnMarke
             }
             ivMarker.setImageBitmap(bitmap)
             optionsTemp.icon(BitmapDescriptorFactory.fromView(mView))
-            var marker: Marker
-            marker = if (TextUtils.equals(dto.color, "01") && blue) {
+            val marker = if (TextUtils.equals(dto.color, "01") && blue) {
                 aMap!!.addMarker(optionsTemp)
             } else if (TextUtils.equals(dto.color, "02") && yellow) {
                 aMap!!.addMarker(optionsTemp)

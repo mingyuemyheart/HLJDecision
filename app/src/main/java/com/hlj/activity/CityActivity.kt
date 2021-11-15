@@ -89,6 +89,24 @@ class CityActivity : BaseActivity(), OnClickListener {
      * 迁移到天气详情界面
      */
     private fun intentWeatherDetail(data: CityDto) {
+        val dbManager = DBManager(this)
+        dbManager.openDateBase()
+        dbManager.closeDatabase()
+        val database = SQLiteDatabase.openOrCreateDatabase(DBManager.DB_PATH + "/" + DBManager.DB_NAME, null)
+        var cursor: Cursor? = null
+        cursor = database.rawQuery("select * from " + DBManager.TABLE_NAME3 + " where cid = " + "\"" + data.cityId + "\"", null)
+        for (i in 0 until cursor.count) {
+            cursor.moveToPosition(i)
+//            dto.provinceName = cursor.getString(cursor.getColumnIndex("pro"))
+//            dto.cityName = cursor.getString(cursor.getColumnIndex("city"))
+//            dto.sectionName = dto.cityName
+//            dto.areaName = cursor.getString(cursor.getColumnIndex("dis"))
+//            dto.cityId = cursor.getString(cursor.getColumnIndex("cid"))
+            data.warningId = cursor.getString(cursor.getColumnIndex("wid"))
+            data.lat = cursor.getDouble(cursor.getColumnIndex("lat"))
+            data.lng = cursor.getDouble(cursor.getColumnIndex("lng"))
+        }
+
         val bundle = Bundle()
         bundle.putParcelable("data", data)
         val intent = Intent()
@@ -111,24 +129,17 @@ class CityActivity : BaseActivity(), OnClickListener {
      */
     private fun initPGridView() {
         pList.clear()
-        val dbManager = DBManager(this)
-        dbManager.openDateBase()
-        dbManager.closeDatabase()
-        val database = SQLiteDatabase.openOrCreateDatabase(DBManager.DB_PATH + "/" + DBManager.DB_NAME, null)
-        var cursor: Cursor? = null
-        val keyword = "黑龙江"
-        cursor = database.rawQuery("select * from " + DBManager.TABLE_NAME3 + " where pro like " + "\"%" + keyword + "%\"", null)
-        for (i in 0 until cursor.count) {
-            cursor.moveToPosition(i)
+
+        val stations = resources.getStringArray(R.array.pro_hotCity)
+        for (i in stations.indices) {
+            val value = stations[i].split(",").toTypedArray()
             val dto = CityDto()
-            dto.provinceName = cursor.getString(cursor.getColumnIndex("pro"))
-            dto.cityName = cursor.getString(cursor.getColumnIndex("city"))
-            dto.sectionName = dto.cityName
-            dto.areaName = cursor.getString(cursor.getColumnIndex("dis"))
-            dto.cityId = cursor.getString(cursor.getColumnIndex("cid"))
-            dto.warningId = cursor.getString(cursor.getColumnIndex("wid"))
-            dto.lat = cursor.getDouble(cursor.getColumnIndex("lat"))
-            dto.lng = cursor.getDouble(cursor.getColumnIndex("lng"))
+//            dto.lng = value[0].toDouble()
+//            dto.lat = value[1].toDouble()
+            dto.cityId = value[2]
+            dto.areaName = value[3]
+            dto.level = value[4]
+            dto.sectionName = value[5]
             pList.add(dto)
         }
 
@@ -155,25 +166,14 @@ class CityActivity : BaseActivity(), OnClickListener {
      */
     private fun getNationHotCity(context: Context?): MutableList<CityDto>? {
         val nList: MutableList<CityDto> = ArrayList()
-        val dbManager = DBManager(this)
-        dbManager.openDateBase()
-        dbManager.closeDatabase()
-        val database = SQLiteDatabase.openOrCreateDatabase(DBManager.DB_PATH + "/" + DBManager.DB_NAME, null)
-        var cursor: Cursor? = null
-        val keyword1 = "0100"
-        val keyword2 = "0101"
-        cursor = database.rawQuery("select * from " + DBManager.TABLE_NAME3 + " where cid like " + "\"%" + keyword1 + "\"" + " or cid like " + "\"%" + keyword2 + "\"", null)
-        for (i in 0 until cursor.count) {
-            cursor.moveToPosition(i)
+        val stations = resources.getStringArray(R.array.nation_hotCity)
+        for (i in stations.indices) {
+            val value = stations[i].split(",").toTypedArray()
             val dto = CityDto()
-            dto.provinceName = cursor.getString(cursor.getColumnIndex("pro"))
-            dto.cityName = cursor.getString(cursor.getColumnIndex("city"))
-            dto.sectionName = dto.cityName
-            dto.areaName = cursor.getString(cursor.getColumnIndex("dis"))
-            dto.cityId = cursor.getString(cursor.getColumnIndex("cid"))
-            dto.warningId = cursor.getString(cursor.getColumnIndex("wid"))
-            dto.lat = cursor.getDouble(cursor.getColumnIndex("lat"))
-            dto.lng = cursor.getDouble(cursor.getColumnIndex("lng"))
+//            dto.lng = value[2].toDouble()
+//            dto.lat = value[3].toDouble()
+            dto.cityId = value[0]
+            dto.areaName = value[1]
             nList.add(dto)
         }
 

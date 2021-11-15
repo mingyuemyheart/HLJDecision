@@ -32,7 +32,7 @@ import java.io.IOException
 /**
  * 天气预报、天气实况、电力气象服务、铁路气象服务
  */
-class WeatherFactFragment : Fragment() {
+class WeatherFactFragment : BaseFragment() {
 
     private var mReceiver: MyBroadCastReceiver? = null
     private var mAdapter: CommonFragmentAdapter? = null

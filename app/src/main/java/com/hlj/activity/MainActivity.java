@@ -247,6 +247,7 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
 
 		viewPager = findViewById(R.id.viewPager);
 		viewPager.setSlipping(false);//设置ViewPager是否可以滑动
+		viewPager.setOffscreenPageLimit(fragments.size());
 		viewPager.setOnPageChangeListener(new MyOnPageChangeListener());
 		viewPager.setAdapter(new BaseViewPagerAdapter(getSupportFragmentManager(), fragments));
 	}
@@ -260,12 +261,12 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
 					TextView tvName = (TextView) llContainer.getChildAt(i);
 					if (i == arg0) {
 						String actionName = fragments.get(arg0).getClass().getName()+tvName.getText().toString();
-//						if (!BROADCAST_ACTION_NAME.contains(actionName)) {
+						if (!BROADCAST_ACTION_NAME.contains(actionName)) {
 							Intent intent = new Intent();
 							intent.setAction(actionName);
 							sendBroadcast(intent);
-//							BROADCAST_ACTION_NAME += actionName;
-//						}
+							BROADCAST_ACTION_NAME += actionName;
+						}
 					}
 				}
 			}

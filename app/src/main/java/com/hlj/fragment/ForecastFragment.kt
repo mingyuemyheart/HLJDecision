@@ -12,7 +12,6 @@ import android.graphics.drawable.AnimationDrawable
 import android.graphics.drawable.Drawable
 import android.media.ThumbnailUtils
 import android.os.*
-import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
 import android.text.TextUtils
 import android.util.Log
@@ -72,11 +71,11 @@ import kotlin.collections.ArrayList
 /**
  * 天气预报
  */
-class ForecastFragment : Fragment(), OnClickListener, AMapLocationListener, CaiyunManager.RadarListener{
+class ForecastFragment : BaseFragment(), OnClickListener, AMapLocationListener, CaiyunManager.RadarListener{
 
     private var isFusion = false
-    private var lat = 0.0
-    private var lng = 0.0
+    private var lat = CONST.centerLat
+    private var lng = CONST.centerLng
     private var cityId = ""
     private var timer: Timer? = null
     private var mAdapter: WeeklyForecastAdapter? = null
@@ -294,6 +293,10 @@ class ForecastFragment : Fragment(), OnClickListener, AMapLocationListener, Caiy
         super.onDestroy()
         mTts!!.stopSpeaking()
         mTts!!.destroy()
+
+        if (mapView != null) {
+            mapView!!.onDestroy()
+        }
 
         if (mRadarManager != null) {
             mRadarManager!!.onDestory()
@@ -1623,6 +1626,26 @@ class ForecastFragment : Fragment(), OnClickListener, AMapLocationListener, Caiy
             } else {
                 tv.setBackgroundColor(0xff9DC7FA.toInt())
             }
+        }
+    }
+
+    /**
+     * 方法必须重写
+     */
+    override fun onResume() {
+        super.onResume()
+        if (mapView != null) {
+            mapView!!.onResume()
+        }
+    }
+
+    /**
+     * 方法必须重写
+     */
+    override fun onPause() {
+        super.onPause()
+        if (mapView != null) {
+            mapView!!.onPause()
         }
     }
 
