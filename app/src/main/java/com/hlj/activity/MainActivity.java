@@ -99,8 +99,8 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
 	 * 初始化控件
 	 */
 	private void initWidget() {
-		AutoUpdateUtil.checkUpdate(MainActivity.this, mContext, "41", getString(R.string.app_name), true);//黑龙江气象
-//		AutoUpdateUtil.checkUpdate(MainActivity.this, mContext, "53", getString(R.string.app_name), true);//决策气象服务
+//		AutoUpdateUtil.checkUpdate(MainActivity.this, mContext, "41", getString(R.string.app_name), true);//黑龙江气象
+		AutoUpdateUtil.checkUpdate(MainActivity.this, mContext, "53", getString(R.string.app_name), true);//决策气象服务
 
 		ConstraintLayout clMain = findViewById(R.id.clMain);
 		ImageView ivSetting = findViewById(R.id.ivSetting);
