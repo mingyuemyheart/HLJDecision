@@ -1,5 +1,7 @@
 package com.hlj.activity
 
+import android.app.Dialog
+import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -8,6 +10,7 @@ import android.provider.Settings
 import android.text.TextUtils
 import android.util.Log
 import android.view.KeyEvent
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
 import com.amap.api.location.AMapLocation
@@ -21,6 +24,7 @@ import com.hlj.utils.CommonUtil
 import com.hlj.utils.OkHttpUtil
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_welcome.*
+import kotlinx.android.synthetic.main.dialog_prompt.view.*
 import okhttp3.*
 import org.json.JSONArray
 import org.json.JSONException
@@ -33,6 +37,7 @@ class WelcomeActivity : BaseActivity(), AMapLocationListener {
 	private var lat = 0.0
 	private var lng = 0.0
 	private var areaId = ""
+	private var delayMillis : Long = 1
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -47,7 +52,6 @@ class WelcomeActivity : BaseActivity(), AMapLocationListener {
 	 * 获取背景
 	 */
 	private fun okHttpTheme() {
-		var delayMillis : Long = 1
 		val url = "https://decision-admin.tianqi.cn/Home/work2019/decision_theme_data?appid=${CONST.APPID}"
 		Thread {
 			OkHttpUtil.enqueue(Request.Builder().url(url).build(), object : Callback {
@@ -84,6 +88,14 @@ class WelcomeActivity : BaseActivity(), AMapLocationListener {
 			})
 		}.start()
 
+		if (!policyFlag()) {
+			promptDialog()
+		}else {
+			init()
+		}
+	}
+
+	private fun init() {
 		Handler().postDelayed({
 			imageView.visibility = View.VISIBLE
 
@@ -99,6 +111,53 @@ class WelcomeActivity : BaseActivity(), AMapLocationListener {
 				}
 			}, delayMillis*1000)
 		}, 1000)
+	}
+
+	/**
+	 * 温馨提示对话框
+	 */
+	private fun promptDialog() {
+		val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+		val view = inflater.inflate(R.layout.dialog_prompt, null)
+
+		val dialog = Dialog(this, R.style.CustomProgressDialog)
+		dialog.setContentView(view)
+		dialog.setCanceledOnTouchOutside(false)
+		dialog.show()
+
+		view.tvProtocal.setOnClickListener {
+			val intent = Intent(this, WebviewActivity::class.java)
+			intent.putExtra(CONST.ACTIVITY_NAME, "用户协议")
+			intent.putExtra(CONST.WEB_URL, CONST.yhxy)
+			startActivity(intent)
+		}
+		view.tvPolicy.setOnClickListener {
+			val intent = Intent(this, WebviewActivity::class.java)
+			intent.putExtra(CONST.ACTIVITY_NAME, "隐私政策")
+			intent.putExtra(CONST.WEB_URL, CONST.yszc)
+			startActivity(intent)
+		}
+		view.tvNegtive.setOnClickListener {
+			dialog.dismiss()
+			finish()
+		}
+		view.tvPositive.setOnClickListener {
+			dialog.dismiss()
+			savePolicyFlag()
+			init()
+		}
+	}
+
+	private fun savePolicyFlag() {
+		val sp = getSharedPreferences("policy", Context.MODE_PRIVATE)
+		val editor = sp.edit()
+		editor.putBoolean("isShow", true)
+		editor.apply()
+	}
+
+	private fun policyFlag() : Boolean {
+		val sp = getSharedPreferences("policy", Context.MODE_PRIVATE)
+		return sp.getBoolean("isShow", false)
 	}
 
 	/**
@@ -143,12 +202,11 @@ class WelcomeActivity : BaseActivity(), AMapLocationListener {
 		builder.add("lat", lat.toString())
 		builder.add("lon", lng.toString())
 		val body: RequestBody = builder.build()
-		Thread(Runnable {
+		Thread {
 			OkHttpUtil.enqueue(Request.Builder().post(body).url(url).build(), object : Callback {
 				override fun onFailure(call: Call, e: IOException) {
 					Log.e("onFailure", e.message)
 				}
-
 				@Throws(IOException::class)
 				override fun onResponse(call: Call, response: Response) {
 					if (!response.isSuccessful) {
@@ -158,7 +216,7 @@ class WelcomeActivity : BaseActivity(), AMapLocationListener {
 					parseData(result)
 				}
 			})
-		}).start()
+		}.start()
 	}
 
 	/**
@@ -172,21 +230,16 @@ class WelcomeActivity : BaseActivity(), AMapLocationListener {
 		builder.add("username", userName)
 		builder.add("password", pwd)
 		builder.add("appid", CONST.APPID)
-		builder.add("device_id", "")
 		builder.add("platform", "android")
-		builder.add("os_version", Build.VERSION.RELEASE)
 		builder.add("software_version", CommonUtil.getVersion(this))
-		builder.add("mobile_type", Build.MODEL)
-		builder.add("address", "")
 		builder.add("lat", lat.toString() + "")
 		builder.add("lon", lng.toString() + "")
 		val body: RequestBody = builder.build()
-		Thread(Runnable {
+		Thread {
 			OkHttpUtil.enqueue(Request.Builder().post(body).url(url).build(), object : Callback {
 				override fun onFailure(call: Call, e: IOException) {
 					Log.e("onFailure", "onFailure")
 				}
-
 				@Throws(IOException::class)
 				override fun onResponse(call: Call, response: Response) {
 					if (!response.isSuccessful) {
@@ -196,7 +249,7 @@ class WelcomeActivity : BaseActivity(), AMapLocationListener {
 					parseData(result)
 				}
 			})
-		}).start()
+		}.start()
 	}
 
 	private fun parseData(result: String) {
@@ -414,7 +467,7 @@ class WelcomeActivity : BaseActivity(), AMapLocationListener {
 		builder.add("um_key", MyApplication.appKey)
 		builder.add("areaid", areaId)
 		val body = builder.build()
-		Thread(Runnable {
+		Thread {
 			OkHttpUtil.enqueue(Request.Builder().url(url).post(body).build(), object : Callback {
 				override fun onFailure(call: Call, e: IOException) {
 				}
@@ -426,7 +479,7 @@ class WelcomeActivity : BaseActivity(), AMapLocationListener {
 					Log.e("result", result)
 				}
 			})
-		}).start()
+		}.start()
 	}
 
 	override fun onKeyDown(KeyCode: Int, event: KeyEvent?): Boolean {

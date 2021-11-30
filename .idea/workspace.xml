@@ -6,6 +6,7 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="getWeatherInfo" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="error" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
   </component>
@@ -147,8 +148,16 @@
       <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/outputs/logs/manifest-merger-release-report.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/LoginActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/LoginActivity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/MainActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/SettingActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/SettingActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/WeatherDetailActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/WeatherDetailActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/WelcomeActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/WelcomeActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/common/CONST.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/common/CONST.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/fragment/ForecastFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/fragment/ForecastFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/utils/OkHttpUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/utils/OkHttpUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/view/HourlyView.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/view/HourlyView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/dialog_prompt.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/dialog_prompt.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -158,7 +167,7 @@
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[SerialNumber@CTV0220C17019284]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -247,6 +256,7 @@
     <property name="android-custom-view/Users/sunxiaoming/Downloads/AndroidStudioProjects/HLJDecision/app/src/main/java/com/hlj/view/PhotoView.java_SELECTED" value="PhotoView" />
     <property name="android-custom-view/Users/sunxiaoming/Downloads/AndroidStudioProjects/HLJDecision/app/src/main/java/com/hlj/view/ScrollviewGridview.java_SELECTED" value="ScrollviewGridview" />
     <property name="android-custom-view/Users/sunxiaoming/Downloads/AndroidStudioProjects/HLJDecision/app/src/main/java/com/hlj/view/SlideBar.java_SELECTED" value="SlideBar" />
+    <property name="android-custom-view/Users/sunxiaoming/Downloads/AndroidStudioProjects/HLJDecision/app/src/main/java/com/hlj/view/WaveView.java_SELECTED" value="WaveView" />
     <property name="android-custom-view/Users/sunxiaoming/Downloads/AndroidStudioProjects/HLJDecision/app/src/main/java/com/hlj/view/WeeklyView.java_SELECTED" value="WeeklyView" />
     <property name="android-custom-view/Users/sunxiaoming/Downloads/AndroidStudioProjects/HLJDecision/app/src/main/java/com/hlj/view/WindForeView.java_SELECTED" value="WindForeView" />
     <property name="android-custom-view/Users/sunxiaoming/Downloads/AndroidStudioProjects/HLJDecision/app/src/main/java/com/hlj/view/WindSpeedView.java_SELECTED" value="WindSpeedView" />
@@ -259,7 +269,7 @@
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1536661182344" />
     <property name="device.picker.selection" value="66J5T19318007315" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/raw" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/layout" />
     <property name="not.eligible.for.single.variant.sync" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.17" />
@@ -294,9 +304,9 @@
       <recent name="com.hlj.view" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/src/main/res/layout" />
       <recent name="$PROJECT_DIR$/app/src/main/res/raw" />
       <recent name="$PROJECT_DIR$/app/src/main/res/drawable" />
-      <recent name="$PROJECT_DIR$/app/src/main/res/layout" />
       <recent name="$PROJECT_DIR$/app/src/main/java/com/hlj" />
       <recent name="$PROJECT_DIR$/app/libs" />
     </key>
@@ -1075,11 +1085,11 @@
     </state>
     <state x="1888" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/49.23.1391.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1629856207335" />
     <state x="1888" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1632490092191" />
-    <state x="2038" y="254" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1636971277403">
+    <state x="2038" y="254" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1637129820074">
       <screen x="1440" y="23" width="1920" height="1057" />
     </state>
     <state x="482" y="215" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/49.23.1391.877@49.23.1391.877" timestamp="1629810241212" />
-    <state x="2038" y="254" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1636971277403" />
+    <state x="2038" y="254" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1637129820074" />
     <state x="483" y="215" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/50.23.1390.877/1440.23.1920.1057@50.23.1390.877" timestamp="1631175436064" />
     <state x="483" y="215" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/50.23.1390.877@50.23.1390.877" timestamp="1633778770609" />
     <state width="416" height="387" key="DebuggerActiveHint" timestamp="1632823727650">
@@ -1091,36 +1101,36 @@
       <screen x="1440" y="23" width="1920" height="1057" />
     </state>
     <state x="1540" y="123" width="1720" height="857" key="DiffContextDialog/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1632381164438" />
-    <state width="1348" height="262" key="GridCell.Tab.0.bottom" timestamp="1636896590292">
-      <screen x="50" y="23" width="1390" height="877" />
+    <state width="1878" height="330" key="GridCell.Tab.0.bottom" timestamp="1637204866386">
+      <screen x="1440" y="23" width="1920" height="1057" />
     </state>
     <state width="1878" height="340" key="GridCell.Tab.0.bottom/49.23.1391.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1629871883073" />
     <state width="1349" height="270" key="GridCell.Tab.0.bottom/49.23.1391.877@49.23.1391.877" timestamp="1629805135073" />
-    <state width="1878" height="410" key="GridCell.Tab.0.bottom/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1636708967750" />
+    <state width="1878" height="330" key="GridCell.Tab.0.bottom/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1637204866386" />
     <state width="1348" height="319" key="GridCell.Tab.0.bottom/50.23.1390.877/1440.23.1920.1057@50.23.1390.877" timestamp="1635315029830" />
     <state width="1348" height="262" key="GridCell.Tab.0.bottom/50.23.1390.877@50.23.1390.877" timestamp="1636896590292" />
-    <state width="1348" height="262" key="GridCell.Tab.0.center" timestamp="1636896590291">
-      <screen x="50" y="23" width="1390" height="877" />
+    <state width="1878" height="330" key="GridCell.Tab.0.center" timestamp="1637204866386">
+      <screen x="1440" y="23" width="1920" height="1057" />
     </state>
     <state width="1878" height="340" key="GridCell.Tab.0.center/49.23.1391.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1629871883073" />
     <state width="1349" height="270" key="GridCell.Tab.0.center/49.23.1391.877@49.23.1391.877" timestamp="1629805135072" />
-    <state width="1878" height="410" key="GridCell.Tab.0.center/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1636708967749" />
+    <state width="1878" height="330" key="GridCell.Tab.0.center/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1637204866386" />
     <state width="1348" height="319" key="GridCell.Tab.0.center/50.23.1390.877/1440.23.1920.1057@50.23.1390.877" timestamp="1635315029829" />
     <state width="1348" height="262" key="GridCell.Tab.0.center/50.23.1390.877@50.23.1390.877" timestamp="1636896590291" />
-    <state width="1348" height="262" key="GridCell.Tab.0.left" timestamp="1636896590290">
-      <screen x="50" y="23" width="1390" height="877" />
+    <state width="1878" height="330" key="GridCell.Tab.0.left" timestamp="1637204866385">
+      <screen x="1440" y="23" width="1920" height="1057" />
     </state>
     <state width="1878" height="340" key="GridCell.Tab.0.left/49.23.1391.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1629871883072" />
     <state width="1349" height="270" key="GridCell.Tab.0.left/49.23.1391.877@49.23.1391.877" timestamp="1629805135070" />
-    <state width="1878" height="410" key="GridCell.Tab.0.left/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1636708967749" />
+    <state width="1878" height="330" key="GridCell.Tab.0.left/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1637204866385" />
     <state width="1348" height="319" key="GridCell.Tab.0.left/50.23.1390.877/1440.23.1920.1057@50.23.1390.877" timestamp="1635315029828" />
     <state width="1348" height="262" key="GridCell.Tab.0.left/50.23.1390.877@50.23.1390.877" timestamp="1636896590290" />
-    <state width="1348" height="262" key="GridCell.Tab.0.right" timestamp="1636896590291">
-      <screen x="50" y="23" width="1390" height="877" />
+    <state width="1878" height="330" key="GridCell.Tab.0.right" timestamp="1637204866386">
+      <screen x="1440" y="23" width="1920" height="1057" />
     </state>
     <state width="1878" height="340" key="GridCell.Tab.0.right/49.23.1391.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1629871883073" />
     <state width="1349" height="270" key="GridCell.Tab.0.right/49.23.1391.877@49.23.1391.877" timestamp="1629805135072" />
-    <state width="1878" height="410" key="GridCell.Tab.0.right/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1636708967750" />
+    <state width="1878" height="330" key="GridCell.Tab.0.right/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1637204866386" />
     <state width="1348" height="319" key="GridCell.Tab.0.right/50.23.1390.877/1440.23.1920.1057@50.23.1390.877" timestamp="1635315029829" />
     <state width="1348" height="262" key="GridCell.Tab.0.right/50.23.1390.877@50.23.1390.877" timestamp="1636896590291" />
     <state x="1579" y="144" width="1643" height="816" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1636973839679">
@@ -1135,18 +1145,18 @@
       <screen x="50" y="23" width="1390" height="877" />
     </state>
     <state x="337" y="79" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/50.23.1390.877@50.23.1390.877" timestamp="1631191114262" />
-    <state x="416" y="242" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1636894750902">
-      <screen x="50" y="23" width="1390" height="877" />
-    </state>
-    <state x="1946" y="287" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1636594334911" />
-    <state x="416" y="242" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/50.23.1390.877@50.23.1390.877" timestamp="1636894750902" />
-    <state x="2053" y="284" width="835" height="591" key="find.popup" timestamp="1636975858359">
+    <state x="1946" y="287" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1637203878152">
       <screen x="1440" y="23" width="1920" height="1057" />
     </state>
-    <state x="1982" y="256" width="836" height="625" key="find.popup/49.23.1391.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1633765210819" />
+    <state x="1946" y="287" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1637203878152" />
+    <state x="416" y="242" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/50.23.1390.877@50.23.1390.877" timestamp="1636894750902" />
+    <state x="1982" y="256" width="836" height="625" key="find.popup" timestamp="1637217173172">
+      <screen x="1440" y="23" width="1920" height="1057" />
+    </state>
+    <state x="1982" y="256" width="836" height="625" key="find.popup/49.23.1391.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1637217173172" />
     <state x="442" y="216" width="605" height="518" key="find.popup/49.23.1391.877@49.23.1391.877" timestamp="1629813552483" />
-    <state x="2053" y="284" width="835" height="591" key="find.popup/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1636975858359" />
-    <state x="443" y="216" width="605" height="551" key="find.popup/50.23.1390.877/1440.23.1920.1057@50.23.1390.877" timestamp="1635409340738" />
+    <state x="2053" y="284" width="835" height="591" key="find.popup/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1637134530910" />
+    <state x="443" y="216" width="605" height="551" key="find.popup/50.23.1390.877/1440.23.1920.1057@50.23.1390.877" timestamp="1637044702427" />
     <state x="443" y="216" width="604" height="518" key="find.popup/50.23.1390.877@50.23.1390.877" timestamp="1636895492507" />
     <state x="613" y="375" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1631279684316">
       <screen x="50" y="23" width="1390" height="877" />
@@ -1158,16 +1168,5 @@
     </state>
     <state x="409" y="213" width="672" height="676" key="search.everywhere.popup/49.23.1391.877@49.23.1391.877" timestamp="1629809966527" />
     <state x="410" y="213" width="670" height="676" key="search.everywhere.popup/50.23.1390.877@50.23.1390.877" timestamp="1636891522213" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/hlj/fragment/WarningFragment.kt</url>
-          <line>80</line>
-          <option name="timeStamp" value="16" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

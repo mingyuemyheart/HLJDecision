@@ -1,85 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="center"
-    android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/bg_corner_white"
+    android:padding="15dp">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="@drawable/bg_corner_white"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="15dp">
+    <TextView
+        android:id="@+id/tvMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="温馨提示"
+        android:textColor="@color/black"
+        android:textSize="@dimen/level_2"
+        android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/tvMessage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:text="温馨提示"
-            android:textColor="@color/black"
-            android:textSize="@dimen/level_2"
-            android:textStyle="bold" />
+    <TextView
+        android:id="@+id/tvContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvMessage"
+        android:layout_marginTop="10dp"
+        android:lineSpacingExtra="5dp"
+        android:text="感谢您信任并使用黑龙江气象！我们依据相关法律制定了"
+        android:textColor="@color/black"
+        android:textSize="@dimen/level_4" />
 
-        <TextView
-            android:id="@+id/tvContent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tvMessage"
-            android:layout_marginTop="10dp"
-            android:lineSpacingExtra="5dp"
-            android:text="感谢您信任并使用黑龙江气象！我们依据相关法律制定了"
-            android:textColor="@color/black"
-            android:textSize="@dimen/level_4" />
+    <TextView
+        android:id="@+id/tvProtocal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvContent"
+        android:layout_marginTop="10dp"
+        android:text="《用户协议》"
+        android:textColor="@color/orange"
+        android:textSize="@dimen/level_4" />
 
-        <TextView
-            android:id="@+id/tvProtocal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tvContent"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:text="《用户协议》"
-            android:textColor="@color/orange"
-            android:textSize="@dimen/level_4" />
+    <TextView
+        android:id="@+id/tvPolicy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/tvProtocal"
+        app:layout_constraintTop_toBottomOf="@+id/tvContent"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@+id/tvProtocal"
+        android:text="《隐私政策》"
+        android:textColor="@color/orange"
+        android:textSize="@dimen/level_4" />
 
-        <TextView
-            android:id="@+id/tvPolicy"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tvContent"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_toEndOf="@+id/tvProtocal"
-            android:text="《隐私政策》"
-            android:textColor="@color/orange"
-            android:textSize="@dimen/level_4" />
+    <TextView
+        android:id="@+id/tvNegtive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="40dp"
+        app:layout_constraintTop_toTopOf="@+id/tvPositive"
+        app:layout_constraintBottom_toBottomOf="@+id/tvPositive"
+        app:layout_constraintEnd_toStartOf="@+id/tvPositive"
+        android:padding="10dp"
+        android:text="不同意"
+        android:textColor="@color/text_color4"
+        android:textSize="@dimen/level_3" />
 
-        <TextView
-            android:id="@+id/tvNegtive"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="40dp"
-            android:layout_toStartOf="@+id/tvPositive"
-            android:padding="10dp"
-            android:text="不同意"
-            android:textColor="@color/text_color4"
-            android:textSize="@dimen/level_3" />
+    <TextView
+        android:id="@+id/tvPositive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/tvPolicy"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="10dp"
+        android:text="同意并继续"
+        android:textColor="@color/text_color3"
+        android:textSize="@dimen/level_3" />
 
-        <TextView
-            android:id="@+id/tvPositive"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:padding="10dp"
-            android:text="同意并继续"
-            android:textColor="@color/text_color3"
-            android:textSize="@dimen/level_3" />
-
-    </RelativeLayout>
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>

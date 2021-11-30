@@ -197,6 +197,15 @@ public class HourlyView extends View {
 			float tempWidth = textP.measureText(dto.hourlyTemp+"");
 			canvas.drawText(dto.hourlyTemp+"", dto.x-tempWidth/2, dto.y-CommonUtil.dip2px(mContext, 5f), textP);
 
+			//绘制天气现象图标
+			Bitmap dayB = WeatherUtil.getBitmap(mContext, dto.hourlyCode);
+			if (dayB != null) {
+				Bitmap dayBitmap = ThumbnailUtils.extractThumbnail(dayB, (int)(CommonUtil.dip2px(mContext, 20)), (int)(CommonUtil.dip2px(mContext, 20)));
+				if (dayBitmap != null) {
+					canvas.drawBitmap(dayBitmap, dto.x-dayBitmap.getWidth()/2, dto.y+CommonUtil.dip2px(mContext, 5f), textP);
+				}
+			}
+
 			//绘制aqi数值
 			if (!TextUtils.isEmpty(dto.hourlyAqi)) {
 				int aqi = Integer.valueOf(dto.hourlyAqi);

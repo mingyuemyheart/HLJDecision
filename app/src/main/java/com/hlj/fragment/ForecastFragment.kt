@@ -2,6 +2,7 @@ package com.hlj.fragment
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
@@ -76,7 +77,7 @@ class ForecastFragment : BaseFragment(), OnClickListener, AMapLocationListener, 
     private var isFusion = false
     private var lat = CONST.centerLat
     private var lng = CONST.centerLng
-    private var cityId = ""
+    private var cityId = "101050101"
     private var timer: Timer? = null
     private var mAdapter: WeeklyForecastAdapter? = null
     private val weeklyList: MutableList<WeatherDto> = ArrayList()
@@ -177,9 +178,25 @@ class ForecastFragment : BaseFragment(), OnClickListener, AMapLocationListener, 
         if (CommonUtil.isLocationOpen(activity)) {
             startLocation()
         } else {
-            Toast.makeText(activity, "未开启定位，请选择城市", Toast.LENGTH_LONG).show()
-            startActivityForResult(Intent(activity, CityActivity::class.java), 1001)
+            dialogLocationPrompt()
+            completeLocation()
+//            Toast.makeText(activity, "未开启定位，请选择城市", Toast.LENGTH_LONG).show()
+//            startActivityForResult(Intent(activity, CityActivity::class.java), 1001)
         }
+    }
+
+    /**
+     * 定位提示
+     */
+    private fun dialogLocationPrompt() {
+        val inflater = activity!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val view = inflater.inflate(R.layout.dialog_location_prompt, null)
+        val tvSure = view.findViewById<TextView>(R.id.tvSure)
+        val dialog = Dialog(activity, R.style.CustomProgressDialog)
+        dialog.setContentView(view)
+        dialog.setCanceledOnTouchOutside(false)
+        dialog.show()
+        tvSure.setOnClickListener { dialog.dismiss() }
     }
 
     /**
@@ -496,32 +513,28 @@ class ForecastFragment : BaseFragment(), OnClickListener, AMapLocationListener, 
     }
 
     private fun getGeo(isFusion: Boolean) {
-        if (isFusion) {
-            getWeatherInfo(isFusion)
-        } else {
-            WeatherAPI.getGeo(activity, lng.toString(), lat.toString(), object : AsyncResponseHandler() {
-                override fun onComplete(content: JSONObject) {
-                    super.onComplete(content)
-                    if (!content.isNull("geo")) {
-                        try {
-                            val geoObj = content.getJSONObject("geo")
-                            if (!geoObj.isNull("id")) {
-                                cityId = geoObj.getString("id")
-                                Log.e("getGeogetGeo", content.toString())
-                                if (!TextUtils.isEmpty(cityId)) {
-                                    getWeatherInfo(isFusion)
-                                }
+        WeatherAPI.getGeo(activity, lng.toString(), lat.toString(), object : AsyncResponseHandler() {
+            override fun onComplete(content: JSONObject) {
+                super.onComplete(content)
+                if (!content.isNull("geo")) {
+                    try {
+                        val geoObj = content.getJSONObject("geo")
+                        if (!geoObj.isNull("id")) {
+                            cityId = geoObj.getString("id")
+                            Log.e("getGeogetGeo", content.toString())
+                            if (!TextUtils.isEmpty(cityId)) {
+                                getWeatherInfo(isFusion)
                             }
-                        } catch (e: JSONException) {
-                            e.printStackTrace()
                         }
+                    } catch (e: JSONException) {
+                        e.printStackTrace()
                     }
                 }
-                override fun onError(error: Throwable, content: String) {
-                    super.onError(error, content)
-                }
-            })
-        }
+            }
+            override fun onError(error: Throwable, content: String) {
+                super.onError(error, content)
+            }
+        })
     }
 
     private fun getWeatherInfo(isFusion: Boolean) {
@@ -561,7 +574,7 @@ class ForecastFragment : BaseFragment(), OnClickListener, AMapLocationListener, 
                                             }
                                             if (!o.isNull("001")) {
                                                 val weatherCode = o.getString("001")
-                                                if (TextUtils.isEmpty(weatherCode) && !TextUtils.equals(weatherCode, "?") && !TextUtils.equals(weatherCode, "null")) {
+                                                if (!TextUtils.isEmpty(weatherCode) && !TextUtils.equals(weatherCode, "?") && !TextUtils.equals(weatherCode, "null")) {
                                                     try {
                                                         tvPhe!!.text = getString(WeatherUtil.getWeatherId(Integer.valueOf(weatherCode)))
                                                     } catch (e: Exception) {
@@ -1139,7 +1152,7 @@ class ForecastFragment : BaseFragment(), OnClickListener, AMapLocationListener, 
                         val bundle = data.extras
                         if (bundle != null) {
                             lat = bundle.getDouble("lat", lat)
-                            lng = bundle.getDouble("lng", lat)
+                            lng = bundle.getDouble("lng", lng)
                             val position = bundle.getString("position")
                             Log.e("position", position)
                             if (!TextUtils.isEmpty(position)) {

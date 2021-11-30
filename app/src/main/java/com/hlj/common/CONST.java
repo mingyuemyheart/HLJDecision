@@ -14,6 +14,8 @@ public class CONST {
 	public static final LatLng guizhouLatLng = new LatLng(48.602915,128.121040);//贵州中点
 	public static boolean isDelete = false;//判断是否可以删除
 	public static String BUILD_URL = "http://decision-admin.tianqi.cn/infomes/data/heilongjiang/about_heilongjiang.html";//企业信息地址
+	public static final String yhxy = "http://decision-admin.tianqi.cn/Public/share/hlj_htmls/yhxy.html";
+	public static final String yszc = "http://decision-admin.tianqi.cn/Public/share/hlj_htmls/yscl.html";
 
 	//showType类型，区分本地类或者图文
 	public static final String LOCAL = "local";
