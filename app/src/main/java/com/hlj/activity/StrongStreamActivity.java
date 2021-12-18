@@ -12,7 +12,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,7 +19,6 @@ import android.view.View.OnClickListener;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.amap.api.maps.AMap;
@@ -64,7 +62,7 @@ import shawn.cxwl.com.hlj.R;
 /**
  * 分钟降水与强对流
  */
-public class ShawnStrongStreamActivity extends BaseActivity implements OnClickListener {
+public class StrongStreamActivity extends BaseActivity implements OnClickListener {
 	
 	private Context mContext;
 	private TextView tvTitle;
@@ -87,14 +85,13 @@ public class ShawnStrongStreamActivity extends BaseActivity implements OnClickLi
 	private boolean isShowLightingMarkers = false;
 	private LinearLayout llLegend,llContainer;
 	private MySeekbar mySeekbar;
-	private int width = 0;
 	private MyBroadCastReceiver mReceiver;
 	private String BROAD_CLICKMENU = "broad_clickMenu";//点击播放或暂停
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.shawn_activity_strong_stream);
+		setContentView(R.layout.activity_strong_stream);
 		mContext = this;
 		initBroadCast();
 		showDialog();
@@ -141,12 +138,16 @@ public class ShawnStrongStreamActivity extends BaseActivity implements OnClickLi
 		if (aMap == null) {
 			aMap = mMapView.getMap();
 		}
-		aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(35.926628, 105.178100), 3.7f));
+		aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(CONST.guizhouLatLng, 3.7f));
 		aMap.getUiSettings().setZoomControlsEnabled(false);
 		aMap.getUiSettings().setRotateGesturesEnabled(false);
-
-		TextView tvMapNumber = findViewById(R.id.tvMapNumber);
-		tvMapNumber.setText(aMap.getMapContentApprovalNumber());
+		aMap.setOnMapLoadedListener(new AMap.OnMapLoadedListener() {
+			@Override
+			public void onMapLoaded() {
+				TextView tvMapNumber = findViewById(R.id.tvMapNumber);
+				tvMapNumber.setText(aMap.getMapContentApprovalNumber());
+			}
+		});
 	}
 
 	private void initWidget() {
@@ -167,10 +168,6 @@ public class ShawnStrongStreamActivity extends BaseActivity implements OnClickLi
 		ivLegend = findViewById(R.id.ivLegend);
 		llContainer = findViewById(R.id.llContainer);
 
-		DisplayMetrics dm = new DisplayMetrics();
-		getWindowManager().getDefaultDisplay().getMetrics(dm);
-		width = dm.widthPixels;
-
 		String title = getIntent().getStringExtra(CONST.ACTIVITY_NAME);
 		if (!TextUtils.isEmpty(title)) {
 			tvTitle.setText(title);
@@ -178,9 +175,6 @@ public class ShawnStrongStreamActivity extends BaseActivity implements OnClickLi
 		
 		mRadarManager = new StrongStreamManager(mContext);
 		OkHttpData();
-
-		String columnId = getIntent().getStringExtra(CONST.COLUMN_ID);
-		CommonUtil.submitClickCount(columnId, title);
 	}
 	
 	/**
@@ -420,7 +414,7 @@ public class ShawnStrongStreamActivity extends BaseActivity implements OnClickLi
 				llContainer.removeAllViews();
 				mySeekbar = new MySeekbar(mContext);
 				mySeekbar.setData(radarList, hashMap);
-				llContainer.addView(mySeekbar, width, (int) CommonUtil.dip2px(mContext, 60));
+				llContainer.addView(mySeekbar, CommonUtil.widthPixels(mContext), (int) CommonUtil.dip2px(mContext, 60));
 				break;
 			case HANDLER_PAUSE:
 				break;

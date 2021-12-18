@@ -1,11 +1,7 @@
 package com.hlj.activity
 
-import android.Manifest
 import android.annotation.SuppressLint
-import android.content.pm.PackageManager
 import android.os.*
-import android.support.v4.app.ActivityCompat
-import android.support.v4.content.ContextCompat
 import android.text.TextUtils
 import android.view.View
 import android.view.View.OnClickListener
@@ -13,7 +9,6 @@ import android.widget.Toast
 import com.github.barteksc.pdfviewer.scroll.DefaultScrollHandle
 import com.hlj.common.CONST
 import com.hlj.common.MyApplication
-import com.hlj.utils.AuthorityUtil
 import com.hlj.utils.OkHttpUtil
 import kotlinx.android.synthetic.main.activity_pdf.*
 import kotlinx.android.synthetic.main.layout_title.*
@@ -38,12 +33,17 @@ class PDFActivity : BaseActivity(), OnClickListener {
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.activity_pdf)
-		checkAuthority()
-	}
-
-	private fun init() {
 		initWidget()
-		initPDFView()
+		checkStorageAuthority(object : StorageCallback {
+			override fun grantedStorage(isGranted: Boolean) {
+				if (isGranted) {
+					initPDFView()
+				} else {
+					tvPercent.visibility = View.GONE
+					Toast.makeText(this@PDFActivity, "需要开启存储权限", Toast.LENGTH_SHORT).show()
+				}
+			}
+		})
 	}
 
 	private fun initWidget() {
@@ -187,63 +187,6 @@ class PDFActivity : BaseActivity(), OnClickListener {
 		when (v!!.id) {
 			R.id.llBack -> finish()
 			R.id.ivControl -> Toast.makeText(this, "已保存至$filePath", Toast.LENGTH_LONG).show()
-		}
-	}
-
-	//需要申请的所有权限
-	private val allPermissions = arrayOf(
-			Manifest.permission.WRITE_EXTERNAL_STORAGE
-	)
-
-	//拒绝的权限集合
-	private val deniedList: MutableList<String> = ArrayList()
-
-	/**
-	 * 申请定位权限
-	 */
-	private fun checkAuthority() {
-		if (Build.VERSION.SDK_INT < 23) {
-			init()
-		} else {
-			deniedList.clear()
-			for (permission in allPermissions) {
-				if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
-					deniedList.add(permission)
-				}
-			}
-			if (deniedList.isEmpty()) { //所有权限都授予
-				init()
-			} else {
-				val permissions = deniedList.toTypedArray() //将list转成数组
-				ActivityCompat.requestPermissions(this, permissions, AuthorityUtil.AUTHOR_STORAGE)
-			}
-		}
-	}
-
-	override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String?>, grantResults: IntArray) {
-		super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-		when (requestCode) {
-			AuthorityUtil.AUTHOR_STORAGE -> if (grantResults.isNotEmpty()) {
-				var isAllGranted = true //是否全部授权
-				for (gResult in grantResults) {
-					if (gResult != PackageManager.PERMISSION_GRANTED) {
-						isAllGranted = false
-						break
-					}
-				}
-				if (isAllGranted) { //所有权限都授予
-					init()
-				} else { //只要有一个没有授权，就提示进入设置界面设置
-					AuthorityUtil.intentAuthorSetting(this, "\"" + getString(R.string.app_name) + "\"" + "需要使用存储权限，是否前往设置？")
-				}
-			} else {
-				for (permission in permissions) {
-					if (!ActivityCompat.shouldShowRequestPermissionRationale(this@PDFActivity, permission!!)) {
-						AuthorityUtil.intentAuthorSetting(this, "\"" + getString(R.string.app_name) + "\"" + "需要使用存储权限，是否前往设置？")
-						break
-					}
-				}
-			}
 		}
 	}
 

@@ -155,7 +155,6 @@ public class TyphoonRouteActivity extends BaseActivity implements OnClickListene
 	private RelativeLayout container = null;
 	public RelativeLayout container2 = null;
 	private WindData windData = null;
-	private int width = 0, height = 0;
 	private WaitWindView waitWindView = null;
 	private GroundOverlay windOverlay = null;
 	private boolean isHaveWindData = false;//是否已经加载完毕风场数据
@@ -232,14 +231,6 @@ public class TyphoonRouteActivity extends BaseActivity implements OnClickListene
 		if (title != null) {
 			tvTitle.setText(title);
 		}
-
-		DisplayMetrics dm = new DisplayMetrics();
-		getWindowManager().getDefaultDisplay().getMetrics(dm);
-		width = dm.widthPixels;
-		height = dm.heightPixels;
-
-		String columnId = getIntent().getStringExtra(CONST.COLUMN_ID);
-		CommonUtil.submitClickCount(columnId, title);
 	}
 
 	private void initAmap(Bundle bundle) {
@@ -2094,7 +2085,7 @@ public class TyphoonRouteActivity extends BaseActivity implements OnClickListene
 		}
 
 		LatLng latLngStart = aMap.getProjection().fromScreenLocation(new Point(0, 0));
-		LatLng latLngEnd = aMap.getProjection().fromScreenLocation(new Point(width, height));
+		LatLng latLngEnd = aMap.getProjection().fromScreenLocation(new Point(CommonUtil.widthPixels(this), CommonUtil.heightPixels(this)));
 		windData.latLngStart = latLngStart;
 		windData.latLngEnd = latLngEnd;
 		if (waitWindView == null) {
@@ -2125,8 +2116,8 @@ public class TyphoonRouteActivity extends BaseActivity implements OnClickListene
 	}
 
 	private void showWind(View view) {
-		LatLng leftlatlng = aMap.getProjection().fromScreenLocation(new Point(0, height));
-		LatLng rightLatlng = aMap.getProjection().fromScreenLocation(new Point(width, 0));
+		LatLng leftlatlng = aMap.getProjection().fromScreenLocation(new Point(0, CommonUtil.heightPixels(this)));
+		LatLng rightLatlng = aMap.getProjection().fromScreenLocation(new Point(CommonUtil.widthPixels(this), 0));
 		BitmapDescriptor fromView = BitmapDescriptorFactory.fromView(view);
 		LatLngBounds bounds = new LatLngBounds.Builder()
 				.include(leftlatlng)

@@ -108,7 +108,6 @@ public class FactActivity2 extends BaseFragmentActivity implements View.OnClickL
     private List<FactDto> timeList = new ArrayList<>();//时间列表
     private TextView tvDetail = null;
     private TextView tvHistory = null;
-    private LinearLayout llBottom = null;
     private List<FactDto> realDatas = new ArrayList<>();//全省站点列表
     private String stationName = "", area = "", val = "", timeString = "";
     private String dataUrl = "", childId = "";
@@ -194,7 +193,6 @@ public class FactActivity2 extends BaseFragmentActivity implements View.OnClickL
         tvDetail.setOnClickListener(this);
         tvHistory = (TextView) findViewById(R.id.tvHistory);
         tvHistory.setOnClickListener(this);
-        llBottom = (LinearLayout) findViewById(R.id.llBottom);
         llViewPager = (LinearLayout) findViewById(R.id.llViewPager);
 
         DisplayMetrics dm = new DisplayMetrics();
@@ -208,9 +206,6 @@ public class FactActivity2 extends BaseFragmentActivity implements View.OnClickL
         }
 
         OkHttpLayer(data);
-
-        String columnId = getIntent().getStringExtra(CONST.COLUMN_ID);
-        CommonUtil.submitClickCount(columnId, data.name);
     }
 
     private void initListView() {
@@ -578,13 +573,11 @@ public class FactActivity2 extends BaseFragmentActivity implements View.OnClickL
                                                 tvIntro.setBackgroundResource(R.drawable.bg_corner_black);
                                                 listTitle.setVisibility(View.VISIBLE);
                                                 listView.setVisibility(View.VISIBLE);
-                                                llBottom.setVisibility(View.VISIBLE);
                                             }
                                         }else {
                                             tvIntro.setVisibility(View.GONE);
                                             listTitle.setVisibility(View.GONE);
                                             listView.setVisibility(View.GONE);
-                                            llBottom.setVisibility(View.GONE);
                                         }
 
                                         tvLayerName.setFocusable(true);

@@ -59,13 +59,9 @@ class WeatherRadarActivity : BaseActivity(), OnClickListener, OnMarkerClickListe
         ivExpand!!.setOnClickListener(this)
 
         val data: AgriDto = intent.extras.getParcelable("data")
-        if (data != null) {
-            if (data!!.name != null) {
-                tvTitle!!.text = data!!.name
-            }
+        if (data.name != null) {
+            tvTitle!!.text = data.name
         }
-        val columnId = intent.getStringExtra(CONST.COLUMN_ID)
-        CommonUtil.submitClickCount(columnId, data!!.name)
     }
 
     /**
@@ -99,7 +95,7 @@ class WeatherRadarActivity : BaseActivity(), OnClickListener, OnMarkerClickListe
         d.lng = 0.0
         d.radarId = "JC_RADAR_DB_JB"
         dataList.add(d)
-        Thread(Runnable {
+        Thread {
             OkHttpUtil.enqueue(Request.Builder().url(url).build(), object : Callback {
                 override fun onFailure(call: Call, e: IOException) {}
 
@@ -141,7 +137,7 @@ class WeatherRadarActivity : BaseActivity(), OnClickListener, OnMarkerClickListe
                     }
                 }
             })
-        }).start()
+        }.start()
     }
 
     private fun addMarkerToMap() {

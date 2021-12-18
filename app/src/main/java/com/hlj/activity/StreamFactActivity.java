@@ -69,7 +69,7 @@ import shawn.cxwl.com.hlj.R;
  * 强对流天气实况（新）
  * @author shawn_sun
  */
-public class ShawnStreamFactActivity extends BaseActivity implements OnClickListener, AMapLocationListener, OnCameraChangeListener,
+public class StreamFactActivity extends BaseActivity implements OnClickListener, AMapLocationListener, OnCameraChangeListener,
 		AMap.OnMarkerClickListener, AMap.OnMapClickListener, AMap.InfoWindowAdapter {
 	
 	private Context mContext;
@@ -82,7 +82,7 @@ public class ShawnStreamFactActivity extends BaseActivity implements OnClickList
 	private SimpleDateFormat sdf1 = new SimpleDateFormat("HH", Locale.CHINA);
 	private SimpleDateFormat sdf2 = new SimpleDateFormat("yyyyMMddHH", Locale.CHINA);
 	private SimpleDateFormat sdf3 = new SimpleDateFormat("HH:mm", Locale.CHINA);
-	private double locationLat = 35.926628, locationLng = 105.178100;
+	private double locationLat = CONST.defaultLat, locationLng = CONST.defaultLng;
 	private List<StreamFactDto> lightingList = new ArrayList<>();//闪电
 	private List<StreamFactDto> rainList = new ArrayList<>();//强降水
 	private List<StreamFactDto> windList = new ArrayList<>();//大风
@@ -115,7 +115,7 @@ public class ShawnStreamFactActivity extends BaseActivity implements OnClickList
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.shawn_activity_stream_fact);
+		setContentView(R.layout.activity_stream_fact);
 		mContext = this;
 		showDialog();
 		initMap(savedInstanceState);
@@ -170,18 +170,23 @@ public class ShawnStreamFactActivity extends BaseActivity implements OnClickList
 		tvName.setText("1小时强对流天气实况"+"("+start+"-"+end+")");
 		caiyunManager = new CaiyunManager(mContext);
 
-		startLocation();
+		checkLocationAuthority(new LocationCallback() {
+			@Override
+			public void grantedLocation(boolean isGranted) {
+				if (isGranted) {
+					startLocation();
+				} else {
+					addLocationMarker();
+				}
+			}
+		});
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				CommonUtil.drawHLJJson(mContext, aMap);
 				OkHttpList();
 				OkHttpCaiyun();
 			}
 		}).start();
-
-		String columnId = getIntent().getStringExtra(CONST.COLUMN_ID);
-		CommonUtil.submitClickCount(columnId, title);
 	}
 
 	/**
@@ -206,20 +211,27 @@ public class ShawnStreamFactActivity extends BaseActivity implements OnClickList
 			locationLat = amapLocation.getLatitude();
 			locationLng = amapLocation.getLongitude();
 			ivLocation.setVisibility(View.VISIBLE);
-			LatLng latLng = new LatLng(amapLocation.getLatitude(), amapLocation.getLongitude());
-			MarkerOptions options = new MarkerOptions();
-			options.anchor(0.5f, 0.5f);
-			Bitmap bitmap = ThumbnailUtils.extractThumbnail(BitmapFactory.decodeResource(getResources(), R.drawable.shawn_icon_location_point),
-					(int) (CommonUtil.dip2px(mContext, 15)), (int) (CommonUtil.dip2px(mContext, 15)));
-			if (bitmap != null) {
-				options.icon(BitmapDescriptorFactory.fromBitmap(bitmap));
-			} else {
-				options.icon(BitmapDescriptorFactory.fromResource(R.drawable.shawn_icon_location_point));
-			}
-			options.position(latLng);
-			locationMarker = aMap.addMarker(options);
-			locationMarker.setClickable(false);
+			addLocationMarker();
 		}
+	}
+
+	private void addLocationMarker() {
+		if (locationMarker != null) {
+			locationMarker.remove();
+		}
+		LatLng latLng = new LatLng(locationLat, locationLng);
+		MarkerOptions options = new MarkerOptions();
+		options.anchor(0.5f, 0.5f);
+		Bitmap bitmap = ThumbnailUtils.extractThumbnail(BitmapFactory.decodeResource(getResources(), R.drawable.icon_map_location),
+				(int) (CommonUtil.dip2px(mContext, 16)), (int) (CommonUtil.dip2px(mContext, 24)));
+		if (bitmap != null) {
+			options.icon(BitmapDescriptorFactory.fromBitmap(bitmap));
+		} else {
+			options.icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_map_location));
+		}
+		options.position(latLng);
+		locationMarker = aMap.addMarker(options);
+		locationMarker.setClickable(false);
 	}
 
 	/**
@@ -238,9 +250,14 @@ public class ShawnStreamFactActivity extends BaseActivity implements OnClickList
 		aMap.setOnMarkerClickListener(this);
 		aMap.setOnMapClickListener(this);
 		aMap.setInfoWindowAdapter(this);
-
-		TextView tvMapNumber = findViewById(R.id.tvMapNumber);
-		tvMapNumber.setText(aMap.getMapContentApprovalNumber());
+		aMap.setOnMapLoadedListener(new AMap.OnMapLoadedListener() {
+			@Override
+			public void onMapLoaded() {
+				TextView tvMapNumber = findViewById(R.id.tvMapNumber);
+				tvMapNumber.setText(aMap.getMapContentApprovalNumber());
+				CommonUtil.drawHLJJson(mContext, aMap);
+			}
+		});
 	}
 
 	@Override
@@ -1143,10 +1160,8 @@ public class ShawnStreamFactActivity extends BaseActivity implements OnClickList
 
 	@Override
 	public boolean onMarkerClick(Marker marker) {
-		if (marker != locationMarker) {
-			selectMarker = marker;
-			marker.showInfoWindow();
-		}
+		selectMarker = marker;
+		marker.showInfoWindow();
 		return true;
 	}
 

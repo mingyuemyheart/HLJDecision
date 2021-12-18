@@ -102,7 +102,9 @@ class FactMonitorActivity : BaseFragmentActivity(), View.OnClickListener, AMap.O
         aMap!!.uiSettings.isRotateGesturesEnabled = false
         aMap!!.showMapText(false)
         aMap!!.setOnCameraChangeListener(this)
-        tvMapNumber.text = aMap!!.mapContentApprovalNumber
+        aMap!!.setOnMapLoadedListener {
+            tvMapNumber.text = aMap!!.mapContentApprovalNumber
+        }
         aMap!!.setOnMapTouchListener { arg0 ->
             if (scrollView != null) {
                 if (arg0.action == MotionEvent.ACTION_UP) {
@@ -127,8 +129,6 @@ class FactMonitorActivity : BaseFragmentActivity(), View.OnClickListener, AMap.O
             tvTitle.text = title
         }
         okHttpLayer()
-        val columnId = intent.getStringExtra(CONST.COLUMN_ID)
-        CommonUtil.submitClickCount(columnId, title)
     }
 
     private fun initListView() {

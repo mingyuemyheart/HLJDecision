@@ -182,12 +182,12 @@ public class ThunderForeActivity extends BaseActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thunder_fore);
         mContext = this;
+        showDialog();
         initWidget();
         initAmap(savedInstanceState);
     }
 
     private void initWidget() {
-        showDialog();
         TextView tvTitle = findViewById(R.id.tvTitle);
         tvTitle.setText(getIntent().getStringExtra(CONST.ACTIVITY_NAME));
         LinearLayout llBack = findViewById(R.id.llBack);

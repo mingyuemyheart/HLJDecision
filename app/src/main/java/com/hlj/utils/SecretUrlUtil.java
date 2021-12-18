@@ -52,7 +52,7 @@ public class SecretUrlUtil {
     }
 
     /**
-     * 空气污染
+     * 空气质量实况
      * @return
      */
     public static String airpollution() {

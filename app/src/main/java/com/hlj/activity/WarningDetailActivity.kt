@@ -1,23 +1,18 @@
 package com.hlj.activity
 
-import android.Manifest
-import android.content.pm.PackageManager
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.os.Build
 import android.os.Bundle
-import android.support.v4.app.ActivityCompat
-import android.support.v4.content.ContextCompat
 import android.text.TextUtils
 import android.util.TypedValue
 import android.view.View
 import android.view.View.OnClickListener
+import android.widget.Toast
 import com.hlj.common.CONST
 import com.hlj.dto.WarningDto
 import com.hlj.manager.DBManager
-import com.hlj.utils.AuthorityUtil
 import com.hlj.utils.CommonUtil
 import com.hlj.utils.OkHttpUtil
 import kotlinx.android.synthetic.main.fragment_warning_detail.*
@@ -69,7 +64,7 @@ class WarningDetailActivity : BaseActivity(), OnClickListener{
 		if (data == null || TextUtils.isEmpty(data!!.html)) {
 			return
 		}
-		Thread(Runnable {
+		Thread {
 			val url = "http://decision.tianqi.cn/alarm12379/content2/${data!!.html}"
 			OkHttpUtil.enqueue(Request.Builder().url(url).build(), object : Callback {
 				override fun onFailure(call: Call, e: IOException) {}
@@ -118,7 +113,7 @@ class WarningDetailActivity : BaseActivity(), OnClickListener{
 								}
 								imageView!!.setImageBitmap(bitmap)
 								initDBManager()
-//								ivControl.visibility = View.VISIBLE
+								ivControl.visibility = View.VISIBLE
 							} catch (e: JSONException) {
 								e.printStackTrace()
 							}
@@ -126,7 +121,7 @@ class WarningDetailActivity : BaseActivity(), OnClickListener{
 					}
 				}
 			})
-		}).start()
+		}.start()
 	}
 
 	/**
@@ -170,7 +165,7 @@ class WarningDetailActivity : BaseActivity(), OnClickListener{
 				}
 			}
 			R.id.ivControl -> {
-				checkAuthority()
+				share()
 			}
 		}
 	}
@@ -182,61 +177,6 @@ class WarningDetailActivity : BaseActivity(), OnClickListener{
 		CommonUtil.clearBitmap(bitmap1)
 		CommonUtil.clearBitmap(bitmap2)
 		CommonUtil.share(this@WarningDetailActivity, bitmap)
-	}
-
-	//需要申请的所有权限
-	private val allPermissions = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-
-	//拒绝的权限集合
-	var deniedList: MutableList<String> = ArrayList()
-
-	/**
-	 * 申请定位权限
-	 */
-	private fun checkAuthority() {
-		if (Build.VERSION.SDK_INT < 23) {
-			share()
-		} else {
-			deniedList.clear()
-			for (permission in allPermissions) {
-				if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
-					deniedList.add(permission)
-				}
-			}
-			if (deniedList.isEmpty()) { //所有权限都授予
-				share()
-			} else {
-				val permissions = deniedList.toTypedArray() //将list转成数组
-				ActivityCompat.requestPermissions(this, permissions, AuthorityUtil.AUTHOR_STORAGE)
-			}
-		}
-	}
-
-	override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String?>, grantResults: IntArray) {
-		super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-		when (requestCode) {
-			AuthorityUtil.AUTHOR_STORAGE -> if (grantResults.size > 0) {
-				var isAllGranted = true //是否全部授权
-				for (gResult in grantResults) {
-					if (gResult != PackageManager.PERMISSION_GRANTED) {
-						isAllGranted = false
-						break
-					}
-				}
-				if (isAllGranted) { //所有权限都授予
-					share()
-				} else { //只要有一个没有授权，就提示进入设置界面设置
-					AuthorityUtil.intentAuthorSetting(this, "\"" + getString(R.string.app_name).toString() + "\"" + "需要使用您的存储权限，是否前往设置？")
-				}
-			} else {
-				for (permission in permissions) {
-					if (!ActivityCompat.shouldShowRequestPermissionRationale(this, permission!!)) {
-						AuthorityUtil.intentAuthorSetting(this, "\"" + getString(R.string.app_name).toString() + "\"" + "需要使用您的存储权限，是否前往设置？")
-						break
-					}
-				}
-			}
-		}
 	}
 
 }

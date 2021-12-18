@@ -93,7 +93,7 @@
             android:id="@+id/ivRank"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:src="@drawable/icon_location_off"/>
+            android:src="@drawable/icon_map_legend"/>
 
         <ImageView
             android:id="@+id/ivLegend"

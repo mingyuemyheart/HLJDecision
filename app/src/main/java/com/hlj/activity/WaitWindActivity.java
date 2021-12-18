@@ -68,7 +68,7 @@ import shawn.cxwl.com.hlj.R;
 /**
  * 等风来
  */
-public class ShawnWaitWindActivity extends BaseActivity implements OnClickListener, OnCameraChangeListener,
+public class WaitWindActivity extends BaseActivity implements OnClickListener, OnCameraChangeListener,
         AMap.OnMapClickListener, AMapLocationListener {
 
     private Context mContext;
@@ -77,7 +77,7 @@ public class ShawnWaitWindActivity extends BaseActivity implements OnClickListen
     private ImageView ivArrow, ivHeight,ivSwitch,ivLocation;
     private MapView mapView;
     private AMap aMap;
-    private float zoom = 3.7f;
+    private float zoom = 5.5f;
     private SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy", Locale.CHINA);
     private SimpleDateFormat sdf2 = new SimpleDateFormat("yyyyMMddHH", Locale.CHINA);
     private SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy年MM月dd日HH时", Locale.CHINA);
@@ -89,7 +89,7 @@ public class ShawnWaitWindActivity extends BaseActivity implements OnClickListen
     private WindData windDataGFS,windDataT639;
     private GeocodeSearch geocoderSearch;
     private Marker locationMarker;
-    private double locationLat = 35.926628, locationLng = 105.178100;
+    private double locationLat = CONST.defaultLat, locationLng = CONST.defaultLng;
     private String dataHeight = "1000";
     private boolean isShowDetail = false;
     private boolean isShowHeight = true;
@@ -97,7 +97,7 @@ public class ShawnWaitWindActivity extends BaseActivity implements OnClickListen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.shawn_activity_wait_wind);
+        setContentView(R.layout.activity_wait_wind);
         mContext = this;
         showDialog();
         initAmap(savedInstanceState);
@@ -110,16 +110,20 @@ public class ShawnWaitWindActivity extends BaseActivity implements OnClickListen
         if (aMap == null) {
             aMap = mapView.getMap();
         }
-        aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(35.926628, 105.178100), zoom));
+        aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(CONST.guizhouLatLng, zoom));
         aMap.setMapType(AMap.MAP_TYPE_SATELLITE);
         aMap.getUiSettings().setZoomControlsEnabled(false);
         aMap.getUiSettings().setRotateGesturesEnabled(false);
         aMap.setOnCameraChangeListener(this);
         aMap.setOnMapClickListener(this);
-
-        TextView tvMapNumber = findViewById(R.id.tvMapNumber);
-        tvMapNumber.setText(aMap.getMapContentApprovalNumber());
-        CommonUtil.drawHLJJson(mContext, aMap);
+        aMap.setOnMapLoadedListener(new AMap.OnMapLoadedListener() {
+            @Override
+            public void onMapLoaded() {
+                TextView tvMapNumber = findViewById(R.id.tvMapNumber);
+                tvMapNumber.setText(aMap.getMapContentApprovalNumber());
+                CommonUtil.drawHLJJson(mContext, aMap);
+            }
+        });
     }
 
     private void initWidget() {
@@ -164,15 +168,22 @@ public class ShawnWaitWindActivity extends BaseActivity implements OnClickListen
             tvTitle.setText(title);
         }
 
-        startLocation();
+        checkLocationAuthority(new LocationCallback() {
+            @Override
+            public void grantedLocation(boolean isGranted) {
+                if (isGranted) {
+                    startLocation();
+                } else {
+                    ivLocation.setVisibility(View.VISIBLE);
+                    addLocationMarker();
+                }
+            }
+        });
 
         OkHttpGFS();
 
         int currentYear = Integer.valueOf(sdf1.format(new Date()));
         OkHttpTyphoonList(currentYear);
-
-        String columnId = getIntent().getStringExtra(CONST.COLUMN_ID);
-        CommonUtil.submitClickCount(columnId, title);
     }
 
     /**
@@ -194,20 +205,17 @@ public class ShawnWaitWindActivity extends BaseActivity implements OnClickListen
 
     @Override
     public void onLocationChanged(AMapLocation amapLocation) {
-        if (amapLocation != null && amapLocation.getErrorCode() == 0) {
+        if (amapLocation != null && amapLocation.getErrorCode() == AMapLocation.LOCATION_SUCCESS) {
             locationLat = amapLocation.getLatitude();
             locationLng = amapLocation.getLongitude();
             ivLocation.setVisibility(View.VISIBLE);
-            addLocationMarker(new LatLng(locationLat, locationLng));
+            addLocationMarker();
         }
     }
 
-    private void addLocationMarker(final LatLng latLng) {
-        if (latLng == null) {
-            return;
-        }
+    private void addLocationMarker() {
         MarkerOptions options = new MarkerOptions();
-        options.position(latLng);
+        options.position(new LatLng(locationLat, locationLng));
         options.anchor(0.5f, 1.0f);
         Bitmap bitmap = ThumbnailUtils.extractThumbnail(BitmapFactory.decodeResource(getResources(), R.drawable.icon_map_location),
                 (int)(CommonUtil.dip2px(mContext, 16)), (int)(CommonUtil.dip2px(mContext, 24)));
@@ -223,7 +231,7 @@ public class ShawnWaitWindActivity extends BaseActivity implements OnClickListen
         locationMarker.setClickable(false);
 
         //latLonPoint参数表示一个Latlng，第二参数表示范围多少米，GeocodeSearch.AMAP表示是国测局坐标系还是GPS原生坐标系
-        RegeocodeQuery query = new RegeocodeQuery(new LatLonPoint(latLng.latitude, latLng.longitude), 200, GeocodeSearch.AMAP);
+        RegeocodeQuery query = new RegeocodeQuery(new LatLonPoint(locationLat, locationLng), 200, GeocodeSearch.AMAP);
         if (geocoderSearch == null) {
             geocoderSearch = new GeocodeSearch(mContext);
         }
@@ -240,13 +248,14 @@ public class ShawnWaitWindActivity extends BaseActivity implements OnClickListen
         });
         geocoderSearch.getFromLocationAsyn(query);
 
-        OkHttpWindDetail(SecretUrlUtil.windDetail(latLng.longitude, latLng.latitude));
-
+        OkHttpWindDetail(SecretUrlUtil.windDetail(locationLng, locationLat));
     }
 
     @Override
     public void onMapClick(LatLng latLng) {
-        addLocationMarker(latLng);
+        locationLat = latLng.latitude;
+        locationLng = latLng.longitude;
+        addLocationMarker();
     }
 
     /**
@@ -494,7 +503,7 @@ public class ShawnWaitWindActivity extends BaseActivity implements OnClickListen
         }
         if (waitWindView == null) {
             waitWindView = new WaitWindView2(mContext);
-            waitWindView.init(ShawnWaitWindActivity.this);
+            waitWindView.init(WaitWindActivity.this);
             if (isGfs) {
                 waitWindView.setData(windDataGFS, zoom);
             }else {
@@ -625,7 +634,7 @@ public class ShawnWaitWindActivity extends BaseActivity implements OnClickListen
             case R.id.ivLocation:
                 if (zoom >= 12.f) {
                     ivLocation.setImageResource(R.drawable.icon_location_off);
-                    zoom = 3.7f;
+                    zoom = 5.5f;
                     aMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(locationLat, locationLng), zoom));
                 }else {
                     ivLocation.setImageResource(R.drawable.icon_location_on);

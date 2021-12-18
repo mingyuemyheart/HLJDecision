@@ -1,19 +1,15 @@
 package com.hlj.activity
 
-import android.Manifest
 import android.annotation.SuppressLint
-import android.content.pm.PackageManager
 import android.os.*
-import android.support.v4.app.ActivityCompat
-import android.support.v4.content.ContextCompat
 import android.text.TextUtils
 import android.view.View
 import android.view.View.OnClickListener
+import android.widget.Toast
 import com.github.barteksc.pdfviewer.scroll.DefaultScrollHandle
 import com.hlj.common.CONST
 import com.hlj.common.MyApplication
 import com.hlj.dto.AgriDto
-import com.hlj.utils.AuthorityUtil
 import com.hlj.utils.OkHttpUtil
 import kotlinx.android.synthetic.main.activity_pdf.*
 import kotlinx.android.synthetic.main.layout_title.*
@@ -39,18 +35,22 @@ class PDFSingleActivity : BaseActivity(), OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pdf)
-        checkAuthority()
-    }
-
-    private fun init() {
-        initWidget()
+        checkStorageAuthority(object : StorageCallback {
+            override fun grantedStorage(isGranted: Boolean) {
+                if (isGranted) {
+                    initWidget()
+                } else {
+                    tvPercent.visibility = View.GONE
+                    Toast.makeText(this@PDFSingleActivity, "需要开启存储权限", Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
     }
 
     private fun initWidget() {
         llBack.setOnClickListener(this)
         tvTitle!!.text = "详情"
         ivControl.setImageResource(R.drawable.icon_download)
-        ivControl.visibility = View.VISIBLE
         ivControl.setOnClickListener(this)
 
 //        if (intent.hasExtra(CONST.ACTIVITY_NAME)) {
@@ -95,7 +95,6 @@ class PDFSingleActivity : BaseActivity(), OnClickListener {
                                         } else {
                                             isChinese(pdfUrl)
                                         }
-
                                         pdfUrl = isChinese(pdfUrl)
                                         okHttpFile(pdfUrl)
                                     }
@@ -224,63 +223,6 @@ class PDFSingleActivity : BaseActivity(), OnClickListener {
     override fun onClick(v: View?) {
         when (v!!.id) {
             R.id.llBack -> finish()
-        }
-    }
-
-    //需要申请的所有权限
-    private val allPermissions = arrayOf(
-            Manifest.permission.WRITE_EXTERNAL_STORAGE
-    )
-
-    //拒绝的权限集合
-    private val deniedList: MutableList<String> = ArrayList()
-
-    /**
-     * 申请定位权限
-     */
-    private fun checkAuthority() {
-        if (Build.VERSION.SDK_INT < 23) {
-            init()
-        } else {
-            deniedList.clear()
-            for (permission in allPermissions) {
-                if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
-                    deniedList.add(permission)
-                }
-            }
-            if (deniedList.isEmpty()) { //所有权限都授予
-                init()
-            } else {
-                val permissions = deniedList.toTypedArray() //将list转成数组
-                ActivityCompat.requestPermissions(this, permissions, AuthorityUtil.AUTHOR_STORAGE)
-            }
-        }
-    }
-
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String?>, grantResults: IntArray) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        when (requestCode) {
-            AuthorityUtil.AUTHOR_STORAGE -> if (grantResults.isNotEmpty()) {
-                var isAllGranted = true //是否全部授权
-                for (gResult in grantResults) {
-                    if (gResult != PackageManager.PERMISSION_GRANTED) {
-                        isAllGranted = false
-                        break
-                    }
-                }
-                if (isAllGranted) { //所有权限都授予
-                    init()
-                } else { //只要有一个没有授权，就提示进入设置界面设置
-                    AuthorityUtil.intentAuthorSetting(this, "\"" + getString(R.string.app_name) + "\"" + "需要使用存储权限，是否前往设置？")
-                }
-            } else {
-                for (permission in permissions) {
-                    if (!ActivityCompat.shouldShowRequestPermissionRationale(this, permission!!)) {
-                        AuthorityUtil.intentAuthorSetting(this, "\"" + getString(R.string.app_name) + "\"" + "需要使用存储权限，是否前往设置？")
-                        break
-                    }
-                }
-            }
         }
     }
 

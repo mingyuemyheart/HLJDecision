@@ -29,7 +29,7 @@ import shawn.cxwl.com.hlj.R
 import java.io.IOException
 
 /**
- * 分钟级降水
+ * 航化作业
  */
 class HanghuaActivity : BaseActivity(), View.OnClickListener, AMap.OnMapClickListener, AMap.OnMarkerClickListener {
 
@@ -56,9 +56,6 @@ class HanghuaActivity : BaseActivity(), View.OnClickListener, AMap.OnMapClickLis
         if (!TextUtils.isEmpty(title)) {
             tvTitle!!.text = title
         }
-        CommonUtil.drawHLJJson(this, aMap)
-        val columnId = intent.getStringExtra(CONST.COLUMN_ID)
-        CommonUtil.submitClickCount(columnId, title)
     }
 
     private fun initMap(bundle: Bundle?) {
@@ -72,9 +69,10 @@ class HanghuaActivity : BaseActivity(), View.OnClickListener, AMap.OnMapClickLis
         aMap!!.setOnMarkerClickListener(this)
         aMap!!.setOnMapClickListener(this)
         aMap!!.setOnMapLoadedListener {
+            tvMapNumber.text = aMap!!.mapContentApprovalNumber
+            CommonUtil.drawHLJJson(this, aMap)
             okHttpList()
         }
-        tvMapNumber.text = aMap!!.mapContentApprovalNumber
     }
 
     private fun addMarkerToMap(latLng: LatLng) {
@@ -103,11 +101,12 @@ class HanghuaActivity : BaseActivity(), View.OnClickListener, AMap.OnMapClickLis
     }
 
     private fun okHttpList() {
-        Thread(Runnable {
+        Thread {
             val url = "http://decision-admin.tianqi.cn/Home/work2019/hlj_getmyhanghuoData?uid=${MyApplication.UID}"
             OkHttpUtil.enqueue(Request.Builder().url(url).build(), object : Callback {
                 override fun onFailure(call: Call, e: IOException) {
                 }
+
                 override fun onResponse(call: Call, response: Response) {
                     if (!response.isSuccessful) {
                         return
@@ -159,7 +158,7 @@ class HanghuaActivity : BaseActivity(), View.OnClickListener, AMap.OnMapClickLis
                     }
                 }
             })
-        }).start()
+        }.start()
     }
 
     private fun initListView() {
@@ -168,7 +167,7 @@ class HanghuaActivity : BaseActivity(), View.OnClickListener, AMap.OnMapClickLis
     }
 
     private fun okHttpList2(lat: Double, lng: Double) {
-        Thread(Runnable {
+        Thread {
             val url = "http://decision-admin.tianqi.cn/Home/work2019/hlj_gethanghuoData?lat=$lat&lon=$lng"
             OkHttpUtil.enqueue(Request.Builder().url(url).build(), object : Callback {
                 override fun onFailure(call: Call, e: IOException) {
@@ -222,7 +221,7 @@ class HanghuaActivity : BaseActivity(), View.OnClickListener, AMap.OnMapClickLis
                     }
                 }
             })
-        }).start()
+        }.start()
     }
 
     override fun onClick(v: View) {

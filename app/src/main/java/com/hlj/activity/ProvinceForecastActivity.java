@@ -29,9 +29,9 @@ import com.amap.api.maps.model.MarkerOptions;
 import com.amap.api.maps.model.animation.ScaleAnimation;
 import com.hlj.common.CONST;
 import com.hlj.dto.CityDto;
-import com.hlj.manager.RainManager;
 import com.hlj.utils.CommonUtil;
 import com.hlj.utils.OkHttpUtil;
+import com.hlj.utils.SecretUrlUtil;
 import com.hlj.utils.WeatherUtil;
 import com.hlj.view.ExpandableTextView;
 
@@ -44,7 +44,6 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -110,12 +109,7 @@ public class ProvinceForecastActivity extends BaseActivity implements OnClickLis
         }
 
         OkHttpText();
-
-        //获取站点信息
-        OkHttpRank();
-
-        String columnId = getIntent().getStringExtra(CONST.COLUMN_ID);
-        CommonUtil.submitClickCount(columnId, title);
+        OkHttpRank();//获取站点信息
     }
 
     /**
@@ -137,11 +131,14 @@ public class ProvinceForecastActivity extends BaseActivity implements OnClickLis
         aMap.setOnMapClickListener(this);
         aMap.setInfoWindowAdapter(this);
         aMap.setOnCameraChangeListener(this);
-
-        TextView tvMapNumber = findViewById(R.id.tvMapNumber);
-        tvMapNumber.setText(aMap.getMapContentApprovalNumber());
-
-        CommonUtil.drawHLJJson(mContext, aMap);
+        aMap.setOnMapLoadedListener(new AMap.OnMapLoadedListener() {
+            @Override
+            public void onMapLoaded() {
+                TextView tvMapNumber = findViewById(R.id.tvMapNumber);
+                tvMapNumber.setText(aMap.getMapContentApprovalNumber());
+                CommonUtil.drawHLJJson(mContext, aMap);
+            }
+        });
     }
 
     /**
@@ -196,40 +193,13 @@ public class ProvinceForecastActivity extends BaseActivity implements OnClickLis
     }
 
     /**
-     * 加密请求字符串
-     * @return
-     */
-    private String getSecretUrl() {
-        String SANX_DATA_99 = "sanx_data_99";//加密秘钥名称
-        String APPID = "f63d329270a44900";//机密需要用到的AppId
-        String URL = "http://scapi.weather.com.cn/weather/getaqiobserve";//空气污染
-        String sysdate = RainManager.getDate(Calendar.getInstance(), "yyyyMMddHHmm");//系统时间
-        StringBuffer buffer = new StringBuffer();
-        buffer.append(URL);
-        buffer.append("?");
-        buffer.append("date=").append(sysdate);
-        buffer.append("&");
-        buffer.append("appid=").append(APPID);
-
-        String key = RainManager.getKey(SANX_DATA_99, buffer.toString());
-        buffer.delete(buffer.lastIndexOf("&"), buffer.length());
-
-        buffer.append("&");
-        buffer.append("appid=").append(APPID.substring(0, 6));
-        buffer.append("&");
-        buffer.append("key=").append(key.substring(0, key.length() - 3));
-        String result = buffer.toString();
-        return result;
-    }
-
-    /**
      * 获取空气质量排行
      */
     private void OkHttpRank() {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                OkHttpUtil.enqueue(new Request.Builder().url(getSecretUrl()).build(), new Callback() {
+                OkHttpUtil.enqueue(new Request.Builder().url(SecretUrlUtil.airpollution()).build(), new Callback() {
                     @Override
                     public void onFailure(Call call, IOException e) {
                     }
@@ -249,6 +219,7 @@ public class ProvinceForecastActivity extends BaseActivity implements OnClickLis
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
+                                    cancelDialog();
                                     removeMarkers();
 
                                     for (int i = 0; i < cityList.size(); i++) {
@@ -260,8 +231,6 @@ public class ProvinceForecastActivity extends BaseActivity implements OnClickLis
                                         CityDto dto = districtList.get(i);
                                         getWeatherInfos(dto, disMarkers, false);
                                     }
-
-                                    cancelDialog();
                                 }
                             });
                         }
@@ -276,7 +245,7 @@ public class ProvinceForecastActivity extends BaseActivity implements OnClickLis
      */
     private void parseStationInfo(String result, String level, List<CityDto> list) {
         try {
-            JSONObject obj = new JSONObject(result.toString());
+            JSONObject obj = new JSONObject(result);
             if (!obj.isNull("data")) {
                 JSONObject dataObj = obj.getJSONObject("data");
                 if (!dataObj.isNull(level)) {
@@ -299,7 +268,6 @@ public class ProvinceForecastActivity extends BaseActivity implements OnClickLis
                         if (!itemObj.isNull("lon")) {
                             dto.lng = Double.valueOf(itemObj.getString("lon"));
                         }
-
                         if (dto.areaId.startsWith("10105")) {
                             list.add(dto);
                         }

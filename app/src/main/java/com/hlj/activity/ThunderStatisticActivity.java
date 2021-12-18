@@ -121,12 +121,12 @@ public class ThunderStatisticActivity extends BaseActivity implements View.OnCli
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thunder_statistic);
         mContext = this;
+        showDialog();
         initAmap(savedInstanceState);
         initWidget();
     }
 
     private void initWidget() {
-        showDialog();
         ivControl = findViewById(R.id.ivControl);
         ivControl.setOnClickListener(this);
         ivControl.setVisibility(View.VISIBLE);
@@ -333,15 +333,29 @@ public class ThunderStatisticActivity extends BaseActivity implements View.OnCli
             });
         }
 
-        if (CommonUtil.isLocationOpen(mContext)) {
-            startLocation();
-        }else {
-            tvPosition.setText("北京市 | 东城区");
-            tvStreet.setText("正义路2号");
-            locationLatLng = new LatLng(39.904030, 116.407526);
-            addLocationMarker();
-            OkHttpThunderStatistic(locationLatLng.longitude, locationLatLng.latitude, "hour");
-        }
+        checkLocationAuthority(new LocationCallback() {
+            @Override
+            public void grantedLocation(boolean isGranted) {
+                if (isGranted) {
+                    if (CommonUtil.isLocationOpen(mContext)) {
+                        startLocation();
+                    }else {
+                        tvPosition.setText("北京市 | 东城区");
+                        tvStreet.setText("正义路2号");
+                        locationLatLng = new LatLng(39.904030, 116.407526);
+                        addLocationMarker();
+                        OkHttpThunderStatistic(locationLatLng.longitude, locationLatLng.latitude, "hour");
+                    }
+                } else {
+                    tvPosition.setText("北京市 | 东城区");
+                    tvStreet.setText("正义路2号");
+                    locationLatLng = new LatLng(39.904030, 116.407526);
+                    addLocationMarker();
+                    OkHttpThunderStatistic(locationLatLng.longitude, locationLatLng.latitude, "hour");
+                }
+            }
+        });
+
     }
 
     private void initChart() {

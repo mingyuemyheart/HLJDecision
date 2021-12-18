@@ -8,6 +8,7 @@ import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnClickListener
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import com.hlj.common.CONST
@@ -15,6 +16,7 @@ import com.hlj.common.MyApplication
 import com.hlj.manager.DataCleanManager
 import com.hlj.utils.AutoUpdateUtil
 import com.hlj.utils.CommonUtil
+import com.hlj.utils.OkHttpUtil
 import kotlinx.android.synthetic.main.activity_setting.*
 import kotlinx.android.synthetic.main.dialog_delete.view.*
 import kotlinx.android.synthetic.main.dialog_delete.view.tvContent
@@ -23,7 +25,11 @@ import kotlinx.android.synthetic.main.dialog_delete.view.tvNegtive
 import kotlinx.android.synthetic.main.dialog_delete.view.tvPositive
 import kotlinx.android.synthetic.main.dialog_prompt.view.*
 import kotlinx.android.synthetic.main.layout_title.*
+import okhttp3.*
+import org.json.JSONException
+import org.json.JSONObject
 import shawn.cxwl.com.hlj.R
+import java.io.IOException
 import java.util.*
 
 /**
@@ -57,6 +63,7 @@ class SettingActivity : BaseActivity(), OnClickListener {
         tvUserName!!.setOnClickListener(this)
         ivPushNews!!.setOnClickListener(this)
         llManage!!.setOnClickListener(this)
+        llLogout!!.setOnClickListener(this)
 
         if (TextUtils.equals(MyApplication.USERNAME, CONST.publicUser) || TextUtils.isEmpty(MyApplication.USERNAME)) { //公众用户或为空
             tvUserName!!.text = "点击登录\n非注册用户"
@@ -120,10 +127,7 @@ class SettingActivity : BaseActivity(), OnClickListener {
         view.llNegative.setOnClickListener { dialog.dismiss() }
         view.llPositive.setOnClickListener {
             dialog.dismiss()
-            MyApplication.clearUserInfo(this)
-            MyApplication.destoryActivity()
-            startActivity(Intent(this, LoginActivity::class.java))
-            finish()
+            exit()
         }
     }
 
@@ -175,8 +179,8 @@ class SettingActivity : BaseActivity(), OnClickListener {
                 }
             }
             R.id.llVersion -> {
-                AutoUpdateUtil.checkUpdate(this@SettingActivity, this, "41", getString(R.string.app_name), false) //黑龙江气象
-//                AutoUpdateUtil.checkUpdate(this@SettingActivity, this, "53", getString(R.string.app_name), false) //决策气象服务
+//                AutoUpdateUtil.checkUpdate(this@SettingActivity, this, "41", getString(R.string.app_name), false) //黑龙江气象
+                AutoUpdateUtil.checkUpdate(this@SettingActivity, this, "53", getString(R.string.app_name), false) //决策气象服务
             }
             R.id.llClearCache -> deleteDialog(true, getString(R.string.delete_cache), getString(R.string.sure_delete_cache), tvCache)
             R.id.llClearData -> deleteDialog(false, getString(R.string.delete_data), getString(R.string.sure_delete_data), tvData)
@@ -186,7 +190,6 @@ class SettingActivity : BaseActivity(), OnClickListener {
                 intentBuild.putExtra(CONST.WEB_URL, CONST.BUILD_URL)
                 startActivity(intentBuild)
             }
-            R.id.tvLogout -> logout(getString(R.string.logout), getString(R.string.sure_logout))
             R.id.llCity -> startActivity(Intent(this, ReserveCityActivity::class.java))
             R.id.ivPushNews -> {
                 val push = getSharedPreferences("PUSH_STATE", Context.MODE_PRIVATE)
@@ -223,6 +226,8 @@ class SettingActivity : BaseActivity(), OnClickListener {
                     startActivityForResult(Intent(this, ManageActivity::class.java), 1001)
                 }
             }
+            R.id.llLogout -> dialogRemove("确定注销该账号？")
+            R.id.tvLogout -> logout(getString(R.string.logout), getString(R.string.sure_logout))
         }
     }
 
@@ -236,6 +241,82 @@ class SettingActivity : BaseActivity(), OnClickListener {
                 }
             }
         }
+    }
+
+    private fun dialogRemove(message: String) {
+        val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val view = inflater.inflate(R.layout.dialog_delete, null)
+        val tvMessage = view.findViewById<View>(R.id.tvMessage) as TextView
+        val llNegative = view.findViewById<View>(R.id.llNegative) as LinearLayout
+        val llPositive = view.findViewById<View>(R.id.llPositive) as LinearLayout
+        val dialog = Dialog(this, R.style.CustomProgressDialog)
+        dialog.setContentView(view)
+        dialog.show()
+        tvMessage.text = message
+        llNegative.setOnClickListener { dialog.dismiss() }
+        llPositive.setOnClickListener {
+            dialog.dismiss()
+            okhttpRemoveUser()
+        }
+    }
+
+    /**
+     * 注销账号
+     */
+    private fun okhttpRemoveUser() {
+        showDialog()
+        val url = "http://decision-admin.tianqi.cn/Home/work2019/xz_user_remove"
+        val builder = FormBody.Builder()
+        builder.add("id", MyApplication.UID)
+        builder.add("appid", CONST.APPID)
+        val body: RequestBody = builder.build()
+        Thread {
+            OkHttpUtil.enqueue(Request.Builder().post(body).url(url).build(), object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+                    runOnUiThread {
+                        cancelDialog()
+                        Toast.makeText(this@SettingActivity, "注销账号失败", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                @Throws(IOException::class)
+                override fun onResponse(call: Call, response: Response) {
+                    if (!response.isSuccessful) {
+                        return
+                    }
+                    val result = response.body!!.string()
+                    runOnUiThread {
+                        cancelDialog()
+                        if (!TextUtils.isEmpty(result)) {
+                            try {
+                                val `object` = JSONObject(result)
+                                if (!`object`.isNull("status")) {
+                                    val status = `object`.getInt("status")
+                                    if (status == 1) {
+                                        Toast.makeText(this@SettingActivity, "账号注销成功", Toast.LENGTH_SHORT).show()
+                                        exit()
+                                    } else {
+                                        val msg = `object`.getString("msg")
+                                        if (msg != null) {
+                                            Toast.makeText(this@SettingActivity, "账号注销成功", Toast.LENGTH_SHORT).show()
+                                        }
+                                    }
+                                }
+                            } catch (e: JSONException) {
+                                e.printStackTrace()
+                            }
+                        }
+                    }
+                }
+            })
+        }.start()
+    }
+
+    private fun exit() {
+        MyApplication.clearUserInfo(this)
+        MyApplication.destoryActivity()
+        startActivity(Intent(this, LoginActivity::class.java))
+        finish()
     }
 
 }

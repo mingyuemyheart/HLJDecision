@@ -106,7 +106,7 @@ class CommonListActivity : BaseActivity(), View.OnClickListener {
     }
 
     private fun okHttpList(url: String?) {
-        Thread(Runnable {
+        Thread {
             OkHttpUtil.enqueue(Request.Builder().url(url!!).build(), object : Callback {
                 override fun onFailure(call: Call, e: IOException) {}
 
@@ -200,7 +200,7 @@ class CommonListActivity : BaseActivity(), View.OnClickListener {
                     }
                 }
             })
-        }).start()
+        }.start()
     }
 
     private val sdf11 = SimpleDateFormat("yyyyMMdd", Locale.CHINA)

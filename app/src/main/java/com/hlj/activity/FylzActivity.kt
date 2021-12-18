@@ -92,8 +92,7 @@ class FylzActivity : BaseActivity(), OnClickListener, OnMarkerClickListener {
         if (aMap == null) {
             aMap = mapView!!.map
         }
-        val guizhouLatLng = LatLng(46.102915, 128.121040)
-        aMap!!.moveCamera(CameraUpdateFactory.newLatLngZoom(guizhouLatLng, zoom))
+        aMap!!.moveCamera(CameraUpdateFactory.newLatLngZoom(CONST.guizhouLatLng, zoom))
         aMap!!.mapType = AMap.MAP_TYPE_SATELLITE
         aMap!!.uiSettings.isZoomControlsEnabled = false
         aMap!!.uiSettings.isRotateGesturesEnabled = false

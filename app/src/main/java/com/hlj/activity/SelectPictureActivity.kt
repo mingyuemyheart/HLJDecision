@@ -42,10 +42,6 @@ class SelectPictureActivity : BaseActivity(), View.OnClickListener, SelectListen
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_picture)
-        checkStorageAuthority()
-    }
-
-    private fun init() {
         initWidget()
         initGridView()
     }
@@ -54,12 +50,20 @@ class SelectPictureActivity : BaseActivity(), View.OnClickListener, SelectListen
         llBack.setOnClickListener(this)
         tvTitle.text = "选择图片"
         tvControl.setOnClickListener(this)
-        tvControl.visibility = View.VISIBLE
 
-        lastCount = intent.getIntExtra("count", 0)
-        maxCount = intent.getIntExtra("maxCount", 0)
-        tvControl!!.text = "完成($selectCount/${maxCount-lastCount})"
-        loadImages()
+        checkStorageAuthority(object : StorageCallback {
+            override fun grantedStorage(isGranted: Boolean) {
+                if (isGranted) {
+                    tvControl.visibility = View.VISIBLE
+                    lastCount = intent.getIntExtra("count", 0)
+                    maxCount = intent.getIntExtra("maxCount", 0)
+                    tvControl!!.text = "完成($selectCount/${maxCount-lastCount})"
+                    loadImages()
+                } else {
+                    Toast.makeText(this@SelectPictureActivity, "需要开启存储权限", Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
     }
 
     /**
@@ -85,7 +89,15 @@ class SelectPictureActivity : BaseActivity(), View.OnClickListener, SelectListen
         gridView.onItemClickListener = OnItemClickListener { parent, view, position, id ->
             val dto = dataList[position]
             if (TextUtils.isEmpty(dto.imgUrl)) {//拍照
-                checkCameraAuthority()
+                checkCameraAuthority(object : CameraCallback {
+                    override fun grantedCamera(isGranted: Boolean) {
+                        if (isGranted) {
+                            intentCamera()
+                        } else {
+                            Toast.makeText(this@SelectPictureActivity, "需要开启摄像头权限", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                })
             } else {
                 val intent = Intent(this, DisplayPictureActivity::class.java)
                 intent.putExtra(CONST.WEB_URL, dto.imgUrl)
@@ -177,86 +189,6 @@ class SelectPictureActivity : BaseActivity(), View.OnClickListener, SelectListen
         }
         intent.putExtra(MediaStore.EXTRA_OUTPUT, uri)
         startActivityForResult(intent, 1001)
-    }
-
-    /**
-     * 申请相机权限
-     */
-    private fun checkCameraAuthority() {
-        if (Build.VERSION.SDK_INT < 23) {
-            intentCamera()
-        } else {
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) !== PackageManager.PERMISSION_GRANTED) {
-                val permissions = arrayOf(Manifest.permission.CAMERA)
-                ActivityCompat.requestPermissions(this, permissions, AuthorityUtil.AUTHOR_CAMERA)
-            } else {
-                intentCamera()
-            }
-        }
-    }
-
-    /**
-     * 申请存储权限
-     */
-    private fun checkStorageAuthority() {
-        if (Build.VERSION.SDK_INT < 23) {
-            init()
-        } else {
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) !== PackageManager.PERMISSION_GRANTED) {
-                val permissions = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE)
-                ActivityCompat.requestPermissions(this, permissions, AuthorityUtil.AUTHOR_STORAGE)
-            } else {
-                init()
-            }
-        }
-    }
-
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String?>, grantResults: IntArray) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        when (requestCode) {
-            AuthorityUtil.AUTHOR_CAMERA -> if (grantResults.isNotEmpty()) {
-                var isAllGranted = true //是否全部授权
-                for (gResult in grantResults) {
-                    if (gResult != PackageManager.PERMISSION_GRANTED) {
-                        isAllGranted = false
-                        break
-                    }
-                }
-                if (isAllGranted) { //所有权限都授予
-                    intentCamera()
-                } else { //只要有一个没有授权，就提示进入设置界面设置
-                    checkCameraAuthority()
-                }
-            } else {
-                for (permission in permissions) {
-                    if (!ActivityCompat.shouldShowRequestPermissionRationale(this, permission!!)) {
-                        checkCameraAuthority()
-                        break
-                    }
-                }
-            }
-            AuthorityUtil.AUTHOR_STORAGE -> if (grantResults.isNotEmpty()) {
-                var isAllGranted = true //是否全部授权
-                for (gResult in grantResults) {
-                    if (gResult != PackageManager.PERMISSION_GRANTED) {
-                        isAllGranted = false
-                        break
-                    }
-                }
-                if (isAllGranted) { //所有权限都授予
-                    init()
-                } else { //只要有一个没有授权，就提示进入设置界面设置
-                    checkStorageAuthority()
-                }
-            } else {
-                for (permission in permissions) {
-                    if (!ActivityCompat.shouldShowRequestPermissionRationale(this, permission!!)) {
-                        checkStorageAuthority()
-                        break
-                    }
-                }
-            }
-        }
     }
 
 }

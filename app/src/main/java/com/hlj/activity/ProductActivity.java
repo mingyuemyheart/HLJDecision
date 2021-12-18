@@ -84,9 +84,6 @@ public class ProductActivity extends BaseActivity implements OnClickListener {
 				}
 			}
 		}
-
-		String columnId = getIntent().getStringExtra(CONST.COLUMN_ID);
-		CommonUtil.submitClickCount(columnId, title);
 	}
 	
 	/**

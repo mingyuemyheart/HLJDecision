@@ -25,7 +25,7 @@
                 android:background="@color/colorPrimary"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:paddingTop="50dp"
+                android:paddingTop="20dp"
                 android:paddingBottom="20dp">
 
                 <ImageView
@@ -303,11 +303,34 @@
                     android:background="@drawable/iv_arrow" />
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/llLogout"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@drawable/selector_item"
+                android:gravity="center_vertical"
+                android:paddingStart="15dp"
+                android:paddingEnd="10dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="注销账号"
+                    android:textColor="@color/text_color3"
+                    android:textSize="@dimen/level_4" />
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="18dp"
+                    android:background="@drawable/iv_arrow" />
+            </LinearLayout>
+
             <TextView
                 android:id="@+id/tvLogout"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="15dp"
                 android:background="@drawable/selector_item"
                 android:gravity="center"
                 android:padding="5dp"

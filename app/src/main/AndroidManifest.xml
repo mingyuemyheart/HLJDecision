@@ -69,13 +69,13 @@
         <!--6.gradle 修改打包名称-->
 
         <!-- 普通版本-->
-        <meta-data
-        android:name="com.amap.api.v2.apikey"
-        android:value="41cb6e240846b9f30207a9e6ac79fdc2"/>
-
 <!--        <meta-data-->
-<!--            android:name="com.amap.api.v2.apikey"-->
-<!--            android:value="51096dda8deea179e4a980f74d38c4d6" />-->
+<!--        android:name="com.amap.api.v2.apikey"-->
+<!--        android:value="41cb6e240846b9f30207a9e6ac79fdc2"/>-->
+
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="51096dda8deea179e4a980f74d38c4d6" />
 
         <service android:name="com.amap.api.location.APSService" />
 
@@ -128,7 +128,7 @@
             android:configChanges="keyboardHidden|orientation|screenSize"/>
 
         <activity
-            android:name="com.hlj.activity.HTempratureForecastActivity"
+            android:name="com.hlj.activity.TempForeActivity"
             android:screenOrientation="portrait" />
 
         <activity
@@ -140,7 +140,7 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.hlj.activity.HAirPolutionActivity"
+            android:name="com.hlj.activity.AirActivity"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
             android:screenOrientation="nosensor" />
 
@@ -149,7 +149,7 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.hlj.activity.HWeatherStaticsActivity"
+            android:name="com.hlj.activity.WeatherStaticsActivity"
             android:screenOrientation="portrait" />
 
         <activity
@@ -161,7 +161,7 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.hlj.activity.HWeatherChartAnalysisActivity"
+            android:name="com.hlj.activity.WeatherChartAnalysisActivity"
             android:screenOrientation="portrait" />
 
         <activity
@@ -240,7 +240,7 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.hlj.activity.ShawnWeatherMeetingActivity"
+            android:name="com.hlj.activity.WeatherMeetingActivity"
             android:screenOrientation="portrait" />
 
         <activity
@@ -276,7 +276,7 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.hlj.activity.ShawnStreamFactActivity"
+            android:name="com.hlj.activity.StreamFactActivity"
             android:screenOrientation="portrait" />
 
         <activity
@@ -284,11 +284,11 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.hlj.activity.ShawnStrongStreamActivity"
+            android:name="com.hlj.activity.StrongStreamActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.hlj.activity.ShawnWaitWindActivity"
+            android:name="com.hlj.activity.WaitWindActivity"
             android:screenOrientation="portrait" />
 
         <activity

@@ -45,16 +45,15 @@ import kotlin.collections.ArrayList
 /**
  * 格点预报
  */
-class PointForeActivity : BaseActivity(), OnClickListener, AMapLocationListener, AMap.OnCameraChangeListener,
-        AMap.OnMapClickListener {
+class PointForeActivity : BaseActivity(), OnClickListener, AMapLocationListener, AMap.OnCameraChangeListener, AMap.OnMapClickListener {
 
     private var aMap: AMap? = null
     private var zoom = 5.5f
     private val sdf1 = SimpleDateFormat("dd日HH时", Locale.CHINA)
     private val sdf2 = SimpleDateFormat("yyyyMMddHH", Locale.CHINA)
     private var dataType = 1 //1温度、2湿度、3风速、4能见度、5云量、6降水
-    private var locationLat = 46.102915
-    private var locationLng = 128.121040
+    private var locationLat = CONST.defaultLat
+    private var locationLng = CONST.defaultLng
     private var mapType = AMap.MAP_TYPE_NORMAL
     private var start: LatLng? = null
     private var end: LatLng? = null
@@ -73,10 +72,6 @@ class PointForeActivity : BaseActivity(), OnClickListener, AMapLocationListener,
         setContentView(R.layout.activity_point_fore)
         this.savedInstanceState = savedInstanceState
         showDialog()
-        init()
-    }
-
-    private fun init() {
         initMap()
         initWidget()
     }
@@ -104,14 +99,23 @@ class PointForeActivity : BaseActivity(), OnClickListener, AMapLocationListener,
         ivPlay.setOnClickListener(this)
         seekBar.setOnSeekBarChangeListener(seekbarListener)
         ivLegendPrompt.setOnClickListener(this)
+
         val title = intent.getStringExtra(CONST.ACTIVITY_NAME)
         if (title != null) {
             tvTitle.text = title
         }
-        startLocation()
+
+        checkLocationAuthority(object : LocationCallback {
+            override fun grantedLocation(isGranted: Boolean) {
+                if (isGranted) {
+                    startLocation()
+                } else {
+                    locationComplete()
+                }
+            }
+
+        })
         okHttpList()
-        val columnId = intent.getStringExtra(CONST.COLUMN_ID)
-        CommonUtil.submitClickCount(columnId, title)
     }
 
     /**
@@ -210,7 +214,7 @@ class PointForeActivity : BaseActivity(), OnClickListener, AMapLocationListener,
 
     private fun okHttpList() {
         val url = "http://decision-admin.tianqi.cn/Home/extra/decision_gdsk_yb_images"
-        Thread(Runnable {
+        Thread {
             OkHttpUtil.enqueue(Request.Builder().url(url).build(), object : Callback {
                 override fun onFailure(call: Call, e: IOException) {}
 
@@ -309,7 +313,7 @@ class PointForeActivity : BaseActivity(), OnClickListener, AMapLocationListener,
                     }
                 }
             })
-        }).start()
+        }.start()
     }
 
     /**
@@ -361,7 +365,7 @@ class PointForeActivity : BaseActivity(), OnClickListener, AMapLocationListener,
     }
 
     private fun okHttpBitmap(url: String) {
-        Thread(Runnable {
+        Thread {
             OkHttpUtil.enqueue(Request.Builder().url(url).build(), object : Callback {
                 override fun onFailure(call: Call, e: IOException) {}
 
@@ -377,7 +381,7 @@ class PointForeActivity : BaseActivity(), OnClickListener, AMapLocationListener,
                     }
                 }
             })
-        }).start()
+        }.start()
     }
 
     private var factOverlay: GroundOverlay? = null
@@ -662,7 +666,7 @@ class PointForeActivity : BaseActivity(), OnClickListener, AMapLocationListener,
                 startActivity(intent)
             }
             R.id.ivLocation -> if (zoom >= 12f) {
-                aMap!!.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(locationLat, locationLng), 3.5f))
+                aMap!!.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(locationLat, locationLng), 5.5f))
             } else {
                 aMap!!.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(locationLat, locationLng), 12.0f))
             }

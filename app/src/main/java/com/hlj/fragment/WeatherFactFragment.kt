@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
@@ -121,23 +120,23 @@ class WeatherFactFragment : BaseFragment() {
                     intent.putExtras(bundle)
                     startActivity(intent)
                 } else if (TextUtils.equals(dto.id, "106")) { //天气图分析
-                    intent = Intent(activity, HWeatherChartAnalysisActivity::class.java)
+                    intent = Intent(activity, WeatherChartAnalysisActivity::class.java)
                     intent.putExtra(CONST.COLUMN_ID, dto.columnId)
                     val bundle = Bundle()
                     bundle.putParcelable("data", dto)
                     intent.putExtras(bundle)
                     startActivity(intent)
                 } else if (TextUtils.equals(dto.id, "108")) { //空气质量
-                    intent = Intent(activity, HAirPolutionActivity::class.java)
+                    intent = Intent(activity, AirActivity::class.java)
                     intent.putExtra(CONST.COLUMN_ID, dto.columnId)
                     intent.putExtra(CONST.ACTIVITY_NAME, dto.name)
                     startActivity(intent)
                 } else if (TextUtils.equals(dto.id, "112")) { //天气统计
-                    intent = Intent(activity, HWeatherStaticsActivity::class.java)
+                    intent = Intent(activity, WeatherStaticsActivity::class.java)
                     intent.putExtra(CONST.COLUMN_ID, dto.columnId)
                     intent.putExtra(CONST.ACTIVITY_NAME, dto.name)
                     startActivity(intent)
-                } else if (TextUtils.equals(dto.id, "121")) { //负氧离子检测新
+                } else if (TextUtils.equals(dto.id, "121")) { //负氧离子监测新
                     intent = Intent(activity, FylzActivity::class.java)
                     intent.putExtra(CONST.COLUMN_ID, dto.columnId)
                     intent.putExtra(CONST.ACTIVITY_NAME, dto.name)
@@ -148,12 +147,12 @@ class WeatherFactFragment : BaseFragment() {
                     intent.putExtra(CONST.ACTIVITY_NAME, dto.name)
                     startActivity(intent)
                 } else if (TextUtils.equals(dto.id, "120")) { //强对流天气实况（新）
-                    intent = Intent(activity, ShawnStreamFactActivity::class.java)
+                    intent = Intent(activity, StreamFactActivity::class.java)
                     intent.putExtra(CONST.COLUMN_ID, dto.columnId)
                     intent.putExtra(CONST.ACTIVITY_NAME, dto.name)
                     startActivity(intent)
                 } else if (TextUtils.equals(dto.id, "201")) { //气温预报
-                    intent = Intent(activity, HTempratureForecastActivity::class.java)
+                    intent = Intent(activity, TempForeActivity::class.java)
                     intent.putExtra(CONST.COLUMN_ID, dto.columnId)
                     val bundle = Bundle()
                     bundle.putParcelable("data", dto)
@@ -165,7 +164,7 @@ class WeatherFactFragment : BaseFragment() {
                     intent.putExtra(CONST.ACTIVITY_NAME, dto.name)
                     startActivity(intent)
                 } else if (TextUtils.equals(dto.id, "205")) { //等风来
-                    intent = Intent(activity, ShawnWaitWindActivity::class.java)
+                    intent = Intent(activity, WaitWindActivity::class.java)
                     intent.putExtra(CONST.COLUMN_ID, dto.columnId)
                     intent.putExtra(CONST.ACTIVITY_NAME, dto.name)
                     startActivity(intent)
@@ -175,7 +174,7 @@ class WeatherFactFragment : BaseFragment() {
                     intent.putExtra(CONST.ACTIVITY_NAME, dto.name)
                     startActivity(intent)
                 } else if (TextUtils.equals(dto.id, "208")) { //分钟降水与强对流
-                    intent = Intent(activity, ShawnStrongStreamActivity::class.java)
+                    intent = Intent(activity, StrongStreamActivity::class.java)
                     intent.putExtra(CONST.COLUMN_ID, dto.columnId)
                     intent.putExtra(CONST.ACTIVITY_NAME, dto.name)
                     startActivity(intent)
@@ -211,7 +210,7 @@ class WeatherFactFragment : BaseFragment() {
                     intent.putExtras(bundle)
                     startActivity(intent)
                 } else if (TextUtils.equals(dto.id, "118")) { //天气会商
-                    intent = Intent(activity, ShawnWeatherMeetingActivity::class.java)
+                    intent = Intent(activity, WeatherMeetingActivity::class.java)
                     intent.putExtra(CONST.COLUMN_ID, dto.columnId)
                     intent.putExtra(CONST.ACTIVITY_NAME, dto.name)
                     startActivity(intent)
@@ -336,9 +335,10 @@ class WeatherFactFragment : BaseFragment() {
      * 获取详情
      */
     private fun okHttpDetail(url: String) {
-        Thread(Runnable {
+        Thread {
             OkHttpUtil.enqueue(Request.Builder().url(url).build(), object : Callback {
                 override fun onFailure(call: Call, e: IOException) {}
+
                 @Throws(IOException::class)
                 override fun onResponse(call: Call, response: Response) {
                     if (!response.isSuccessful) {
@@ -367,7 +367,7 @@ class WeatherFactFragment : BaseFragment() {
                     }
                 }
             })
-        }).start()
+        }.start()
     }
 	
 }

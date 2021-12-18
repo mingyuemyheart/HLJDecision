@@ -20,7 +20,7 @@
         android:id="@+id/tvMapNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
+        android:layout_marginStart="70dp"
         android:textColor="#6990A9"
         android:textSize="@dimen/level_5"
         app:layout_constraintBottom_toBottomOf="parent"

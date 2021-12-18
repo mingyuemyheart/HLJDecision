@@ -19,7 +19,6 @@ import com.hlj.adapter.BaseViewPagerAdapter;
 import com.hlj.common.CONST;
 import com.hlj.dto.WeatherMeetingDto;
 import com.hlj.fragment.WeatherMeetingFragment;
-import com.hlj.utils.CommonUtil;
 import com.hlj.view.MainViewPager;
 
 import org.json.JSONArray;
@@ -42,7 +41,7 @@ import shawn.cxwl.com.hlj.R;
  * 天气会商
  * @author shawn_sun
  */
-public class ShawnWeatherMeetingActivity extends BaseFragmentActivity implements OnClickListener{
+public class WeatherMeetingActivity extends BaseFragmentActivity implements OnClickListener{
 	
 	private Context mContext = this;
 	private LinearLayout llContainer = null;
@@ -60,7 +59,7 @@ public class ShawnWeatherMeetingActivity extends BaseFragmentActivity implements
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.shawn_activity_weather_meeting);
+		setContentView(R.layout.activity_weather_meeting);
 		mContext = this;
 		showDialog();
 		initWidget();
@@ -93,10 +92,6 @@ public class ShawnWeatherMeetingActivity extends BaseFragmentActivity implements
 				}
 			}
 		}).start();
-
-		String columnId = getIntent().getStringExtra(CONST.COLUMN_ID);
-		CommonUtil.submitClickCount(columnId, title);
-
 	}
 
 	/**

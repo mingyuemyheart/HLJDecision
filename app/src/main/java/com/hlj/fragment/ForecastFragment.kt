@@ -72,12 +72,12 @@ import kotlin.collections.ArrayList
 /**
  * 天气预报
  */
-class ForecastFragment : BaseFragment(), OnClickListener, AMapLocationListener, CaiyunManager.RadarListener{
+class ForecastFragment : BaseFragment(), OnClickListener, AMapLocationListener, CaiyunManager.RadarListener, BaseFragment.LocationCallback {
 
     private var isFusion = false
-    private var lat = CONST.centerLat
-    private var lng = CONST.centerLng
-    private var cityId = "101050101"
+    private var lat = CONST.defaultLat
+    private var lng = CONST.defaultLng
+    private var cityId = CONST.defaultCityId
     private var timer: Timer? = null
     private var mAdapter: WeeklyForecastAdapter? = null
     private val weeklyList: MutableList<WeatherDto> = ArrayList()
@@ -94,6 +94,7 @@ class ForecastFragment : BaseFragment(), OnClickListener, AMapLocationListener, 
     private val proWarnings: MutableList<WarningDto?> = ArrayList()
     private val hourAqiList: ArrayList<WeatherDto> = ArrayList()
     private val dayAqiList: ArrayList<WeatherDto> = ArrayList()
+    private var locationMarker: Marker? = null
 
     //语音播报
     private var mTts : SpeechSynthesizer? = null// 语音合成对象
@@ -175,13 +176,21 @@ class ForecastFragment : BaseFragment(), OnClickListener, AMapLocationListener, 
             mTts!!.stopSpeaking()
         }
 
-        if (CommonUtil.isLocationOpen(activity)) {
-            startLocation()
+        tvPosition.text = CONST.defaultCityName
+        checkLocationAuthority(this)
+
+    }
+
+    override fun grantedLocation(isGranted: Boolean) {
+        if (isGranted) {
+            if (CommonUtil.isLocationOpen(activity)) {
+                startLocation()
+            } else {
+                dialogLocationPrompt()
+                completeLocation()
+            }
         } else {
-            dialogLocationPrompt()
             completeLocation()
-//            Toast.makeText(activity, "未开启定位，请选择城市", Toast.LENGTH_LONG).show()
-//            startActivityForResult(Intent(activity, CityActivity::class.java), 1001)
         }
     }
 
@@ -256,6 +265,9 @@ class ForecastFragment : BaseFragment(), OnClickListener, AMapLocationListener, 
     }
 
     private fun addMarkerToMap(latLng: LatLng) {
+        if (locationMarker != null) {
+            locationMarker!!.remove()
+        }
         val options = MarkerOptions()
         options.position(latLng)
         options.anchor(0.5f, 0.5f)
@@ -266,7 +278,7 @@ class ForecastFragment : BaseFragment(), OnClickListener, AMapLocationListener, 
         } else {
             options.icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_map_location))
         }
-        aMap!!.addMarker(options)
+        locationMarker = aMap!!.addMarker(options)
         aMap!!.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 6.0f))
     }
 

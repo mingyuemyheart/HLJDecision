@@ -1,19 +1,13 @@
 package com.hlj.activity
 
-import android.Manifest
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
-import android.support.v4.app.ActivityCompat
-import android.support.v4.content.ContextCompat
 import android.text.TextUtils
 import android.view.View
 import android.widget.Toast
 import com.hlj.common.CONST
 import com.hlj.dto.ContactDto
-import com.hlj.utils.AuthorityUtil
 import com.hlj.utils.CommonUtil
 import kotlinx.android.synthetic.main.activity_addrbook_detail.*
 import kotlinx.android.synthetic.main.layout_title.*
@@ -23,8 +17,6 @@ import shawn.cxwl.com.hlj.R
  * 通讯录-详情
  */
 class AddrBookDetailActivity : BaseActivity(), View.OnClickListener {
-
-    private var dialNumber = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,8 +51,19 @@ class AddrBookDetailActivity : BaseActivity(), View.OnClickListener {
             if (!TextUtils.isEmpty(data.worktelephone)) {
                 tvPhone.text = data.worktelephone
                 tvPhoneDial.setOnClickListener {
-                    dialNumber = data.worktelephone
-                    checkPhoneAuthority()
+                    checkCallAuthority(object : CallCallback {
+                        override fun grantedCall(isGranted: Boolean) {
+                            if (isGranted) {
+                                try {
+                                    startActivity(Intent(Intent.ACTION_CALL, Uri.parse("tel:${data.worktelephone}")))
+                                } catch (e: SecurityException) {
+                                    e.printStackTrace()
+                                }
+                            } else {
+                                Toast.makeText(this@AddrBookDetailActivity, "需要开启电话权限", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    })
                 }
                 tvPhoneCopy.setOnClickListener {
                     CommonUtil.copy(this, data.worktelephone)
@@ -70,8 +73,19 @@ class AddrBookDetailActivity : BaseActivity(), View.OnClickListener {
             if (!TextUtils.isEmpty(data.mobile)) {
                 tvMobile.text = data.mobile
                 tvMobileDial.setOnClickListener {
-                    dialNumber = data.mobile
-                    checkPhoneAuthority()
+                    checkCallAuthority(object : CallCallback {
+                        override fun grantedCall(isGranted: Boolean) {
+                            if (isGranted) {
+                                try {
+                                    startActivity(Intent(Intent.ACTION_CALL, Uri.parse("tel:${data.mobile}")))
+                                } catch (e: SecurityException) {
+                                    e.printStackTrace()
+                                }
+                            } else {
+                                Toast.makeText(this@AddrBookDetailActivity, "需要开启电话权限", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    })
                 }
                 tvMobileCopy.setOnClickListener {
                     CommonUtil.copy(this, data.mobile)
@@ -88,40 +102,4 @@ class AddrBookDetailActivity : BaseActivity(), View.OnClickListener {
         }
     }
 
-    /**
-     * 申请电话权限
-     */
-    private fun checkPhoneAuthority() {
-        if (Build.VERSION.SDK_INT < 23) {
-            try {
-                startActivity(Intent(Intent.ACTION_CALL, Uri.parse("tel:$dialNumber")))
-            } catch (e: SecurityException) {
-                e.printStackTrace()
-            }
-        } else {
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) !== PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CALL_PHONE), AuthorityUtil.AUTHOR_PHONE)
-            } else {
-                startActivity(Intent(Intent.ACTION_CALL, Uri.parse("tel:$dialNumber")))
-            }
-        }
-    }
-
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String?>, grantResults: IntArray) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        when (requestCode) {
-            AuthorityUtil.AUTHOR_PHONE -> if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                try {
-                    startActivity(Intent(Intent.ACTION_CALL, Uri.parse("tel:$dialNumber")))
-                } catch (e: SecurityException) {
-                    e.printStackTrace()
-                }
-            } else {
-                if (!ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CALL_PHONE)) {
-                    AuthorityUtil.intentAuthorSetting(this, "\"" + getString(R.string.app_name) + "\"" + "需要使用电话权限，是否前往设置？")
-                }
-            }
-        }
-    }
-	
 }

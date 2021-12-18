@@ -68,9 +68,6 @@ public class SixHourRainActivity extends BaseActivity implements OnClickListener
         }
 
         parseCityInfo(this);
-
-        String columnId = getIntent().getStringExtra(CONST.COLUMN_ID);
-        CommonUtil.submitClickCount(columnId, data.name);
     }
 
     /**

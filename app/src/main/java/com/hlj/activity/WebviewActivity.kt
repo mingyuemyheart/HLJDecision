@@ -22,6 +22,7 @@ import android.widget.Toast
 import com.hlj.common.CONST
 import com.hlj.utils.CommonUtil
 import com.hlj.utils.OkHttpUtil
+import kotlinx.android.synthetic.main.activity_pdf.*
 import kotlinx.android.synthetic.main.activity_webview.*
 import kotlinx.android.synthetic.main.layout_title2.*
 import okhttp3.Call
@@ -147,7 +148,15 @@ class WebviewActivity : BaseActivity(), OnClickListener{
 
         webView.setDownloadListener { url, userAgent, contentDisposition, mimetype, contentLength ->
             val fileName = contentDisposition.substring(contentDisposition.indexOf("\"") + 1, contentDisposition.lastIndexOf("\""))
-            OkHttpFile(url, fileName)
+            checkStorageAuthority(object : StorageCallback {
+                override fun grantedStorage(isGranted: Boolean) {
+                    if (isGranted) {
+                        okHttpFile(url, fileName)
+                    } else {
+                        Toast.makeText(this@WebviewActivity, "需要开启存储权限", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            })
         }
 
     }
@@ -189,12 +198,12 @@ class WebviewActivity : BaseActivity(), OnClickListener{
         }
     }
 
-    private fun OkHttpFile(url: String, fileName: String) {
+    private fun okHttpFile(url: String, fileName: String) {
         if (TextUtils.isEmpty(url)) {
             return
         }
         showDialog()
-        Thread(Runnable {
+        Thread {
             OkHttpUtil.enqueue(Request.Builder().url(url).build(), object : Callback {
                 override fun onFailure(call: Call, e: IOException) {}
 
@@ -246,7 +255,7 @@ class WebviewActivity : BaseActivity(), OnClickListener{
                     }
                 }
             })
-        }).start()
+        }.start()
     }
 
     @SuppressLint("HandlerLeak")

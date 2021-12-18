@@ -1164,7 +1164,7 @@ class WeatherDetailActivity : BaseActivity(), OnClickListener, CaiyunManager.Rad
                 tvBody.setBackgroundResource(R.drawable.bg_body_temp_press)
             }
             R.id.tvAqiCount, R.id.tvAqi -> {
-                val intent = Intent(this, HAirPolutionActivity::class.java)
+                val intent = Intent(this, AirActivity::class.java)
                 intent.putExtra(CONST.ACTIVITY_NAME, "空气质量")
                 startActivity(intent)
             }

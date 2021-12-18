@@ -49,6 +49,8 @@ import kotlin.collections.ArrayList
  */
 class MinuteFallActivity : BaseActivity(), View.OnClickListener, CaiyunManager.RadarListener, AMap.OnMapClickListener, GeocodeSearch.OnGeocodeSearchListener, AMapLocationListener, AMap.OnMapScreenShotListener {
 
+    private var locationLat = CONST.defaultLat
+    private var locationLng = CONST.defaultLng
     private var aMap: AMap? = null
     private val dataList: ArrayList<MinuteFallDto> = ArrayList()
     private val images: ArrayList<MinuteFallDto> = ArrayList()
@@ -75,17 +77,27 @@ class MinuteFallActivity : BaseActivity(), View.OnClickListener, CaiyunManager.R
         ivPlay!!.setOnClickListener(this)
         ivRank!!.setOnClickListener(this)
         seekBar!!.setOnSeekBarChangeListener(seekbarListener)
+
         val title = intent.getStringExtra(CONST.ACTIVITY_NAME)
         if (!TextUtils.isEmpty(title)) {
             tvTitle!!.text = title
         }
-        CommonUtil.drawHLJJson(this, aMap)
         geocoderSearch = GeocodeSearch(this)
         geocoderSearch!!.setOnGeocodeSearchListener(this)
         mRadarManager = CaiyunManager(this)
-        startLocation()
-        val columnId = intent.getStringExtra(CONST.COLUMN_ID)
-        CommonUtil.submitClickCount(columnId, title)
+
+        checkLocationAuthority(object : LocationCallback {
+            override fun grantedLocation(isGranted: Boolean) {
+                if (isGranted) {
+                    startLocation()
+                } else {
+                    aMap!!.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(locationLat, locationLng), 8.0f))
+                    addMarkerToMap()
+                    okHttpMinuteInfo()
+                    okHttpMinuteImage()
+                }
+            }
+        })
     }
 
     /**
@@ -106,23 +118,23 @@ class MinuteFallActivity : BaseActivity(), View.OnClickListener, CaiyunManager.R
 
     override fun onLocationChanged(amapLocation: AMapLocation?) {
         if (amapLocation != null && amapLocation.errorCode == AMapLocation.LOCATION_SUCCESS) {
-            val latLng = LatLng(amapLocation.latitude, amapLocation.longitude)
-            aMap!!.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 8.0f))
-            addMarkerToMap(latLng)
-            queryMinute(amapLocation.longitude, amapLocation.latitude)
+            locationLat = amapLocation.latitude
+            locationLng = amapLocation.longitude
+            aMap!!.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(locationLat, locationLng), 8.0f))
+            addMarkerToMap()
+            okHttpMinuteInfo()
             okHttpMinuteImage()
         }
     }
 
     /**
-     * 异步加载一小时内降雨、或降雪信息
-     *
+     * 获取彩云一小时内降雨、或降雪信息
      * @param lng
      * @param lat
      */
-    private fun queryMinute(lng: Double, lat: Double) {
-        val url = "http://api.caiyunapp.com/v2/HyTVV5YAkoxlQ3Zd/$lng,$lat/forecast"
-        Thread(Runnable {
+    private fun okHttpMinuteInfo() {
+        val url = "http://api.caiyunapp.com/v2/HyTVV5YAkoxlQ3Zd/$locationLng,$locationLat/forecast"
+        Thread {
             OkHttpUtil.enqueue(Request.Builder().url(url).build(), object : Callback {
                 override fun onFailure(call: Call, e: IOException) {}
 
@@ -136,35 +148,32 @@ class MinuteFallActivity : BaseActivity(), View.OnClickListener, CaiyunManager.R
                         if (!TextUtils.isEmpty(result)) {
                             try {
                                 val `object` = JSONObject(result)
-                                if (`object` != null) {
-                                    if (!`object`.isNull("result")) {
-                                        val obj = `object`.getJSONObject("result")
-                                        if (!obj.isNull("minutely")) {
-                                            val objMin = obj.getJSONObject("minutely")
-                                            if (!objMin.isNull("description")) {
-                                                val rain = objMin.getString("description")
-                                                if (!TextUtils.isEmpty(rain)) {
-                                                    tvRain!!.text = rain.replace("小彩云", "")
-                                                    tvRain!!.visibility = View.VISIBLE
-                                                } else {
-                                                    tvRain!!.visibility = View.GONE
-                                                }
+                                if (!`object`.isNull("result")) {
+                                    val obj = `object`.getJSONObject("result")
+                                    if (!obj.isNull("minutely")) {
+                                        val objMin = obj.getJSONObject("minutely")
+                                        if (!objMin.isNull("description")) {
+                                            val rain = objMin.getString("description")
+                                            if (!TextUtils.isEmpty(rain)) {
+                                                tvRain!!.text = rain.replace("小彩云", "")
+                                                tvRain!!.visibility = View.VISIBLE
+                                            } else {
+                                                tvRain!!.visibility = View.GONE
                                             }
-                                            if (!objMin.isNull("precipitation_2h")) {
-                                                val array = objMin.getJSONArray("precipitation_2h")
-                                                val size = array.length()
-                                                val minuteList: ArrayList<WeatherDto> = ArrayList()
-                                                for (i in 0 until size) {
-                                                    val dto = WeatherDto()
-                                                    dto.minuteFall = array.getDouble(i).toFloat()
-                                                    //										dto.minuteFall = new Random().nextFloat();
-                                                    minuteList.add(dto)
-                                                }
-                                                val minuteFallView = MinuteFallView2(this@MinuteFallActivity)
-                                                minuteFallView.setData(minuteList, tvRain!!.text.toString())
-                                                llContainer3!!.removeAllViews()
-                                                llContainer3!!.addView(minuteFallView, CommonUtil.widthPixels(this@MinuteFallActivity), CommonUtil.dip2px(this@MinuteFallActivity, 120f).toInt())
+                                        }
+                                        if (!objMin.isNull("precipitation_2h")) {
+                                            val array = objMin.getJSONArray("precipitation_2h")
+                                            val size = array.length()
+                                            val minuteList: ArrayList<WeatherDto> = ArrayList()
+                                            for (i in 0 until size) {
+                                                val dto = WeatherDto()
+                                                dto.minuteFall = array.getDouble(i).toFloat()
+                                                minuteList.add(dto)
                                             }
+                                            val minuteFallView = MinuteFallView2(this@MinuteFallActivity)
+                                            minuteFallView.setData(minuteList, tvRain!!.text.toString())
+                                            llContainer3!!.removeAllViews()
+                                            llContainer3!!.addView(minuteFallView, CommonUtil.widthPixels(this@MinuteFallActivity), CommonUtil.dip2px(this@MinuteFallActivity, 120f).toInt())
                                         }
                                     }
                                 }
@@ -175,7 +184,7 @@ class MinuteFallActivity : BaseActivity(), View.OnClickListener, CaiyunManager.R
                     }
                 }
             })
-        }).start()
+        }.start()
     }
 
     private val seekbarListener: SeekBar.OnSeekBarChangeListener = object : SeekBar.OnSeekBarChangeListener {
@@ -191,7 +200,6 @@ class MinuteFallActivity : BaseActivity(), View.OnClickListener, CaiyunManager.R
                 mRadarThread!!.startTracking()
             }
         }
-
         override fun onProgressChanged(arg0: SeekBar, arg1: Int, arg2: Boolean) {}
     }
 
@@ -200,7 +208,7 @@ class MinuteFallActivity : BaseActivity(), View.OnClickListener, CaiyunManager.R
         if (aMap == null) {
             aMap = mapView!!.map
         }
-        aMap!!.moveCamera(CameraUpdateFactory.zoomTo(8.0f))
+        aMap!!.moveCamera(CameraUpdateFactory.newLatLngZoom(CONST.guizhouLatLng, 8.0f))
         aMap!!.uiSettings.isZoomControlsEnabled = false
         aMap!!.uiSettings.isRotateGesturesEnabled = false
         aMap!!.setOnMapClickListener(this)
@@ -210,9 +218,12 @@ class MinuteFallActivity : BaseActivity(), View.OnClickListener, CaiyunManager.R
         }
     }
 
-    private fun addMarkerToMap(latLng: LatLng) {
+    private fun addMarkerToMap() {
+        if (clickMarker != null) {
+            clickMarker!!.remove()
+        }
         val options = MarkerOptions()
-        options.position(latLng)
+        options.position(LatLng(locationLat, locationLng))
         options.anchor(0.5f, 0.5f)
         val bitmap = ThumbnailUtils.extractThumbnail(BitmapFactory.decodeResource(resources, R.drawable.icon_map_location),
                 CommonUtil.dip2px(this, 16f).toInt(), CommonUtil.dip2px(this, 24f).toInt())
@@ -222,29 +233,27 @@ class MinuteFallActivity : BaseActivity(), View.OnClickListener, CaiyunManager.R
             options.icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_map_location))
         }
         clickMarker = aMap!!.addMarker(options)
-        query(latLng.longitude, latLng.latitude)
-        searchAddrByLatLng(latLng.latitude, latLng.longitude)
+        clickMarker!!.isClickable = false
+        searchAddrByLatLng()
     }
 
     override fun onMapClick(arg0: LatLng) {
-        if (clickMarker != null) {
-            clickMarker!!.remove()
-        }
         tvAddr!!.text = ""
         tvRain!!.text = ""
-        addMarkerToMap(arg0)
-        queryMinute(arg0.longitude, arg0.latitude)
+        locationLat = arg0.latitude
+        locationLng = arg0.longitude
+        addMarkerToMap()
+        okHttpMinuteInfo()
     }
 
     /**
      * 通过经纬度获取地理位置信息
-     *
      * @param lat
      * @param lng
      */
-    private fun searchAddrByLatLng(lat: Double, lng: Double) {
+    private fun searchAddrByLatLng() {
         //latLonPoint参数表示一个Latlng，第二参数表示范围多少米，GeocodeSearch.AMAP表示是国测局坐标系还是GPS原生坐标系
-        val query = RegeocodeQuery(LatLonPoint(lat, lng), 200f, GeocodeSearch.AMAP)
+        val query = RegeocodeQuery(LatLonPoint(locationLat, locationLng), 200f, GeocodeSearch.AMAP)
         geocoderSearch!!.getFromLocationAsyn(query)
     }
 
@@ -260,59 +269,12 @@ class MinuteFallActivity : BaseActivity(), View.OnClickListener, CaiyunManager.R
         }
     }
 
-    /**
-     * 异步加载一小时内降雨、或降雪信息
-     *
-     * @param lng
-     * @param lat
-     */
-    private fun query(lng: Double, lat: Double) {
-        val url = "http://api.caiyunapp.com/v2/HyTVV5YAkoxlQ3Zd/$lng,$lat/forecast"
-        Thread(Runnable {
-            OkHttpUtil.enqueue(Request.Builder().url(url).build(), object : Callback {
-                override fun onFailure(call: Call, e: IOException) {}
-                @Throws(IOException::class)
-                override fun onResponse(call: Call, response: Response) {
-                    if (!response.isSuccessful) {
-                        return
-                    }
-                    val result = response.body!!.string()
-                    runOnUiThread {
-                        if (!TextUtils.isEmpty(result)) {
-                            try {
-                                val `object` = JSONObject(result)
-                                if (`object` != null) {
-                                    if (!`object`.isNull("result")) {
-                                        val objResult = `object`.getJSONObject("result")
-                                        if (!objResult.isNull("minutely")) {
-                                            val objMin = objResult.getJSONObject("minutely")
-                                            if (!objMin.isNull("description")) {
-                                                val rain = objMin.getString("description")
-                                                if (!TextUtils.isEmpty(rain)) {
-                                                    tvRain!!.text = rain.replace("小彩云", "")
-                                                    tvRain!!.visibility = View.VISIBLE
-                                                } else {
-                                                    tvRain!!.visibility = View.GONE
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            } catch (e1: JSONException) {
-                                e1.printStackTrace()
-                            }
-                        }
-                    }
-                }
-            })
-        }).start()
-    }
-
     private fun okHttpMinuteImage() {
-        Thread(Runnable {
+        Thread {
             val url = "http://api.tianqi.cn:8070/v1/img.py"
             OkHttpUtil.enqueue(Request.Builder().url(url).build(), object : Callback {
                 override fun onFailure(call: Call, e: IOException) {}
+
                 @Throws(IOException::class)
                 override fun onResponse(call: Call, response: Response) {
                     if (!response.isSuccessful) {
@@ -353,7 +315,7 @@ class MinuteFallActivity : BaseActivity(), View.OnClickListener, CaiyunManager.R
                     }
                 }
             })
-        }).start()
+        }.start()
     }
 
     private fun startDownLoadImgs(list: ArrayList<MinuteFallDto>) {

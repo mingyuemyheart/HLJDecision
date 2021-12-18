@@ -1,13 +1,8 @@
 package com.hlj.activity
 
-import android.Manifest
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
-import android.os.Build
 import android.os.Bundle
-import android.support.v4.app.ActivityCompat
-import android.support.v4.content.ContextCompat
 import android.support.v4.view.PagerAdapter
 import android.support.v4.view.ViewPager
 import android.text.Editable
@@ -24,7 +19,6 @@ import android.widget.AdapterView.OnItemClickListener
 import com.hlj.adapter.DisasterUploadAdapter
 import com.hlj.common.MyApplication
 import com.hlj.dto.AgriDto
-import com.hlj.utils.AuthorityUtil
 import com.hlj.utils.CommonUtil
 import com.hlj.utils.OkHttpUtil
 import com.hlj.view.PhotoView
@@ -99,7 +93,15 @@ class DisasterUploadActivity : BaseActivity(), OnClickListener {
         gridView.onItemClickListener = OnItemClickListener { parent, view, position, id ->
             val data = dataList[position]
             if (data.isLastItem) { //点击添加按钮
-                checkStorageAuthority()
+                checkStorageAuthority(object : StorageCallback {
+                    override fun grantedStorage(isGranted: Boolean) {
+                        if (isGranted) {
+                            intentAlbum()
+                        } else {
+                            Toast.makeText(this@DisasterUploadActivity, "需要开启存储权限", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                })
             } else {
                 val imgList: ArrayList<String> = ArrayList()
                 for (i in dataList.indices) {
@@ -352,49 +354,6 @@ class DisasterUploadActivity : BaseActivity(), OnClickListener {
         alphaAnimation.duration = 300
         animationSet.addAnimation(alphaAnimation)
         view!!.startAnimation(animationSet)
-    }
-
-    /**
-     * 申请存储权限
-     */
-    private fun checkStorageAuthority() {
-        if (Build.VERSION.SDK_INT < 23) {
-            intentAlbum()
-        } else {
-            if (ContextCompat.checkSelfPermission(this!!, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                val permissions = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE)
-                ActivityCompat.requestPermissions(this, permissions, AuthorityUtil.AUTHOR_STORAGE)
-            } else {
-                intentAlbum()
-            }
-        }
-    }
-
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String?>, grantResults: IntArray) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        when (requestCode) {
-            AuthorityUtil.AUTHOR_STORAGE -> if (grantResults.isNotEmpty()) {
-                var isAllGranted = true //是否全部授权
-                for (gResult in grantResults) {
-                    if (gResult != PackageManager.PERMISSION_GRANTED) {
-                        isAllGranted = false
-                        break
-                    }
-                }
-                if (isAllGranted) { //所有权限都授予
-                    intentAlbum()
-                } else { //只要有一个没有授权，就提示进入设置界面设置
-                    AuthorityUtil.intentAuthorSetting(this, "\"" + getString(R.string.app_name) + "\"" + "需要使用您的存储权限，是否前往设置？")
-                }
-            } else {
-                for (permission in permissions) {
-                    if (!ActivityCompat.shouldShowRequestPermissionRationale(this, permission!!)) {
-                        AuthorityUtil.intentAuthorSetting(this, "\"" + getString(R.string.app_name) + "\"" + "需要使用您的存储权限，是否前往设置？")
-                        break
-                    }
-                }
-            }
-        }
     }
 
 }
