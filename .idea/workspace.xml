@@ -6,6 +6,7 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="getWeatherInfo" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="error" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
   </component>
@@ -60,68 +61,104 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="15ab3c4b-28f1-4ec7-90ce-56991a316228" name="Default" comment="1.修改决策登录对话框提示逻辑&#10;2.适配天气详情逐小时预报和分钟级降水UI&#10;3.增加预警推送功能">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/BaseActivity.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/BaseFragmentActivity.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/MainActivity.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/utils/AuthorityUtil.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/incremental/packageReleaseResources/compile-file-map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/incremental/packageReleaseResources/compile-file-map.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HLJDecision.iml" beforeDir="false" afterPath="$PROJECT_DIR$/HLJDecision.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/generated/source/buildConfig/release/com/github/barteksc/pdfviewer/BuildConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/generated/source/r/release/android/support/v4/R.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/generated/source/r/release/com/github/barteksc/pdfviewer/R.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/generated/source/r/release/com/shockwave/pdfium/R.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/attr/R.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/android/support/v4/R.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/AnimationManager$FlingAnimation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/AnimationManager$XAnimation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/AnimationManager$YAnimation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/AnimationManager$ZoomAnimation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/AnimationManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/BuildConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/CacheManager$PagePartComparator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/CacheManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/DecodingAsyncTask.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/DragPinchManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/PDFView$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/PDFView$Configurator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/PDFView$ScrollDir.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/PDFView$State.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/PDFView.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/PagesLoader$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/PagesLoader$Holder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/PagesLoader.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/R$attr.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/R$drawable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/R$string.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/R$styleable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/R.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/RenderingHandler$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/RenderingHandler$RenderingTask.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/RenderingHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/exception/FileNotFoundException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/listener/OnDrawListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/listener/OnErrorListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/listener/OnLoadCompleteListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/listener/OnPageChangeListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/listener/OnPageScrollListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/listener/OnRenderListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/model/PagePart.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/scroll/DefaultScrollHandle$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/scroll/DefaultScrollHandle.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/scroll/ScrollHandle.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/source/AssetSource.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/source/ByteArraySource.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/source/DocumentSource.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/source/FileSource.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/source/InputStreamSource.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/source/UriSource.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/util/ArrayUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/util/Constants$Cache.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/util/Constants$Pinch.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/util/Constants.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/util/FileUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/util/MathUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/github/barteksc/pdfviewer/util/Util.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/shockwave/pdfium/R$string.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/classes/release/com/shockwave/pdfium/R.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/incremental/compileReleaseAidl/dependency.store" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/incremental/mergeReleaseJniLibFolders/merger.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/incremental/mergeReleaseShaders/merger.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/incremental/packageReleaseAssets/merger.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/incremental/packageReleaseResources/compile-file-map.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/incremental/packageReleaseResources/merged.dir/values/values.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/incremental/packageReleaseResources/merger.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/incremental/release-mergeJniLibs/merge-state" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/intermediate-jars/release/classes.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/intermediate-jars/release/res.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/javaPrecompile/release/annotationProcessors.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/manifests/aapt/release/AndroidManifest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/manifests/aapt/release/output.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/manifests/full/release/AndroidManifest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/manifests/full/release/output.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/packaged_res/release/drawable/default_scroll_handle_bottom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/packaged_res/release/drawable/default_scroll_handle_left.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/packaged_res/release/drawable/default_scroll_handle_right.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/packaged_res/release/drawable/default_scroll_handle_top.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/packaged_res/release/values/values.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/res/symbol-table-with-package/release/package-aware-r.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/symbols/release/R.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/transforms/mergeJniLibs/release/__content__.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/intermediates/transforms/stripDebugSymbol/release/__content__.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android-pdf-viewer/build/outputs/logs/manifest-merger-release-report.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/AddrBookDetailActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/AddrBookDetailActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/AskAnwserUploadActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/AskAnwserUploadActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/BaseActivity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/BaseFragmentActivity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/CommonListActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/CommonListActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/DisasterUploadActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/DisasterUploadActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/FactActivity2.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/FactActivity2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/FactMonitorActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/FactMonitorActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/FylzActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/FylzActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/HAirPolutionActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/AirActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/HTempratureForecastActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/TempForeActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/HWeatherChartAnalysisActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/WeatherChartAnalysisActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/HWeatherStaticsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/WeatherStaticsActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/HanghuaActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/HanghuaActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/MainActivity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/MinuteFallActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/MinuteFallActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/PDFActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/PDFActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/PDFSingleActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/PDFSingleActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/PointForeActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/PointForeActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/ProductActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/ProductActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/MainActivity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/ProvinceForecastActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/ProvinceForecastActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/SelectPictureActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/SelectPictureActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/ReserveCityActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/ReserveCityActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/SettingActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/SettingActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/ShawnStreamFactActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/StreamFactActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/ShawnStrongStreamActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/StrongStreamActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/ShawnWaitWindActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/WaitWindActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/ShawnWeatherMeetingActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/WeatherMeetingActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/SixHourRainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/SixHourRainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/ThunderForeActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/ThunderForeActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/ThunderStatisticActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/ThunderStatisticActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/TyphoonRouteActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/TyphoonRouteActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/WarningDetailActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/WarningDetailActivity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/WeatherDetailActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/WeatherDetailActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/WeatherRadarActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/WeatherRadarActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/WebviewActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/activity/WebviewActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/common/CONST.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/common/CONST.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/fragment/BaseFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/fragment/BaseFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/fragment/ContactUsFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/fragment/ContactUsFragment.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/fragment/ForecastFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/fragment/ForecastFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/fragment/WeatherFactFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/fragment/WeatherFactFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/utils/AuthorityUtil.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/utils/SecretUrlUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/utils/SecretUrlUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hlj/view/WaitWindView2.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hlj/view/WaitWindView2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_setting.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_setting.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/hactivity_air_polution.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_air.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/hactivity_temperature_forecast.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_temp_fore.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/hactivity_weather_chart_analysis.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_weather_chart_analysis.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/hactivity_weather_statics.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_weather_statics.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/layout_title.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/layout_title.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/shawn_activity_stream_fact.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_stream_fact.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/shawn_activity_strong_stream.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_strong_stream.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/shawn_activity_wait_wind.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_wait_wind.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/shawn_activity_weather_meeting.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_weather_meeting.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,7 +168,7 @@
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[SerialNumber@CTV0220C17019284]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[CTV0220C17019284]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -216,6 +253,7 @@
     <property name="android-custom-view/Users/sunxiaoming/Downloads/AndroidStudioProjects/HLJDecision/app/src/main/java/com/hlj/view/HourlyView.java_SELECTED" value="HourlyView" />
     <property name="android-custom-view/Users/sunxiaoming/Downloads/AndroidStudioProjects/HLJDecision/app/src/main/java/com/hlj/view/MinuteFallView.java_SELECTED" value="MinuteFallView" />
     <property name="android-custom-view/Users/sunxiaoming/Downloads/AndroidStudioProjects/HLJDecision/app/src/main/java/com/hlj/view/MinuteFallView2.java_SELECTED" value="MinuteFallView2" />
+    <property name="android-custom-view/Users/sunxiaoming/Downloads/AndroidStudioProjects/HLJDecision/app/src/main/java/com/hlj/view/MyListView.java_SELECTED" value="MyListView" />
     <property name="android-custom-view/Users/sunxiaoming/Downloads/AndroidStudioProjects/HLJDecision/app/src/main/java/com/hlj/view/MyTextView.java_SELECTED" value="MyTextView" />
     <property name="android-custom-view/Users/sunxiaoming/Downloads/AndroidStudioProjects/HLJDecision/app/src/main/java/com/hlj/view/PhotoView.java_SELECTED" value="PhotoView" />
     <property name="android-custom-view/Users/sunxiaoming/Downloads/AndroidStudioProjects/HLJDecision/app/src/main/java/com/hlj/view/ScrollviewGridview.java_SELECTED" value="ScrollviewGridview" />
@@ -277,21 +315,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Android App.app">
-    <configuration default="true" type="Applet">
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="&lt;template&gt;" type="JUnit" default="true" selected="false">
-      <option name="MAIN_CLASS_NAME" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-    </configuration>
-    <configuration name="&lt;template&gt;" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" default="true" selected="false">
-      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
-    </configuration>
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" />
@@ -299,6 +322,15 @@
       <method v="2">
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
+    </configuration>
+    <configuration default="true" type="Applet">
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="&lt;template&gt;" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" default="true" selected="false">
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
     </configuration>
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android App">
       <option name="DEPLOY" value="true" />
@@ -545,8 +577,17 @@
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
-      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
       <module name="HLJDecision" />
@@ -1028,88 +1069,5 @@
     <MESSAGE value="替换新的天气数据" />
     <MESSAGE value="替换天气数据" />
     <option name="LAST_COMMIT_MESSAGE" value="替换天气数据" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="558" y="184" key="#com.intellij.ide.util.MemberChooser" timestamp="1639756782165">
-      <screen x="50" y="23" width="1390" height="877" />
-    </state>
-    <state x="2141" y="217" key="#com.intellij.ide.util.MemberChooser/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1632489650036" />
-    <state x="558" y="184" key="#com.intellij.ide.util.MemberChooser/50.23.1390.877@50.23.1390.877" timestamp="1639756782165" />
-    <state x="1888" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1632490092191">
-      <screen x="1440" y="23" width="1920" height="1057" />
-    </state>
-    <state x="1888" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1632490092191" />
-    <state x="2038" y="254" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1637129820074">
-      <screen x="1440" y="23" width="1920" height="1057" />
-    </state>
-    <state x="2038" y="254" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1637129820074" />
-    <state x="483" y="215" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/50.23.1390.877/1440.23.1920.1057@50.23.1390.877" timestamp="1631175436064" />
-    <state x="483" y="215" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/50.23.1390.877@50.23.1390.877" timestamp="1633778770609" />
-    <state width="416" height="387" key="DebuggerActiveHint" timestamp="1632823727650">
-      <screen x="50" y="23" width="1390" height="877" />
-    </state>
-    <state width="416" height="387" key="DebuggerActiveHint/50.23.1390.877/1440.23.1920.1057@50.23.1390.877" timestamp="1632823727650" />
-    <state x="1540" y="123" width="1720" height="857" key="DiffContextDialog" timestamp="1632381164438">
-      <screen x="1440" y="23" width="1920" height="1057" />
-    </state>
-    <state x="1540" y="123" width="1720" height="857" key="DiffContextDialog/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1632381164438" />
-    <state width="1348" height="343" key="GridCell.Tab.0.bottom" timestamp="1639735612170">
-      <screen x="50" y="23" width="1390" height="877" />
-    </state>
-    <state width="1348" height="261" key="GridCell.Tab.0.bottom/49.23.1391.877/1440.23.1920.1057@49.23.1391.877" timestamp="1639356478746" />
-    <state width="1878" height="330" key="GridCell.Tab.0.bottom/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1637204866386" />
-    <state width="1348" height="319" key="GridCell.Tab.0.bottom/50.23.1390.877/1440.23.1920.1057@50.23.1390.877" timestamp="1635315029830" />
-    <state width="1348" height="343" key="GridCell.Tab.0.bottom/50.23.1390.877@50.23.1390.877" timestamp="1639735612170" />
-    <state width="1348" height="343" key="GridCell.Tab.0.center" timestamp="1639735612170">
-      <screen x="50" y="23" width="1390" height="877" />
-    </state>
-    <state width="1348" height="261" key="GridCell.Tab.0.center/49.23.1391.877/1440.23.1920.1057@49.23.1391.877" timestamp="1639356478744" />
-    <state width="1878" height="330" key="GridCell.Tab.0.center/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1637204866386" />
-    <state width="1348" height="319" key="GridCell.Tab.0.center/50.23.1390.877/1440.23.1920.1057@50.23.1390.877" timestamp="1635315029829" />
-    <state width="1348" height="343" key="GridCell.Tab.0.center/50.23.1390.877@50.23.1390.877" timestamp="1639735612170" />
-    <state width="1348" height="343" key="GridCell.Tab.0.left" timestamp="1639735612169">
-      <screen x="50" y="23" width="1390" height="877" />
-    </state>
-    <state width="1348" height="261" key="GridCell.Tab.0.left/49.23.1391.877/1440.23.1920.1057@49.23.1391.877" timestamp="1639356478744" />
-    <state width="1878" height="330" key="GridCell.Tab.0.left/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1637204866385" />
-    <state width="1348" height="319" key="GridCell.Tab.0.left/50.23.1390.877/1440.23.1920.1057@50.23.1390.877" timestamp="1635315029828" />
-    <state width="1348" height="343" key="GridCell.Tab.0.left/50.23.1390.877@50.23.1390.877" timestamp="1639735612169" />
-    <state width="1348" height="343" key="GridCell.Tab.0.right" timestamp="1639735612170">
-      <screen x="50" y="23" width="1390" height="877" />
-    </state>
-    <state width="1348" height="261" key="GridCell.Tab.0.right/49.23.1391.877/1440.23.1920.1057@49.23.1391.877" timestamp="1639356478745" />
-    <state width="1878" height="330" key="GridCell.Tab.0.right/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1637204866386" />
-    <state width="1348" height="319" key="GridCell.Tab.0.right/50.23.1390.877/1440.23.1920.1057@50.23.1390.877" timestamp="1635315029829" />
-    <state width="1348" height="343" key="GridCell.Tab.0.right/50.23.1390.877@50.23.1390.877" timestamp="1639735612170" />
-    <state x="151" y="123" width="1190" height="678" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1639757977064">
-      <screen x="50" y="23" width="1390" height="877" />
-    </state>
-    <state x="1579" y="144" width="1643" height="816" key="com.intellij.history.integration.ui.views.FileHistoryDialog/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1636973839679" />
-    <state x="151" y="123" width="1190" height="678" key="com.intellij.history.integration.ui.views.FileHistoryDialog/50.23.1390.877/1440.23.1920.1057@50.23.1390.877" timestamp="1631172643908" />
-    <state x="151" y="123" width="1190" height="678" key="com.intellij.history.integration.ui.views.FileHistoryDialog/50.23.1390.877@50.23.1390.877" timestamp="1639757977064" />
-    <state x="337" y="79" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1631191114262">
-      <screen x="50" y="23" width="1390" height="877" />
-    </state>
-    <state x="337" y="79" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/50.23.1390.877@50.23.1390.877" timestamp="1631191114262" />
-    <state x="416" y="242" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1639708212764">
-      <screen x="50" y="23" width="1390" height="877" />
-    </state>
-    <state x="1946" y="287" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1637203878152" />
-    <state x="416" y="242" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/50.23.1390.877@50.23.1390.877" timestamp="1639708212764" />
-    <state x="443" y="216" width="604" height="518" key="find.popup" timestamp="1639756735487">
-      <screen x="50" y="23" width="1390" height="877" />
-    </state>
-    <state x="1982" y="256" width="836" height="625" key="find.popup/49.23.1391.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1637217173172" />
-    <state x="2053" y="284" width="835" height="591" key="find.popup/50.23.1390.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1637134530910" />
-    <state x="443" y="216" width="605" height="551" key="find.popup/50.23.1390.877/1440.23.1920.1057@50.23.1390.877" timestamp="1637044702427" />
-    <state x="443" y="216" width="604" height="518" key="find.popup/50.23.1390.877@50.23.1390.877" timestamp="1639756735487" />
-    <state x="613" y="375" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1631279684316">
-      <screen x="50" y="23" width="1390" height="877" />
-    </state>
-    <state x="613" y="375" key="git4idea.remote.GitConfigureRemotesDialog/50.23.1390.877@50.23.1390.877" timestamp="1631279684316" />
-    <state x="410" y="213" width="670" height="676" key="search.everywhere.popup" timestamp="1636891522213">
-      <screen x="50" y="23" width="1390" height="877" />
-    </state>
-    <state x="410" y="213" width="670" height="676" key="search.everywhere.popup/50.23.1390.877@50.23.1390.877" timestamp="1636891522213" />
   </component>
 </project>

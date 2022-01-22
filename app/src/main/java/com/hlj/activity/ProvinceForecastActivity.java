@@ -286,7 +286,7 @@ public class ProvinceForecastActivity extends BaseActivity implements OnClickLis
         new Thread(new Runnable() {
             @Override
             public void run() {
-                final String url = String.format("http://api.weatherdt.com/common/?area=%s&type=forecast&key=eca9a6c9ee6fafe74ac6bc81f577a680", dto.areaId);
+                final String url = String.format("https://hfapi.tianqi.cn/getweatherdata.php?area=%s&type=forecast&key=AErLsfoKBVCsU8hs", dto.areaId);
                 OkHttpUtil.enqueue(new Request.Builder().url(url).build(), new Callback() {
                     @Override
                     public void onFailure(@NotNull Call call, @NotNull IOException e) {

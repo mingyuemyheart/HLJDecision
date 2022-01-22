@@ -179,8 +179,8 @@ class SettingActivity : BaseActivity(), OnClickListener {
                 }
             }
             R.id.llVersion -> {
-//                AutoUpdateUtil.checkUpdate(this@SettingActivity, this, "41", getString(R.string.app_name), false) //黑龙江气象
-                AutoUpdateUtil.checkUpdate(this@SettingActivity, this, "53", getString(R.string.app_name), false) //决策气象服务
+                AutoUpdateUtil.checkUpdate(this@SettingActivity, this, "41", getString(R.string.app_name), false) //黑龙江气象
+//                AutoUpdateUtil.checkUpdate(this@SettingActivity, this, "53", getString(R.string.app_name), false) //决策气象服务
             }
             R.id.llClearCache -> deleteDialog(true, getString(R.string.delete_cache), getString(R.string.sure_delete_cache), tvCache)
             R.id.llClearData -> deleteDialog(false, getString(R.string.delete_data), getString(R.string.sure_delete_data), tvData)

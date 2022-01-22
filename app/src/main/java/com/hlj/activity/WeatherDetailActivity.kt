@@ -593,7 +593,7 @@ class WeatherDetailActivity : BaseActivity(), OnClickListener, CaiyunManager.Rad
 
     private fun getWeatherInfo(cityId: String) {
         Thread(Runnable {
-            val url = String.format("http://api.weatherdt.com/common/?area=%s&type=forecast|observe|alarm|air|rise&key=eca9a6c9ee6fafe74ac6bc81f577a680", cityId)
+            val url = String.format("https://hfapi.tianqi.cn/getweatherdata.php?area=%s&type=forecast|observe|alarm|air|rise&key=AErLsfoKBVCsU8hs", cityId)
             OkHttpUtil.enqueue(Request.Builder().url(url).build(), object : Callback {
                 override fun onFailure(call: Call, e: IOException) {}
 

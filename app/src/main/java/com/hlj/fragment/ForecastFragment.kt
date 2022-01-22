@@ -383,41 +383,44 @@ class ForecastFragment : BaseFragment(), OnClickListener, AMapLocationListener, 
                     val result = response.body!!.string()
                     activity!!.runOnUiThread {
                         if (!TextUtils.isEmpty(result)) {
-                            try {
-                                val obj = JSONObject(result)
-
-                                if (!obj.isNull("series")) {
-                                    hourAqiList.clear()
-                                    val array = obj.getJSONArray("series")
-                                    for (i in 0 until array.length()) {
-                                        val data = WeatherDto()
-                                        data.aqi = array[i].toString()
-                                        hourAqiList.add(data)
-                                    }
-
-                                    for (i in 0 until hourlyList.size) {
-                                        val dto = hourlyList[i]
-                                        if (hourAqiList.size > 0 && i < hourAqiList.size) {
-                                            val aqiValue = hourAqiList[i].aqi
-                                            if (!TextUtils.isEmpty(aqiValue)) {
-                                                dto.hourlyAqi = aqiValue
-                                            }
-                                        }
-                                    }
-                                    //逐小时预报信息
-                                    val cubicView = HourlyView(activity)
-                                    cubicView.setData(hourlyList)
-                                    llContainerHour!!.removeAllViews()
-                                    llContainerHour!!.addView(cubicView, CommonUtil.widthPixels(activity) * 5 / 2, CommonUtil.dip2px(activity, 200f).toInt())
-                                }
-                            } catch (e1: JSONException) {
-                                e1.printStackTrace()
-                            }
+                            val obj = JSONObject(result)
+                            parseHourAqi(obj)
                         }
                     }
                 }
             })
         }.start()
+    }
+
+    private fun parseHourAqi(obj: JSONObject) {
+        try {
+            if (!obj.isNull("series")) {
+                hourAqiList.clear()
+                val array = obj.getJSONArray("series")
+                for (i in 0 until array.length()) {
+                    val data = WeatherDto()
+                    data.aqi = array[i].toString()
+                    hourAqiList.add(data)
+                }
+
+                for (i in 0 until hourlyList.size) {
+                    val dto = hourlyList[i]
+                    if (hourAqiList.size > 0 && i < hourAqiList.size) {
+                        val aqiValue = hourAqiList[i].aqi
+                        if (!TextUtils.isEmpty(aqiValue)) {
+                            dto.hourlyAqi = aqiValue
+                        }
+                    }
+                }
+                //逐小时预报信息
+                val cubicView = HourlyView(activity)
+                cubicView.setData(hourlyList)
+                llContainerHour!!.removeAllViews()
+                llContainerHour!!.addView(cubicView, CommonUtil.widthPixels(activity) * 5 / 2, CommonUtil.dip2px(activity, 200f).toInt())
+            }
+        } catch (e1: JSONException) {
+            e1.printStackTrace()
+        }
     }
 
     /**
@@ -443,85 +446,88 @@ class ForecastFragment : BaseFragment(), OnClickListener, AMapLocationListener, 
                     val result = response.body!!.string()
                     activity!!.runOnUiThread {
                         if (!TextUtils.isEmpty(result)) {
-                            try {
-                                val obj = JSONObject(result)
-
-                                if (!obj.isNull("series")) {
-                                    dayAqiList.clear()
-                                    val array = obj.getJSONArray("series")
-                                    for (i in 0 until array.length()) {
-                                        val data = WeatherDto()
-                                        data.aqi = array[i].toString()
-                                        dayAqiList.add(data)
-                                    }
-
-                                    for (i in 0 until weeklyList.size) {
-                                        val dto = weeklyList[i]
-                                        if (dayAqiList.size > 0 && i < dayAqiList.size) {
-                                            val aqiValue = dayAqiList[i].aqi
-                                            if (!TextUtils.isEmpty(aqiValue)) {
-                                                dto.aqi = aqiValue
-                                            }
-                                        }
-
-                                        if (i == 0) {
-                                            if (!TextUtils.isEmpty(dto.aqi) && !TextUtils.equals(dto.aqi, "?") && !TextUtils.equals(dto.aqi, "null")) {
-                                                val value: Int = dto.aqi.toInt()
-                                                if (value <= 150) {
-                                                    tvAqi1!!.setTextColor(Color.BLACK)
-                                                } else {
-                                                    tvAqi1!!.setTextColor(Color.WHITE)
-                                                }
-                                                tvAqi1.text = CommonUtil.getAqiDes(activity, value)
-                                                tvAqi1.setBackgroundResource(CommonUtil.getCornerBackground(value))
-                                            }
-                                        }
-                                        if (i == 1) {
-                                            if (dayAqiList.size > 1) {
-                                                if (!TextUtils.isEmpty(dto.aqi) && !TextUtils.equals(dto.aqi, "?") && !TextUtils.equals(dto.aqi, "null")) {
-                                                    val value: Int = dto.aqi.toInt()
-                                                    if (value <= 150) {
-                                                        tvAqi2!!.setTextColor(Color.BLACK)
-                                                    } else {
-                                                        tvAqi2!!.setTextColor(Color.WHITE)
-                                                    }
-                                                    tvAqi2.text = CommonUtil.getAqiDes(activity, value)
-                                                    tvAqi2.setBackgroundResource(CommonUtil.getCornerBackground(value))
-                                                }
-                                            }
-                                        }
-                                    }
-
-                                    var foreDate: Long = 0
-                                    var currentDate: Long = 0
-                                    try {
-                                        val fTime = sdf3.format(sdf4.parse(f0))
-                                        foreDate = sdf3.parse(fTime).time
-                                        currentDate = sdf3.parse(sdf3.format(Date())).time
-                                    } catch (e: ParseException) {
-                                        e.printStackTrace()
-                                    }
-                                    //一周预报列表
-                                    if (mAdapter != null) {
-                                        mAdapter!!.foreDate = foreDate
-                                        mAdapter!!.currentDate = currentDate
-                                        mAdapter!!.notifyDataSetChanged()
-                                    }
-
-                                    //一周预报曲线
-                                    val weeklyView = WeeklyView(activity)
-                                    weeklyView.setData(weeklyList, foreDate, currentDate)
-                                    llContainerFifteen!!.removeAllViews()
-                                    llContainerFifteen!!.addView(weeklyView, CommonUtil.widthPixels(activity) * 2, CommonUtil.dip2px(activity, 360f).toInt())
-                                }
-                            } catch (e1: JSONException) {
-                                e1.printStackTrace()
-                            }
+                            val obj = JSONObject(result)
+                            parseDayAqi(obj, f0)
                         }
                     }
                 }
             })
         }.start()
+    }
+
+    private fun parseDayAqi(obj: JSONObject, f0: String) {
+        try {
+            if (!obj.isNull("series")) {
+                dayAqiList.clear()
+                val array = obj.getJSONArray("series")
+                for (i in 0 until array.length()) {
+                    val data = WeatherDto()
+                    data.aqi = array[i].toString()
+                    dayAqiList.add(data)
+                }
+
+                for (i in 0 until weeklyList.size) {
+                    val dto = weeklyList[i]
+                    if (dayAqiList.size > 0 && i < dayAqiList.size) {
+                        val aqiValue = dayAqiList[i].aqi
+                        if (!TextUtils.isEmpty(aqiValue)) {
+                            dto.aqi = aqiValue
+                        }
+                    }
+
+                    if (i == 0) {
+                        if (!TextUtils.isEmpty(dto.aqi) && !TextUtils.equals(dto.aqi, "?") && !TextUtils.equals(dto.aqi, "null")) {
+                            val value: Int = dto.aqi.toInt()
+                            if (value <= 150) {
+                                tvAqi1!!.setTextColor(Color.BLACK)
+                            } else {
+                                tvAqi1!!.setTextColor(Color.WHITE)
+                            }
+                            tvAqi1.text = CommonUtil.getAqiDes(activity, value)
+                            tvAqi1.setBackgroundResource(CommonUtil.getCornerBackground(value))
+                        }
+                    }
+                    if (i == 1) {
+                        if (dayAqiList.size > 1) {
+                            if (!TextUtils.isEmpty(dto.aqi) && !TextUtils.equals(dto.aqi, "?") && !TextUtils.equals(dto.aqi, "null")) {
+                                val value: Int = dto.aqi.toInt()
+                                if (value <= 150) {
+                                    tvAqi2!!.setTextColor(Color.BLACK)
+                                } else {
+                                    tvAqi2!!.setTextColor(Color.WHITE)
+                                }
+                                tvAqi2.text = CommonUtil.getAqiDes(activity, value)
+                                tvAqi2.setBackgroundResource(CommonUtil.getCornerBackground(value))
+                            }
+                        }
+                    }
+                }
+
+                var foreDate: Long = 0
+                var currentDate: Long = 0
+                try {
+                    val fTime = sdf3.format(sdf4.parse(f0))
+                    foreDate = sdf3.parse(fTime).time
+                    currentDate = sdf3.parse(sdf3.format(Date())).time
+                } catch (e: ParseException) {
+                    e.printStackTrace()
+                }
+                //一周预报列表
+                if (mAdapter != null) {
+                    mAdapter!!.foreDate = foreDate
+                    mAdapter!!.currentDate = currentDate
+                    mAdapter!!.notifyDataSetChanged()
+                }
+
+                //一周预报曲线
+                val weeklyView = WeeklyView(activity)
+                weeklyView.setData(weeklyList, foreDate, currentDate)
+                llContainerFifteen!!.removeAllViews()
+                llContainerFifteen!!.addView(weeklyView, CommonUtil.widthPixels(activity) * 2, CommonUtil.dip2px(activity, 360f).toInt())
+            }
+        } catch (e1: JSONException) {
+            e1.printStackTrace()
+        }
     }
 
     private fun getGeo(isFusion: Boolean) {
@@ -551,9 +557,9 @@ class ForecastFragment : BaseFragment(), OnClickListener, AMapLocationListener, 
 
     private fun getWeatherInfo(isFusion: Boolean) {
         Thread {
-            var url = "http://api.weatherdt.com/common/?area=$cityId&type=forecast|observe|alarm|air|rise&key=eca9a6c9ee6fafe74ac6bc81f577a680"
+            var url = "https://hfapi.tianqi.cn/getweatherdata.php?area=$cityId&type=forecast|observe|alarm|air|rise&key=AErLsfoKBVCsU8hs"
             if (isFusion) {
-                url = "http://decision-admin.tianqi.cn/Home/Work2019/hlj_fusion_weather?lat=$lat&lon=$lng&type=forecast|observe&key=eca9a6c9ee6fafe74ac6bc81f577a680"
+                url = "http://decision-admin.tianqi.cn/Home/Work2019/hlj_fusion_weather?lat=$lat&lon=$lng&type=forecast|observe&key=AErLsfoKBVCsU8hs"
             }
             Log.e("getWeatherInfo", url)
             OkHttpUtil.enqueue(Request.Builder().url(url).build(), object : Callback {
@@ -762,6 +768,11 @@ class ForecastFragment : BaseFragment(), OnClickListener, AMapLocationListener, 
                                                     hourlyList.add(dto)
                                                 }
 
+                                                if (!obj.isNull("air_hour")) {
+                                                    val airHour = obj.getJSONObject("air_hour")
+                                                    parseHourAqi(airHour)
+                                                }
+
                                                 okHttpHourAqi(f0)
                                             }
                                         }
@@ -884,6 +895,11 @@ class ForecastFragment : BaseFragment(), OnClickListener, AMapLocationListener, 
                                                         }
                                                         tvTemp2!!.text = dto.lowTemp.toString() + "/" + dto.highTemp + "℃"
                                                     }
+                                                }
+
+                                                if (!obj.isNull("air_day")) {
+                                                    val airDay = obj.getJSONObject("air_day")
+                                                    parseDayAqi(airDay, f0)
                                                 }
 
                                                 okHttpDayAqi(f0)

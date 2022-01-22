@@ -321,7 +321,7 @@ public class ReserveCityActivity extends BaseActivity implements View.OnClickLis
                 for (int i = 0; i < cityIds.size(); i++) {
                     final CityDto dto = cityList.get(i);
                     final String cityId = cityIds.get(i);
-                    final String url = String.format("http://api.weatherdt.com/common/?area=%s&type=forecast|observe|alarm|air&key=eca9a6c9ee6fafe74ac6bc81f577a680", cityId);
+                    final String url = String.format("https://hfapi.tianqi.cn/getweatherdata.php?area=%s&type=forecast|observe|alarm|air&key=AErLsfoKBVCsU8hs", cityId);
                     OkHttpUtil.enqueue(new Request.Builder().url(url).build(), new Callback() {
                         @Override
                         public void onFailure(@NotNull Call call, @NotNull IOException e) {

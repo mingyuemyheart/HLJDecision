@@ -63,8 +63,8 @@ class MainActivity : BaseFragmentActivity(), OnClickListener {
      * 初始化控件
      */
     private fun initWidget() {
-//		AutoUpdateUtil.checkUpdate(this, this, "41", getString(R.string.app_name), true)//黑龙江气象
-        AutoUpdateUtil.checkUpdate(this, this, "53", getString(R.string.app_name), true) //决策气象服务
+		AutoUpdateUtil.checkUpdate(this, this, "41", getString(R.string.app_name), true)//黑龙江气象
+//        AutoUpdateUtil.checkUpdate(this, this, "53", getString(R.string.app_name), true) //决策气象服务
         ivSetting.setOnClickListener(this)
         if (TextUtils.equals(MyApplication.getAppTheme(), "1")) {
             clMain.setBackgroundColor(Color.BLACK)
