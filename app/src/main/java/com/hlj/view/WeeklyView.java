@@ -222,28 +222,29 @@ public class WeeklyView extends View {
 //			canvas.drawText(windDir, dto.highX-windDirWidth/2, h-CommonUtil.dip2px(mContext, 45), textP);
 
 			//绘制风向标
+			float rotation = 0;
 			if (dto.windDir == 1) {
-				dto.windDir = 45;
+				rotation = 225;
 			}else if (dto.windDir == 2) {
-				dto.windDir = 90;
+				rotation = 270;
 			}else if (dto.windDir == 3) {
-				dto.windDir = 135;
+				rotation = 315;
 			}else if (dto.windDir == 4) {
-				dto.windDir = 180;
+				rotation = 0;
 			}else if (dto.windDir == 5) {
-				dto.windDir = 225;
+				rotation = 45;
 			}else if (dto.windDir == 6) {
-				dto.windDir = 270;
+				rotation = 90;
 			}else if (dto.windDir == 7) {
-				dto.windDir = 315;
+				rotation = 135;
 			}else if (dto.windDir == 8) {
-				dto.windDir = 360;
+				rotation = 180;
 			}else {
-				dto.windDir = 0;
+				rotation = 0;
 			}
 			Matrix matrix = new Matrix();
 			matrix.postScale(1, 1);
-			matrix.postRotate(dto.windDir);
+			matrix.postRotate(rotation);
 			if (windBitmap != null) {
 				Bitmap wBitmap = Bitmap.createBitmap(windBitmap, 0, 0, windBitmap.getWidth(), windBitmap.getHeight(), matrix, true);
 				if (wBitmap != null) {

@@ -616,28 +616,28 @@ class ForecastFragment : BaseFragment(), OnClickListener, AMapLocationListener, 
                                                             tvWind!!.text = "$dir $force"
                                                             when {
                                                                 TextUtils.equals(dir, "北风") -> {
-                                                                    ivWind!!.rotation = 0f
-                                                                }
-                                                                TextUtils.equals(dir, "东北风") -> {
-                                                                    ivWind!!.rotation = 45f
-                                                                }
-                                                                TextUtils.equals(dir, "东风") -> {
-                                                                    ivWind!!.rotation = 90f
-                                                                }
-                                                                TextUtils.equals(dir, "东南风") -> {
-                                                                    ivWind!!.rotation = 135f
-                                                                }
-                                                                TextUtils.equals(dir, "南风") -> {
                                                                     ivWind!!.rotation = 180f
                                                                 }
-                                                                TextUtils.equals(dir, "西南风") -> {
+                                                                TextUtils.equals(dir, "东北风") -> {
                                                                     ivWind!!.rotation = 225f
                                                                 }
-                                                                TextUtils.equals(dir, "西风") -> {
+                                                                TextUtils.equals(dir, "东风") -> {
                                                                     ivWind!!.rotation = 270f
                                                                 }
-                                                                TextUtils.equals(dir, "西北风") -> {
+                                                                TextUtils.equals(dir, "东南风") -> {
                                                                     ivWind!!.rotation = 315f
+                                                                }
+                                                                TextUtils.equals(dir, "南风") -> {
+                                                                    ivWind!!.rotation = 0f
+                                                                }
+                                                                TextUtils.equals(dir, "西南风") -> {
+                                                                    ivWind!!.rotation = 45f
+                                                                }
+                                                                TextUtils.equals(dir, "西风") -> {
+                                                                    ivWind!!.rotation = 90f
+                                                                }
+                                                                TextUtils.equals(dir, "西北风") -> {
+                                                                    ivWind!!.rotation = 135f
                                                                 }
                                                             }
                                                             if (TextUtils.equals("1", MyApplication.getAppTheme())) {
@@ -823,7 +823,7 @@ class ForecastFragment : BaseFragment(), OnClickListener, AMapLocationListener, 
                                                         dto.highTemp = Integer.valueOf(three)
                                                     }
                                                     val hour = sdf1.format(Date()).toInt()
-                                                    if (hour in 5..17) {
+//                                                    if (hour in 5..17) {
                                                         val seven = weeklyObj.getString("007")
                                                         if (!TextUtils.isEmpty(seven) && !TextUtils.equals(seven, "?") && !TextUtils.equals(seven, "null")) {
                                                             dto.windDir = Integer.valueOf(seven)
@@ -833,17 +833,17 @@ class ForecastFragment : BaseFragment(), OnClickListener, AMapLocationListener, 
                                                             dto.windForce = Integer.valueOf(five)
                                                             dto.windForceString = WeatherUtil.getDayWindForce(dto.windForce)
                                                         }
-                                                    } else {
-                                                        val eight = weeklyObj.getString("008")
-                                                        if (!TextUtils.isEmpty(eight) && !TextUtils.equals(eight, "?") && !TextUtils.equals(eight, "null")) {
-                                                            dto.windDir = Integer.valueOf(eight)
-                                                        }
-                                                        val six = weeklyObj.getString("006")
-                                                        if (!TextUtils.isEmpty(six) && !TextUtils.equals(six, "?") && !TextUtils.equals(six, "null")) {
-                                                            dto.windForce = Integer.valueOf(six)
-                                                            dto.windForceString = WeatherUtil.getDayWindForce(dto.windForce)
-                                                        }
-                                                    }
+//                                                    } else {
+//                                                        val eight = weeklyObj.getString("008")
+//                                                        if (!TextUtils.isEmpty(eight) && !TextUtils.equals(eight, "?") && !TextUtils.equals(eight, "null")) {
+//                                                            dto.windDir = Integer.valueOf(eight)
+//                                                        }
+//                                                        val six = weeklyObj.getString("006")
+//                                                        if (!TextUtils.isEmpty(six) && !TextUtils.equals(six, "?") && !TextUtils.equals(six, "null")) {
+//                                                            dto.windForce = Integer.valueOf(six)
+//                                                            dto.windForceString = WeatherUtil.getDayWindForce(dto.windForce)
+//                                                        }
+//                                                    }
                                                     if (dayAqiList.size > 0 && i < dayAqiList.size) {
                                                         val aqiValue = dayAqiList[i].aqi
                                                         if (!TextUtils.isEmpty(aqiValue)) {

@@ -26,6 +26,7 @@ import com.hlj.utils.WeatherUtil;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -39,6 +40,7 @@ public class HourlyView extends View {
 	private Context mContext;
 	private SimpleDateFormat sdf1 = new SimpleDateFormat("yyyyMMddHHmm", Locale.CHINA);
 	private SimpleDateFormat sdf2 = new SimpleDateFormat("HH:00", Locale.CHINA);
+	private SimpleDateFormat sdf3 = new SimpleDateFormat("HH", Locale.CHINA);
 	private List<WeatherDto> tempList = new ArrayList<>();
 	private int maxTemp = 0;//最高温度
 	private int minTemp = 0;//最低温度
@@ -198,9 +200,20 @@ public class HourlyView extends View {
 			canvas.drawText(dto.hourlyTemp+"", dto.x-tempWidth/2, dto.y-CommonUtil.dip2px(mContext, 5f), textP);
 
 			//绘制天气现象图标
-			Bitmap dayB = WeatherUtil.getBitmap(mContext, dto.hourlyCode);
-			if (dayB != null) {
-				Bitmap dayBitmap = ThumbnailUtils.extractThumbnail(dayB, (int)(CommonUtil.dip2px(mContext, 20)), (int)(CommonUtil.dip2px(mContext, 20)));
+			int hour = 0;
+			try {
+				hour = Integer.valueOf(sdf3.format(sdf1.parse(dto.hourlyTime)));
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			Bitmap bitmap;
+			if (hour > 5 && hour <= 17) {
+				bitmap = WeatherUtil.getBitmap(mContext, dto.hourlyCode);
+			} else {
+				bitmap = WeatherUtil.getNightBitmap(mContext, dto.hourlyCode);
+			}
+			if (bitmap != null) {
+				Bitmap dayBitmap = ThumbnailUtils.extractThumbnail(bitmap, (int)(CommonUtil.dip2px(mContext, 20)), (int)(CommonUtil.dip2px(mContext, 20)));
 				if (dayBitmap != null) {
 					canvas.drawBitmap(dayBitmap, dto.x-dayBitmap.getWidth()/2, dto.y+CommonUtil.dip2px(mContext, 5f), textP);
 				}
@@ -252,21 +265,21 @@ public class HourlyView extends View {
 				float rotation = 0;
 				String dir = mContext.getString(WeatherUtil.getWindDirection(dto.hourlyWindDirCode));
 				if (TextUtils.equals(dir, "北风")) {
-					rotation = 0f;
-				}else if (TextUtils.equals(dir, "东北风")) {
-					rotation = 45f;
-				}else if (TextUtils.equals(dir, "东风")) {
-					rotation = 90f;
-				}else if (TextUtils.equals(dir, "东南风")) {
-					rotation = 135f;
-				}else if (TextUtils.equals(dir, "南风")) {
 					rotation = 180f;
-				}else if (TextUtils.equals(dir, "西南风")) {
+				}else if (TextUtils.equals(dir, "东北风")) {
 					rotation = 225f;
-				}else if (TextUtils.equals(dir, "西风")) {
+				}else if (TextUtils.equals(dir, "东风")) {
 					rotation = 270f;
-				}else if (TextUtils.equals(dir, "西北风")) {
+				}else if (TextUtils.equals(dir, "东南风")) {
 					rotation = 315f;
+				}else if (TextUtils.equals(dir, "南风")) {
+					rotation = 0f;
+				}else if (TextUtils.equals(dir, "西南风")) {
+					rotation = 45f;
+				}else if (TextUtils.equals(dir, "西风")) {
+					rotation = 90f;
+				}else if (TextUtils.equals(dir, "西北风")) {
+					rotation = 135f;
 				}else {
 					rotation = 0f;
 				}
