@@ -12,10 +12,10 @@ android {
     useLibrary 'org.apache.http.legacy'
 
     defaultConfig {
-//        applicationId "shawn.cxwl.com.hlj"
-        applicationId "shawn.cxwl.com.hlj.decision"
+        applicationId "shawn.cxwl.com.hlj"
+//        applicationId "shawn.cxwl.com.hlj.decision"
         minSdkVersion 21
-        targetSdkVersion 30
+        targetSdkVersion 28
         versionCode 423
         versionName "4.0.23"
 
@@ -51,7 +51,7 @@ android {
     android.applicationVariants.all {
         variant ->
             variant.outputs.all {
-                outputFileName = "HLJDecision_" + "${defaultConfig.versionCode}" + "_V" + "${defaultConfig.versionName}" + "_" + buildType.name + ".apk"
+                outputFileName = "HLJ_" + "${defaultConfig.versionCode}" + "_V" + "${defaultConfig.versionName}" + "_" + buildType.name + ".apk"
             }
     }
 
