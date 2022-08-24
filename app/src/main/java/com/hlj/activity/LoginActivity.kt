@@ -386,7 +386,7 @@ class LoginActivity : BaseActivity(), OnClickListener, AMapLocationListener {
 										MyApplication.saveUserInfo(this)
 
 										resetTimer()
-										okHttpPushToken()
+//										okHttpPushToken()
 
 										MyApplication.destoryActivity()
 										startActivity(Intent(this@LoginActivity, MainActivity::class.java))
@@ -415,9 +415,9 @@ class LoginActivity : BaseActivity(), OnClickListener, AMapLocationListener {
 	private fun okHttpPushToken() {
 		val url = "https://decision-admin.tianqi.cn/Home/extra/savePushToken"
 		val builder = FormBody.Builder()
-		val androidId = Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
+//		val androidId = Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
 		val serial = Build.SERIAL
-		builder.add("uuid", androidId+serial)
+		builder.add("uuid", serial)
 		builder.add("uid", MyApplication.UID)
 		builder.add("groupid", MyApplication.GROUPID)
 		builder.add("pushtoken", MyApplication.DEVICETOKEN)

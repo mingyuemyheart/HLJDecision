@@ -71,6 +71,7 @@ import com.hlj.manager.CaiyunManager;
 import com.hlj.manager.RainManager;
 import com.hlj.utils.CommonUtil;
 import com.hlj.utils.OkHttpUtil;
+import com.hlj.utils.SecretUrlUtil;
 import com.hlj.utils.WeatherUtil;
 import com.hlj.view.WaitWindView;
 
@@ -1967,7 +1968,7 @@ public class TyphoonRouteActivity extends BaseActivity implements OnClickListene
 		buffer.append("&");
 		buffer.append("appid=").append(RainManager.APPID);
 
-		String key = RainManager.getKey(RainManager.CHINAWEATHER_DATA, buffer.toString());
+		String key = SecretUrlUtil.getKey(RainManager.CHINAWEATHER_DATA, buffer.toString());
 		buffer.delete(buffer.lastIndexOf("&"), buffer.length());
 
 		buffer.append("&");

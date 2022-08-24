@@ -63,7 +63,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/tvPositive"
         app:layout_constraintEnd_toStartOf="@+id/tvPositive"
         android:padding="10dp"
-        android:text="不同意"
+        android:text="不同意并退出app"
         android:textColor="@color/text_color4"
         android:textSize="@dimen/level_3" />
 

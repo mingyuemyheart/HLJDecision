@@ -3,12 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../.gradle/caches/transforms-1/files-1.1/ZhongshanDecision-v1.6.7.aar/8a334ea3283289c6e5a98374226e52d9/res/layout/shawn_activity_fact.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.19384057971014493" />
+        <entry key="app/src/main/res/layout/activity_pdf.xml" value="0.19384057971014493" />
         <entry key="app/src/main/res/layout/activity_select_position.xml" value="0.1334853090172239" />
+        <entry key="app/src/main/res/layout/activity_setting.xml" value="0.1334853090172239" />
         <entry key="app/src/main/res/layout/adapter_position.xml" value="0.1334853090172239" />
+        <entry key="app/src/main/res/layout/dialog_first_login.xml" value="0.1334853090172239" />
+        <entry key="app/src/main/res/layout/dialog_prompt.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_forecast.xml" value="0.19384057971014493" />
         <entry key="app/src/main/res/layout/fragment_warning.xml" value="0.19384057971014493" />
         <entry key="app/src/main/res/layout/layout_marker_info.xml" value="0.1334853090172239" />
+        <entry key="app/src/main/res/layout/layout_title.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/layout_title2.xml" value="0.1334853090172239" />
       </map>
     </option>
   </component>

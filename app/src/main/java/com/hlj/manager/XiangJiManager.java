@@ -3,6 +3,8 @@ package com.hlj.manager;
 import android.util.Base64;
 import android.util.Log;
 
+import com.hlj.utils.SecretUrlUtil;
+
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -42,7 +44,7 @@ public class XiangJiManager {
 		buffer.append("timestamp=").append(timestamp);
 		buffer.append("&");
 		
-		String key = getKey(CHINAWEATHER_DATA, timestamp+APPID);
+		String key = SecretUrlUtil.getKey(CHINAWEATHER_DATA, timestamp+APPID);
 		buffer.delete(buffer.lastIndexOf("&"), buffer.length());
 		
 		buffer.append("&");
@@ -70,7 +72,7 @@ public class XiangJiManager {
 		buffer.append("timestamp=").append(timestamp);
 		buffer.append("&");
 		
-		String key = getKey(CHINAWEATHER_DATA, timestamp+APPID);
+		String key = SecretUrlUtil.getKey(CHINAWEATHER_DATA, timestamp+APPID);
 		buffer.delete(buffer.lastIndexOf("&"), buffer.length());
 		
 		buffer.append("&");
@@ -78,29 +80,6 @@ public class XiangJiManager {
 		String result = buffer.toString();
 		Log.e("getXJSecretUrl2", result);
 		return result;
-	}
-	
-	/**
-	 * 获取秘钥
-	 * @param key
-	 * @param src
-	 * @return
-	 */
-	public static final String getKey(String key, String src) {
-		try{
-			byte[] rawHmac = null;
-			byte[] keyBytes = key.getBytes("UTF-8");
-			SecretKeySpec signingKey = new SecretKeySpec(keyBytes, "HmacSHA1");
-			Mac mac = Mac.getInstance("HmacSHA1");
-			mac.init(signingKey);
-			rawHmac = mac.doFinal(src.getBytes("UTF-8"));
-			String encodeStr = Base64.encodeToString(rawHmac, Base64.DEFAULT);
-			String keySrc = URLEncoder.encode(encodeStr, "UTF-8");
-			return keySrc;
-		}catch(Exception e){
-			Log.e("SceneException", e.getMessage(), e);
-		}
-		return null;
 	}
 
 }
