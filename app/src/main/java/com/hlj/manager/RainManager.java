@@ -10,6 +10,8 @@ import javax.crypto.spec.SecretKeySpec;
 import android.util.Base64;
 import android.util.Log;
 
+import com.hlj.utils.SecretUrlUtil;
+
 public class RainManager {
 
 	public final static String APPID = "6f688d62594549a2";//机密需要用到的AppId
@@ -44,7 +46,7 @@ public class RainManager {
 		buffer.append("&");
 		buffer.append("appid=").append(APPID);
 
-		String key = getKey(CHINAWEATHER_DATA, buffer.toString());
+		String key = SecretUrlUtil.getKey(CHINAWEATHER_DATA, buffer.toString());
 		buffer.delete(buffer.lastIndexOf("&"), buffer.length());
 
 		buffer.append("&");
@@ -53,29 +55,6 @@ public class RainManager {
 		buffer.append("key=").append(key.substring(0, key.length() - 3));
 		String result = buffer.toString();
 		return result;
-	}
-
-	/**
-	 * 获取秘钥
-	 * @param key
-	 * @param src
-	 * @return
-	 */
-	public static final String getKey(String key, String src) {
-		try{
-			byte[] rawHmac = null;
-			byte[] keyBytes = key.getBytes("UTF-8");
-			SecretKeySpec signingKey = new SecretKeySpec(keyBytes, "HmacSHA1");
-			Mac mac = Mac.getInstance("HmacSHA1");
-			mac.init(signingKey);
-			rawHmac = mac.doFinal(src.getBytes("UTF-8"));
-			String encodeStr = Base64.encodeToString(rawHmac, Base64.DEFAULT);
-			String keySrc = URLEncoder.encode(encodeStr, "UTF-8");
-			return keySrc;
-		}catch(Exception e){
-			Log.e("SceneException", e.getMessage(), e);
-		}
-		return null;
 	}
 
 }

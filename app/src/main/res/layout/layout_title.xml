@@ -33,7 +33,10 @@
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_toEndOf="@+id/llBack"
+        android:singleLine="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="60dp"
         android:textColor="@color/white"
         android:textSize="@dimen/level_3" />
 

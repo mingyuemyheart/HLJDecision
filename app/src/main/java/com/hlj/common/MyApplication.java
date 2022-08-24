@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.app.Application;
 import android.app.Notification;
 import android.app.NotificationManager;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
@@ -38,6 +40,8 @@ import java.util.Set;
 
 public class MyApplication extends Application{
 
+	private MyBroadCastReceiver mReceiver;
+	public static String START_INIT = "start_init";
 	public static String appKey = "5755277767e58e5ca4000e07", msgSecret = "3464bbdf388960ddcea9c5cebf46cd66";//旧
 //	public static String appKey = "5efe98800cafb240580000e2", msgSecret = "a03a519f1e2867391368d006baefd69f";//新
     private static PushAgent mPushAgent = null;
@@ -63,10 +67,26 @@ public class MyApplication extends Application{
 		CrashHandler crashHandler = CrashHandler.getInstance();
 		crashHandler.init(getApplicationContext());
 
-		//科大讯飞
-		SpeechUtility.createUtility(this, "appid=" + "5983c375");
+		initBroadcast();
 
-		initUmeng();
+	}
+
+	private void initBroadcast() {
+		mReceiver = new MyBroadCastReceiver();
+		IntentFilter intentFilter = new IntentFilter();
+		intentFilter.addAction(START_INIT);
+		registerReceiver(mReceiver, intentFilter);
+	}
+
+	private class MyBroadCastReceiver extends BroadcastReceiver {
+		@Override
+		public void onReceive(Context arg0, Intent arg1) {
+			if (TextUtils.equals(arg1.getAction(), START_INIT)) {
+				//科大讯飞
+				SpeechUtility.createUtility(getApplicationContext(), "appid=" + "5983c375");
+				initUmeng();
+			}
+		}
 	}
 
 	/**
@@ -76,7 +96,7 @@ public class MyApplication extends Application{
 		//umeng分享
 		UMConfigure.init(this, appKey, "umeng", UMConfigure.DEVICE_TYPE_PHONE, msgSecret);
 		PlatformConfig.setWeixin("wx029d05ce279a188f", "7f2a515f4c85c0b180fc9894d6c7c80a");
-		UMConfigure.setLogEnabled(true);
+		UMConfigure.setLogEnabled(false);
 
 		registerUmengPush();
 	}

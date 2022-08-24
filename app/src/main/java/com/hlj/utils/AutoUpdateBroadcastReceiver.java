@@ -78,13 +78,13 @@ public class AutoUpdateBroadcastReceiver extends BroadcastReceiver{
 
     private void openFile(File file, Context context) {
         Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            Uri contentUri = FileProvider.getUriForFile(context, context.getPackageName()+".fileprovider", file);
+            Uri contentUri = FileProvider.getUriForFile(context, context.getPackageName()+".FileProvider", file);
             intent.setDataAndType(contentUri, "application/vnd.android.package-archive");
         } else {
             intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         }
 
         try {

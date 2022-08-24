@@ -42,10 +42,12 @@ class WelcomeActivity : BaseActivity(), AMapLocationListener {
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.activity_welcome)
-		okHttpTheme()
-		startLocation()
 
-		tvVersion.text = "V${CommonUtil.getVersion(this)}"
+		if (!policyFlag()) {
+			promptDialog()
+		} else {
+			init()
+		}
 	}
 
 	/**
@@ -87,15 +89,18 @@ class WelcomeActivity : BaseActivity(), AMapLocationListener {
 				}
 			})
 		}.start()
-
-		if (!policyFlag()) {
-			promptDialog()
-		}else {
-			init()
-		}
 	}
 
 	private fun init() {
+		tvVersion.text = "V${CommonUtil.getVersion(this)}"
+		startLocation()
+
+		val intent = Intent()
+		intent.action = MyApplication.START_INIT
+		sendBroadcast(intent)
+
+		okHttpTheme()
+
 		Handler().postDelayed({
 			imageView.visibility = View.VISIBLE
 
@@ -429,7 +434,7 @@ class WelcomeActivity : BaseActivity(), AMapLocationListener {
 											MyApplication.JC_DOWNLOAD = obj.getString("jc_download")
 											MyApplication.saveUserInfo(this)
 
-											okHttpPushToken()
+//											okHttpPushToken()
 										}
 										startActivity(Intent(this, MainActivity::class.java))
 										finish()
@@ -457,9 +462,9 @@ class WelcomeActivity : BaseActivity(), AMapLocationListener {
 	private fun okHttpPushToken() {
 		val url = "https://decision-admin.tianqi.cn/Home/extra/savePushToken"
 		val builder = FormBody.Builder()
-		val androidId = Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
+//		val androidId = Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
 		val serial = Build.SERIAL
-		builder.add("uuid", androidId+serial)
+		builder.add("uuid", serial)
 		builder.add("uid", MyApplication.UID)
 		builder.add("groupid", MyApplication.GROUPID)
 		builder.add("pushtoken", MyApplication.DEVICETOKEN)

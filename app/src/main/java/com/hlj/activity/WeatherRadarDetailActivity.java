@@ -29,6 +29,7 @@ import com.hlj.dto.RadarDto;
 import com.hlj.manager.RadarManager;
 import com.hlj.manager.RadarManager.RadarListener;
 import com.hlj.utils.OkHttpUtil;
+import com.hlj.utils.SecretUrlUtil;
 import com.hlj.view.MyDialog;
 
 import net.tsz.afinal.FinalBitmap;
@@ -166,7 +167,7 @@ public class WeatherRadarDetailActivity extends BaseActivity implements OnClickL
 		buffer.append("&");
 		buffer.append("appid=").append(APPID);
 		
-		String key = getKey(LEID_DATA, buffer.toString());
+		String key = SecretUrlUtil.getKey(LEID_DATA, buffer.toString());
 		buffer.delete(buffer.lastIndexOf("&"), buffer.length());
 		
 		buffer.append("&");
@@ -175,23 +176,6 @@ public class WeatherRadarDetailActivity extends BaseActivity implements OnClickL
 		buffer.append("key=").append(key.substring(0, key.length()-3));
 		String result = buffer.toString();
 		return result;
-	}
-	
-	private String getKey(String key, String src) {
-		try{
-			byte[] rawHmac = null;
-			byte[] keyBytes = key.getBytes("UTF-8");
-			SecretKeySpec signingKey = new SecretKeySpec(keyBytes, "HmacSHA1");
-			Mac mac = Mac.getInstance("HmacSHA1");
-			mac.init(signingKey);
-			rawHmac = mac.doFinal(src.getBytes("UTF-8"));
-			String encodeStr = Base64.encodeToString(rawHmac, Base64.DEFAULT);
-			String keySrc = URLEncoder.encode(encodeStr, "UTF-8");
-			return keySrc;
-		}catch(Exception e){
-			Log.e("SceneException", e.getMessage(), e);
-		}
-		return null;
 	}
 	
 	/**

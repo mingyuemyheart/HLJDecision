@@ -18,7 +18,7 @@
             android:id="@+id/clMain"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="visible">
+            android:visibility="invisible">
 
             <ImageView
                 android:id="@+id/ivAdd"
@@ -292,14 +292,21 @@
 
             </android.support.constraint.ConstraintLayout>
 
-            <ImageView
+            <TextView
                 android:id="@+id/ivClimate"
-                android:layout_width="30dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:background="@drawable/bg_corner_climate"
+                android:textSize="18sp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:text="@string/climate"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="300dp"
                 android:adjustViewBounds="true"
-                android:src="@drawable/icon_climate"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvAqi" />
 

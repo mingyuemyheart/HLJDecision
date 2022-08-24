@@ -400,7 +400,7 @@ public class SecretUrlUtil {
      * @param src
      * @return
      */
-    private static String getKey(String key, String src) {
+    public static String getKey(String key, String src) {
         try{
             byte[] rawHmac;
             byte[] keyBytes = key.getBytes("UTF-8");
