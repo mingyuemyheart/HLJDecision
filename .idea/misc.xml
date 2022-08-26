@@ -4,14 +4,20 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../.gradle/caches/transforms-1/files-1.1/ZhongshanDecision-v1.6.7.aar/8a334ea3283289c6e5a98374226e52d9/res/layout/shawn_activity_fact.xml" value="0.1" />
+<<<<<<< HEAD
         <entry key="app/src/main/res/drawable/bg_corner_climate.xml" value="0.25833333333333336" />
         <entry key="app/src/main/res/drawable/bg_corner_white.xml" value="0.290625" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.19384057971014493" />
+=======
+>>>>>>> 30073c803f2bd92fd0f465e526cffc06813e64c5
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.19384057971014493" />
         <entry key="app/src/main/res/layout/activity_pdf.xml" value="0.19384057971014493" />
         <entry key="app/src/main/res/layout/activity_select_position.xml" value="0.1334853090172239" />
         <entry key="app/src/main/res/layout/activity_setting.xml" value="0.1334853090172239" />
+<<<<<<< HEAD
         <entry key="app/src/main/res/layout/activity_weather_detail.xml" value="0.19384057971014493" />
+=======
+>>>>>>> 30073c803f2bd92fd0f465e526cffc06813e64c5
         <entry key="app/src/main/res/layout/adapter_position.xml" value="0.1334853090172239" />
         <entry key="app/src/main/res/layout/dialog_first_login.xml" value="0.1334853090172239" />
         <entry key="app/src/main/res/layout/dialog_prompt.xml" value="0.25" />
